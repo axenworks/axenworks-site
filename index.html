@@ -145,14 +145,13 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
   <h3>Join the waitlist or get in touch</h3>
   <p class="lead">Tell us which studio you're interested in and we'll be in touch.</p>
   <form id="f">
-    <label>Name<input type="text" name="name" autocomplete="name" required></label>
-    <label>Email<input type="email" name="email" autocomplete="email" required></label>
+    <label>Name<input type="text" id="wl-name" autocomplete="name" required></label>
+    <label>Email<input type="email" id="wl-email" autocomplete="email" required></label>
     <div class="checks" role="group" aria-label="Interested in">
-      <label><input type="checkbox" checked> Digital Studio</label>
-      <label><input type="checkbox"> Print Studio</label>
+      <label><input type="checkbox" id="wl-digital" checked> Digital Studio</label>
+      <label><input type="checkbox" id="wl-print"> Print Studio</label>
     </div>
-    <label>Message (optional)<textarea rows="3"></textarea></label>
-    <button type="submit">Join the waitlist</button>
+    <button type="submit" id="wl-btn">Join the waitlist</button>
     <p id="msg" role="status"></p>
   </form>
 </div></section>
@@ -160,9 +159,26 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 <footer><div class="wrap">Axenworks. Draft preview. Terms, privacy policy and cookie notice to be added before launch.</div></footer>
 
 <script>
+var SB_URL="https://cvkgnrrskoptdtojcwvz.supabase.co";
+var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2a2ducnJza29wdGR0b2pjd3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTE2OTksImV4cCI6MjEwNzM4NzY5OX0.WsI6YpOpyd6q4wTV0q5FJzbjs0K3qnDTL4FNhfcbwNg";
 document.getElementById('f').addEventListener('submit',function(e){
   e.preventDefault();
-  document.getElementById('msg').textContent="Preview only: this form isn't connected yet, so nothing was saved.";
+  var msg=document.getElementById('msg'),btn=document.getElementById('wl-btn');
+  var d=document.getElementById('wl-digital').checked,p=document.getElementById('wl-print').checked;
+  if(!d&&!p){msg.textContent="Choose at least one studio.";return;}
+  var interest=d&&p?"both":(d?"digital":"print");
+  btn.disabled=true;msg.textContent="Saving...";
+  fetch(SB_URL+"/rest/v1/waitlist",{
+    method:"POST",
+    headers:{"Content-Type":"application/json","apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Prefer":"return=minimal"},
+    body:JSON.stringify({name:document.getElementById('wl-name').value.trim(),email:document.getElementById('wl-email').value.trim(),interest:interest})
+  }).then(function(r){
+    if(!r.ok)throw new Error(r.status);
+    document.getElementById('f').reset();document.getElementById('wl-digital').checked=true;
+    msg.textContent="Thanks, you're on the waitlist.";
+  }).catch(function(){
+    msg.textContent="Something went wrong. Please try again in a moment.";
+  }).finally(function(){btn.disabled=false;});
 });
 </script>
 </body>
