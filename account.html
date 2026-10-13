@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your account | Axenworks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2430d6;--bg:#f7f8f6;--ink:#16181d;--muted:#585e69;--line:#d9dcd6;--card:#ffffff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101216;--ink:#eef0ee;--muted:#a3a9b2;--line:#2a2e36;--card:#171a20;--blue:#3a46f0}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;max-width:1040px;margin:0 auto}
+nav a{text-decoration:none;font-weight:800;font-size:20px;letter-spacing:-.02em;color:inherit}
+main{max-width:460px;margin:24px auto 64px;padding:0 20px}
+h1{font-size:34px;letter-spacing:-.03em;line-height:1.1;margin:0 0 8px}
+p.sub{color:var(--muted);margin:0 0 22px}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;display:grid;gap:14px}
+label{display:grid;gap:5px;font-weight:600;font-size:15px}
+input{font:inherit;padding:11px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+button{font:inherit;font-weight:600;padding:13px 22px;border-radius:999px;border:0;background:var(--blue);color:#fff;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+button.link{background:none;color:var(--blue);padding:4px 0;border-radius:0;text-decoration:underline;font-weight:400}
+.row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+#msg{min-height:1.5em;margin:14px 0 0;color:var(--muted);font-size:15px}
+:focus-visible{outline:3px solid #ffb703;outline-offset:3px}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<nav aria-label="Main"><a href="index.html">Axenworks</a></nav>
+<main>
+  <!-- Log in / sign up -->
+  <section id="v-auth" hidden>
+    <h1 id="a-title">Log in</h1>
+    <p class="sub" id="a-sub">Welcome back.</p>
+    <form class="box" id="f-auth">
+      <label>Email<input type="email" id="email" autocomplete="email" required></label>
+      <label>Password<input type="password" id="pw" autocomplete="current-password" minlength="8" required></label>
+      <button type="submit" id="a-btn">Log in</button>
+      <div class="row">
+        <button type="button" class="link" id="toggle">New here? Create an account</button>
+        <button type="button" class="link" id="forgot">Forgot password?</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- Set a new password (after reset email) -->
+  <section id="v-reset" hidden>
+    <h1>Choose a new password</h1>
+    <p class="sub">Use at least 8 characters.</p>
+    <form class="box" id="f-reset">
+      <label>New password<input type="password" id="npw" autocomplete="new-password" minlength="8" required></label>
+      <button type="submit">Save password</button>
+    </form>
+  </section>
+
+  <!-- Dashboard -->
+  <section id="v-dash" hidden>
+    <h1>Your account</h1>
+    <p class="sub">Signed in as <b id="who"></b></p>
+    <div class="box">
+      <b>Your website</b>
+      <span style="color:var(--muted)">You don't have a website yet. Choosing a template and ordering will appear here soon.</span>
+      <button type="button" id="out">Log out</button>
+    </div>
+  </section>
+
+  <p id="msg" role="status"></p>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+var SB_URL="https://cvkgnrrskoptdtojcwvz.supabase.co";
+var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2a2ducnJza29wdGR0b2pjd3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTE2OTksImV4cCI6MjEwNzM4NzY5OX0.WsI6YpOpyd6q4wTV0q5FJzbjs0K3qnDTL4FNhfcbwNg";
+var sb=supabase.createClient(SB_URL,SB_KEY);
+var $=function(id){return document.getElementById(id)};
+var signup=false;
+
+function say(t){$('msg').textContent=t||''}
+function show(v){['auth','reset','dash'].forEach(function(n){$('v-'+n).hidden=(n!==v)});say('')}
+function setMode(s){
+  signup=s;
+  $('a-title').textContent=s?'Create your account':'Log in';
+  $('a-sub').textContent=s?'Start by choosing an email and password.':'Welcome back.';
+  $('a-btn').textContent=s?'Create account':'Log in';
+  $('toggle').textContent=s?'Already have an account? Log in':'New here? Create an account';
+  $('pw').autocomplete=s?'new-password':'current-password';
+  $('forgot').hidden=s;say('');
+}
+
+$('toggle').onclick=function(){setMode(!signup)};
+
+$('f-auth').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var b=$('a-btn');b.disabled=true;say('One moment...');
+  var email=$('email').value.trim(),pw=$('pw').value;
+  try{
+    if(signup){
+      var r=await sb.auth.signUp({email:email,password:pw,options:{emailRedirectTo:location.origin+'/account.html'}});
+      if(r.error)throw r.error;
+      if(!r.data.session)say('Almost done. We sent a confirmation link to '+email+'. Click it, then log in.');
+    }else{
+      var r2=await sb.auth.signInWithPassword({email:email,password:pw});
+      if(r2.error)throw r2.error;
+    }
+  }catch(err){say(err.message||'Something went wrong. Please try again.')}
+  b.disabled=false;
+});
+
+$('forgot').onclick=async function(){
+  var email=$('email').value.trim();
+  if(!email){say('Enter your email above first, then select "Forgot password?".');return}
+  var r=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+'/account.html'});
+  say(r.error?r.error.message:'If that email has an account, a reset link is on its way.');
+};
+
+$('f-reset').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var r=await sb.auth.updateUser({password:$('npw').value});
+  if(r.error){say(r.error.message);return}
+  var s=(await sb.auth.getSession()).data.session;
+  if(s){$('who').textContent=s.user.email;show('dash');say('Password updated.')}
+});
+
+$('out').onclick=async function(){await sb.auth.signOut()};
+
+sb.auth.onAuthStateChange(function(ev,session){
+  if(ev==='PASSWORD_RECOVERY'){show('reset');return}
+  if(session){$('who').textContent=session.user.email;show('dash')}
+  else{show('auth')}
+});
+setMode(false);
+</script>
+</body>
+</html>
