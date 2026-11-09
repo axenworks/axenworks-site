@@ -25,6 +25,22 @@ button:disabled{opacity:.6;cursor:wait}
 button.link{background:none;color:var(--blue);padding:4px 0;border-radius:0;text-decoration:underline;font-weight:400}
 .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 #msg{min-height:1.5em;margin:14px 0 0;color:var(--muted);font-size:15px}
+main.wide{max-width:900px}
+h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
+.muted{color:var(--muted)}
+.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:6px}
+.plan{all:unset;box-sizing:border-box;cursor:pointer;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:6px;align-content:start;transition:border-color .15s,transform .15s}
+.plan:hover{border-color:var(--blue);transform:translateY(-2px)}
+.plan:focus-visible{outline:3px solid #ffb703;outline-offset:3px}
+.plan[aria-busy="true"]{opacity:.6;cursor:wait}
+.plan .name{font-weight:800;font-size:20px}
+.plan .price{font-size:30px;font-weight:800;letter-spacing:-.02em}
+.plan .price small{font-size:15px;font-weight:400;color:var(--muted)}
+.plan .go{margin-top:10px;color:var(--blue);font-weight:600}
+.plan.pop{border:2px solid var(--blue)}
+.badge{justify-self:start;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--blue);color:#fff;border-radius:999px;padding:3px 10px}
+.plan-name{font-size:28px;font-weight:800;letter-spacing:-.02em}
+.note{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:14px}
 :focus-visible{outline:3px solid #ffb703;outline-offset:3px}
 [hidden]{display:none!important}
 </style>
@@ -61,11 +77,45 @@ button.link{background:none;color:var(--blue);padding:4px 0;border-radius:0;text
   <section id="v-dash" hidden>
     <h1>Your account</h1>
     <p class="sub">Signed in as <b id="who"></b></p>
-    <div class="box">
-      <b>Your website</b>
-      <span style="color:var(--muted)">You don't have a website yet. Choosing a template and ordering will appear here soon.</span>
-      <button type="button" id="out">Log out</button>
+    <p class="note" id="d-note" hidden></p>
+
+    <div class="box" id="d-loading"><span class="muted">Loading your plan...</span></div>
+
+    <div class="box" id="d-plan" hidden>
+      <b>Your website plan</b>
+      <div class="plan-name" id="p-name"></div>
+      <span id="p-status"></span>
+      <span class="muted">We'll be in touch to start building your website.</span>
     </div>
+
+    <div id="d-choose" hidden>
+      <h2>Choose your plan</h2>
+      <p class="sub">Every plan has a one-off £50 setup fee, paid today. Your monthly payments start after your free trial.</p>
+      <div class="plans">
+        <button type="button" class="plan" data-plan="starter">
+          <span class="name">Starter</span>
+          <span class="price">£19.99 <small>/ month</small></span>
+          <span class="muted">Your custom website, hosted and looked after.</span>
+          <span class="go">Choose Starter →</span>
+        </button>
+        <button type="button" class="plan pop" data-plan="standard">
+          <span class="badge">Most popular</span>
+          <span class="name">Standard</span>
+          <span class="price">£39.99 <small>/ month</small></span>
+          <span class="muted">Everything in Starter, with more change requests included.</span>
+          <span class="go">Choose Standard →</span>
+        </button>
+        <button type="button" class="plan" data-plan="pro">
+          <span class="name">Pro</span>
+          <span class="price">£59.99 <small>/ month</small></span>
+          <span class="muted">Everything in Standard, with the most change requests included.</span>
+          <span class="go">Choose Pro →</span>
+        </button>
+      </div>
+      <p class="muted" style="font-size:15px">Need a change after your included ones are used? Extra change requests are £10 each.</p>
+    </div>
+
+    <p><button type="button" class="link" id="out">Log out</button></p>
   </section>
 
   <p id="msg" role="status"></p>
@@ -80,7 +130,66 @@ var $=function(id){return document.getElementById(id)};
 var signup=false;
 
 function say(t){$('msg').textContent=t||''}
-function show(v){['auth','reset','dash'].forEach(function(n){$('v-'+n).hidden=(n!==v)});say('')}
+function show(v){['auth','reset','dash'].forEach(function(n){$('v-'+n).hidden=(n!==v)});document.querySelector('main').classList.toggle('wide',v==='dash');say('')}
+
+/* ---------- Plans and checkout ---------- */
+var PLANS={starter:{name:'Starter',price:'£19.99'},standard:{name:'Standard',price:'£39.99'},pro:{name:'Pro',price:'£59.99'}};
+var LIVE=['trialing','active','past_due'];
+var checkoutState=new URLSearchParams(location.search).get('checkout');
+if(checkoutState)history.replaceState(null,'',location.pathname);
+var loadingPlan=false;
+
+function day(iso){return iso?new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):''}
+function note(t){$('d-note').textContent=t||'';$('d-note').hidden=!t}
+
+function renderPlan(row){
+  $('d-loading').hidden=true;
+  var live=row&&LIVE.indexOf(row.status)>-1;
+  $('d-plan').hidden=!live;$('d-choose').hidden=live;
+  if(!live)return;
+  var p=PLANS[row.plan]||{name:'Your plan',price:''};
+  $('p-name').textContent=p.name+(p.price?' · '+p.price+' a month':'');
+  var s;
+  if(row.cancel_at_period_end)s='Cancelled. Your plan ends on '+day(row.current_period_end||row.trial_end)+'.';
+  else if(row.status==='trialing')s='Free trial until '+day(row.trial_end)+'. Your first monthly payment is taken then.';
+  else if(row.status==='past_due')s='Your last payment didn’t go through. Please contact us so we can sort it out.';
+  else s='Active. Next payment on '+day(row.current_period_end)+'.';
+  $('p-status').textContent=s;
+}
+
+async function loadPlan(){
+  if(loadingPlan)return;loadingPlan=true;
+  var tries=checkoutState==='success'?10:1;
+  if(checkoutState==='success')note('Payment received, thank you! Setting up your plan...');
+  if(checkoutState==='cancelled')note('Checkout cancelled. You haven’t been charged.');
+  for(var i=0;i<tries;i++){
+    var r=await sb.from('subscriptions').select('*').maybeSingle();
+    var row=r.data;
+    if(row&&LIVE.indexOf(row.status)>-1){
+      if(checkoutState==='success')note('You’re all set. Welcome to Axenworks!');
+      checkoutState=null;renderPlan(row);loadingPlan=false;return;
+    }
+    if(i<tries-1)await new Promise(function(res){setTimeout(res,2000)});
+  }
+  if(checkoutState==='success')note('Your payment went through. Your plan can take a minute to appear, so refresh this page shortly.');
+  checkoutState=null;renderPlan(row);loadingPlan=false;
+}
+
+document.querySelectorAll('.plan').forEach(function(btn){
+  btn.onclick=async function(){
+    if(document.querySelector('.plan[aria-busy="true"]'))return;
+    btn.setAttribute('aria-busy','true');say('Taking you to secure checkout...');
+    try{
+      var r=await sb.functions.invoke('create-checkout',{body:{plan:btn.dataset.plan}});
+      if(r.error){
+        var msg='Something went wrong. Please try again.';
+        try{msg=(await r.error.context.json()).error||msg}catch(_){}
+        throw new Error(msg);
+      }
+      location.href=r.data.url;
+    }catch(err){say(err.message);btn.removeAttribute('aria-busy')}
+  };
+});
 function setMode(s){
   signup=s;
   $('a-title').textContent=s?'Create your account':'Log in';
@@ -122,14 +231,18 @@ $('f-reset').addEventListener('submit',async function(e){
   var r=await sb.auth.updateUser({password:$('npw').value});
   if(r.error){say(r.error.message);return}
   var s=(await sb.auth.getSession()).data.session;
-  if(s){$('who').textContent=s.user.email;show('dash');say('Password updated.')}
+  if(s){$('who').textContent=s.user.email;show('dash');say('Password updated.');setTimeout(loadPlan,0)}
 });
 
 $('out').onclick=async function(){await sb.auth.signOut()};
 
 sb.auth.onAuthStateChange(function(ev,session){
   if(ev==='PASSWORD_RECOVERY'){show('reset');return}
-  if(session){$('who').textContent=session.user.email;show('dash')}
+  if(session){
+    var first=$('v-dash').hidden;
+    $('who').textContent=session.user.email;show('dash');
+    if(first)setTimeout(loadPlan,0);
+  }
   else{show('auth')}
 });
 setMode(false);
