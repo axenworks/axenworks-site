@@ -124,7 +124,7 @@ h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
       <p class="muted" style="font-size:15px">Need a change after your included ones are used? Extra change requests are £10 each.</p>
     </div>
 
-    <p><button type="button" class="link" id="out">Log out</button></p>
+    <p><a href="admin.html" id="admin-link" hidden style="margin-right:18px">Admin</a><button type="button" class="link" id="out">Log out</button></p>
   </section>
 
   <p id="msg" role="status"></p>
@@ -287,7 +287,10 @@ sb.auth.onAuthStateChange(function(ev,session){
   if(session){
     var first=$('v-dash').hidden;
     $('who').textContent=session.user.email;show('dash');
-    if(first)setTimeout(loadPlan,0);
+    if(first){
+      setTimeout(loadPlan,0);
+      setTimeout(async function(){var r=await sb.rpc('is_admin');$('admin-link').hidden=!(r.data===true)},0);
+    }
   }
   else{show('auth')}
 });
