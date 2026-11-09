@@ -249,8 +249,11 @@ function renderStyles(){
       '<b>'+x[1]+'</b><span class="muted">'+x[2]+'</span><a class="open" href="'+url+'" target="_blank" rel="noopener">Open full preview \u2197</a>';
     box.appendChild(l);
   });
-  function scale(){box.querySelectorAll('.shot').forEach(function(sh){var f=sh.querySelector('iframe');f.style.transform='scale('+(sh.clientWidth/1280)+')'})}
-  scale();window.addEventListener('resize',scale);
+  // Re-scale each preview whenever its box changes size (including when the step becomes visible).
+  function fit(sh){var w=sh.clientWidth;if(w)sh.querySelector('iframe').style.transform='scale('+(w/1280)+')'}
+  var shots=box.querySelectorAll('.shot');
+  if('ResizeObserver' in window){var ro=new ResizeObserver(function(es){es.forEach(function(e){fit(e.target)})});shots.forEach(function(sh){ro.observe(sh)})}
+  else{shots.forEach(fit);window.addEventListener('resize',function(){shots.forEach(fit)})}
 }
 
 function view(v){['loading','locked','done','form'].forEach(function(n){$('v-'+n).hidden=(n!==v)})}
@@ -409,6 +412,7 @@ function summary(){
 function go(i,first){
   step=Math.max(0,Math.min(steps.length-1,i));
   steps.forEach(function(s,n){s.hidden=(n!==step)});
+  document.querySelectorAll('.shot').forEach(function(sh){var w=sh.clientWidth;if(w)sh.querySelector('iframe').style.transform='scale('+(w/1280)+')'});
   $('step-label').textContent='Step '+(step+1)+' of '+steps.length+': '+steps[step].dataset.title;
   $('bar').style.width=((step+1)/steps.length*100)+'%';
   $('prev').hidden=step===0;

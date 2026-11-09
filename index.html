@@ -212,7 +212,9 @@ document.getElementById('f').addEventListener('submit',function(e){
   var STYLES=[['classic','Classic','Warm and trustworthy'],['bold','Bold','Big type, strong colour'],['minimal','Minimal','Clean, calm and spacious'],
     ['playful','Playful','Rounded, bright and friendly'],['modern','Modern','Sleek gradients and glass'],['rustic','Rustic','Earthy and hand-made'],['editorial','Editorial','Like a magazine']];
   var box=document.getElementById('gallery'),level='standard';
-  function scale(){box.querySelectorAll('.shot').forEach(function(sh){sh.firstChild.style.transform='scale('+(sh.clientWidth/1280)+')'})}
+  function fit(sh){var w=sh.clientWidth;if(w)sh.firstChild.style.transform='scale('+(w/1280)+')'}
+  var ro='ResizeObserver' in window?new ResizeObserver(function(es){es.forEach(function(e){fit(e.target)})}):null;
+  function scale(){box.querySelectorAll('.shot').forEach(function(sh){fit(sh);if(ro)ro.observe(sh)})}
   function draw(){
     box.innerHTML='';
     STYLES.forEach(function(x){
