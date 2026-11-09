@@ -85,7 +85,11 @@ p{margin:0 0 1em}
 
 /* Marquee */
 .marquee{overflow:hidden;white-space:nowrap}
-.marquee .track{display:inline-flex;align-items:center;gap:34px;padding:22px 0;animation:marquee 38s linear infinite}
+.marquee .track{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:12px 34px;padding:22px 24px}
+.marquee .track>i:last-child{display:none}
+.marquee.moving .track{display:inline-flex;flex-wrap:nowrap;justify-content:flex-start;padding:22px 0;gap:0;animation:marquee 40s linear infinite}
+.marquee.moving .track>span,.marquee.moving .track>i{margin-right:34px}
+.marquee.moving .track>i:last-child{display:inline}
 .marquee i{font-style:normal;opacity:.6}
 @keyframes marquee{to{transform:translateX(-50%)}}
 
@@ -281,7 +285,6 @@ p{margin:0 0 1em}
 @media(prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   *,*::before,*::after{animation:none!important;transition:none!important}
-  .marquee{white-space:normal}.marquee .track{flex-wrap:wrap;justify-content:center}
 }
 
 /* Small screens: keep the header on one line and the hero readable */

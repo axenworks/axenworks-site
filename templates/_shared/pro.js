@@ -190,7 +190,7 @@
           '<a class="scroll-cue" href="#more" aria-label="Scroll down"><span></span></a>' +
         '</section>' +
         ((d.trust || []).length ? '<div class="marquee" id="more" aria-label="' + esc(d.trust.join(', ')) + '"><div class="track" aria-hidden="true">' +
-          (REDUCED ? [0] : [0, 1, 2, 3]).map(function () { return d.trust.map(function (t) { return '<span>' + esc(t) + '</span><i>✦</i>'; }).join(''); }).join('') + '</div></div>' : '') +
+          [0].map(function () { return d.trust.map(function (t) { return '<span>' + esc(t) + '</span><i>✦</i>'; }).join(''); }).join('') + '</div></div>' : '') +
         ((d.highlights || []).length ? '<section class="stats-band"><div class="wrap stats">' + d.highlights.map(function (h) {
           return '<div class="stat reveal"><b data-count="' + esc(h.value) + '">' + esc(h.value) + '</b><span>' + esc(h.label) + '</span></div>';
         }).join('') + '</div></section>' : '') +
@@ -348,6 +348,17 @@
     h.innerHTML = ws.map(function (w, i) { return '<span class="w"><span style="--d:' + (i * 80) + 'ms">' + esc(w) + '</span></span>'; }).join(' ');
   });
   requestAnimationFrame(function () { body.classList.add('loaded'); });
+
+  // Scrolling strip: repeat the items enough times to fill any screen width,
+  // so the loop never shows a gap. With reduced motion it's a single centred row.
+  var track = document.querySelector('.marquee .track');
+  if (track && !REDUCED) {
+    var one = track.innerHTML, setW = track.scrollWidth || 600;
+    var sets = Math.max(2, Math.ceil((innerWidth * 1.2) / setW) + 1);
+    track.innerHTML = new Array(sets * 2 + 1).join(one);
+    track.style.animationDuration = Math.round((setW * sets) / 70) + 's';
+    track.parentNode.classList.add('moving');
+  }
 
   // Theme toggle
   document.querySelector('.theme-toggle').addEventListener('click', function () {
