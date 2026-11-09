@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Website</title>
+<meta name="description" content="">
+<!--
+  Axenworks template: STARTER · CLASSIC
+  One scrolling page. Everything the customer sees comes from the JSON in
+  <script id="site-data"> below. To build a customer's site, replace that JSON.
+-->
+<script type="application/json" id="site-data">
+{
+  "business_name": "Green Leaf Gardening",
+  "tagline": "Gardens you love, all year round",
+  "intro": "Friendly, reliable garden design and maintenance across Bristol and the surrounding villages.",
+  "cta_label": "Get a free quote",
+  "trust_line": "Fully insured · Free quotes · Serving Bristol since 2012",
+  "about_title": "Rooted in Bristol",
+  "about": "Green Leaf started with one van, one mower and a love of tidy borders. Twelve years later we look after more than two hundred gardens across Bristol, from small terraced courtyards to large family lawns.\n\nWe turn up when we say we will, leave every garden tidier than we found it, and give honest advice about what will actually thrive in your space.",
+  "services": [
+    { "name": "Garden design", "description": "Planting plans and new layouts, designed around how you use your garden.", "price": "From £250" },
+    { "name": "Lawn care", "description": "Regular mowing, feeding and edging to keep your lawn healthy and green.", "price": "From £30 a visit" },
+    { "name": "Hedge trimming", "description": "Neat, healthy hedges of any size, with all clippings taken away.", "price": "From £45" },
+    { "name": "Seasonal clear-ups", "description": "Leaves, weeds and overgrowth cleared, ready for the season ahead.", "price": "From £90" }
+  ],
+  "contact": {
+    "phone": "0117 496 0123",
+    "email": "hello@greenleafgardening.co.uk",
+    "area": "Bristol and surrounding villages",
+    "hours": "Mon to Fri, 8am to 5pm"
+  },
+  "colours": { "main": "#3f6b3a", "accent": "#c08a3e" },
+  "logo": null,
+  "hero_image": null,
+  "about_image": null
+}
+</script>
+<style>
+:root{
+  --main:#3f6b3a; --accent:#c08a3e;
+  --paper:#fbf8f2; --paper-2:#f3ede2; --ink:#2b2620; --muted:#6f665a; --line:#e2d9c9;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --radius:14px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.65 var(--sans);-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.15;margin:0;color:var(--ink)}
+.eyebrow{font:600 13px/1.35 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--main);margin:0 0 14px;display:flex;align-items:center;gap:10px}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--accent)}
+
+/* Header */
+header{position:sticky;top:0;z-index:10;background:color-mix(in srgb,var(--paper) 92%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font:600 21px/1 var(--serif)}
+.brand img{height:40px;width:auto}
+.brand .mark{width:34px;height:34px;border-radius:50%;background:var(--main);color:var(--paper);display:grid;place-items:center;font-size:17px}
+header nav{display:flex;align-items:center;gap:26px;font-size:15px}
+header nav a{text-decoration:none;color:var(--muted)}
+header nav a:hover{color:var(--ink)}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;background:var(--main);color:#fff;text-decoration:none;font-weight:600;font-size:16px;border:0;cursor:pointer;font-family:var(--sans);transition:background .15s,transform .15s}
+.btn:hover{background:color-mix(in srgb,var(--main) 85%,#000);transform:translateY(-1px)}
+.btn.small{padding:9px 18px;font-size:15px}
+.btn.line{background:transparent;color:var(--main);box-shadow:inset 0 0 0 1.5px var(--main)}
+.btn.line:hover{background:var(--main);color:#fff}
+.btn{white-space:nowrap}
+@media(max-width:720px){header nav a:not(.btn){display:none}}
+@media(max-width:420px){.brand{font-size:18px}.brand .mark{width:30px;height:30px;font-size:15px}.btn.small{padding:8px 14px;font-size:14px}}
+
+/* Hero */
+.hero{padding:72px 0 88px}
+.hero .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(40px,6vw,66px);letter-spacing:-.015em}
+.hero h1 em{font-style:italic;color:var(--main)}
+.hero p.intro{font-size:19px;color:var(--muted);margin:22px 0 32px;max-width:44ch}
+.hero .actions{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.hero .trust{margin-top:28px;font-size:14px;color:var(--muted)}
+.frame{position:relative}
+.frame::before{content:"";position:absolute;inset:18px -18px -18px 18px;border:1.5px solid var(--accent);border-radius:var(--radius)}
+.frame .pic{position:relative;border-radius:var(--radius);overflow:hidden;aspect-ratio:4/5;background:var(--paper-2)}
+.frame .pic img,.frame .pic svg{width:100%;height:100%;object-fit:cover}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr;gap:48px}.frame{max-width:440px;margin-right:18px}}
+
+/* About */
+.about{background:var(--paper-2);padding:96px 0}
+.about .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center}
+.about h2{font-size:clamp(32px,4vw,44px);margin-bottom:22px}
+.about .body p{margin:0 0 16px;color:var(--ink)}
+.about .pic{border-radius:var(--radius);overflow:hidden;aspect-ratio:1/1;background:var(--paper)}
+.about .pic img,.about .pic svg{width:100%;height:100%;object-fit:cover}
+@media(max-width:860px){.about .wrap{grid-template-columns:1fr;gap:36px}.about .pic{max-width:420px}}
+
+/* Services */
+.services{padding:96px 0}
+.services .head{display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+.services h2{font-size:clamp(32px,4vw,44px)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:20px}
+.card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:10px;transition:border-color .15s,box-shadow .15s}
+.card:hover{border-color:var(--accent);box-shadow:0 10px 24px -16px rgba(60,40,10,.35)}
+.card .num{font:italic 600 15px/1 var(--serif);color:var(--accent)}
+.card h3{font-size:23px}
+.card p{margin:0;color:var(--muted);font-size:16px;flex:1}
+.card .price{font-weight:600;color:var(--main);font-size:15px;padding-top:12px;border-top:1px solid var(--line)}
+
+/* Contact */
+.contact{background:var(--main);color:#fff;padding:96px 0}
+.contact .wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px}
+.contact h2{color:#fff;font-size:clamp(32px,4vw,44px);margin-bottom:16px}
+.contact .eyebrow{color:#fff}
+.contact .lead{color:rgba(255,255,255,.82);margin:0 0 28px}
+.contact dl{margin:0;display:grid;gap:18px}
+.contact dt{font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.65)}
+.contact dd{margin:2px 0 0;font:500 19px/1.4 var(--serif)}
+.contact dd a{text-decoration:none}
+.contact dd a:hover{text-decoration:underline}
+form.enquiry{background:var(--paper);color:var(--ink);border-radius:var(--radius);padding:30px;display:grid;gap:14px}
+form.enquiry h3{font-size:24px}
+form.enquiry label{display:grid;gap:6px;font-weight:600;font-size:14px}
+form.enquiry input,form.enquiry textarea{font:inherit;font-weight:400;font-size:16px;padding:12px 14px;border:1px solid var(--line);border-radius:10px;background:#fff;color:var(--ink)}
+form.enquiry textarea{min-height:120px;resize:vertical}
+form.enquiry .done{margin:0;color:var(--main);font-weight:600}
+@media(max-width:860px){.contact .wrap{grid-template-columns:1fr;gap:40px}}
+
+/* Footer */
+footer{padding:36px 0;font-size:14px;color:var(--muted)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a class="brand" href="#top" id="brand"></a>
+    <nav aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a class="btn small" id="h-phone" href="#contact">Call us</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow" id="hero-area"></p>
+        <h1 id="hero-title"></h1>
+        <p class="intro" id="hero-intro"></p>
+        <div class="actions">
+          <a class="btn" href="#contact" id="hero-cta"></a>
+          <a class="btn line" href="#services">Our services</a>
+        </div>
+        <p class="trust" id="hero-trust"></p>
+      </div>
+      <div class="frame"><div class="pic" id="hero-pic"></div></div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="wrap">
+      <div class="pic" id="about-pic"></div>
+      <div class="body">
+        <p class="eyebrow">About us</p>
+        <h2 id="about-title"></h2>
+        <div id="about-text"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="services" id="services">
+    <div class="wrap">
+      <div class="head">
+        <div><p class="eyebrow">What we do</p><h2>Our services</h2></div>
+        <a class="btn line" href="#contact">Ask about a job</a>
+      </div>
+      <div class="grid" id="service-list"></div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="wrap">
+      <div>
+        <p class="eyebrow">Get in touch</p>
+        <h2>Let's talk about your project</h2>
+        <p class="lead">Tell us what you need and we'll get back to you, usually within one working day.</p>
+        <dl id="contact-list"></dl>
+      </div>
+      <form class="enquiry" id="enquiry">
+        <h3>Send us a message</h3>
+        <label>Your name<input name="name" autocomplete="name" required></label>
+        <label>Email<input name="email" type="email" autocomplete="email" required></label>
+        <label>Phone (optional)<input name="phone" type="tel" autocomplete="tel"></label>
+        <label>How can we help?<textarea name="message" required></textarea></label>
+        <button class="btn" type="submit">Send message</button>
+        <p class="done" id="sent" hidden role="status">Thanks! Your message has been sent. We'll be in touch soon.</p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap"><span id="foot-name"></span><span id="foot-area"></span></div>
+</footer>
+
+<script>
+(function(){
+  var d=JSON.parse(document.getElementById('site-data').textContent);
+  var $=function(id){return document.getElementById(id)};
+  var c=d.contact||{};
+  var root=document.documentElement.style;
+  if(d.colours&&/^#[0-9a-f]{6}$/i.test(d.colours.main))root.setProperty('--main',d.colours.main);
+  if(d.colours&&/^#[0-9a-f]{6}$/i.test(d.colours.accent))root.setProperty('--accent',d.colours.accent);
+
+  document.title=d.business_name+(d.tagline?' | '+d.tagline:'');
+  document.querySelector('meta[name=description]').content=d.intro||'';
+
+  // Brand: logo image, or a monogram + name.
+  var brand=$('brand');
+  if(d.logo){var li=new Image();li.src=d.logo;li.alt=d.business_name;brand.appendChild(li)}
+  else{
+    var m=document.createElement('span');m.className='mark';m.textContent=(d.business_name||'?').trim().charAt(0);
+    brand.appendChild(m);brand.appendChild(document.createTextNode(d.business_name));
+  }
+
+  // Hero: put the last word of the tagline in italics.
+  $('hero-area').textContent=c.area||'';
+  var words=(d.tagline||d.business_name).trim().split(' '),last=words.pop();
+  $('hero-title').textContent=words.length?words.join(' ')+' ':'';
+  var em=document.createElement('em');em.textContent=last;$('hero-title').appendChild(em);
+  $('hero-intro').textContent=d.intro||'';
+  $('hero-cta').textContent=d.cta_label||'Get in touch';
+  $('hero-trust').textContent=d.trust_line||'';
+  if(c.phone){$('h-phone').textContent=c.phone;$('h-phone').href='tel:'+c.phone.replace(/[^\d+]/g,'')}
+
+  // Images, or a themed illustration where none was supplied.
+  function picture(box,src,alt,seed){
+    if(src){var i=new Image();i.src=src;i.alt=alt;i.loading='lazy';box.appendChild(i);return}
+    box.innerHTML=illustration(seed);
+  }
+  function illustration(seed){
+    var leaves='';
+    for(var k=0;k<7;k++){
+      var x=(seed*37+k*61)%100,y=(seed*53+k*29)%100,r=(k*47+seed*13)%360,s=0.7+((k+seed)%4)*0.18;
+      leaves+='<g transform="translate('+(x*4)+' '+(y*5)+') rotate('+r+') scale('+s+')">'+
+        '<path d="M0 0 C40 -60 120 -60 160 0 C120 60 40 60 0 0Z" fill="var(--main)" opacity="'+(0.18+k*0.07).toFixed(2)+'"/>'+
+        '<path d="M0 0 L160 0" stroke="var(--accent)" stroke-width="2" opacity=".55"/></g>';
+    }
+    return '<svg viewBox="0 0 400 500" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Decorative illustration">'+
+      '<rect width="400" height="500" fill="var(--paper-2)"/>'+leaves+
+      '<circle cx="'+(260+seed*9)+'" cy="'+(110+seed*7)+'" r="46" fill="var(--accent)" opacity=".35"/></svg>';
+  }
+  picture($('hero-pic'),d.hero_image,d.business_name,1);
+  picture($('about-pic'),d.about_image,'About '+d.business_name,3);
+
+  // About
+  $('about-title').textContent=d.about_title||'About '+d.business_name;
+  (d.about||'').split(/\n\s*\n/).forEach(function(para){
+    if(!para.trim())return;var p=document.createElement('p');p.textContent=para.trim();$('about-text').appendChild(p);
+  });
+
+  // Services
+  (d.services||[]).forEach(function(s,i){
+    var card=document.createElement('article');card.className='card';
+    var n=document.createElement('span');n.className='num';n.textContent=String(i+1).padStart(2,'0');
+    var h=document.createElement('h3');h.textContent=s.name;
+    var p=document.createElement('p');p.textContent=s.description||'';
+    card.appendChild(n);card.appendChild(h);card.appendChild(p);
+    if(s.price){var pr=document.createElement('span');pr.className='price';pr.textContent=s.price;card.appendChild(pr)}
+    $('service-list').appendChild(card);
+  });
+
+  // Contact details
+  var rows=[['Phone',c.phone,c.phone&&'tel:'+c.phone.replace(/[^\d+]/g,'')],['Email',c.email,c.email&&'mailto:'+c.email],['Area covered',c.area],['Opening hours',c.hours]];
+  rows.forEach(function(r){
+    if(!r[1])return;
+    var dt=document.createElement('dt');dt.textContent=r[0];
+    var dd=document.createElement('dd');
+    if(r[2]){var a=document.createElement('a');a.href=r[2];a.textContent=r[1];dd.appendChild(a)}else dd.textContent=r[1];
+    $('contact-list').appendChild(dt);$('contact-list').appendChild(dd);
+  });
+
+  $('foot-name').textContent='© '+new Date().getFullYear()+' '+d.business_name;
+  $('foot-area').textContent=c.area||'';
+
+  // Preview only: the real form will send enquiries to the business owner.
+  $('enquiry').addEventListener('submit',function(e){
+    e.preventDefault();this.reset();$('sent').hidden=false;
+  });
+})();
+</script>
+</body>
+</html>
