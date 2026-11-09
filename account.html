@@ -26,6 +26,17 @@ button.link{background:none;color:var(--blue);padding:4px 0;border-radius:0;text
 .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 #msg{min-height:1.5em;margin:14px 0 0;color:var(--muted);font-size:15px}
 main.wide{max-width:900px}
+.cr-form{display:grid;gap:12px}
+.cr-form label{display:grid;gap:6px;font-weight:600;font-size:15px}
+.cr-form select,.cr-form textarea{font:inherit;font-weight:400;font-size:16px;padding:11px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.cr-extra{background:#fff7e0;border:1px solid #f0c64a;color:#5c4400;border-radius:10px;padding:12px 14px;display:grid;gap:8px;font-size:15px}
+.cr-check{display:flex!important;flex-direction:row;align-items:center;gap:8px;font-weight:600}
+.cr-list{list-style:none;margin:6px 0 0;padding:0;display:grid;gap:10px}
+.cr-list li{border-top:1px solid var(--line);padding-top:10px;display:grid;gap:4px}
+.cr-list .meta{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+.pill{display:inline-block;font-size:12.5px;font-weight:700;border-radius:999px;padding:2px 9px;background:var(--bg);border:1px solid var(--line)}
+.pill.done{background:#dcf5e3;border-color:#5fbf7c;color:#14532d}.pill.in_progress{background:#e3e6ff;border-color:#8a92f0;color:#1e2580}.pill.declined{background:#fde2e2;border-color:#e58b8b;color:#7a1c1c}
+
 button.ghost{background:none;color:var(--blue);border:2px solid var(--blue);padding:10px 20px}
 a.btn{display:inline-block;font-weight:600;padding:13px 22px;border-radius:999px;background:var(--blue);color:#fff;text-decoration:none}
 h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
@@ -95,6 +106,21 @@ h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
       <b>Your website</b>
       <span id="pr-status"></span>
       <div><a class="btn" id="pr-go" href="questionnaire.html">Start the questionnaire</a><a class="btn" id="pr-view" target="_blank" rel="noopener" hidden>View your website preview ↗</a></div>
+    </div>
+
+    <div class="box" id="d-changes" hidden style="margin-top:14px">
+      <b>Request a change</b>
+      <span class="muted" id="cr-allow"></span>
+      <form id="f-change" class="cr-form">
+        <label>Which part of your website?<select id="cr-page"></select></label>
+        <label>What would you like changed?<textarea id="cr-msg" rows="4" required placeholder="For example: please change the opening hours to 9am to 6pm, and swap the first photo for the one I've emailed."></textarea></label>
+        <div class="cr-extra" id="cr-extra" hidden>
+          <span id="cr-extra-text"></span>
+          <label class="cr-check"><input type="checkbox" id="cr-confirm"> Yes, add £10 to my next bill for this change</label>
+        </div>
+        <div><button type="submit" id="cr-send">Send request</button></div>
+      </form>
+      <ul class="cr-list" id="cr-list"></ul>
     </div>
 
     <div id="d-choose" hidden>
@@ -178,8 +204,66 @@ async function loadProject(){
     $('pr-view').textContent=p.status==='live'?'View your website \u2197':'View your website preview \u2197';
   }
   $('d-project').hidden=false;
+  loadChanges(p);
   return p;
 }
+
+
+/* ---------- Change requests ---------- */
+var CR_PAGES={
+  starter:['Whole website','Top section','About','Services','Contact'],
+  standard:['Whole website','Home','About','Services','Gallery','Contact'],
+  pro:['Whole website','Home','About','Services','Portfolio','Reviews','FAQ','Contact']
+};
+var CR_STATUS={requested:'Requested',in_progress:'In progress',done:'Done',declined:'Declined'};
+var crState=null;
+function crAllowText(st){
+  if(!st)return '';
+  if(!st.live)return 'While you\u2019re reviewing your preview, change requests are free and unlimited.';
+  return st.remaining>0?'You have '+st.remaining+' of '+st.allowance+' included change'+(st.allowance===1?'':'s')+' left this month.':
+    'You\u2019ve used this month\u2019s '+st.allowance+' included change'+(st.allowance===1?'':'s')+'. Extra changes are \u00a310 each, added to your next bill.';
+}
+async function loadChanges(project){
+  var show=project&&['with_customer','live'].indexOf(project.status)>-1;
+  $('d-changes').hidden=!show;if(!show)return;
+  var sel=$('cr-page');sel.innerHTML='';
+  (CR_PAGES[currentPlan]||CR_PAGES.starter).forEach(function(n){var o=document.createElement('option');o.textContent=n;sel.appendChild(o)});
+  var r=await sb.functions.invoke('request-change',{body:{action:'status'}});
+  crState=r.data||null;$('cr-allow').textContent=crAllowText(crState);
+  var l=await sb.from('change_requests').select('*').order('created_at',{ascending:false}).limit(20);
+  var ul=$('cr-list');ul.innerHTML='';
+  (l.data||[]).forEach(function(c){
+    var li=document.createElement('li');
+    var meta=document.createElement('div');meta.className='meta';
+    var pill=document.createElement('span');pill.className='pill '+c.status;pill.textContent=CR_STATUS[c.status]||c.status;
+    meta.appendChild(pill);
+    meta.appendChild(document.createTextNode(new Date(c.created_at).toLocaleDateString('en-GB',{day:'numeric',month:'short'})+(c.page?' \u00b7 '+c.page:'')+(c.is_extra?' \u00b7 \u00a310 extra':'')));
+    var m=document.createElement('span');m.textContent=c.message;m.style.whiteSpace='pre-wrap';
+    li.appendChild(meta);li.appendChild(m);
+    if(c.admin_note){var n=document.createElement('span');n.className='muted';n.style.fontSize='14px';n.textContent='Our note: '+c.admin_note;li.appendChild(n)}
+    ul.appendChild(li);
+  });
+}
+$('f-change').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var b=$('cr-send');b.disabled=true;say('Sending your request...');
+  try{
+    var r=await sb.functions.invoke('request-change',{body:{action:'submit',page:$('cr-page').value,message:$('cr-msg').value,confirm_extra:$('cr-confirm').checked}});
+    if(r.error){
+      var body={};try{body=await r.error.context.json()}catch(_){}
+      if(body.needs_extra){
+        $('cr-extra').hidden=false;
+        $('cr-extra-text').textContent='You\u2019ve used this month\u2019s included changes. This one will cost \u00a310, added to your next monthly bill.';
+        say('Please confirm the \u00a310 charge to send this request.');b.disabled=false;return;
+      }
+      throw new Error(body.error||'Couldn\u2019t send your request.');
+    }
+    $('cr-msg').value='';$('cr-confirm').checked=false;$('cr-extra').hidden=true;
+    say('Thanks, your request has been sent. We\u2019ll update it here as we work on it.');
+    await loadChanges(currentProject);
+  }catch(err){say(err.message)}
+  b.disabled=false;
+});
 
 $('billing').onclick=async function(){
   var b=this;b.disabled=true;say('Opening billing...');
@@ -198,7 +282,7 @@ async function renderPlan(row){
   $('d-loading').hidden=true;
   var live=row&&LIVE.indexOf(row.status)>-1;
   $('d-plan').hidden=!live;$('d-choose').hidden=live;
-  $('d-project').hidden=true;
+  $('d-project').hidden=true;$('d-changes').hidden=true;
   if(!live)return;
   currentPlan=row.plan;
   var proj=await loadProject();

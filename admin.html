@@ -65,6 +65,13 @@ dd{margin:0;white-space:pre-wrap;word-break:break-word}
 .thumbs img{width:100%;height:100%;object-fit:cover}
 .swatch{display:inline-block;width:14px;height:14px;border-radius:4px;border:1px solid var(--line);vertical-align:-2px;margin-right:4px}
 a.btn-link{display:inline-flex;justify-content:center;font-weight:600;padding:9px 18px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--ink);text-decoration:none}
+.cr-admin{display:grid;gap:12px;margin-top:12px}
+.cr-item{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:8px}
+.cr-item .top{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:13.5px;color:var(--muted)}
+.cr-item .msg{white-space:pre-wrap}
+.cr-item .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.cr-item input{flex:1;min-width:180px;font:inherit;font-size:14px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.cr-item button{padding:8px 14px;font-size:14px}
 .maincol{display:grid;gap:14px;align-content:start}
 .editor{display:grid;gap:14px}
 .editor label{display:grid;gap:6px;font-weight:600;font-size:14px}
@@ -98,6 +105,7 @@ a{color:var(--blue)}
       <div class="card stat"><b id="s-new">0</b><span>New questionnaires</span></div>
       <div class="card stat"><b id="s-progress">0</b><span>Sites in progress</span></div>
       <div class="card stat"><b id="s-live">0</b><span>Live sites</span></div>
+      <div class="card stat"><b id="s-changes">0</b><span>Open change requests</span></div>
     </div>
     <form class="card settings" id="f-trial">
       <label for="trial">Free trial for new customers</label>
@@ -140,6 +148,7 @@ a{color:var(--blue)}
         <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="submit">Save changes</button><button type="button" class="ghost" id="ed-cancel">Close</button></div>
         <p id="ed-msg" class="muted" style="margin:0;font-size:14px" role="status"></p>
       </form>
+      <div class="card" id="d-changes-card" hidden><h2>Change requests</h2><div id="d-changes" class="cr-admin"></div></div>
       <div class="card"><dl id="d-answers"></dl><p class="muted" id="d-noanswers" hidden>No questionnaire answers yet.</p></div>
       </div>
       <div class="side">
@@ -224,15 +233,18 @@ async function load(){
     sb.from('profiles').select('*'),
     sb.from('subscriptions').select('*'),
     sb.from('projects').select('*'),
-    sb.from('app_settings').select('*')
+    sb.from('app_settings').select('*'),
+    sb.from('change_requests').select('*').order('created_at',{ascending:false})
   ]);
   for(var i=0;i<res.length;i++)if(res[i].error){say('Couldn’t load: '+res[i].error.message);return}
   var subs={},projs={};
   res[1].data.forEach(function(s){subs[s.user_id]=s});
   res[2].data.forEach(function(p){projs[p.user_id]=p});
+  var crs={};(res[4].data||[]).forEach(function(r){(crs[r.user_id]=crs[r.user_id]||[]).push(r)});
   customers=res[0].data.map(function(pr){
     var c={id:pr.id,email:pr.email,joined:pr.created_at,sub:subs[pr.id],project:projs[pr.id]};
     c.stage=stageOf(c);
+    c.changes=crs[pr.id]||[];c.openChanges=c.changes.filter(function(r){return r.status==='requested'||r.status==='in_progress'}).length;
     c.updated=(c.project&&c.project.updated_at)||(c.sub&&c.sub.updated_at)||c.joined;
     return c;
   }).sort(function(a,b){return new Date(b.updated)-new Date(a.updated)});
@@ -247,6 +259,7 @@ function render(){
   $('s-new').textContent=count(function(c){return c.stage==='submitted'});
   $('s-progress').textContent=count(function(c){return ['generating','in_review','with_customer'].indexOf(c.stage)>-1});
   $('s-live').textContent=count(function(c){return c.stage==='live'});
+  $('s-changes').textContent=customers.reduce(function(n,c){return n+c.openChanges},0);
 
   var f=$('filters');f.innerHTML='';
   STAGES.forEach(function(s){
@@ -272,7 +285,9 @@ function render(){
     if(c.sub&&c.sub.plan){pl.appendChild(el('span',PLAN[c.sub.plan]||c.sub.plan));pl.appendChild(document.createElement('br'));pl.appendChild(el('span',SUB_LABEL[c.sub.status]||c.sub.status||'','muted'))}
     else pl.appendChild(el('span','—','muted'));
     tr.appendChild(pl);
-    var st=el('td');st.appendChild(el('span',STAGE_LABEL[c.stage],'pill '+c.stage));tr.appendChild(st);
+    var st=el('td');st.appendChild(el('span',STAGE_LABEL[c.stage],'pill '+c.stage));
+    if(c.openChanges){st.appendChild(document.createElement('br'));st.appendChild(el('span',c.openChanges+' change request'+(c.openChanges>1?'s':''),'pill submitted'))}
+    tr.appendChild(st);
     tr.appendChild(el('td',day(c.updated),'muted'));
     tr.onclick=function(){openDetail(c)};
     tr.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();openDetail(c)}};
@@ -330,7 +345,7 @@ async function openDetail(c){
   $('f-status').hidden=!c.project||isLive;
   if(c.project&&!isLive)$('d-status').value=c.project.status;
   $('d-msg').textContent='';$('golive-msg').textContent='';$('ct-msg').textContent='';$('draft-msg').textContent='';
-  renderDraft(c);
+  renderDraft(c);renderChanges(c);
   var hasPlan=s&&LIVE_SUB.indexOf(s.status)>-1;
   $('golive-card').hidden=!c.project||!hasPlan;
   $('golive').hidden=isLive;
@@ -424,6 +439,37 @@ $('f-edit').addEventListener('submit',async function(e){
   current.project=r.data;$('ed-json').value=JSON.stringify(site,null,2);
   $('ed-msg').textContent='Saved. Refresh the preview tab to see your changes.';
 });
+
+
+/* ---------- Change requests (admin) ---------- */
+var CR_LABEL={requested:'Requested',in_progress:'In progress',done:'Done',declined:'Declined'};
+function renderChanges(c){
+  var box=$('d-changes');box.innerHTML='';
+  $('d-changes-card').hidden=!c.changes.length;
+  c.changes.forEach(function(r){
+    var it=el('div',null,'cr-item');
+    var top=el('div',null,'top');
+    top.appendChild(el('span',CR_LABEL[r.status],'pill '+(r.status==='requested'?'submitted':r.status==='done'?'live':r.status==='in_progress'?'in_review':'')));
+    top.appendChild(document.createTextNode(day(r.created_at)+(r.page?' \u00b7 '+r.page:'')+(r.is_extra?' \u00b7 \u00a310 extra (on next bill)':r.counts_toward_allowance?' \u00b7 included change':' \u00b7 during preview')));
+    it.appendChild(top);it.appendChild(el('div',r.message,'msg'));
+    var row=el('div',null,'row');
+    var sel=document.createElement('select');sel.setAttribute('aria-label','Status');
+    Object.keys(CR_LABEL).forEach(function(k){var o=document.createElement('option');o.value=k;o.textContent=CR_LABEL[k];if(k===r.status)o.selected=true;sel.appendChild(o)});
+    var note=document.createElement('input');note.placeholder='Note for the customer (optional)';note.value=r.admin_note||'';note.setAttribute('aria-label','Note for the customer');
+    var save=el('button','Save');save.type='button';
+    var msg=el('span','','muted');msg.style.fontSize='13px';
+    save.onclick=async function(){
+      save.disabled=true;
+      var u=await sb.from('change_requests').update({status:sel.value,admin_note:note.value.trim()||null}).eq('id',r.id).select().single();
+      save.disabled=false;
+      if(u.error){msg.textContent='Couldn\u2019t save.';return}
+      Object.assign(r,u.data);c.openChanges=c.changes.filter(function(x){return x.status==='requested'||x.status==='in_progress'}).length;
+      msg.textContent='Saved.';renderChanges(c);
+    };
+    row.appendChild(sel);row.appendChild(note);row.appendChild(save);row.appendChild(msg);
+    it.appendChild(row);box.appendChild(it);
+  });
+}
 
 $('back').onclick=function(){current=null;view('list');render()};
 
