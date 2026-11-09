@@ -71,6 +71,40 @@
         '<circle cx="' + (170 + s * 29 % 80) + '" cy="' + (210 + s * 17 % 60) + '" r="' + (90 + s * 13 % 50) + '" fill="none" stroke="#1a1a1a" stroke-width="1.2"/>' +
         '<line x1="40" y1="' + (390 + s * 7 % 50) + '" x2="360" y2="' + (390 + s * 7 % 50) + '" stroke="#1a1a1a" stroke-width="1.2"/>' +
         '<circle cx="' + (280 + s * 23 % 70) + '" cy="' + (130 + s * 19 % 60) + '" r="' + (14 + s * 5 % 14) + '" fill="var(--main)"/>';
+    },
+    playful: function (s) {
+      return '<rect width="400" height="500" fill="var(--pic-bg,#fff3e2)"/>' +
+        '<path transform="translate(' + (s * 37 % 90 - 40) + ' ' + (s * 23 % 80) + ')" d="M200 70c80 0 150 55 150 140s-50 185-150 185S50 320 50 225 120 70 200 70z" fill="var(--main)" opacity=".85"/>' +
+        '<path transform="translate(' + (190 - s * 29 % 150) + ' ' + (250 - s * 17 % 90) + ') scale(.55)" d="M200 70c80 0 150 55 150 140s-50 185-150 185S50 320 50 225 120 70 200 70z" fill="var(--accent)"/>' +
+        '<g fill="var(--ink,#222)" opacity=".18">' + [0, 1, 2, 3, 4, 5].map(function (k) {
+          return '<circle cx="' + (30 + k * 26) + '" cy="' + (40 + (s * 7 % 30)) + '" r="5"/>';
+        }).join('') + '</g>' +
+        '<path d="M30 ' + (450 - s * 9 % 60) + ' q30 -30 60 0 t60 0 t60 0 t60 0" fill="none" stroke="var(--accent)" stroke-width="8" stroke-linecap="round"/>';
+    },
+    modern: function (s) {
+      var id = 'g' + s + Math.random().toString(36).slice(2, 7);
+      return '<defs><linearGradient id="' + id + '" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="var(--main)"/><stop offset="1" stop-color="var(--accent)"/></linearGradient>' +
+        '<radialGradient id="' + id + 'r"><stop offset="0" stop-color="#fff" stop-opacity=".55"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>' +
+        '<rect width="400" height="500" fill="url(#' + id + ')"/>' +
+        '<circle cx="' + (80 + s * 41 % 240) + '" cy="' + (90 + s * 29 % 200) + '" r="190" fill="url(#' + id + 'r)"/>' +
+        '<rect x="' + (50 + s * 13 % 60) + '" y="' + (250 - s * 11 % 80) + '" width="260" height="150" rx="22" fill="#fff" fill-opacity=".16" stroke="#fff" stroke-opacity=".45"/>' +
+        '<rect x="' + (78 + s * 13 % 60) + '" y="' + (282 - s * 11 % 80) + '" width="120" height="10" rx="5" fill="#fff" fill-opacity=".7"/>' +
+        '<rect x="' + (78 + s * 13 % 60) + '" y="' + (304 - s * 11 % 80) + '" width="180" height="8" rx="4" fill="#fff" fill-opacity=".4"/>';
+    },
+    rustic: function (s) {
+      return '<rect width="400" height="500" fill="var(--pic-bg,#efe4cf)"/>' +
+        '<circle cx="' + (280 - s * 31 % 160) + '" cy="' + (130 + s * 13 % 60) + '" r="' + (46 + s * 5 % 20) + '" fill="var(--accent)" opacity=".85"/>' +
+        '<path d="M0 ' + (330 - s * 7 % 40) + ' C90 ' + (270 - s * 11 % 40) + ' 160 ' + (350 - s * 5 % 30) + ' 260 ' + (300 - s * 9 % 40) + ' S370 ' + (280 + s * 3 % 30) + ' 400 300 V500 H0Z" fill="var(--main)" opacity=".35"/>' +
+        '<path d="M0 ' + (390 - s * 5 % 30) + ' C110 ' + (340 + s * 7 % 30) + ' 200 ' + (420 - s * 9 % 30) + ' 300 ' + (370 - s * 5 % 30) + ' S380 360 400 380 V500 H0Z" fill="var(--main)" opacity=".6"/>' +
+        '<path d="M0 450 C120 ' + (420 + s * 3 % 20) + ' 260 470 400 440 V500 H0Z" fill="var(--main)" opacity=".9"/>' +
+        '<path d="M' + (90 + s * 17 % 120) + ' 120 l10 -6 l10 6 M' + (130 + s * 17 % 120) + ' 100 l8 -5 l8 5" stroke="var(--ink,#3a2a12)" stroke-width="2" fill="none" opacity=".55"/>';
+    },
+    editorial: function (s) {
+      return '<rect width="400" height="500" fill="var(--pic-bg,#efede8)"/>' +
+        '<rect x="' + (40 + s * 23 % 80) + '" y="' + (60 + s * 17 % 60) + '" width="' + (200 + s * 13 % 60) + '" height="' + (260 + s * 11 % 60) + '" fill="var(--accent)" opacity=".9"/>' +
+        '<circle cx="' + (300 - s * 19 % 90) + '" cy="' + (330 - s * 13 % 70) + '" r="' + (110 + s * 7 % 30) + '" fill="var(--main)" style="mix-blend-mode:multiply"/>' +
+        '<rect x="24" y="24" width="352" height="452" fill="none" stroke="var(--ink,#111)" stroke-width="1"/>' +
+        '<line x1="24" y1="' + (420 - s * 7 % 40) + '" x2="200" y2="' + (420 - s * 7 % 40) + '" stroke="var(--ink,#111)" stroke-width="1"/>';
     }
   };
   function pic(src, alt, seed) {

@@ -1,0 +1,67 @@
+{
+  "business_name": "Green Leaf Gardening",
+  "tagline": "Gardens you love, all year round",
+  "intro": "Friendly, reliable garden design and maintenance across Bristol and the surrounding villages.",
+  "cta_label": "Get a free quote",
+  "trust": ["Fully insured", "Free quotes", "No call-out fee"],
+  "highlights": [
+    { "value": "12", "label": "years in Bristol" },
+    { "value": "200+", "label": "gardens looked after" },
+    { "value": "4.9★", "label": "average review" }
+  ],
+  "about_title": "Rooted in Bristol",
+  "about": "Green Leaf started with one van, one mower and a love of tidy borders. Twelve years later we look after more than two hundred gardens across Bristol, from small terraced courtyards to large family lawns.\n\nWe turn up when we say we will, leave every garden tidier than we found it, and give honest advice about what will actually thrive in your space.",
+  "owner": {
+    "name": "Sam Hart",
+    "role": "Founder and head gardener",
+    "bio": "Sam trained in horticulture at Bath and spent five years on large country estates before starting Green Leaf. He still visits every new garden himself.",
+    "photo": null
+  },
+  "values": [
+    { "title": "We turn up", "text": "Booked visits happen on the day we agree, every time." },
+    { "title": "Honest advice", "text": "We'll tell you what will really grow, not what costs the most." },
+    { "title": "Tidy finish", "text": "Every clipping is cleared and taken away before we leave." }
+  ],
+  "services": [
+    { "name": "Garden design", "description": "Planting plans and new layouts, designed around how you actually use your garden.", "price": "From £250" },
+    { "name": "Lawn care", "description": "Regular mowing, feeding, scarifying and edging to keep your lawn thick and green.", "price": "From £30 a visit" },
+    { "name": "Hedge trimming", "description": "Neat, healthy hedges of any size, with all clippings taken away.", "price": "From £45" },
+    { "name": "Seasonal clear-ups", "description": "Leaves, weeds and overgrowth cleared, ready for the season ahead.", "price": "From £90" },
+    { "name": "Planting", "description": "New borders, bulbs and shrubs chosen to suit your soil and light.", "price": "From £60" },
+    { "name": "Regular maintenance", "description": "Weekly or fortnightly visits so your garden always looks its best.", "price": "From £120 a month" }
+  ],
+  "gallery": [
+    { "src": null, "caption": "Cottage border, Clifton" },
+    { "src": null, "caption": "New lawn, Redland" },
+    { "src": null, "caption": "Courtyard makeover, Totterdown" },
+    { "src": null, "caption": "Hedge restoration, Westbury" },
+    { "src": null, "caption": "Raised beds, Bishopston" },
+    { "src": null, "caption": "Spring clear-up, Henleaze" },
+    { "src": null, "caption": "Wildflower meadow, Stoke Bishop" },
+    { "src": null, "caption": "Patio planting, Southville" }
+  ],
+  "testimonials": [
+    { "quote": "Sam and the team transformed our tired back garden in a week. Always on time and they left it spotless.", "name": "Rachel M.", "detail": "Clifton" },
+    { "quote": "Honest advice and fair prices. Our lawn has never looked this good.", "name": "David K.", "detail": "Redland" },
+    { "quote": "We've had them every fortnight for three years. Couldn't recommend them more.", "name": "Priya S.", "detail": "Bishopston" }
+  ],
+  "contact": {
+    "phone": "0117 496 0123",
+    "email": "hello@greenleafgardening.co.uk",
+    "area": "Bristol and surrounding villages",
+    "hours": [
+      ["Monday to Friday", "8am to 5pm"],
+      ["Saturday", "9am to 1pm"],
+      ["Sunday", "Closed"]
+    ],
+    "address": null
+  },
+  "socials": [
+    { "label": "Instagram", "url": "https://instagram.com/" },
+    { "label": "Facebook", "url": "https://facebook.com/" }
+  ],
+  "colours": { "main": "#3f6b3a", "accent": "#c08a3e" },
+  "logo": null,
+  "hero_image": null,
+  "about_image": null
+}

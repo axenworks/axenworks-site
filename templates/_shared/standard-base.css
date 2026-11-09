@@ -154,3 +154,8 @@ form.enquiry .btn{justify-self:start}
 .js-reveal .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
 .js-reveal .reveal.in{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+
+/* Footer: long emails wrap, single column on small phones */
+.foot>div{min-width:0}
+.foot a,.foot li,.details dd{overflow-wrap:anywhere}
+@media(max-width:520px){.foot{grid-template-columns:1fr}}

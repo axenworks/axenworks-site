@@ -206,3 +206,5 @@ h1 em,.hl,.serif{font-family:var(--serif);font-style:italic;font-weight:400;lett
 .nl-row input:focus{outline:none;border-bottom-color:var(--ink)}
 .nl-done{color:var(--main)}
 .legal{border-top:1px solid var(--line);color:var(--muted);font-size:12.5px}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:48px}.hero-media{max-width:420px}}
+@media(max-width:960px){.orb.o1{display:none}}

@@ -297,3 +297,8 @@ p{margin:0 0 1em}
   .orb.o2,.orb.o3{display:none}
   .hero-badge{left:12px!important;right:auto}
 }
+
+/* Footer: long emails wrap, single column on small phones */
+.foot>div{min-width:0}
+.foot a,.foot li,.details dd{overflow-wrap:anywhere}
+@media(max-width:520px){.foot{grid-template-columns:1fr}}

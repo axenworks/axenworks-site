@@ -197,3 +197,4 @@ h1,h2,h3{font-weight:400;text-transform:uppercase;line-height:.92;letter-spacing
 .nl-row input{border:2px solid #2a2e35;background:#121417;color:#fff}
 .nl-done{color:var(--accent)}
 .legal{border-top:1px solid #2a2e35;color:#9fa2a8;font:700 12px/1.4 var(--body-font);letter-spacing:.12em;text-transform:uppercase}
+@media(max-width:960px){.hero-grid{grid-template-columns:1fr;gap:48px}.hero-media{max-width:420px}}
