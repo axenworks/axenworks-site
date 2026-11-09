@@ -1,18 +1,6 @@
 // Creates a Stripe Checkout page for a logged-in customer:
 // £50 setup fee charged now + chosen monthly plan with a free trial.
-import { admin, PLAN_PRICES, SETUP_FEE_PRICE, stripe } from "../_shared/stripe.ts";
-
-const ORIGIN_OK = /^https:\/\/axenworks-site(-[a-z0-9-]+)?\.vercel\.app$|^http:\/\/localhost(:\d+)?$/;
-const DEFAULT_ORIGIN = "https://axenworks-site.vercel.app";
-
-function cors(origin: string | null) {
-  return {
-    "Access-Control-Allow-Origin": origin && ORIGIN_OK.test(origin) ? origin : DEFAULT_ORIGIN,
-    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
-    "Access-Control-Allow-Methods": "POST, OPTIONS",
-    "Vary": "Origin",
-  };
-}
+import { admin, cors, PLAN_PRICES, SETUP_FEE_PRICE, siteFor, stripe } from "../_shared/stripe.ts";
 
 Deno.serve(async (req) => {
   const origin = req.headers.get("Origin");
@@ -63,7 +51,7 @@ Deno.serve(async (req) => {
       .from("app_settings").select("value").eq("key", "trial_days").maybeSingle();
     const trialDays = existing?.trial_used ? 0 : Number(setting?.value ?? 0);
 
-    const site = origin && ORIGIN_OK.test(origin) ? origin : DEFAULT_ORIGIN;
+    const site = siteFor(origin);
     const params: Record<string, string> = {
       mode: "subscription",
       customer: customerId,

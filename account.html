@@ -26,6 +26,8 @@ button.link{background:none;color:var(--blue);padding:4px 0;border-radius:0;text
 .row{display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
 #msg{min-height:1.5em;margin:14px 0 0;color:var(--muted);font-size:15px}
 main.wide{max-width:900px}
+button.ghost{background:none;color:var(--blue);border:2px solid var(--blue);padding:10px 20px}
+a.btn{display:inline-block;font-weight:600;padding:13px 22px;border-radius:999px;background:var(--blue);color:#fff;text-decoration:none}
 h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
 .muted{color:var(--muted)}
 .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-top:6px}
@@ -85,7 +87,14 @@ h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
       <b>Your website plan</b>
       <div class="plan-name" id="p-name"></div>
       <span id="p-status"></span>
-      <span class="muted">We'll be in touch to start building your website.</span>
+      <div><button type="button" class="ghost" id="billing">Manage billing</button></div>
+      <span class="muted" style="font-size:15px">Update your card, see invoices, switch plan or cancel.</span>
+    </div>
+
+    <div class="box" id="d-project" hidden style="margin-top:14px">
+      <b>Your website</b>
+      <span id="pr-status"></span>
+      <div><a class="btn" id="pr-go" href="questionnaire.html">Start the questionnaire</a></div>
     </div>
 
     <div id="d-choose" hidden>
@@ -142,11 +151,48 @@ var loadingPlan=false;
 function day(iso){return iso?new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):''}
 function note(t){$('d-note').textContent=t||'';$('d-note').hidden=!t}
 
+var PROJECT_TEXT={
+  submitted:'Questionnaire received. We’re getting ready to build your website.',
+  generating:'We’re building your website now.',
+  in_review:'Your website is built and we’re checking it over.',
+  with_customer:'Your preview is ready to look at.',
+  live:'Your website is live.'
+};
+async function loadProject(){
+  var r=await sb.from('projects').select('status,template,answers').maybeSingle();
+  var p=r.data;
+  if(!p||p.status==='draft'){
+    var started=p&&(p.template||Object.keys(p.answers||{}).length);
+    $('pr-status').textContent=started?'You’ve started the questionnaire. Pick up where you left off.':'Next step: choose a template and tell us about your business. It takes about 15 minutes, and your answers save as you go.';
+    $('pr-go').textContent=started?'Continue the questionnaire':'Start the questionnaire';
+    $('pr-go').hidden=false;
+  }else{
+    $('pr-status').textContent=PROJECT_TEXT[p.status]||'';
+    $('pr-go').hidden=true;
+  }
+  $('d-project').hidden=false;
+}
+
+$('billing').onclick=async function(){
+  var b=this;b.disabled=true;say('Opening billing...');
+  try{
+    var r=await sb.functions.invoke('create-portal',{body:{}});
+    if(r.error){
+      var msg='Couldn’t open billing. Please try again.';
+      try{msg=(await r.error.context.json()).error||msg}catch(_){}
+      throw new Error(msg);
+    }
+    location.href=r.data.url;
+  }catch(err){say(err.message);b.disabled=false}
+};
+
 function renderPlan(row){
   $('d-loading').hidden=true;
   var live=row&&LIVE.indexOf(row.status)>-1;
   $('d-plan').hidden=!live;$('d-choose').hidden=live;
+  $('d-project').hidden=true;
   if(!live)return;
+  loadProject();
   var p=PLANS[row.plan]||{name:'Your plan',price:''};
   $('p-name').textContent=p.name+(p.price?' · '+p.price+' a month':'');
   var s;

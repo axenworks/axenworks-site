@@ -24,7 +24,8 @@ async function syncSubscription(subId: string) {
   }
 
   const item = sub.items?.data?.find((i: any) => PRICE_TO_PLAN[i.price?.id]) ?? sub.items?.data?.[0];
-  const plan = sub.metadata?.plan ?? PRICE_TO_PLAN[item?.price?.id] ?? null;
+  // Price first: customers can switch plans in the billing portal.
+  const plan = PRICE_TO_PLAN[item?.price?.id] ?? sub.metadata?.plan ?? null;
   const periodEnd = sub.current_period_end ?? item?.current_period_end;
 
   const row: Record<string, unknown> = {

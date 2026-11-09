@@ -8,6 +8,26 @@ export const PLAN_PRICES: Record<string, string> = {
 };
 export const SETUP_FEE_PRICE = "price_1UZtVKGbMox0LPSQNbgIuHaJ"; // £50 one-off
 
+export const PORTAL_CONFIG = "bpc_1UZtz2GbMox0LPSQzYxEXItR";
+
+// Which website origins may call our functions and be sent back to.
+export const ORIGIN_OK =
+  /^https:\/\/axenworks-site(-[a-z0-9-]+)?\.vercel\.app$|^http:\/\/localhost(:\d+)?$/;
+export const DEFAULT_ORIGIN = "https://axenworks-site.vercel.app";
+
+export function siteFor(origin: string | null) {
+  return origin && ORIGIN_OK.test(origin) ? origin : DEFAULT_ORIGIN;
+}
+
+export function cors(origin: string | null) {
+  return {
+    "Access-Control-Allow-Origin": siteFor(origin),
+    "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    "Vary": "Origin",
+  };
+}
+
 export function admin() {
   return createClient(
     Deno.env.get("SUPABASE_URL")!,
