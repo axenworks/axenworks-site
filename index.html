@@ -72,13 +72,16 @@ ol.steps b{display:block}
 .price{font-size:30px;font-weight:800;letter-spacing:-.03em;margin:6px 0}
 .price span{font-size:15px;font-weight:400;color:var(--muted)}
 .plan p{margin:6px 0 0;color:var(--muted);font-size:15px}
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.tpl{border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line)}
-.tpl .shot{height:150px;padding:16px}
-.tpl .shot i{display:block;height:10px;border-radius:5px;margin:8px 0;background:rgba(0,0,0,.28)}
-.tpl .shot i:first-child{width:50%;height:16px;background:rgba(0,0,0,.6)}
-.tpl .shot i:nth-child(2){width:85%}.tpl .shot i:nth-child(3){width:65%}
-.tpl:nth-child(1) .shot{background:#cfd6ff}.tpl:nth-child(2) .shot{background:#ffe3b8}.tpl:nth-child(3) .shot{background:#cdeedd}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.tpl{border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s}
+.tpl:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(0,0,0,.4)}
+.tpl .shot{position:relative;aspect-ratio:16/11;overflow:hidden;border-bottom:1px solid var(--line);background:var(--bg)}
+.tpl .shot iframe{position:absolute;left:0;top:0;width:1280px;height:880px;border:0;transform-origin:0 0;pointer-events:none}
+.tpl .t{padding:14px 16px 16px}
+.tpl .t small{color:var(--muted)}
+.levels{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:999px;margin:0 0 22px;background:var(--card)}
+.levels button{font:inherit;font-weight:600;font-size:15px;border:0;background:none;color:var(--muted);padding:8px 18px;border-radius:999px;cursor:pointer}
+.levels button[aria-pressed="true"]{background:var(--blue);color:#fff}
 .tpl div.t{padding:14px 18px}.tpl small{color:var(--muted)}
 form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;max-width:560px;display:grid;gap:14px}
 label{display:grid;gap:5px;font-weight:600;font-size:15px}
@@ -129,7 +132,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
   <h3>How Digital Studio works</h3>
   <p class="lead">You choose and answer. We build, check and host.</p>
   <ol class="steps">
-    <li><b>Pick a template</b>Choose a starting design and pay a one-off setup fee.</li>
+    <li><b>Pick a plan and style</b>Choose your plan, pay a one-off setup fee, then pick from 7 styles.</li>
     <li><b>Answer the questionnaire</b>Tell us about your business, style, pages and content.</li>
     <li><b>We build your draft</b>Your answers and template become a custom website.</li>
     <li><b>We review it</b>Every draft is checked and edited by hand before you see it.</li>
@@ -140,23 +143,24 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 
 <section id="pricing" style="background:var(--card)"><div class="wrap">
   <h3>Pricing</h3>
-  <p class="lead">Pay a one-off £50 setup fee, then a monthly hosting plan. Your first 14 days of hosting are free once your site goes live.</p>
+  <p class="lead">Pay a one-off £50 setup fee, then a monthly hosting plan. You won't pay monthly until your site is live, and your free trial starts on the day it goes live.</p>
   <div class="plans">
-    <div class="plan"><h4>Starter</h4><div class="price">£19.99 <span>per month</span></div><p>Up to 5 pages. 1 change request a month.</p></div>
-    <div class="plan"><h4>Standard</h4><div class="price">£39.99 <span>per month</span></div><p>Up to 10 pages. 3 change requests a month.</p></div>
-    <div class="plan"><h4>Pro</h4><div class="price">£59.99 <span>per month</span></div><p>More pages and your own domain. 6 change requests a month.</p></div>
+    <div class="plan"><h4>Starter</h4><div class="price">£19.99 <span>per month</span></div><p>A one-page website. 1 change request a month.</p></div>
+    <div class="plan"><h4>Standard</h4><div class="price">£39.99 <span>per month</span></div><p>A 5-page website with custom fonts, a photo gallery and reviews. 3 change requests a month.</p></div>
+    <div class="plan"><h4>Pro</h4><div class="price">£59.99 <span>per month</span></div><p>An 8-page premium website with animations, a portfolio, FAQ, booking form and dark mode. 6 change requests a month.</p></div>
   </div>
-  <p class="note" style="margin-top:18px">Extra change requests are £10 each. Plan contents are a draft and may change.</p>
+  <p class="note" style="margin-top:18px">Every plan comes in all 7 styles. Extra change requests are £10 each.</p>
 </div></section>
 
 <section id="templates"><div class="wrap">
   <h3>Template gallery</h3>
-  <p class="lead">Three starting points to begin with. Every finished site is customised to the business.</p>
-  <div class="gallery">
-    <div class="tpl"><div class="shot" aria-hidden="true"><i></i><i></i><i></i></div><div class="t"><b>Template one</b><br><small>Placeholder name and style</small></div></div>
-    <div class="tpl"><div class="shot" aria-hidden="true"><i></i><i></i><i></i></div><div class="t"><b>Template two</b><br><small>Placeholder name and style</small></div></div>
-    <div class="tpl"><div class="shot" aria-hidden="true"><i></i><i></i><i></i></div><div class="t"><b>Template three</b><br><small>Placeholder name and style</small></div></div>
+  <p class="lead">7 styles, each in a Starter, Standard and Pro version. These previews use a sample business, and every finished site is customised with your words, colours and photos.</p>
+  <div class="levels" role="group" aria-label="Show plan level">
+    <button type="button" data-level="starter" aria-pressed="false">Starter</button>
+    <button type="button" data-level="standard" aria-pressed="true">Standard</button>
+    <button type="button" data-level="pro" aria-pressed="false">Pro</button>
   </div>
+  <div class="gallery" id="gallery"></div>
 </div></section>
 
 <section id="contact" style="background:var(--card)"><div class="wrap">
@@ -202,6 +206,29 @@ document.getElementById('f').addEventListener('submit',function(e){
     msg.textContent="Something went wrong. Please try again in a moment.";
   }).finally(function(){btn.disabled=false;});
 });
+
+/* Template gallery: live previews of each style at the chosen plan level */
+(function(){
+  var STYLES=[['classic','Classic','Warm and trustworthy'],['bold','Bold','Big type, strong colour'],['minimal','Minimal','Clean, calm and spacious'],
+    ['playful','Playful','Rounded, bright and friendly'],['modern','Modern','Sleek gradients and glass'],['rustic','Rustic','Earthy and hand-made'],['editorial','Editorial','Like a magazine']];
+  var box=document.getElementById('gallery'),level='standard';
+  function scale(){box.querySelectorAll('.shot').forEach(function(sh){sh.firstChild.style.transform='scale('+(sh.clientWidth/1280)+')'})}
+  function draw(){
+    box.innerHTML='';
+    STYLES.forEach(function(x){
+      var url='templates/'+level+'-'+x[0]+'/';
+      var a=document.createElement('a');a.className='tpl';a.href=url;a.target='_blank';a.rel='noopener';
+      a.setAttribute('aria-label',x[1]+' style, '+level+' version (opens a preview)');
+      a.innerHTML='<div class="shot"><iframe loading="lazy" tabindex="-1" aria-hidden="true" title="" src="'+url+'"></iframe></div><div class="t"><b>'+x[1]+'</b><br><small>'+x[2]+'</small></div>';
+      box.appendChild(a);
+    });
+    scale();
+  }
+  document.querySelectorAll('.levels button').forEach(function(b){
+    b.onclick=function(){level=b.dataset.level;document.querySelectorAll('.levels button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});draw()};
+  });
+  window.addEventListener('resize',scale);draw();
+})();
 </script>
 </body>
 </html>

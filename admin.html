@@ -96,7 +96,7 @@ a{color:var(--blue)}
       <label for="trial">Free trial for new customers</label>
       <span><input type="number" id="trial" min="0" max="365" required> days</span>
       <button type="submit">Save</button>
-      <span class="muted" style="font-size:14px">Only affects people who sign up after you change it.</span>
+      <span class="muted" style="font-size:14px">Locked in when a customer pays, and starts when their site goes live.</span>
     </form>
     <div class="filters" id="filters" role="group" aria-label="Filter by stage"></div>
     <div class="card list">
@@ -125,11 +125,23 @@ a{color:var(--blue)}
             <option value="generating">Building</option>
             <option value="in_review">In review</option>
             <option value="with_customer">With customer</option>
-            <option value="live">Live</option>
           </select>
           <button type="submit">Update stage</button>
           <span class="muted" style="font-size:14px">The customer sees this on their dashboard.</span>
           <p id="d-msg" class="muted" style="margin:0;font-size:14px" role="status"></p>
+        </form>
+        <div class="card" id="golive-card">
+          <h2>Go live</h2>
+          <span class="muted" style="font-size:14px" id="golive-text"></span>
+          <button type="button" id="golive">Make site live and start trial</button>
+          <p id="golive-msg" class="muted" style="margin:0;font-size:14px" role="status"></p>
+        </div>
+        <form class="card" id="f-cust-trial">
+          <h2>Free trial for this customer</h2>
+          <span><input type="number" id="cust-trial" min="0" max="365" required> days</span>
+          <button type="submit" class="ghost">Save trial length</button>
+          <span class="muted" style="font-size:14px">Starts when the site goes live. Use 0 for no trial.</span>
+          <p id="ct-msg" class="muted" style="margin:0;font-size:14px" role="status"></p>
         </form>
         <div class="card"><h2>Billing</h2><dl id="d-billing" style="grid-template-columns:100px 1fr"></dl></div>
         <div class="card"><h2>Logo</h2><div class="thumbs" id="d-logo"></div></div>
@@ -154,7 +166,8 @@ var STAGES=[
 var STAGE_LABEL={};STAGES.forEach(function(s){STAGE_LABEL[s[0]]=s[1]});
 var PLAN={starter:'Starter £19.99',standard:'Standard £39.99',pro:'Pro £59.99'};
 var SUB_LABEL={trialing:'Free trial',active:'Active',past_due:'Payment failed',canceled:'Cancelled',unpaid:'Unpaid',incomplete:'Incomplete',incomplete_expired:'Expired',paused:'Paused'};
-var TEMPLATE={classic:'Classic',bold:'Bold',minimal:'Minimal'};
+var TEMPLATE={classic:'Classic',bold:'Bold',minimal:'Minimal',playful:'Playful',modern:'Modern',rustic:'Rustic',editorial:'Editorial'};
+var LEVEL={starter:'Starter',standard:'Standard',pro:'Pro'};
 var LIVE_SUB=['trialing','active','past_due'];
 var customers=[],filter='all',current=null;
 
@@ -239,7 +252,7 @@ async function openDetail(c){
   $('d-sub').textContent=c.email+' · joined '+day(c.joined)+(c.project&&c.project.submitted_at?' · questionnaire sent '+day(c.project.submitted_at):'');
 
   var rows=[
-    ['Template',TEMPLATE[c.project&&c.project.template]],
+    ['Style',c.project&&c.project.template?TEMPLATE[c.project.template]+' \u00b7 '+(LEVEL[c.sub&&c.sub.plan]||'')+' level':''],
     ['What they do',a.business_about],['Customers',a.audience],['Location',a.location],
     ['Contact email',a.contact_email],['Phone',a.contact_phone],['Social links',a.socials],
     ['Feel',(a.style_words||[]).join(', ')],
@@ -247,6 +260,8 @@ async function openDetail(c){
     ['Inspiration',a.inspiration],
     ['Pages',c.project?['Home'].concat(a.pages||[]).join(', '):''],['Other needs',a.pages_other],
     ['Tagline',a.tagline],['Services',a.services],['Their story',a.story],['Reviews',a.reviews],['Notes',a.notes],
+    ['Opening hours',a.hours],['Key numbers',[1,2,3].map(function(n){var v=a['stat'+n+'_value'];return v?v+' '+(a['stat'+n+'_label']||''):''}).filter(Boolean).join(', ')],
+    ['Team',a.team],['Values',a.values],['Projects',a.projects],['FAQ',a.faq],['How they work',a.process],
     ['Stock photos',a.stock_ok?'OK to use':'']
   ];
   var dl=$('d-answers');dl.innerHTML='';var any=false;
@@ -267,7 +282,7 @@ async function openDetail(c){
   var bl=$('d-billing');bl.innerHTML='';
   var s=c.sub;
   [['Plan',s&&s.plan?PLAN[s.plan]||s.plan:'None'],['Status',s&&s.status?(SUB_LABEL[s.status]||s.status)+(s.cancel_at_period_end?' (cancelling)':''):'—'],
-   ['Trial ends',s&&s.status==='trialing'?day(s.trial_end):''],['Next bill',s&&s.status==='active'?day(s.current_period_end):'']
+   ['Trial',s&&s.status==='trialing'?(c.project&&c.project.status==='live'?'Ends '+day(s.trial_end):'Waiting for go-live ('+(s.trial_days!=null?s.trial_days+' days':'not set')+')'):''],['Next bill',s&&s.status==='active'?day(s.current_period_end):'']
   ].forEach(function(r){if(!r[1])return;bl.appendChild(el('dt',r[0]));bl.appendChild(el('dd',r[1]))});
   if(s&&s.stripe_customer_id){
     var dd=el('dd');var link=el('a','Open in Stripe');
@@ -276,9 +291,17 @@ async function openDetail(c){
     bl.appendChild(el('dt',''));bl.appendChild(dd);
   }
 
-  $('f-status').hidden=!c.project;
-  if(c.project)$('d-status').value=c.project.status;
-  $('d-msg').textContent='';
+  var isLive=c.project&&c.project.status==='live';
+  $('f-status').hidden=!c.project||isLive;
+  if(c.project&&!isLive)$('d-status').value=c.project.status;
+  $('d-msg').textContent='';$('golive-msg').textContent='';$('ct-msg').textContent='';
+  var hasPlan=s&&LIVE_SUB.indexOf(s.status)>-1;
+  $('golive-card').hidden=!c.project||!hasPlan;
+  $('golive').hidden=isLive;
+  $('golive-text').textContent=isLive?'Live since '+day(c.project.went_live_at)+'.':
+    (s&&s.status==='trialing'?'Publishes the site and starts the customer\u2019s '+(s.trial_days||0)+'-day free trial. Monthly billing begins when the trial ends.':'Publishes the site. This customer is already being billed monthly.');
+  $('f-cust-trial').hidden=!hasPlan||isLive||s.status!=='trialing';
+  if(s)$('cust-trial').value=s.trial_days!=null?s.trial_days:'';
 
   var paths=[].concat(a.logo?[a.logo]:[],a.photos||[]),urls={};
   $('d-logo').innerHTML='';$('d-photos').innerHTML='';
@@ -310,6 +333,29 @@ $('f-status').addEventListener('submit',async function(e){
   if(r.error){$('d-msg').textContent='Couldn’t save: '+r.error.message;return}
   current.project=r.data;current.stage=stageOf(current);current.updated=r.data.updated_at;
   $('d-msg').textContent='Saved. Stage is now “'+STAGE_LABEL[current.stage]+'”.';
+});
+
+$('golive').onclick=async function(){
+  if(!current||!current.project)return;
+  var s=current.sub,days=s&&s.trial_days||0;
+  if(!confirm('Make '+((current.project.answers||{}).business_name||'this site')+' live?'+(s&&s.status==='trialing'?' Their '+days+'-day free trial starts today.':'')))return;
+  var b=this;b.disabled=true;$('golive-msg').textContent='Going live...';
+  try{
+    var r=await sb.functions.invoke('go-live',{body:{project_id:current.project.id}});
+    if(r.error){var m='Couldn\u2019t go live.';try{m=(await r.error.context.json()).error||m}catch(_){}throw new Error(m)}
+    $('golive-msg').textContent='Done. The site is live'+(r.data.trial_end?' and the free trial ends on '+day(r.data.trial_end):'')+'.';
+    await load();var c=customers.find(function(x){return x.id===current.id});if(c)openDetail(c);
+  }catch(err){$('golive-msg').textContent=err.message}
+  b.disabled=false;
+};
+
+$('f-cust-trial').addEventListener('submit',async function(e){
+  e.preventDefault();if(!current||!current.sub)return;
+  var n=Math.round(Number($('cust-trial').value));
+  if(!(n>=0&&n<=365)){$('ct-msg').textContent='Enter 0 to 365 days.';return}
+  var r=await sb.from('subscriptions').update({trial_days:n}).eq('user_id',current.id).select();
+  if(r.error||!r.data.length){$('ct-msg').textContent='Couldn\u2019t save.';return}
+  current.sub.trial_days=n;$('ct-msg').textContent='Saved. This customer gets '+n+' days free once their site is live.';
 });
 
 $('f-trial').addEventListener('submit',async function(e){

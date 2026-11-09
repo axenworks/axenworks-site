@@ -36,12 +36,16 @@ textarea{min-height:110px;resize:vertical}
 .chip input:checked+span{background:var(--blue);border-color:var(--blue);color:#fff}
 .chip input:focus-visible+span{outline:3px solid #ffb703;outline-offset:2px}
 .chip input:disabled+span{opacity:.7}
-.templates{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:14px}
+.templates{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
 .tpl{position:relative;border:2px solid var(--line);border-radius:14px;padding:14px;background:var(--card);cursor:pointer;display:grid;gap:8px;font-weight:400}
 .tpl input{position:absolute;opacity:0}
 .tpl:has(input:checked){border-color:var(--blue)}
 .tpl:has(input:focus-visible){outline:3px solid #ffb703;outline-offset:3px}
 .tpl b{font-size:18px}
+.pairs{display:grid;grid-template-columns:1fr 2fr;gap:8px}
+.shot{position:relative;aspect-ratio:16/11;overflow:hidden;border-radius:8px;border:1px solid var(--line);background:var(--bg)}
+.shot iframe{position:absolute;left:0;top:0;width:1280px;height:880px;border:0;transform-origin:0 0;pointer-events:none}
+.tpl .open{font-size:14px;justify-self:start}
 .mock{height:120px;border-radius:8px;overflow:hidden;border:1px solid var(--line);display:grid;padding:10px;gap:6px;align-content:start}
 .mock i{display:block;border-radius:3px}
 .m-classic{background:#fbf8f2}.m-classic i:nth-child(1){height:10px;width:40%;background:#7a5c3e}.m-classic i:nth-child(2){height:34px;background:#e9dfcf}.m-classic i:nth-child(3){height:6px;width:80%;background:#c9bba5}.m-classic i:nth-child(4){height:6px;width:65%;background:#c9bba5}
@@ -98,13 +102,9 @@ h2[tabindex="-1"]:focus{outline:none}
 
     <form id="f" novalidate>
       <!-- 1 Template -->
-      <div class="step box" data-title="Template">
-        <div><h2>Pick a starting template</h2><p class="muted" style="margin:0">This sets the overall layout. Your colours, words and photos make it your own.</p></div>
-        <div class="templates" role="radiogroup" aria-label="Template">
-          <label class="tpl"><input type="radio" name="template" value="classic"><div class="mock m-classic"><i></i><i></i><i></i><i></i></div><b>Classic</b><span class="muted">Warm and trustworthy. Suits trades, cafés and local services.</span></label>
-          <label class="tpl"><input type="radio" name="template" value="bold"><div class="mock m-bold"><i></i><i></i><i></i><i></i></div><b>Bold</b><span class="muted">Big headlines and strong colour. Suits fitness, events and creative work.</span></label>
-          <label class="tpl"><input type="radio" name="template" value="minimal"><div class="mock m-minimal"><i></i><i></i><i></i><i></i></div><b>Minimal</b><span class="muted">Clean with lots of space. Suits consultants, studios and portfolios.</span></label>
-        </div>
+      <div class="step box" data-title="Style">
+        <div><h2>Pick a style</h2><p class="muted" style="margin:0" id="tpl-intro">These previews show your plan's version of each style. Your colours, words and photos make it your own.</p></div>
+        <div class="templates" role="radiogroup" aria-label="Style" id="tpl-list"></div>
       </div>
 
       <!-- 2 Business -->
@@ -149,20 +149,9 @@ h2[tabindex="-1"]:focus{outline:none}
 
       <!-- 4 Pages -->
       <div class="step box" data-title="Pages">
-        <h2>Which pages do you need?</h2>
-        <div class="chips" data-multi="pages">
-          <label class="chip"><input type="checkbox" value="Home" checked disabled><span>Home</span></label>
-          <label class="chip"><input type="checkbox" value="About"><span>About</span></label>
-          <label class="chip"><input type="checkbox" value="Services"><span>Services</span></label>
-          <label class="chip"><input type="checkbox" value="Prices"><span>Prices</span></label>
-          <label class="chip"><input type="checkbox" value="Gallery"><span>Gallery</span></label>
-          <label class="chip"><input type="checkbox" value="Reviews"><span>Reviews</span></label>
-          <label class="chip"><input type="checkbox" value="FAQ"><span>FAQ</span></label>
-          <label class="chip"><input type="checkbox" value="Booking"><span>Booking</span></label>
-          <label class="chip"><input type="checkbox" value="Blog"><span>Blog</span></label>
-          <label class="chip"><input type="checkbox" value="Contact"><span>Contact</span></label>
-        </div>
-        <label>Anything else you need?<span class="hint">Other pages or features, such as a menu, opening hours or a map.</span><textarea data-k="pages_other" style="min-height:80px"></textarea></label>
+        <h2>Your pages</h2>
+        <p class="muted" style="margin:0" id="pages-included"></p>
+        <label>Anything else you need?<span class="hint">Other features or changes, such as a menu, price list or map.</span><textarea data-k="pages_other" style="min-height:80px"></textarea></label>
       </div>
 
       <!-- 5 Content -->
@@ -176,13 +165,34 @@ h2[tabindex="-1"]:focus{outline:none}
         <label>Anything else we should know?<textarea data-k="notes" style="min-height:80px"></textarea></label>
       </div>
 
+      <!-- 5b Extra details (Standard and Pro) -->
+      <div class="step box" data-title="More details" data-min-plan="standard">
+        <h2>A few more details</h2>
+        <p class="muted" style="margin:0">Your plan includes extra sections. Fill in what you can and leave the rest blank.</p>
+        <label>Opening hours<span class="hint">One per line, for example "Monday to Friday: 8am to 5pm".</span><textarea data-k="hours" style="min-height:90px"></textarea></label>
+        <div class="q">Key numbers<span class="hint">Shown as big figures, for example "12" and "years in business".</span>
+          <div class="pairs">
+            <input type="text" data-k="stat1_value" placeholder="12" aria-label="Number 1"><input type="text" data-k="stat1_label" placeholder="years in business" aria-label="Label 1">
+            <input type="text" data-k="stat2_value" placeholder="200+" aria-label="Number 2"><input type="text" data-k="stat2_label" placeholder="happy customers" aria-label="Label 2">
+            <input type="text" data-k="stat3_value" placeholder="4.9★" aria-label="Number 3"><input type="text" data-k="stat3_label" placeholder="average review" aria-label="Label 3">
+          </div>
+        </div>
+        <label>Who's behind the business?<span class="hint">Names, roles and a line or two about each person. One person per line.</span><textarea data-k="team" style="min-height:90px"></textarea></label>
+        <label>What can customers expect?<span class="hint">Your promises or values, for example "We always turn up on time". One per line.</span><textarea data-k="values" style="min-height:80px"></textarea></label>
+        <div data-min-plan="pro" style="display:grid;gap:18px">
+          <label>Projects to show in your portfolio<span class="hint">One per line: name, place and what you did. Add before and after photos in the next step.</span><textarea data-k="projects"></textarea></label>
+          <label>Common questions (FAQ)<span class="hint">One per line, as "Question? Answer".</span><textarea data-k="faq"></textarea></label>
+          <label>How you work, step by step<span class="hint">For example "Free visit, Clear quote, The work, Aftercare". One per line.</span><textarea data-k="process" style="min-height:80px"></textarea></label>
+        </div>
+      </div>
+
       <!-- 6 Images -->
       <div class="step box" data-title="Logo and photos">
         <h2>Logo and photos</h2>
         <div class="q">Your logo<span class="hint">PNG, JPG, SVG or WebP, up to 10 MB.</span>
           <div class="uploads" id="up-logo"></div>
         </div>
-        <div class="q">Photos<span class="hint">Your work, premises, team or products. Up to 12 photos.</span>
+        <div class="q">Photos<span class="hint" id="photo-hint">Your work, premises, team or products. Up to 12 photos.</span>
           <div class="uploads" id="up-photos"></div>
         </div>
         <label class="chip" style="justify-self:start"><input type="checkbox" data-k="stock_ok"><span>Use stock photos where I don't have my own</span></label>
@@ -213,7 +223,35 @@ var sb=supabase.createClient(SB_URL,SB_KEY);
 var $=function(id){return document.getElementById(id)};
 var form=$('f'),steps=[].slice.call(document.querySelectorAll('.step'));
 var uid=null,project=null,answers={},step=0,saveTimer=null,saving=Promise.resolve();
-var TEMPLATE_NAMES={classic:'Classic',bold:'Bold',minimal:'Minimal'};
+var STYLES=[
+  ['classic','Classic','Warm and trustworthy. Suits trades, caf\u00e9s and local services.'],
+  ['bold','Bold','Big headlines and strong colour. Suits fitness, events and creative work.'],
+  ['minimal','Minimal','Clean with lots of space. Suits consultants, studios and portfolios.'],
+  ['playful','Playful','Rounded and bright. Suits caf\u00e9s, kids\u2019 clubs and pet businesses.'],
+  ['modern','Modern','Sleek gradients and glassy cards. Suits startups, studios and consultants.'],
+  ['rustic','Rustic','Earthy and hand-made. Suits farm shops, makers and outdoor trades.'],
+  ['editorial','Editorial','Like a magazine. Suits photographers, venues and salons.']
+];
+var TEMPLATE_NAMES={};STYLES.forEach(function(x){TEMPLATE_NAMES[x[0]]=x[1]});
+var PLAN_RANK={starter:1,standard:2,pro:3};
+var PLAN_PAGES={
+  starter:'Your Starter plan is a one-page website with About, Services and Contact sections.',
+  standard:'Your Standard plan includes 5 pages: Home, About, Services, Gallery and Contact.',
+  pro:'Your Pro plan includes 8 pages: Home, About, Services, Portfolio (with a page for each project), Reviews, FAQ and Contact with a booking form.'
+};
+var plan='starter';
+function renderStyles(){
+  var box=$('tpl-list');box.innerHTML='';
+  STYLES.forEach(function(x){
+    var url='templates/'+plan+'-'+x[0]+'/';
+    var l=document.createElement('label');l.className='tpl';
+    l.innerHTML='<input type="radio" name="template" value="'+x[0]+'"><div class="shot"><iframe loading="lazy" tabindex="-1" aria-hidden="true" title="" src="'+url+'"></iframe></div>'+
+      '<b>'+x[1]+'</b><span class="muted">'+x[2]+'</span><a class="open" href="'+url+'" target="_blank" rel="noopener">Open full preview \u2197</a>';
+    box.appendChild(l);
+  });
+  function scale(){box.querySelectorAll('.shot').forEach(function(sh){var f=sh.querySelector('iframe');f.style.transform='scale('+(sh.clientWidth/1280)+')'})}
+  scale();window.addEventListener('resize',scale);
+}
 
 function view(v){['loading','locked','done','form'].forEach(function(n){$('v-'+n).hidden=(n!==v)})}
 function say(t,err){$('msg').textContent=t||'';$('msg').className=err?'err':''}
@@ -327,7 +365,7 @@ async function removeUpload(key,path){
 
 /* ---------- Steps ---------- */
 function check(i){
-  if(i===0&&!project.template)return 'Please pick a template to continue.';
+  if(i===0&&!project.template)return 'Please pick a style to continue.';
   if(i===1){
     if(!(answers.business_name||'').trim())return 'Please add your business name.';
     if(!(answers.business_about||'').trim())return 'Please tell us what your business does.';
@@ -336,7 +374,7 @@ function check(i){
 }
 function summary(){
   var rows=[
-    ['Template',TEMPLATE_NAMES[project.template]],
+    ['Style',TEMPLATE_NAMES[project.template]],
     ['Business name',answers.business_name],
     ['What you do',answers.business_about],
     ['Customers',answers.audience],
@@ -347,13 +385,16 @@ function summary(){
     ['Feel',(answers.style_words||[]).join(', ')],
     ['Colours',answers.colour_choice==='mine'?(answers.colour_main||'#2430d6')+' and '+(answers.colour_second||'#ffb703'):(answers.colour_choice==='you_choose'?'Choose for me':'')],
     ['Inspiration',answers.inspiration],
-    ['Pages',['Home'].concat(answers.pages||[]).join(', ')],
     ['Other needs',answers.pages_other],
     ['Tagline',answers.tagline],
     ['Services',answers.services],
     ['Your story',answers.story],
     ['Reviews',answers.reviews],
     ['Notes',answers.notes],
+    ['Opening hours',answers.hours],
+    ['Key numbers',[1,2,3].map(function(n){var v=answers['stat'+n+'_value'],l=answers['stat'+n+'_label'];return v?v+' '+(l||''):''}).filter(Boolean).join(', ')],
+    ['Team',answers.team],['Values',answers.values],
+    ['Projects',answers.projects],['FAQ',answers.faq],['How you work',answers.process],
     ['Logo',answers.logo?'Uploaded':'None'],
     ['Photos',(answers.photos||[]).length+' uploaded'+(answers.stock_ok?', stock photos OK':'')]
   ];
@@ -401,8 +442,17 @@ $('next').onclick=async function(){
   if(!s){location.href='account.html';return}
   uid=s.user.id;
 
-  var sub=(await sb.from('subscriptions').select('status').maybeSingle()).data;
+  var sub=(await sb.from('subscriptions').select('status,plan').maybeSingle()).data;
   if(!sub||['trialing','active','past_due'].indexOf(sub.status)<0){view('locked');return}
+  plan=PLAN_RANK[sub.plan]?sub.plan:'starter';
+  // Drop steps and fields the plan doesn't include
+  document.querySelectorAll('[data-min-plan]').forEach(function(el){
+    if(PLAN_RANK[el.dataset.minPlan]>PLAN_RANK[plan])el.remove();
+  });
+  steps=[].slice.call(document.querySelectorAll('.step'));
+  renderStyles();
+  $('pages-included').textContent=PLAN_PAGES[plan];
+  if(plan==='pro')$('photo-hint').textContent='Your work, premises, team or products. For portfolio projects, add before and after photos and say which is which in the file name. Up to 12 photos.';
 
   var r=await sb.from('projects').select('*').maybeSingle();
   project=r.data;

@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Your website questionnaire | Axenworks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#2430d6;--bg:#f7f8f6;--ink:#16181d;--muted:#585e69;--line:#d9dcd6;--card:#ffffff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101216;--ink:#eef0ee;--muted:#a3a9b2;--line:#2a2e36;--card:#171a20;--blue:#3a46f0}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif}
+nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;max-width:1040px;margin:0 auto;gap:12px}
+nav a{text-decoration:none;color:inherit}
+nav .logo{font-weight:800;font-size:20px;letter-spacing:-.02em}
+nav .back{color:var(--muted);font-size:15px}
+main{max-width:720px;margin:8px auto 64px;padding:0 20px}
+h1{font-size:32px;letter-spacing:-.03em;line-height:1.1;margin:0 0 6px}
+h2{font-size:24px;letter-spacing:-.02em;margin:0 0 4px}
+p.sub{color:var(--muted);margin:0 0 20px}
+.muted{color:var(--muted)}
+.progress{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted);margin:18px 0 8px}
+.bar{height:6px;background:var(--line);border-radius:99px;overflow:hidden;margin-bottom:22px}
+.bar i{display:block;height:100%;background:var(--blue);width:0;transition:width .25s}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;display:grid;gap:18px}
+label,.q{display:grid;gap:6px;font-weight:600;font-size:15px}
+.hint{font-weight:400;color:var(--muted);font-size:14px}
+input[type=text],input[type=email],input[type=tel],input[type=url],textarea{font:inherit;font-size:16px;font-weight:400;padding:11px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+textarea{min-height:110px;resize:vertical}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{position:relative}
+.chip input{position:absolute;opacity:0;inset:0;cursor:pointer}
+.chip span{display:inline-block;padding:8px 14px;border:1px solid var(--line);border-radius:999px;font-weight:400;background:var(--bg)}
+.chip input:checked+span{background:var(--blue);border-color:var(--blue);color:#fff}
+.chip input:focus-visible+span{outline:3px solid #ffb703;outline-offset:2px}
+.chip input:disabled+span{opacity:.7}
+.templates{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:14px}
+.tpl{position:relative;border:2px solid var(--line);border-radius:14px;padding:14px;background:var(--card);cursor:pointer;display:grid;gap:8px;font-weight:400}
+.tpl input{position:absolute;opacity:0}
+.tpl:has(input:checked){border-color:var(--blue)}
+.tpl:has(input:focus-visible){outline:3px solid #ffb703;outline-offset:3px}
+.tpl b{font-size:18px}
+.pairs{display:grid;grid-template-columns:1fr 2fr;gap:8px}
+.shot{position:relative;aspect-ratio:16/11;overflow:hidden;border-radius:8px;border:1px solid var(--line);background:var(--bg)}
+.shot iframe{position:absolute;left:0;top:0;width:1280px;height:880px;border:0;transform-origin:0 0;pointer-events:none}
+.tpl .open{font-size:14px;justify-self:start}
+.mock{height:120px;border-radius:8px;overflow:hidden;border:1px solid var(--line);display:grid;padding:10px;gap:6px;align-content:start}
+.mock i{display:block;border-radius:3px}
+.m-classic{background:#fbf8f2}.m-classic i:nth-child(1){height:10px;width:40%;background:#7a5c3e}.m-classic i:nth-child(2){height:34px;background:#e9dfcf}.m-classic i:nth-child(3){height:6px;width:80%;background:#c9bba5}.m-classic i:nth-child(4){height:6px;width:65%;background:#c9bba5}
+.m-bold{background:#16181d}.m-bold i:nth-child(1){height:22px;width:75%;background:#ff5a36}.m-bold i:nth-child(2){height:10px;width:50%;background:#fff}.m-bold i:nth-child(3){height:30px;background:#2b2f38}.m-bold i:nth-child(4){height:8px;width:30%;background:#ff5a36}
+.m-minimal{background:#fff}.m-minimal i:nth-child(1){height:8px;width:25%;background:#222}.m-minimal i:nth-child(2){height:50px;background:#f1f1f1}.m-minimal i:nth-child(3){height:5px;width:60%;background:#ddd}.m-minimal i:nth-child(4){height:5px;width:45%;background:#ddd}
+.colours{display:flex;gap:18px;flex-wrap:wrap;align-items:center}
+.colours label{display:flex;align-items:center;gap:8px;font-weight:400}
+input[type=color]{width:46px;height:38px;border:1px solid var(--line);border-radius:8px;padding:2px;background:var(--bg)}
+.uploads{display:flex;flex-wrap:wrap;gap:10px}
+.thumb{position:relative;width:96px;height:96px;border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--bg)}
+.thumb img{width:100%;height:100%;object-fit:cover}
+.thumb button{position:absolute;top:4px;right:4px;width:26px;height:26px;border-radius:50%;border:0;background:rgba(0,0,0,.65);color:#fff;font-size:15px;line-height:1;cursor:pointer;padding:0}
+.drop{display:inline-flex;align-items:center;justify-content:center;width:96px;height:96px;border:2px dashed var(--line);border-radius:10px;color:var(--muted);font-weight:400;font-size:14px;text-align:center;cursor:pointer;padding:6px}
+.drop input{display:none}
+.nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:12px}
+button{font:inherit;font-weight:600;padding:13px 24px;border-radius:999px;border:0;background:var(--blue);color:#fff;cursor:pointer}
+button:disabled{opacity:.6;cursor:wait}
+button.ghost{background:none;color:var(--ink);border:1px solid var(--line)}
+#saved{font-size:14px;color:var(--muted)}
+#msg{min-height:1.5em;margin:14px 0 0;color:var(--muted);font-size:15px}
+#msg.err{color:#c62828}
+dl{margin:0;display:grid;gap:12px}
+dt{font-weight:600;font-size:14px;color:var(--muted)}
+dd{margin:0;white-space:pre-wrap}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid #ffb703;outline-offset:3px}
+h2[tabindex="-1"]:focus{outline:none}
+#next{margin-left:auto}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<nav aria-label="Main"><a class="logo" href="index.html">Axenworks</a><a class="back" href="account.html">← Back to your account</a></nav>
+<main>
+  <section id="v-loading"><p class="muted">Loading...</p></section>
+
+  <section id="v-locked" hidden>
+    <h1>Choose a plan first</h1>
+    <p class="sub">The questionnaire opens once you've chosen a plan and paid the setup fee.</p>
+    <p><a href="account.html">Go to your account →</a></p>
+  </section>
+
+  <section id="v-done" hidden>
+    <h1>Thanks, we've got everything</h1>
+    <p class="sub">Your questionnaire has been sent. We'll build your website from your answers and let you know when your preview is ready.</p>
+    <p><a href="account.html">Back to your account →</a></p>
+  </section>
+
+  <section id="v-form" hidden>
+    <h1>Tell us about your website</h1>
+    <p class="sub">Your answers save automatically, so you can stop and come back at any time.</p>
+    <div class="progress"><span id="step-label"></span><span id="saved" aria-live="polite"></span></div>
+    <div class="bar" aria-hidden="true"><i id="bar"></i></div>
+
+    <form id="f" novalidate>
+      <!-- 1 Template -->
+      <div class="step box" data-title="Template">
+        <div><h2>Pick a style</h2><p class="muted" style="margin:0" id="tpl-intro">These previews show your plan's version of each style. Your colours, words and photos make it your own.</p></div>
+        <div class="templates" role="radiogroup" aria-label="Style" id="tpl-list"></div>
+      </div>
+
+      <!-- 2 Business -->
+      <div class="step box" data-title="Your business">
+        <h2>Your business</h2>
+        <label>Business name *<input type="text" data-k="business_name" autocomplete="organization" required></label>
+        <label>What does your business do? *<span class="hint">A few sentences in your own words is perfect.</span><textarea data-k="business_about" required></textarea></label>
+        <label>Who are your customers?<span class="hint">For example: local families, small businesses, dog owners in Leeds.</span><input type="text" data-k="audience"></label>
+        <label>Where are you based, or which areas do you cover?<input type="text" data-k="location"></label>
+        <label>Email for customer enquiries<input type="email" data-k="contact_email" autocomplete="email"></label>
+        <label>Phone number<input type="tel" data-k="contact_phone" autocomplete="tel"></label>
+        <label>Social media links<span class="hint">One per line.</span><textarea data-k="socials" style="min-height:80px"></textarea></label>
+      </div>
+
+      <!-- 3 Style -->
+      <div class="step box" data-title="Look and feel">
+        <h2>Look and feel</h2>
+        <div class="q">How should your website feel?<span class="hint">Pick up to three.</span>
+          <div class="chips" data-multi="style_words" data-max="3">
+            <label class="chip"><input type="checkbox" value="Modern"><span>Modern</span></label>
+            <label class="chip"><input type="checkbox" value="Friendly"><span>Friendly</span></label>
+            <label class="chip"><input type="checkbox" value="Professional"><span>Professional</span></label>
+            <label class="chip"><input type="checkbox" value="Playful"><span>Playful</span></label>
+            <label class="chip"><input type="checkbox" value="Luxury"><span>Luxury</span></label>
+            <label class="chip"><input type="checkbox" value="Calm"><span>Calm</span></label>
+            <label class="chip"><input type="checkbox" value="Bold"><span>Bold</span></label>
+            <label class="chip"><input type="checkbox" value="Traditional"><span>Traditional</span></label>
+          </div>
+        </div>
+        <div class="q">Brand colours
+          <div class="chips" data-single="colour_choice">
+            <label class="chip"><input type="radio" name="colour_choice" value="mine"><span>I have brand colours</span></label>
+            <label class="chip"><input type="radio" name="colour_choice" value="you_choose"><span>Choose for me</span></label>
+          </div>
+          <div class="colours" id="colour-pickers" hidden>
+            <label>Main colour<input type="color" data-k="colour_main" value="#2430d6"></label>
+            <label>Second colour<input type="color" data-k="colour_second" value="#ffb703"></label>
+          </div>
+        </div>
+        <label>Any websites you like the look of?<span class="hint">Paste links and tell us what you like about them.</span><textarea data-k="inspiration"></textarea></label>
+      </div>
+
+      <!-- 4 Pages -->
+      <div class="step box" data-title="Pages">
+        <h2>Your pages</h2>
+        <p class="muted" style="margin:0" id="pages-included"></p>
+        <label>Anything else you need?<span class="hint">Other features or changes, such as a menu, price list or map.</span><textarea data-k="pages_other" style="min-height:80px"></textarea></label>
+      </div>
+
+      <!-- 5 Content -->
+      <div class="step box" data-title="Your words">
+        <h2>Your words</h2>
+        <p class="muted" style="margin:0">Don't worry about getting it perfect. We'll polish the wording, so notes are fine.</p>
+        <label>A short tagline or main message<span class="hint">For example: "Friendly plumbing across Bristol, same-day call-outs".</span><input type="text" data-k="tagline"></label>
+        <label>Your services or products<span class="hint">One per line, with prices if you'd like them shown.</span><textarea data-k="services"></textarea></label>
+        <label>Your story<span class="hint">How you started, what makes you different.</span><textarea data-k="story"></textarea></label>
+        <label>Customer reviews you'd like to show<textarea data-k="reviews" style="min-height:80px"></textarea></label>
+        <label>Anything else we should know?<textarea data-k="notes" style="min-height:80px"></textarea></label>
+      </div>
+
+      <!-- 5b Extra details (Standard and Pro) -->
+      <div class="step box" data-title="More details" data-min-plan="standard">
+        <h2>A few more details</h2>
+        <p class="muted" style="margin:0">Your plan includes extra sections. Fill in what you can and leave the rest blank.</p>
+        <label>Opening hours<span class="hint">One per line, for example "Monday to Friday: 8am to 5pm".</span><textarea data-k="hours" style="min-height:90px"></textarea></label>
+        <div class="q">Key numbers<span class="hint">Shown as big figures, for example "12" and "years in business".</span>
+          <div class="pairs">
+            <input type="text" data-k="stat1_value" placeholder="12" aria-label="Number 1"><input type="text" data-k="stat1_label" placeholder="years in business" aria-label="Label 1">
+            <input type="text" data-k="stat2_value" placeholder="200+" aria-label="Number 2"><input type="text" data-k="stat2_label" placeholder="happy customers" aria-label="Label 2">
+            <input type="text" data-k="stat3_value" placeholder="4.9★" aria-label="Number 3"><input type="text" data-k="stat3_label" placeholder="average review" aria-label="Label 3">
+          </div>
+        </div>
+        <label>Who's behind the business?<span class="hint">Names, roles and a line or two about each person. One person per line.</span><textarea data-k="team" style="min-height:90px"></textarea></label>
+        <label>What can customers expect?<span class="hint">Your promises or values, for example "We always turn up on time". One per line.</span><textarea data-k="values" style="min-height:80px"></textarea></label>
+        <div data-min-plan="pro" style="display:grid;gap:18px">
+          <label>Projects to show in your portfolio<span class="hint">One per line: name, place and what you did. Add before and after photos in the next step.</span><textarea data-k="projects"></textarea></label>
+          <label>Common questions (FAQ)<span class="hint">One per line, as "Question? Answer".</span><textarea data-k="faq"></textarea></label>
+          <label>How you work, step by step<span class="hint">For example "Free visit, Clear quote, The work, Aftercare". One per line.</span><textarea data-k="process" style="min-height:80px"></textarea></label>
+        </div>
+      </div>
+
+      <!-- 6 Images -->
+      <div class="step box" data-title="Logo and photos">
+        <h2>Logo and photos</h2>
+        <div class="q">Your logo<span class="hint">PNG, JPG, SVG or WebP, up to 10 MB.</span>
+          <div class="uploads" id="up-logo"></div>
+        </div>
+        <div class="q">Photos<span class="hint" id="photo-hint">Your work, premises, team or products. Up to 12 photos.</span>
+          <div class="uploads" id="up-photos"></div>
+        </div>
+        <label class="chip" style="justify-self:start"><input type="checkbox" data-k="stock_ok"><span>Use stock photos where I don't have my own</span></label>
+      </div>
+
+      <!-- 7 Review -->
+      <div class="step box" data-title="Check and send">
+        <h2>Check and send</h2>
+        <p class="muted" style="margin:0">Here's what you've told us. Use Back to change anything.</p>
+        <dl id="summary"></dl>
+      </div>
+
+      <div class="nav">
+        <button type="button" class="ghost" id="prev">Back</button>
+        <button type="button" id="next">Next</button>
+      </div>
+      <p id="msg" role="status"></p>
+    </form>
+  </section>
+</main>
+
+<script>
+var row={id:'p1',user_id:'u1',template:null,status:'draft',answers:{business_name:'Green Leaf Gardening'}};
+function q(t){var api={select:function(){return api},eq:function(){return api},update:function(p){Object.assign(row,p);return api},insert:function(){return api},
+ single:async function(){return{data:row}},maybeSingle:async function(){return{data:t==='subscriptions'?{status:'trialing',plan:'starter'}:row}}};return api}
+window.supabase={createClient:function(){return{auth:{getSession:async function(){return{data:{session:{user:{id:'u1'}}}}}},from:q,
+ storage:{from:function(){return{createSignedUrls:async function(){return{data:[]}}}}}}}};
+</script>
+<script>
+var SB_URL="https://cvkgnrrskoptdtojcwvz.supabase.co";
+var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2a2ducnJza29wdGR0b2pjd3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTE2OTksImV4cCI6MjEwNzM4NzY5OX0.WsI6YpOpyd6q4wTV0q5FJzbjs0K3qnDTL4FNhfcbwNg";
+var BUCKET="project-uploads",MAX_PHOTOS=12;
+var sb=supabase.createClient(SB_URL,SB_KEY);
+var $=function(id){return document.getElementById(id)};
+var form=$('f'),steps=[].slice.call(document.querySelectorAll('.step'));
+var uid=null,project=null,answers={},step=0,saveTimer=null,saving=Promise.resolve();
+var STYLES=[
+  ['classic','Classic','Warm and trustworthy. Suits trades, caf\u00e9s and local services.'],
+  ['bold','Bold','Big headlines and strong colour. Suits fitness, events and creative work.'],
+  ['minimal','Minimal','Clean with lots of space. Suits consultants, studios and portfolios.'],
+  ['playful','Playful','Rounded and bright. Suits caf\u00e9s, kids\u2019 clubs and pet businesses.'],
+  ['modern','Modern','Sleek gradients and glassy cards. Suits startups, studios and consultants.'],
+  ['rustic','Rustic','Earthy and hand-made. Suits farm shops, makers and outdoor trades.'],
+  ['editorial','Editorial','Like a magazine. Suits photographers, venues and salons.']
+];
+var TEMPLATE_NAMES={};STYLES.forEach(function(x){TEMPLATE_NAMES[x[0]]=x[1]});
+var PLAN_RANK={starter:1,standard:2,pro:3};
+var PLAN_PAGES={
+  starter:'Your Starter plan is a one-page website with About, Services and Contact sections.',
+  standard:'Your Standard plan includes 5 pages: Home, About, Services, Gallery and Contact.',
+  pro:'Your Pro plan includes 8 pages: Home, About, Services, Portfolio (with a page for each project), Reviews, FAQ and Contact with a booking form.'
+};
+var plan='starter';
+function renderStyles(){
+  var box=$('tpl-list');box.innerHTML='';
+  STYLES.forEach(function(x){
+    var url='templates/'+plan+'-'+x[0]+'/';
+    var l=document.createElement('label');l.className='tpl';
+    l.innerHTML='<input type="radio" name="template" value="'+x[0]+'"><div class="shot"><iframe loading="lazy" tabindex="-1" aria-hidden="true" title="" src="'+url+'"></iframe></div>'+
+      '<b>'+x[1]+'</b><span class="muted">'+x[2]+'</span><a class="open" href="'+url+'" target="_blank" rel="noopener">Open full preview \u2197</a>';
+    box.appendChild(l);
+  });
+  function scale(){box.querySelectorAll('.shot').forEach(function(sh){var f=sh.querySelector('iframe');f.style.transform='scale('+(sh.clientWidth/1280)+')'})}
+  scale();window.addEventListener('resize',scale);
+}
+
+function view(v){['loading','locked','done','form'].forEach(function(n){$('v-'+n).hidden=(n!==v)})}
+function say(t,err){$('msg').textContent=t||'';$('msg').className=err?'err':''}
+
+/* ---------- Saving ---------- */
+function queueSave(){
+  $('saved').textContent='Saving...';
+  clearTimeout(saveTimer);
+  saveTimer=setTimeout(function(){saving=saving.then(save)},700);
+}
+async function save(extra){
+  var patch=Object.assign({template:project.template||null,answers:answers},extra||{});
+  var r=await sb.from('projects').update(patch).eq('id',project.id).select().single();
+  if(r.error){$('saved').textContent='Not saved. Check your connection.';throw r.error}
+  project=r.data;$('saved').textContent='Saved';
+}
+function flush(){clearTimeout(saveTimer);saving=saving.then(function(){return save()});return saving}
+
+/* ---------- Fill and read fields ---------- */
+function fill(){
+  form.querySelectorAll('[data-k]').forEach(function(el){
+    var v=answers[el.dataset.k];
+    if(el.type==='checkbox')el.checked=!!v;
+    else if(v!=null)el.value=v;
+  });
+  form.querySelectorAll('[data-multi]').forEach(function(g){
+    var vals=answers[g.dataset.multi]||[];
+    g.querySelectorAll('input:not(:disabled)').forEach(function(i){i.checked=vals.indexOf(i.value)>-1});
+  });
+  form.querySelectorAll('[data-single]').forEach(function(g){
+    var v=answers[g.dataset.single];
+    g.querySelectorAll('input').forEach(function(i){i.checked=(i.value===v)});
+  });
+  form.querySelectorAll('input[name=template]').forEach(function(i){i.checked=(i.value===project.template)});
+  $('colour-pickers').hidden=answers.colour_choice!=='mine';
+}
+
+form.addEventListener('input',function(e){
+  var el=e.target;
+  if(el.name==='template'){project.template=el.value;queueSave();return}
+  var multi=el.closest('[data-multi]'),single=el.closest('[data-single]');
+  if(multi){
+    var max=+multi.dataset.max||99,checked=[].slice.call(multi.querySelectorAll('input:checked:not(:disabled)'));
+    if(checked.length>max){el.checked=false;say('Pick up to '+max+'.');return}
+    answers[multi.dataset.multi]=checked.map(function(i){return i.value});
+  }else if(single){
+    answers[single.dataset.single]=el.value;
+    $('colour-pickers').hidden=el.value!=='mine';
+  }else if(el.dataset.k){
+    answers[el.dataset.k]=el.type==='checkbox'?el.checked:el.value;
+  }else return;
+  say('');queueSave();
+});
+
+/* ---------- Uploads ---------- */
+async function renderUploads(){
+  var paths=[].concat(answers.logo?[answers.logo]:[],answers.photos||[]);
+  var urls={};
+  if(paths.length){
+    var r=await sb.storage.from(BUCKET).createSignedUrls(paths,3600);
+    (r.data||[]).forEach(function(d){if(d.signedUrl)urls[d.path]=d.signedUrl});
+  }
+  drawGroup($('up-logo'),answers.logo?[answers.logo]:[],1,'logo',urls);
+  drawGroup($('up-photos'),answers.photos||[],MAX_PHOTOS,'photos',urls);
+}
+function drawGroup(box,list,max,key,urls){
+  box.innerHTML='';
+  list.forEach(function(path){
+    var t=document.createElement('div');t.className='thumb';
+    var img=document.createElement('img');img.alt='Uploaded image';if(urls[path])img.src=urls[path];
+    var x=document.createElement('button');x.type='button';x.textContent='×';x.setAttribute('aria-label','Remove image');
+    x.onclick=function(){removeUpload(key,path)};
+    t.appendChild(img);t.appendChild(x);box.appendChild(t);
+  });
+  if(list.length<max){
+    var d=document.createElement('label');d.className='drop';
+    d.innerHTML=key==='logo'?'+ Add logo':'+ Add photos';
+    var inp=document.createElement('input');inp.type='file';inp.accept='image/png,image/jpeg,image/webp,image/gif,image/svg+xml';
+    if(key==='photos')inp.multiple=true;
+    inp.onchange=function(){addUploads(key,[].slice.call(inp.files))};
+    d.appendChild(inp);box.appendChild(d);
+  }
+}
+async function addUploads(key,files){
+  if(key==='photos'){
+    var room=MAX_PHOTOS-(answers.photos||[]).length;
+    if(files.length>room){say('You can add '+room+' more photo'+(room===1?'':'s')+'.');files=files.slice(0,room)}
+  }
+  for(var i=0;i<files.length;i++){
+    var f=files[i];
+    if(f.size>10*1024*1024){say(f.name+' is over 10 MB.',true);continue}
+    say('Uploading '+f.name+'...');
+    var ext=(f.name.split('.').pop()||'img').toLowerCase().replace(/[^a-z0-9]/g,'');
+    var path=uid+'/'+key+'-'+Date.now()+'-'+Math.random().toString(36).slice(2,8)+'.'+ext;
+    var r=await sb.storage.from(BUCKET).upload(path,f,{contentType:f.type});
+    if(r.error){say('Couldn’t upload '+f.name+': '+r.error.message,true);continue}
+    if(key==='logo'){
+      if(answers.logo)await sb.storage.from(BUCKET).remove([answers.logo]);
+      answers.logo=path;
+    }else{answers.photos=(answers.photos||[]).concat(path)}
+    say('');
+  }
+  queueSave();renderUploads();
+}
+async function removeUpload(key,path){
+  await sb.storage.from(BUCKET).remove([path]);
+  if(key==='logo')delete answers.logo;
+  else answers.photos=(answers.photos||[]).filter(function(p){return p!==path});
+  queueSave();renderUploads();
+}
+
+/* ---------- Steps ---------- */
+function check(i){
+  if(i===0&&!project.template)return 'Please pick a style to continue.';
+  if(i===1){
+    if(!(answers.business_name||'').trim())return 'Please add your business name.';
+    if(!(answers.business_about||'').trim())return 'Please tell us what your business does.';
+  }
+  return '';
+}
+function summary(){
+  var rows=[
+    ['Style',TEMPLATE_NAMES[project.template]],
+    ['Business name',answers.business_name],
+    ['What you do',answers.business_about],
+    ['Customers',answers.audience],
+    ['Location',answers.location],
+    ['Email',answers.contact_email],
+    ['Phone',answers.contact_phone],
+    ['Social links',answers.socials],
+    ['Feel',(answers.style_words||[]).join(', ')],
+    ['Colours',answers.colour_choice==='mine'?(answers.colour_main||'#2430d6')+' and '+(answers.colour_second||'#ffb703'):(answers.colour_choice==='you_choose'?'Choose for me':'')],
+    ['Inspiration',answers.inspiration],
+    ['Other needs',answers.pages_other],
+    ['Tagline',answers.tagline],
+    ['Services',answers.services],
+    ['Your story',answers.story],
+    ['Reviews',answers.reviews],
+    ['Notes',answers.notes],
+    ['Opening hours',answers.hours],
+    ['Key numbers',[1,2,3].map(function(n){var v=answers['stat'+n+'_value'],l=answers['stat'+n+'_label'];return v?v+' '+(l||''):''}).filter(Boolean).join(', ')],
+    ['Team',answers.team],['Values',answers.values],
+    ['Projects',answers.projects],['FAQ',answers.faq],['How you work',answers.process],
+    ['Logo',answers.logo?'Uploaded':'None'],
+    ['Photos',(answers.photos||[]).length+' uploaded'+(answers.stock_ok?', stock photos OK':'')]
+  ];
+  var dl=$('summary');dl.innerHTML='';
+  rows.forEach(function(r){
+    if(r[1]==null||r[1]==='')return;
+    var dt=document.createElement('dt');dt.textContent=r[0];
+    var dd=document.createElement('dd');dd.textContent=r[1];
+    dl.appendChild(dt);dl.appendChild(dd);
+  });
+}
+function go(i,first){
+  step=Math.max(0,Math.min(steps.length-1,i));
+  steps.forEach(function(s,n){s.hidden=(n!==step)});
+  $('step-label').textContent='Step '+(step+1)+' of '+steps.length+': '+steps[step].dataset.title;
+  $('bar').style.width=((step+1)/steps.length*100)+'%';
+  $('prev').hidden=step===0;
+  $('next').textContent=step===steps.length-1?'Send to Axenworks':'Next';
+  if(step===steps.length-1)summary();
+  say('');
+  if(!first){
+    var h=steps[step].querySelector('h2');if(h){h.tabIndex=-1;h.focus({preventScroll:true})}
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  try{localStorage.setItem('axw-q-step',String(step))}catch(_){}
+}
+$('prev').onclick=function(){go(step-1)};
+$('next').onclick=async function(){
+  var problem=check(step);
+  if(problem){say(problem,true);return}
+  if(step<steps.length-1){go(step+1);return}
+  for(var i=0;i<steps.length;i++){var p=check(i);if(p){go(i);say(p,true);return}}
+  var b=this;b.disabled=true;say('Sending...');
+  try{
+    await flush();
+    await save({status:'submitted'});
+    try{localStorage.removeItem('axw-q-step')}catch(_){}
+    view('done');
+  }catch(err){say('Couldn’t send. Please try again.',true);b.disabled=false}
+};
+
+/* ---------- Start ---------- */
+(async function(){
+  var s=(await sb.auth.getSession()).data.session;
+  if(!s){location.href='account.html';return}
+  uid=s.user.id;
+
+  var sub=(await sb.from('subscriptions').select('status,plan').maybeSingle()).data;
+  if(!sub||['trialing','active','past_due'].indexOf(sub.status)<0){view('locked');return}
+  plan=PLAN_RANK[sub.plan]?sub.plan:'starter';
+  // Drop steps and fields the plan doesn't include
+  document.querySelectorAll('[data-min-plan]').forEach(function(el){
+    if(PLAN_RANK[el.dataset.minPlan]>PLAN_RANK[plan])el.remove();
+  });
+  steps=[].slice.call(document.querySelectorAll('.step'));
+  renderStyles();
+  $('pages-included').textContent=PLAN_PAGES[plan];
+  if(plan==='pro')$('photo-hint').textContent='Your work, premises, team or products. For portfolio projects, add before and after photos and say which is which in the file name. Up to 12 photos.';
+
+  var r=await sb.from('projects').select('*').maybeSingle();
+  project=r.data;
+  if(!project){
+    var ins=await sb.from('projects').insert({user_id:uid}).select().single();
+    if(ins.error){view('form');say('Couldn’t start the questionnaire. Please refresh the page.',true);return}
+    project=ins.data;
+  }
+  if(project.status!=='draft'){view('done');return}
+
+  answers=project.answers||{};
+  fill();view('form');renderUploads();
+  var saved=0;try{saved=+localStorage.getItem('axw-q-step')||0}catch(_){}
+  go(saved,true);
+})();
+
+window.addEventListener('beforeunload',function(e){
+  if($('saved').textContent==='Saving...'){e.preventDefault();e.returnValue=''}
+});
+</script>
+</body>
+</html>

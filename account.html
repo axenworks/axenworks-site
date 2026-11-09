@@ -99,25 +99,25 @@ h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
 
     <div id="d-choose" hidden>
       <h2>Choose your plan</h2>
-      <p class="sub">Every plan has a one-off £50 setup fee, paid today. Your monthly payments start after your free trial.</p>
+      <p class="sub">Every plan has a one-off £50 setup fee, paid today. Your monthly payments only start once your website is live and your free trial has ended.</p>
       <div class="plans">
         <button type="button" class="plan" data-plan="starter">
           <span class="name">Starter</span>
           <span class="price">£19.99 <small>/ month</small></span>
-          <span class="muted">Your custom website, hosted and looked after.</span>
+          <span class="muted">A one-page website, hosted and looked after. 7 styles to choose from. 1 change request a month.</span>
           <span class="go">Choose Starter →</span>
         </button>
         <button type="button" class="plan pop" data-plan="standard">
           <span class="badge">Most popular</span>
           <span class="name">Standard</span>
           <span class="price">£39.99 <small>/ month</small></span>
-          <span class="muted">Everything in Starter, with more change requests included.</span>
+          <span class="muted">A 5-page website with custom fonts, a photo gallery and a reviews slider. 3 change requests a month.</span>
           <span class="go">Choose Standard →</span>
         </button>
         <button type="button" class="plan" data-plan="pro">
           <span class="name">Pro</span>
           <span class="price">£59.99 <small>/ month</small></span>
-          <span class="muted">Everything in Standard, with the most change requests included.</span>
+          <span class="muted">An 8-page premium website with animations, a portfolio with before-and-after photos, an FAQ, a booking form and dark mode. 6 change requests a month.</span>
           <span class="go">Choose Pro →</span>
         </button>
       </div>
@@ -146,7 +146,7 @@ var PLANS={starter:{name:'Starter',price:'£19.99'},standard:{name:'Standard',pr
 var LIVE=['trialing','active','past_due'];
 var checkoutState=new URLSearchParams(location.search).get('checkout');
 if(checkoutState)history.replaceState(null,'',location.pathname);
-var loadingPlan=false;
+var loadingPlan=false,currentProject=null;
 
 function day(iso){return iso?new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):''}
 function note(t){$('d-note').textContent=t||'';$('d-note').hidden=!t}
@@ -161,6 +161,7 @@ var PROJECT_TEXT={
 async function loadProject(){
   var r=await sb.from('projects').select('status,template,answers').maybeSingle();
   var p=r.data;
+  currentProject=p;
   if(!p||p.status==='draft'){
     var started=p&&(p.template||Object.keys(p.answers||{}).length);
     $('pr-status').textContent=started?'You’ve started the questionnaire. Pick up where you left off.':'Next step: choose a template and tell us about your business. It takes about 15 minutes, and your answers save as you go.';
@@ -171,6 +172,7 @@ async function loadProject(){
     $('pr-go').hidden=true;
   }
   $('d-project').hidden=false;
+  return p;
 }
 
 $('billing').onclick=async function(){
@@ -186,18 +188,20 @@ $('billing').onclick=async function(){
   }catch(err){say(err.message);b.disabled=false}
 };
 
-function renderPlan(row){
+async function renderPlan(row){
   $('d-loading').hidden=true;
   var live=row&&LIVE.indexOf(row.status)>-1;
   $('d-plan').hidden=!live;$('d-choose').hidden=live;
   $('d-project').hidden=true;
   if(!live)return;
-  loadProject();
+  var proj=await loadProject();
+  var siteLive=proj&&proj.status==='live';
   var p=PLANS[row.plan]||{name:'Your plan',price:''};
   $('p-name').textContent=p.name+(p.price?' · '+p.price+' a month':'');
-  var s;
+  var s, days=row.trial_days;
   if(row.cancel_at_period_end)s='Cancelled. Your plan ends on '+day(row.current_period_end||row.trial_end)+'.';
-  else if(row.status==='trialing')s='Free trial until '+day(row.trial_end)+'. Your first monthly payment is taken then.';
+  else if(row.status==='trialing'&&!siteLive)s='Setup fee paid. Your monthly payments haven\u2019t started: '+(days?'your '+days+'-day free trial begins':'billing begins')+' when your website goes live.';
+  else if(row.status==='trialing')s='Your website is live. Free trial until '+day(row.trial_end)+', then '+(p.price||'your plan')+' a month.';
   else if(row.status==='past_due')s='Your last payment didn’t go through. Please contact us so we can sort it out.';
   else s='Active. Next payment on '+day(row.current_period_end)+'.';
   $('p-status').textContent=s;

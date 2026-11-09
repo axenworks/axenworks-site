@@ -1,5 +1,5 @@
 // Creates a Stripe Checkout page for a logged-in customer:
-// £50 setup fee charged now + chosen monthly plan with a free trial.
+// £50 setup fee charged now + chosen monthly plan, billed only once the site goes live.
 import { admin, cors, PLAN_PRICES, SETUP_FEE_PRICE, siteFor, stripe } from "../_shared/stripe.ts";
 
 Deno.serve(async (req) => {
@@ -46,10 +46,14 @@ Deno.serve(async (req) => {
       if (error) throw error;
     }
 
-    // Trial length lives in app_settings so it can change without code.
+    // Trial length is read from app_settings now and locked in for this customer.
+    // The trial itself only starts when their site goes live (see go-live function).
     const { data: setting } = await db
       .from("app_settings").select("value").eq("key", "trial_days").maybeSingle();
-    const trialDays = existing?.trial_used ? 0 : Number(setting?.value ?? 0);
+    const trialDays = Math.max(0, Math.min(365, Number(setting?.value ?? 0)));
+    const { error: tdErr } = await db.from("subscriptions")
+      .update({ trial_days: trialDays }).eq("user_id", user.id);
+    if (tdErr) throw tdErr;
 
     const site = siteFor(origin);
     const params: Record<string, string> = {
@@ -65,7 +69,13 @@ Deno.serve(async (req) => {
       success_url: `${site}/account.html?checkout=success`,
       cancel_url: `${site}/account.html?checkout=cancelled`,
     };
-    if (trialDays > 0) params["subscription_data[trial_period_days]"] = String(trialDays);
+    // Hold monthly billing until go-live: the subscription waits in a placeholder
+    // trial (Stripe allows up to ~2 years). Go-live replaces this end date with
+    // today + the customer's trial days. The setup fee is still charged today.
+    if (!existing?.trial_used) {
+      params["subscription_data[trial_end]"] = String(Math.floor(Date.now() / 1000) + 720 * 86400);
+      params["subscription_data[metadata][awaiting_go_live]"] = "true";
+    }
 
     const session = await stripe("checkout/sessions", params);
     return reply(200, { url: session.url });
