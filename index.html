@@ -11,14 +11,15 @@
 :root{
   --blue:#2430d6; --blue-ink:#ffffff;
   --mint:#dbe6dc; --mint-ink:#16231a;
+  --grow:#efe2c4; --grow-ink:#3a2a12;
   --bg:#f7f8f6; --ink:#16181d; --muted:#585e69; --line:#d9dcd6; --card:#ffffff;
   box-sizing:border-box;
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 @media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--bg:#101216;--ink:#eef0ee;--muted:#a3a9b2;--line:#2a2e36;--card:#171a20;--mint:#1d2a22;--mint-ink:#e3efe5;--blue:#3a46f0}
+  :root:not([data-theme="light"]){--bg:#101216;--ink:#eef0ee;--muted:#a3a9b2;--line:#2a2e36;--card:#171a20;--mint:#1d2a22;--mint-ink:#e3efe5;--grow:#2a2216;--grow-ink:#f1e4c9;--blue:#3a46f0}
 }
-:root[data-theme="dark"]{--bg:#101216;--ink:#eef0ee;--muted:#a3a9b2;--line:#2a2e36;--card:#171a20;--mint:#1d2a22;--mint-ink:#e3efe5;--blue:#3a46f0}
+:root[data-theme="dark"]{--bg:#101216;--ink:#eef0ee;--muted:#a3a9b2;--line:#2a2e36;--card:#171a20;--mint:#1d2a22;--mint-ink:#e3efe5;--grow:#2a2216;--grow-ink:#f1e4c9;--blue:#3a46f0}
 html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif}
@@ -32,10 +33,18 @@ nav a{text-decoration:none;color:var(--muted)}
 nav a:hover{color:var(--ink)}
 
 /* split hero */
-.split{display:grid;grid-template-columns:1fr 1fr;min-height:76vh}
-.half{padding:56px clamp(24px,5vw,64px);display:flex;flex-direction:column;justify-content:space-between;gap:36px}
-.half h2{font-size:clamp(34px,5vw,58px);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:0 0 16px}
-.half p{margin:0;max-width:34ch;font-size:18px}
+.split{display:grid;grid-template-columns:repeat(3,1fr);min-height:76vh}
+.half{padding:56px clamp(22px,3vw,48px);display:flex;flex-direction:column;justify-content:space-between;gap:36px}
+.half h2{font-size:clamp(32px,3.8vw,52px);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:0 0 16px}
+.half p{margin:0;max-width:30ch;font-size:18px}
+.grow{background:var(--grow);color:var(--grow-ink);position:relative;overflow:hidden}
+.grow::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;pointer-events:none;
+  background:radial-gradient(circle,color-mix(in srgb,var(--grow-ink) 30%,transparent) 2.5px,transparent 3px) 0 0/22px 22px;
+  -webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
+.grow>*{position:relative;z-index:1}
+.grow .tag{background:var(--grow-ink);color:var(--grow)}
+.digital .tag.open{background:#fff;color:var(--blue)}
+@media(max-width:640px){nav div a:not([href="account.html"]){display:none}}
 .digital{background:var(--blue);color:var(--blue-ink)}
 .print{background:var(--mint);color:var(--mint-ink);position:relative;overflow:hidden}
 .print::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;pointer-events:none;
@@ -48,7 +57,7 @@ nav a:hover{color:var(--ink)}
 .mock{border-radius:10px;background:rgba(255,255,255,.13);padding:14px;max-width:340px}
 .mock i{display:block;height:9px;border-radius:5px;background:rgba(255,255,255,.55);margin:8px 0}
 .mock i:nth-child(1){width:42%;height:12px;background:#fff}.mock i:nth-child(2){width:88%}.mock i:nth-child(3){width:70%}
-@media(max-width:760px){.split{grid-template-columns:1fr;min-height:0}.half{padding:44px 24px}}
+@media(max-width:900px){.split{grid-template-columns:1fr;min-height:0}.half{padding:44px 24px}}
 
 section{padding:72px 0}
 section h3{font-size:clamp(28px,4vw,40px);letter-spacing:-.03em;line-height:1.1;margin:0 0 12px;font-weight:800}
@@ -91,6 +100,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 <header class="split">
   <div class="digital half">
     <div>
+      <span class="tag open">Open now</span>
       <h2>Digital Studio</h2>
       <p>A website built around your business. Pick a template, answer a few questions, and we build and host it for you.</p>
     </div>
@@ -103,7 +113,15 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
       <h2>Print Studio</h2>
       <p>3D prints made to order, in the materials and colours you ask for.</p>
     </div>
-    <div><a class="btn" href="#contact">Get notified</a></div>
+    <div><a class="btn" href="#contact" data-interest="print">Get notified</a></div>
+  </div>
+  <div class="grow half">
+    <div>
+      <span class="tag">Coming soon</span>
+      <h2>Grow Studio</h2>
+      <p>Grow-your-own kits for plants and vegetables, with everything you need to get started.</p>
+    </div>
+    <div><a class="btn" href="#contact" data-interest="grow">Get notified</a></div>
   </div>
 </header>
 
@@ -150,6 +168,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
     <div class="checks" role="group" aria-label="Interested in">
       <label><input type="checkbox" id="wl-digital" checked> Digital Studio</label>
       <label><input type="checkbox" id="wl-print"> Print Studio</label>
+      <label><input type="checkbox" id="wl-grow"> Grow Studio</label>
     </div>
     <button type="submit" id="wl-btn">Join the waitlist</button>
     <p id="msg" role="status"></p>
@@ -161,12 +180,15 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
 <script>
 var SB_URL="https://cvkgnrrskoptdtojcwvz.supabase.co";
 var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2a2ducnJza29wdGR0b2pjd3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTE2OTksImV4cCI6MjEwNzM4NzY5OX0.WsI6YpOpyd6q4wTV0q5FJzbjs0K3qnDTL4FNhfcbwNg";
+document.querySelectorAll('[data-interest]').forEach(function(a){
+  a.addEventListener('click',function(){document.getElementById('wl-'+a.dataset.interest).checked=true});
+});
 document.getElementById('f').addEventListener('submit',function(e){
   e.preventDefault();
   var msg=document.getElementById('msg'),btn=document.getElementById('wl-btn');
-  var d=document.getElementById('wl-digital').checked,p=document.getElementById('wl-print').checked;
-  if(!d&&!p){msg.textContent="Choose at least one studio.";return;}
-  var interest=d&&p?"both":(d?"digital":"print");
+  var picks=['digital','print','grow'].filter(function(k){return document.getElementById('wl-'+k).checked});
+  if(!picks.length){msg.textContent="Choose at least one studio.";return;}
+  var interest=picks.join(',');
   btn.disabled=true;msg.textContent="Saving...";
   fetch(SB_URL+"/rest/v1/waitlist",{
     method:"POST",
