@@ -94,7 +94,7 @@ h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
     <div class="box" id="d-project" hidden style="margin-top:14px">
       <b>Your website</b>
       <span id="pr-status"></span>
-      <div><a class="btn" id="pr-go" href="questionnaire.html">Start the questionnaire</a></div>
+      <div><a class="btn" id="pr-go" href="questionnaire.html">Start the questionnaire</a><a class="btn" id="pr-view" target="_blank" rel="noopener" hidden>View your website preview ↗</a></div>
     </div>
 
     <div id="d-choose" hidden>
@@ -146,7 +146,7 @@ var PLANS={starter:{name:'Starter',price:'£19.99'},standard:{name:'Standard',pr
 var LIVE=['trialing','active','past_due'];
 var checkoutState=new URLSearchParams(location.search).get('checkout');
 if(checkoutState)history.replaceState(null,'',location.pathname);
-var loadingPlan=false,currentProject=null;
+var loadingPlan=false,currentProject=null,currentPlan=null;
 
 function day(iso){return iso?new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'}):''}
 function note(t){$('d-note').textContent=t||'';$('d-note').hidden=!t}
@@ -155,11 +155,11 @@ var PROJECT_TEXT={
   submitted:'Questionnaire received. We’re getting ready to build your website.',
   generating:'We’re building your website now.',
   in_review:'Your website is built and we’re checking it over.',
-  with_customer:'Your preview is ready to look at.',
+  with_customer:'Your website preview is ready. Have a look, and tell us if you\u2019d like anything changed.',
   live:'Your website is live.'
 };
 async function loadProject(){
-  var r=await sb.from('projects').select('status,template,answers').maybeSingle();
+  var r=await sb.from('projects').select('status,template,answers,preview_token,built_at').maybeSingle();
   var p=r.data;
   currentProject=p;
   if(!p||p.status==='draft'){
@@ -170,6 +170,12 @@ async function loadProject(){
   }else{
     $('pr-status').textContent=PROJECT_TEXT[p.status]||'';
     $('pr-go').hidden=true;
+  }
+  var canView=p&&p.built_at&&p.template&&['with_customer','live'].indexOf(p.status)>-1;
+  $('pr-view').hidden=!canView;
+  if(canView){
+    $('pr-view').href='templates/'+(PLANS[currentPlan]?currentPlan:'starter')+'-'+p.template+'/index.html?site='+p.preview_token;
+    $('pr-view').textContent=p.status==='live'?'View your website \u2197':'View your website preview \u2197';
   }
   $('d-project').hidden=false;
   return p;
@@ -194,6 +200,7 @@ async function renderPlan(row){
   $('d-plan').hidden=!live;$('d-choose').hidden=live;
   $('d-project').hidden=true;
   if(!live)return;
+  currentPlan=row.plan;
   var proj=await loadProject();
   var siteLive=proj&&proj.status==='live';
   var p=PLANS[row.plan]||{name:'Your plan',price:''};

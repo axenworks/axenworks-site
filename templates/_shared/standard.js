@@ -10,12 +10,16 @@
   var style = body.dataset.style || 'classic';
   var main = document.getElementById('page');
 
+  var TOKEN = new URLSearchParams(location.search).get('site');
+  var SITE_API = 'https://cvkgnrrskoptdtojcwvz.supabase.co/functions/v1/site-data?token=';
+  if (TOKEN) { var mr = document.createElement('meta'); mr.name = 'robots'; mr.content = 'noindex'; document.head.appendChild(mr); }
   var d;
   try {
-    var res = await fetch('site.json', { cache: 'no-cache' });
+    var res = await fetch(TOKEN ? SITE_API + encodeURIComponent(TOKEN) : 'site.json', { cache: TOKEN ? 'no-store' : 'no-cache' });
+    if (!res.ok) throw new Error('not found');
     d = await res.json();
   } catch (e) {
-    main.innerHTML = '<p style="padding:48px 24px">Sorry, this page could not load. Please refresh.</p>';
+    main.innerHTML = '<p style="padding:48px 24px">Sorry, this page could not load. If you followed a preview link, it may have expired.</p>';
     return;
   }
 
@@ -177,7 +181,7 @@
       '</div></div></section>';
   }
   function ctaBand() {
-    return '<section class="cta-band"><div class="wrap reveal"><h2>Ready to get started?</h2><p>Tell us what you need and we’ll get back to you within one working day.</p>' +
+    return '<section class="cta-band"><div class="wrap reveal"><h2>Ready to get started?</h2><p>Tell us what you need and we’ll get back to you as soon as we can.</p>' +
       '<a class="btn" href="contact.html">' + esc(d.cta_label || 'Get in touch') + '</a></div></section>';
   }
   function pageHero(eyebrow, title, text) {
@@ -221,7 +225,7 @@
         reviews() + ctaBand();
     },
     services: function () {
-      return pageHero('Services', 'What we do', 'Everything we offer, with prices to help you plan. Every job starts with a free, no-obligation quote.') +
+      return pageHero('Services', 'What we do', 'Everything we offer' + ((d.services || []).some(function (s) { return s.price; }) ? ', with prices to help you plan.' : '.')) +
         '<section class="block"><div class="wrap"><div class="service-list">' + (d.services || []).map(function (s, i) {
           return '<article class="service reveal"><span class="num">' + String(i + 1).padStart(2, '0') + '</span>' +
             '<div class="info"><h2>' + esc(s.name) + '</h2><p>' + esc(s.description) + '</p></div>' +
@@ -235,7 +239,7 @@
     },
     contact: function () {
       var hours = Array.isArray(c.hours) ? c.hours : (c.hours ? [['Opening hours', c.hours]] : []);
-      return pageHero('Contact', 'Let’s talk about your project', 'Send us a message or give us a call. We usually reply within one working day.') +
+      return pageHero('Contact', 'Let’s talk about your project', 'Send us a message or give us a call and we’ll get back to you as soon as we can.') +
         '<section class="block contact"><div class="wrap split">' +
           '<div class="details reveal"><dl>' +
             (c.phone ? '<dt>Phone</dt><dd><a href="' + tel(c.phone) + '">' + esc(c.phone) + '</a></dd>' : '') +
@@ -266,6 +270,14 @@
   var titles = { home: d.tagline, about: 'About', services: 'Services', gallery: 'Gallery', contact: 'Contact' };
   document.title = page === 'home' ? name + (d.tagline ? ' | ' + d.tagline : '') : titles[page] + ' | ' + name;
   var md = document.querySelector('meta[name=description]'); if (md) md.content = d.intro || '';
+
+  // Preview links: keep ?site=<token> on every internal page link.
+  if (TOKEN) document.querySelectorAll('a[href]').forEach(function (a) {
+    var h = a.getAttribute('href');
+    if (!/^[a-z-]+\.html/i.test(h)) return;
+    var u = new URL(h, location.href); u.searchParams.set('site', TOKEN);
+    a.setAttribute('href', u.pathname.split('/').pop() + u.search + u.hash);
+  });
 
   /* ---------- behaviour ---------- */
   // Mobile menu

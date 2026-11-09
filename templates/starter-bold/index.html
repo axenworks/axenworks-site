@@ -209,9 +209,20 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 </footer>
 
 <script>
-(function(){
-  // Shared by every Starter template. Reads #site-data and fills the page.
+(async function(){
+  // Shared by every Starter template. Reads #site-data (sample content), or a
+  // customer's draft when the page is opened with a private ?site= preview link.
   var d=JSON.parse(document.getElementById('site-data').textContent);
+  var TOKEN=new URLSearchParams(location.search).get('site');
+  if(TOKEN){
+    var m=document.createElement('meta');m.name='robots';m.content='noindex';document.head.appendChild(m);
+    try{
+      var res=await fetch('https://cvkgnrrskoptdtojcwvz.supabase.co/functions/v1/site-data?token='+encodeURIComponent(TOKEN),{cache:'no-store'});
+      if(!res.ok)throw new Error('not found');
+      d=await res.json();
+    }catch(e){document.body.innerHTML='<p style="padding:48px 24px;font:18px system-ui">This preview link isn\u2019t available.</p>';return}
+  }
+  if(d.contact&&Array.isArray(d.contact.hours))d.contact.hours=d.contact.hours.map(function(h){return h.filter(Boolean).join(': ')}).join(', ');
   var $=function(id){return document.getElementById(id)};
   var c=d.contact||{};
   var style=document.body.dataset.style||'classic';

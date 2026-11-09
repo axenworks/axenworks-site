@@ -64,6 +64,13 @@ dd{margin:0;white-space:pre-wrap;word-break:break-word}
 .thumbs a{display:block;width:84px;height:84px;border-radius:8px;overflow:hidden;border:1px solid var(--line);background:var(--bg)}
 .thumbs img{width:100%;height:100%;object-fit:cover}
 .swatch{display:inline-block;width:14px;height:14px;border-radius:4px;border:1px solid var(--line);vertical-align:-2px;margin-right:4px}
+a.btn-link{display:inline-flex;justify-content:center;font-weight:600;padding:9px 18px;border-radius:999px;background:var(--bg);border:1px solid var(--line);color:var(--ink);text-decoration:none}
+.maincol{display:grid;gap:14px;align-content:start}
+.editor{display:grid;gap:14px}
+.editor label{display:grid;gap:6px;font-weight:600;font-size:14px}
+.editor label .muted{font-weight:400;font-size:13px}
+.editor input,.editor textarea{font:inherit;font-size:15px;padding:10px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+.editor details summary{cursor:pointer;font-weight:600;font-size:14px}
 #msg{min-height:1.4em;color:var(--muted);font-size:14px;margin:10px 0 0}
 a{color:var(--blue)}
 :focus-visible{outline:3px solid #ffb703;outline-offset:3px}
@@ -115,7 +122,26 @@ a{color:var(--blue)}
       <div><h1 id="d-name"></h1><span class="muted" id="d-sub"></span></div>
     </div>
     <div class="grid2">
+      <div class="maincol">
+      <form class="card editor" id="f-edit" hidden>
+        <h2>Edit draft content</h2>
+        <p class="muted" style="margin:0;font-size:14px">Changes show in the preview as soon as you save. Rebuilding the draft replaces these edits.</p>
+        <label>Business name<input type="text" data-f="business_name"></label>
+        <label>Tagline (main headline)<input type="text" data-f="tagline"></label>
+        <label>Intro<textarea data-f="intro" rows="2"></textarea></label>
+        <label>Main button text<input type="text" data-f="cta_label"></label>
+        <label>About heading<input type="text" data-f="about_title"></label>
+        <label>About text<span class="muted">Leave a blank line between paragraphs.</span><textarea data-f="about" rows="6"></textarea></label>
+        <label>Services<span class="muted">One per line: Name | Description | Price</span><textarea id="ed-services" rows="6"></textarea></label>
+        <details><summary>Everything else (advanced)</summary>
+          <p class="muted" style="font-size:14px">All draft content in one place. Be careful to keep the quotes and commas intact.</p>
+          <textarea id="ed-json" rows="18" spellcheck="false" style="font:13px/1.5 ui-monospace,Menlo,Consolas,monospace"></textarea>
+        </details>
+        <div style="display:flex;gap:10px;flex-wrap:wrap"><button type="submit">Save changes</button><button type="button" class="ghost" id="ed-cancel">Close</button></div>
+        <p id="ed-msg" class="muted" style="margin:0;font-size:14px" role="status"></p>
+      </form>
       <div class="card"><dl id="d-answers"></dl><p class="muted" id="d-noanswers" hidden>No questionnaire answers yet.</p></div>
+      </div>
       <div class="side">
         <form class="card" id="f-status">
           <h2>Stage</h2>
@@ -124,12 +150,21 @@ a{color:var(--blue)}
             <option value="submitted">New questionnaire</option>
             <option value="generating">Building</option>
             <option value="in_review">In review</option>
-            <option value="with_customer">With customer</option>
+            <option value="with_customer">Preview with customer</option>
           </select>
           <button type="submit">Update stage</button>
           <span class="muted" style="font-size:14px">The customer sees this on their dashboard.</span>
           <p id="d-msg" class="muted" style="margin:0;font-size:14px" role="status"></p>
         </form>
+        <div class="card" id="draft-card">
+          <h2>Draft website</h2>
+          <span class="muted" style="font-size:14px" id="draft-text"></span>
+          <button type="button" id="draft-build">Build draft</button>
+          <a class="btn-link" id="draft-open" target="_blank" rel="noopener" hidden>Open preview ↗</a>
+          <button type="button" class="ghost" id="draft-edit" hidden>Edit content</button>
+          <button type="button" class="ghost" id="draft-send" hidden>Send preview to customer</button>
+          <p id="draft-msg" class="muted" style="margin:0;font-size:14px" role="status"></p>
+        </div>
         <div class="card" id="golive-card">
           <h2>Go live</h2>
           <span class="muted" style="font-size:14px" id="golive-text"></span>
@@ -160,7 +195,7 @@ var $=function(id){return document.getElementById(id)};
 
 var STAGES=[
   ['all','All'],['submitted','New questionnaire'],['generating','Building'],['in_review','In review'],
-  ['with_customer','With customer'],['live','Live'],['draft','Filling in questionnaire'],
+  ['with_customer','Preview with customer'],['live','Live'],['draft','Filling in questionnaire'],
   ['not_started','Paid, not started'],['no_plan','No plan']
 ];
 var STAGE_LABEL={};STAGES.forEach(function(s){STAGE_LABEL[s[0]]=s[1]});
@@ -294,7 +329,8 @@ async function openDetail(c){
   var isLive=c.project&&c.project.status==='live';
   $('f-status').hidden=!c.project||isLive;
   if(c.project&&!isLive)$('d-status').value=c.project.status;
-  $('d-msg').textContent='';$('golive-msg').textContent='';$('ct-msg').textContent='';
+  $('d-msg').textContent='';$('golive-msg').textContent='';$('ct-msg').textContent='';$('draft-msg').textContent='';
+  renderDraft(c);
   var hasPlan=s&&LIVE_SUB.indexOf(s.status)>-1;
   $('golive-card').hidden=!c.project||!hasPlan;
   $('golive').hidden=isLive;
@@ -322,6 +358,72 @@ function thumbs(box,list,urls,none){
     link.appendChild(img);box.appendChild(link);
   });
 }
+
+
+/* ---------- Draft website ---------- */
+function previewUrl(c){
+  if(!c.project||!c.project.template)return '';
+  var lvl=(c.sub&&LEVEL[c.sub.plan])?c.sub.plan:'starter';
+  return 'templates/'+lvl+'-'+c.project.template+'/index.html?site='+c.project.preview_token;
+}
+function renderDraft(c){
+  var p=c.project,built=p&&p.site&&p.built_at;
+  $('draft-card').hidden=!p;
+  if(!p)return;
+  $('draft-text').textContent=!p.template?'The customer hasn\u2019t picked a style yet.':
+    built?'Built '+day(p.built_at)+(p.site._meta&&p.site._meta.ai?' with AI wording':'')+'. Open the preview, edit if needed, then send it to the customer.':
+    'Turns the questionnaire answers, colours, logo and photos into a draft of their '+TEMPLATE[p.template]+' site.';
+  $('draft-build').textContent=built?'Rebuild draft':'Build draft';
+  $('draft-build').disabled=!p.template;
+  $('draft-open').hidden=!built;$('draft-open').href=previewUrl(c);
+  $('draft-edit').hidden=!built;
+  $('draft-send').hidden=!built||['with_customer','live'].indexOf(p.status)>-1;
+  $('f-edit').hidden=true;
+}
+$('draft-build').onclick=async function(){
+  var p=current&&current.project;if(!p)return;
+  if(p.site&&!confirm('Rebuild the draft from the questionnaire? Any edits you made will be replaced.'))return;
+  var b=this;b.disabled=true;$('draft-msg').textContent='Building... this can take a few seconds.';
+  try{
+    var r=await sb.functions.invoke('build-site',{body:{project_id:p.id}});
+    if(r.error){var m='Couldn\u2019t build the draft.';try{m=(await r.error.context.json()).error||m}catch(_){}throw new Error(m)}
+    await refreshCurrent();
+    $('draft-msg').textContent='Draft built. Use Open preview to check it.';
+  }catch(err){$('draft-msg').textContent=err.message}
+  b.disabled=false;
+};
+$('draft-send').onclick=async function(){
+  var p=current&&current.project;if(!p)return;
+  if(!confirm('Send the preview to the customer? They\u2019ll see a link on their dashboard.'))return;
+  var r=await sb.from('projects').update({status:'with_customer'}).eq('id',p.id).select().single();
+  if(r.error){$('draft-msg').textContent='Couldn\u2019t send: '+r.error.message;return}
+  await refreshCurrent();$('draft-msg').textContent='Sent. The customer can now see their preview.';
+};
+async function refreshCurrent(){
+  var id=current.id;await load();var c=customers.find(function(x){return x.id===id});if(c){var keep=window.scrollY;await openDetail(c);window.scrollTo(0,keep)}
+}
+// Editor
+$('draft-edit').onclick=function(){
+  var site=current.project.site||{};
+  document.querySelectorAll('#f-edit [data-f]').forEach(function(el){el.value=site[el.dataset.f]||''});
+  $('ed-services').value=(site.services||[]).map(function(x){return [x.name,x.description,x.price].join(' | ')}).join('\n');
+  $('ed-json').value=JSON.stringify(site,null,2);
+  $('ed-msg').textContent='';$('f-edit').hidden=false;$('f-edit').scrollIntoView({behavior:'smooth',block:'start'});
+};
+$('ed-cancel').onclick=function(){$('f-edit').hidden=true};
+$('f-edit').addEventListener('submit',async function(e){
+  e.preventDefault();
+  var site;
+  try{site=JSON.parse($('ed-json').value)}catch(err){$('ed-msg').textContent='The advanced content has a typo (often a missing comma or quote), so nothing was saved.';return}
+  document.querySelectorAll('#f-edit [data-f]').forEach(function(el){site[el.dataset.f]=el.value.trim()});
+  site.services=$('ed-services').value.split('\n').map(function(l){return l.trim()}).filter(Boolean).map(function(l){
+    var parts=l.split('|').map(function(x){return x.trim()});return {name:parts[0]||'',description:parts[1]||'',price:parts[2]||''};
+  });
+  var r=await sb.from('projects').update({site:site}).eq('id',current.project.id).select().single();
+  if(r.error){$('ed-msg').textContent='Couldn\u2019t save: '+r.error.message;return}
+  current.project=r.data;$('ed-json').value=JSON.stringify(site,null,2);
+  $('ed-msg').textContent='Saved. Refresh the preview tab to see your changes.';
+});
 
 $('back').onclick=function(){current=null;view('list');render()};
 

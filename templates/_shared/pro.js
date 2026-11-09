@@ -18,9 +18,14 @@
   var REDUCED = matchMedia('(prefers-reduced-motion: reduce)').matches;
   var FINE = matchMedia('(pointer: fine)').matches;
 
+  var TOKEN = new URLSearchParams(location.search).get('site');
+  var SITE_API = 'https://cvkgnrrskoptdtojcwvz.supabase.co/functions/v1/site-data?token=';
+  if (TOKEN) { var mr = document.createElement('meta'); mr.name = 'robots'; mr.content = 'noindex'; document.head.appendChild(mr); }
   var d;
-  try { d = await (await fetch('site.json', { cache: 'no-cache' })).json(); }
-  catch (e) { main.innerHTML = '<p style="padding:48px 24px">Sorry, this page could not load. Please refresh.</p>'; return; }
+  try { var r0 = await fetch(TOKEN ? SITE_API + encodeURIComponent(TOKEN) : 'site.json', { cache: TOKEN ? 'no-store' : 'no-cache' });
+    if (!r0.ok) throw new Error('not found');
+    d = await r0.json(); }
+  catch (e) { main.innerHTML = '<p style="padding:48px 24px">Sorry, this page could not load. If you followed a preview link, it may have expired.</p>'; return; }
 
   /* ---------- helpers ---------- */
   var esc = function (s) {
@@ -137,7 +142,7 @@
       '<a class="brand" href="index.html">' + brandHtml + '</a>' +
       '<nav class="menu" id="menu" aria-label="Main">' + PAGES.map(function (p, i) {
         return '<a href="' + p[0] + '" style="--i:' + i + '"' + (p[2] === current ? ' class="active" aria-current="page"' : '') + '>' + p[1] + '</a>';
-      }).join('') + '<a class="btn book" href="contact.html#book">Book a visit</a></nav>' +
+      }).join('') + '<a class="btn book" href="contact.html#book">' + esc(d.cta_label || 'Get in touch') + '</a></nav>' +
       '<div class="bar-tools">' + themeBtn +
         '<button class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu"><span></span><span></span><span class="sr">Menu</span></button></div>' +
     '</div><div class="progress" aria-hidden="true"></div>';
@@ -196,8 +201,8 @@
   }
   function closing() {
     return '<section class="closing"><div class="wrap"><p class="eyebrow reveal">Next step</p><h2 class="split-words">Ready when you are.</h2>' +
-      '<p class="reveal">Book a free visit and we’ll give you a clear, fixed quote within two days.</p>' +
-      '<div class="actions reveal"><a class="btn magnetic" href="contact.html#book">Book a free visit</a>' +
+      '<p class="reveal">Get in touch and we’ll get back to you as soon as we can.</p>' +
+      '<div class="actions reveal"><a class="btn magnetic" href="contact.html#book">' + esc(d.cta_label || 'Get in touch') + '</a>' +
       (c.phone ? '<a class="btn line" href="' + tel(c.phone) + '">Call ' + esc(c.phone) + '</a>' : '') + '</div></div>' +
       '<div class="closing-shape" data-parallax="-0.12" aria-hidden="true"></div></section>';
   }
@@ -218,7 +223,11 @@
               '<div class="actions reveal"><a class="btn magnetic" href="contact.html#book">' + esc(d.cta_label || 'Get in touch') + '</a><a class="btn line" href="portfolio.html">See our work</a></div>' +
             '</div>' +
             '<div class="hero-media reveal"><div class="pic" data-parallax="-0.06">' + pic(d.hero_image, name, 1) + '</div>' +
-              (reviewsList.length ? '<div class="hero-badge">' + stars(5) + '<b>' + esc((d.highlights || []).filter(function (h) { return /★/.test(h.value); }).map(function (h) { return h.value.replace('★', ''); })[0] || '5.0') + '</b><span>from ' + reviewsList.length + '+ reviews</span></div>' : '') +
+              (function () {
+                // Only show a rating badge when the business has given a real average rating.
+                var rating = (d.highlights || []).filter(function (h) { return /★/.test(h.value); }).map(function (h) { return h.value.replace('★', '').trim(); })[0];
+                return rating && reviewsList.length ? '<div class="hero-badge">' + stars(parseFloat(rating)) + '<b>' + esc(rating) + '</b><span>from ' + reviewsList.length + '+ reviews</span></div>' : '';
+              })() +
             '</div>' +
           '</div>' +
           '<a class="scroll-cue" href="#more" aria-label="Scroll down"><span></span></a>' +
@@ -266,7 +275,7 @@
         closing();
     },
     services: function () {
-      return pageHero('Services', 'Everything we do', 'Clear prices, careful work, and a free visit before any job starts.') +
+      return pageHero('Services', 'Everything we do', 'Everything we offer' + ((d.services || []).some(function (s) { return s.price; }) ? ', with prices to help you plan.' : '.')) +
         '<nav class="svc-index" aria-label="Services on this page"><div class="wrap">' + (d.services || []).map(function (s, i) {
           return '<a href="#s' + i + '">' + esc(s.name) + '</a>';
         }).join('') + '</div></nav>' +
@@ -316,7 +325,8 @@
     },
     reviews: function () {
       var avg = reviewsList.reduce(function (s, r) { return s + (r.rating || 5); }, 0) / (reviewsList.length || 1);
-      return pageHero('Reviews', 'What customers say', 'Real words from people whose gardens we look after.') +
+      if (!reviewsList.length) return pageHero('Reviews', 'What customers say', 'Reviews coming soon.') + closing();
+      return pageHero('Reviews', 'What customers say', 'Real words from our customers.') +
         '<section class="block"><div class="wrap">' +
           '<div class="rating-summary reveal"><b>' + avg.toFixed(1) + '</b>' + stars(avg) + '<span>Average from ' + reviewsList.length + ' reviews</span></div>' +
           '<div class="review-grid">' + reviewsList.map(function (r) {
@@ -333,7 +343,7 @@
     contact: function () {
       var hours = Array.isArray(c.hours) ? c.hours : (c.hours ? [['Opening hours', c.hours]] : []);
       var svc = d.services || [];
-      return pageHero('Contact', 'Book a free visit', 'Three quick steps and we’ll be in touch to confirm. Or call us any time we’re open.') +
+      return pageHero('Contact', d.cta_label || 'Get in touch', 'Three quick steps and we’ll be in touch to confirm' + (c.phone ? ', or give us a call.' : '.')) +
         '<section class="block contact"><div class="wrap split">' +
           '<form class="booking reveal" id="book" novalidate>' +
             '<div class="steps-bar" aria-hidden="true"><span class="on"></span><span></span><span></span></div>' +
@@ -352,7 +362,7 @@
               '<label>Email<input name="email" type="email" autocomplete="email" required></label>' +
               '<label>Phone<input name="phone" type="tel" autocomplete="tel"></label>' +
               '<label>Anything we should know?<textarea name="message"></textarea></label></fieldset>' +
-            '<div class="bstep done" data-step="4" hidden><h3>Thank you!</h3><p>Your request has been sent. We’ll be in touch within one working day to confirm your visit.</p></div>' +
+            '<div class="bstep done" data-step="4" hidden><h3>Thank you!</h3><p>Your request has been sent. We’ll be in touch soon to confirm.</p></div>' +
             '<p class="form-error" role="alert"></p>' +
             '<div class="booking-nav"><button type="button" class="btn line small" data-back hidden>Back</button><button type="button" class="btn magnetic" data-next>Continue</button></div>' +
           '</form>' +
@@ -374,6 +384,14 @@
   if (page === 'project') { var h1 = main.querySelector('h1'); if (h1) TITLES.project = h1.textContent; }
   document.title = page === 'home' ? name + (d.tagline ? ' | ' + d.tagline : '') : TITLES[page] + ' | ' + name;
   var md = document.querySelector('meta[name=description]'); if (md) md.content = d.intro || '';
+
+  // Preview links: keep ?site=<token> on every internal page link.
+  if (TOKEN) document.querySelectorAll('a[href]').forEach(function (a) {
+    var h = a.getAttribute('href');
+    if (!/^[a-z-]+\.html/i.test(h)) return;
+    var u = new URL(h, location.href); u.searchParams.set('site', TOKEN);
+    a.setAttribute('href', u.pathname.split('/').pop() + u.search + u.hash);
+  });
 
   /* ---------- behaviour ---------- */
   // Split page titles into words for the rising-text animation.
