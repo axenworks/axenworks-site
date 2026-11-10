@@ -214,6 +214,11 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   // customer's draft when the page is opened with a private ?site= preview link.
   var d=JSON.parse(document.getElementById('site-data').textContent);
   var TOKEN=new URLSearchParams(location.search).get('site');
+  // A customer's live website (name.axencraft.co.uk): load its content.
+  if(!TOKEN&&/^(?!www\.)[a-z0-9-]+\.axencraft\.co\.uk$/.test(location.hostname)){
+    try{var lr=await fetch('/site.json',{cache:'no-cache'});if(!lr.ok)throw new Error('not found');d=await lr.json()}
+    catch(e){document.body.innerHTML='<p style="padding:48px 24px;font:18px system-ui">Sorry, this website could not load. Please try again shortly.</p>';return}
+  }
   if(TOKEN){
     var m=document.createElement('meta');m.name='robots';m.content='noindex';document.head.appendChild(m);
     try{

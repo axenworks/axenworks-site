@@ -185,7 +185,7 @@ var PROJECT_TEXT={
   live:'Your website is live.'
 };
 async function loadProject(){
-  var r=await sb.from('projects').select('status,template,answers,preview_token,built_at').maybeSingle();
+  var r=await sb.from('projects').select('status,template,answers,preview_token,built_at,subdomain').maybeSingle();
   var p=r.data;
   currentProject=p;
   if(!p||p.status==='draft'){
@@ -200,8 +200,8 @@ async function loadProject(){
   var canView=p&&p.built_at&&p.template&&['with_customer','live'].indexOf(p.status)>-1;
   $('pr-view').hidden=!canView;
   if(canView){
-    $('pr-view').href='templates/'+(PLANS[currentPlan]?currentPlan:'starter')+'-'+p.template+'/index.html?site='+p.preview_token;
-    $('pr-view').textContent=p.status==='live'?'View your website \u2197':'View your website preview \u2197';
+    $('pr-view').href=p.status==='live'&&p.subdomain?'https://'+p.subdomain+'.axencraft.co.uk':'templates/'+(PLANS[currentPlan]?currentPlan:'starter')+'-'+p.template+'/index.html?site='+p.preview_token;
+    $('pr-view').textContent=p.status==='live'?(p.subdomain?'Visit '+p.subdomain+'.axencraft.co.uk \u2197':'View your website \u2197'):'View your website preview \u2197';
   }
   $('d-project').hidden=false;
   loadChanges(p);

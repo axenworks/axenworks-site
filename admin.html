@@ -72,6 +72,12 @@ a.btn-link{display:inline-flex;justify-content:center;font-weight:600;padding:9p
 .cr-item .row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
 .cr-item input{flex:1;min-width:180px;font:inherit;font-size:14px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
 .cr-item button{padding:8px 14px;font-size:14px}
+.sub-row{display:grid;gap:6px}
+.sub-input{display:flex;align-items:center;border:1px solid var(--line);border-radius:10px;background:var(--bg);overflow:hidden}
+.sub-input input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:15px;padding:10px 4px 10px 12px;color:var(--ink)}
+.sub-input input:focus{outline:none}.sub-input:focus-within{outline:2px solid var(--accent,#2b2bd6);outline-offset:1px}
+.sub-input span{padding-right:12px;color:var(--muted);font-size:14px;white-space:nowrap}
+#live-link{font-weight:600;word-break:break-all}
 .maincol{display:grid;gap:14px;align-content:start}
 .editor{display:grid;gap:14px}
 .editor label{display:grid;gap:6px;font-weight:600;font-size:14px}
@@ -177,6 +183,12 @@ a{color:var(--blue)}
         <div class="card" id="golive-card">
           <h2>Go live</h2>
           <span class="muted" style="font-size:14px" id="golive-text"></span>
+          <form id="f-sub" class="sub-row" novalidate>
+            <label for="sub-name" style="font-size:14px;font-weight:600">Web address</label>
+            <div class="sub-input"><input id="sub-name" maxlength="42" autocomplete="off" spellcheck="false" placeholder="from business name"><span>.axencraft.co.uk</span></div>
+            <button type="submit" id="sub-save" class="ghost" hidden>Save address</button>
+          </form>
+          <a id="live-link" target="_blank" rel="noopener" hidden></a>
           <button type="button" id="golive">Make site live and start trial</button>
           <p id="golive-msg" class="muted" style="margin:0;font-size:14px" role="status"></p>
         </div>
@@ -349,6 +361,12 @@ async function openDetail(c){
   var hasPlan=s&&LIVE_SUB.indexOf(s.status)>-1;
   $('golive-card').hidden=!c.project||!hasPlan;
   $('golive').hidden=isLive;
+  var subd=c.project&&c.project.subdomain;
+  $('sub-name').value=subd||'';
+  $('sub-name').placeholder=c.project?slug((c.project.answers||{}).business_name||'')||'your-business':'';
+  $('sub-save').hidden=!isLive;
+  $('live-link').hidden=!(isLive&&subd);
+  if(isLive&&subd){$('live-link').href='https://'+subd+'.axencraft.co.uk';$('live-link').textContent=subd+'.axencraft.co.uk \u2197'}
   $('golive-text').textContent=isLive?'Live since '+day(c.project.went_live_at)+'.':
     (s&&s.status==='trialing'?'Publishes the site and starts the customer\u2019s '+(s.trial_days||0)+'-day free trial. Monthly billing begins when the trial ends.':'Publishes the site. This customer is already being billed monthly.');
   $('f-cust-trial').hidden=!hasPlan||isLive||s.status!=='trialing';
@@ -483,15 +501,31 @@ $('f-status').addEventListener('submit',async function(e){
   $('d-msg').textContent='Saved. Stage is now “'+STAGE_LABEL[current.stage]+'”.';
 });
 
+function slug(n){return String(n).toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/&/g,' and ').replace(/['\u2019]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-+|-+$/g,'').slice(0,40).replace(/-+$/g,'')}
+var RESERVED=['www','admin','api','app','mail','email','help','support','account','shop','store','blog','status','print','grow','digital'];
+$('f-sub').addEventListener('submit',async function(e){
+  e.preventDefault();if(!current||!current.project)return;
+  var v=slug($('sub-name').value);$('sub-name').value=v;
+  if(!v){$('golive-msg').textContent='Please enter a web address.';return}
+  if(RESERVED.indexOf(v)>-1){$('golive-msg').textContent='That address is reserved. Please pick another.';return}
+  if(current.project.status!=='live'){$('golive-msg').textContent='This address will be used when you make the site live.';return}
+  if(!confirm('Change this live site\u2019s address to '+v+'.axencraft.co.uk? The old address will stop working.'))return;
+  var u=await sb.from('projects').update({subdomain:v}).eq('id',current.project.id).select('subdomain').single();
+  if(u.error){$('golive-msg').textContent=/duplicate|unique/i.test(u.error.message)?'That address is already used by another customer.':'Couldn\u2019t save the address.';return}
+  current.project.subdomain=u.data.subdomain;$('golive-msg').textContent='Saved. The site is now at '+v+'.axencraft.co.uk.';
+  $('live-link').hidden=false;$('live-link').href='https://'+v+'.axencraft.co.uk';$('live-link').textContent=v+'.axencraft.co.uk \u2197';
+});
+
 $('golive').onclick=async function(){
   if(!current||!current.project)return;
   var s=current.sub,days=s&&s.trial_days||0;
   if(!confirm('Make '+((current.project.answers||{}).business_name||'this site')+' live?'+(s&&s.status==='trialing'?' Their '+days+'-day free trial starts today.':'')))return;
   var b=this;b.disabled=true;$('golive-msg').textContent='Going live...';
   try{
-    var r=await sb.functions.invoke('go-live',{body:{project_id:current.project.id}});
+    var want=$('sub-name').value.trim();
+    var r=await sb.functions.invoke('go-live',{body:want?{project_id:current.project.id,subdomain:want}:{project_id:current.project.id}});
     if(r.error){var m='Couldn\u2019t go live.';try{m=(await r.error.context.json()).error||m}catch(_){}throw new Error(m)}
-    $('golive-msg').textContent='Done. The site is live'+(r.data.trial_end?' and the free trial ends on '+day(r.data.trial_end):'')+'.';
+    $('golive-msg').textContent='Done. The site is live at '+r.data.subdomain+'.axencraft.co.uk'+(r.data.trial_end?' and the free trial ends on '+day(r.data.trial_end):'')+'.';
     await load();var c=customers.find(function(x){return x.id===current.id});if(c)openDetail(c);
   }catch(err){$('golive-msg').textContent=err.message}
   b.disabled=false;

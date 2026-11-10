@@ -12,8 +12,15 @@ export const PORTAL_CONFIG = "bpc_1UZtz2GbMox0LPSQzYxEXItR";
 
 // Which website origins may call our functions and be sent back to.
 export const ORIGIN_OK =
-  /^https:\/\/axenworks-site(-[a-z0-9-]+)?\.vercel\.app$|^https:\/\/(www\.)?axencraft\.co\.uk$|^http:\/\/localhost(:\d+)?$/;
-export const DEFAULT_ORIGIN = "https://axenworks-site.vercel.app";
+  /^https:\/\/axenworks-site(-[a-z0-9-]+)?\.vercel\.app$|^https:\/\/([a-z0-9-]+\.)?axencraft\.co\.uk$|^http:\/\/localhost(:\d+)?$/;
+export const DEFAULT_ORIGIN = "https://axencraft.co.uk";
+export const SITE_DOMAIN = "axencraft.co.uk";
+
+// Turn a business name into a web address part: "Joe's Plumbing Ltd" -> "joes-plumbing-ltd".
+export function slugify(name: string) {
+  return name.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/&/g, " and ")
+    .replace(/['’]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "").slice(0, 40).replace(/-+$/g, "") || "site";
+}
 
 export function siteFor(origin: string | null) {
   return origin && ORIGIN_OK.test(origin) ? origin : DEFAULT_ORIGIN;
