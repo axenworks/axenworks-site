@@ -1,4 +1,4 @@
-// Emails the Axenworks owner when a customer submits their questionnaire.
+// Emails the Axencraft owner when a customer submits their questionnaire.
 // Called by a database trigger with { project_id }. Safe to call more than once:
 // it re-reads the project and only sends if it's submitted and not yet notified.
 import { admin } from "../_shared/stripe.ts";
@@ -69,7 +69,7 @@ ${links ? `<p style="margin-top:16px"><b>Uploads</b> (links work for 7 days): ${
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({
-      from: "Axenworks <onboarding@resend.dev>",
+      from: "Axencraft <onboarding@resend.dev>",
       to: [to],
       reply_to: customerEmail || undefined,
       subject: `New questionnaire: ${a.business_name || "Unnamed business"}`,

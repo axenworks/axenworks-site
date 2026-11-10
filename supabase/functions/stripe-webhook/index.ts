@@ -19,7 +19,7 @@ async function syncSubscription(subId: string) {
     userId = data?.user_id;
   }
   if (!userId) {
-    console.warn("No Axenworks user for subscription", sub.id);
+    console.warn("No Axencraft user for subscription", sub.id);
     return;
   }
 

@@ -1,5 +1,5 @@
 /*
-  Axenworks PRO templates: shared page builder.
+  Axencraft PRO templates: shared page builder.
   Pages: home, about, services, portfolio, project (?p=n), reviews, faq, contact.
   Everything is built from site.json in the template's folder.
 */

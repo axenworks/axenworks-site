@@ -1,4 +1,4 @@
-// Small helpers shared by the Axenworks edge functions.
+// Small helpers shared by the Axencraft edge functions.
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
 export const PLAN_PRICES: Record<string, string> = {
@@ -12,7 +12,7 @@ export const PORTAL_CONFIG = "bpc_1UZtz2GbMox0LPSQzYxEXItR";
 
 // Which website origins may call our functions and be sent back to.
 export const ORIGIN_OK =
-  /^https:\/\/axenworks-site(-[a-z0-9-]+)?\.vercel\.app$|^http:\/\/localhost(:\d+)?$/;
+  /^https:\/\/axenworks-site(-[a-z0-9-]+)?\.vercel\.app$|^https:\/\/(www\.)?axencraft\.co\.uk$|^http:\/\/localhost(:\d+)?$/;
 export const DEFAULT_ORIGIN = "https://axenworks-site.vercel.app";
 
 export function siteFor(origin: string | null) {

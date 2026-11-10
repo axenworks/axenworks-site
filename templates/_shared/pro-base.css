@@ -1,4 +1,4 @@
-/* Axenworks PRO templates: shared layout, motion and components.
+/* Axencraft PRO templates: shared layout, motion and components.
    Each style's style.css sets colours (light + dark), fonts and finish. */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;scroll-padding-top:96px;overflow-x:clip}

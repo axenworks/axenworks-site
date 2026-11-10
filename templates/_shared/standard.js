@@ -1,5 +1,5 @@
 /*
-  Axenworks STANDARD templates: shared page builder.
+  Axencraft STANDARD templates: shared page builder.
   Each page is an empty shell (<body data-page="home|about|services|gallery|contact"
   data-style="classic|bold|minimal">). Everything is built from site.json,
   so a customer's site is just their own site.json next to these files.

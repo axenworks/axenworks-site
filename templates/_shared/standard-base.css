@@ -1,4 +1,4 @@
-/* Axenworks STANDARD templates: shared layout and behaviour styles.
+/* Axencraft STANDARD templates: shared layout and behaviour styles.
    Each style's style.css sets the colours, fonts and finish on top. */
 *,*::before,*::after{box-sizing:border-box}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}

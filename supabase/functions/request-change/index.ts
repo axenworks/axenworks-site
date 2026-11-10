@@ -81,7 +81,7 @@ Deno.serve(async (req) => {
         method: "POST",
         headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-          from: "Axenworks <onboarding@resend.dev>", to: [owner.value], reply_to: user.email || undefined,
+          from: "Axencraft <onboarding@resend.dev>", to: [owner.value], reply_to: user.email || undefined,
           subject: `Change request: ${biz}${isExtra ? " (extra, £10)" : ""}`,
           html: `<div style="font-family:system-ui,sans-serif;font-size:15px"><h2 style="margin:0 0 6px">New change request</h2>
 <p style="margin:0 0 14px;color:#585e69">${esc(biz)} · ${esc(user.email)} · ${esc(sub.plan)} plan · ${live ? (isExtra ? "extra £10 change" : `${used + 1} of ${allowance} this month`) : "during preview (free)"}</p>

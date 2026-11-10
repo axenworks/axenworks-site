@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Your website questionnaire | Axenworks</title>
+<title>Your website questionnaire | Axencraft</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
@@ -78,7 +78,7 @@ h2[tabindex="-1"]:focus{outline:none}
 </style>
 </head>
 <body>
-<nav aria-label="Main"><a class="logo" href="index.html">Axenworks</a><a class="back" href="account.html">← Back to your account</a></nav>
+<nav aria-label="Main"><a class="logo" href="index.html">Axencraft</a><a class="back" href="account.html">← Back to your account</a></nav>
 <main>
   <section id="v-loading"><p class="muted">Loading...</p></section>
 
@@ -416,7 +416,7 @@ function go(i,first){
   $('step-label').textContent='Step '+(step+1)+' of '+steps.length+': '+steps[step].dataset.title;
   $('bar').style.width=((step+1)/steps.length*100)+'%';
   $('prev').hidden=step===0;
-  $('next').textContent=step===steps.length-1?'Send to Axenworks':'Next';
+  $('next').textContent=step===steps.length-1?'Send to Axencraft':'Next';
   if(step===steps.length-1)summary();
   say('');
   if(!first){

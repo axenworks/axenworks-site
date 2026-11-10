@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Your account | Axenworks</title>
+<title>Your account | Axencraft</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
@@ -59,7 +59,7 @@ h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
 </style>
 </head>
 <body>
-<nav aria-label="Main"><a href="index.html">Axenworks</a></nav>
+<nav aria-label="Main"><a href="index.html">Axencraft</a></nav>
 <main>
   <!-- Log in / sign up -->
   <section id="v-auth" hidden>
@@ -307,7 +307,7 @@ async function loadPlan(){
     var r=await sb.from('subscriptions').select('*').maybeSingle();
     var row=r.data;
     if(row&&LIVE.indexOf(row.status)>-1){
-      if(checkoutState==='success')note('You’re all set. Welcome to Axenworks!');
+      if(checkoutState==='success')note('You’re all set. Welcome to Axencraft!');
       checkoutState=null;renderPlan(row);loadingPlan=false;return;
     }
     if(i<tries-1)await new Promise(function(res){setTimeout(res,2000)});
