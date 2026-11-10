@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Axencraft</title>
+<title>Axencraft | Websites built and hosted for you</title>
+<meta name="description" content="Axencraft Digital Studio builds and hosts a website for your business. Choose a plan and style, answer a short questionnaire, and we do the rest.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%232430d6%27/%3E%3Cpath d=%27M20 46 32 16l12 30M24.5 36h15%27 stroke=%27white%27 stroke-width=%276%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
@@ -44,7 +46,6 @@ nav a:hover{color:var(--ink)}
 .grow>*{position:relative;z-index:1}
 .grow .tag{background:var(--grow-ink);color:var(--grow)}
 .digital .tag.open{background:#fff;color:var(--blue)}
-@media(max-width:640px){nav div a:not([href="account.html"]){display:none}}
 .digital{background:var(--blue);color:var(--blue-ink)}
 .print{background:var(--mint);color:var(--mint-ink);position:relative;overflow:hidden}
 .print::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;pointer-events:none;
@@ -74,7 +75,7 @@ ol.steps b{display:block}
 .plan p{margin:6px 0 0;color:var(--muted);font-size:15px}
 .gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
 .tpl{border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s}
-.tpl:hover{transform:translateY(-3px);box-shadow:0 14px 30px -18px rgba(0,0,0,.4)}
+.tpl:hover{box-shadow:0 14px 30px -18px rgba(0,0,0,.4)}
 .tpl .shot{position:relative;aspect-ratio:16/11;overflow:hidden;border-bottom:1px solid var(--line);background:var(--bg)}
 .tpl .shot iframe{position:absolute;left:0;top:0;width:1280px;height:880px;border:0;transform-origin:0 0;pointer-events:none}
 .tpl .t{padding:14px 16px 16px}
@@ -92,12 +93,49 @@ button{font:inherit;font-weight:600;padding:13px 22px;border-radius:999px;border
 #msg{margin:0;color:var(--muted);font-size:15px}
 footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:15px}
 .note{font-size:14px;color:var(--muted)}
+
+.brand{font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--ink)!important}
+nav div{align-items:center}
+nav a.cta{background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-weight:600}
+nav a.cta:hover{color:#fff;filter:brightness(1.1)}
+@media(max-width:640px){nav div a:not(.login):not(.cta){display:none}nav div{gap:14px}}
+.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+.textlink{color:#fff;font-weight:600;text-underline-offset:4px}
+.paynow{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 22px}
+.paynow div{display:grid;gap:2px;padding:14px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
+.paynow b{font-size:18px}.paynow span{color:var(--muted);font-size:15px}.paynow span span{font-size:inherit}
+.plan{display:flex;flex-direction:column;position:relative}
+.plan.pop{border:2px solid var(--blue)}
+.plan .badge{position:absolute;top:-12px;left:20px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:3px 10px}
+.plan ul{list-style:none;margin:10px 0 20px;padding:0;display:grid;gap:7px;font-size:15px}
+.plan li{padding-left:24px;position:relative}
+.plan li::before{content:"";position:absolute;left:2px;top:.45em;width:11px;height:6px;border-left:2.5px solid var(--blue);border-bottom:2.5px solid var(--blue);transform:rotate(-45deg)}
+.choose{margin-top:auto;display:block;text-align:center;padding:12px 18px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--blue);color:var(--blue)}
+.plan.pop .choose,.choose:hover{background:var(--blue);color:#fff}
+.tpl{transition:transform .2s,box-shadow .2s}
+.tpl.chosen{border:2px solid var(--blue)}
+.tpl .shot{display:block}
+.tpl .t{display:grid;gap:12px}
+.tpl-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:15px}
+.tpl-actions a{color:var(--muted);font-weight:600;text-underline-offset:3px}
+.tpl-actions .pick{padding:8px 14px;font-size:14px;background:none;color:var(--blue);border:2px solid var(--blue);justify-self:auto}
+.tpl-actions .pick[aria-pressed="true"]{background:var(--blue);color:#fff}
+.faq{display:grid;gap:10px;max-width:760px}
+.faq details{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:0 18px}
+.faq summary{cursor:pointer;font-weight:600;padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:22px;line-height:1;color:var(--blue)}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{margin:0 0 16px;color:var(--muted)}
+.foot{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center}
+.foot a{margin-right:16px;color:var(--muted)}
+.foot .note{flex-basis:100%}
 </style>
 </head>
 <body>
 <nav aria-label="Main">
-  <b>Axencraft</b>
-  <div><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#templates">Templates</a><a href="#contact">Contact</a><a href="account.html">Log in</a></div>
+  <a href="index.html" class="brand">Axencraft</a>
+  <div><a href="#how">How it works</a><a href="#templates">Templates</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="account.html" class="login">Log in</a><a href="#pricing" class="cta">Get started</a></div>
 </nav>
 
 <header class="split">
@@ -108,7 +146,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
       <p>A website built around your business. Pick a template, answer a few questions, and we build and host it for you.</p>
     </div>
     <div class="mock" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div><a class="btn" href="#templates">Choose a template</a></div>
+    <div class="hero-actions"><a class="btn" href="#pricing">Get started</a><a class="textlink" href="#templates">See the templates →</a></div>
   </div>
   <div class="print half">
     <div>
@@ -132,7 +170,7 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
   <h3>How Digital Studio works</h3>
   <p class="lead">You choose and answer. We build, check and host.</p>
   <ol class="steps">
-    <li><b>Pick a plan and style</b>Choose your plan, pay a one-off setup fee, then pick from 7 styles.</li>
+    <li><b>Pick a plan and style</b>Choose your plan and pay the one-off £50 setup fee. Then pick from 7 styles.</li>
     <li><b>Answer the questionnaire</b>Tell us about your business, style, pages and content.</li>
     <li><b>We build your draft</b>Your answers and template become a custom website.</li>
     <li><b>We review it</b>Every draft is checked and edited by hand before you see it.</li>
@@ -141,20 +179,9 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
   </ol>
 </div></section>
 
-<section id="pricing" style="background:var(--card)"><div class="wrap">
-  <h3>Pricing</h3>
-  <p class="lead">Pay a one-off £50 setup fee, then a monthly hosting plan. You won't pay monthly until your site is live, and your free trial starts on the day it goes live.</p>
-  <div class="plans">
-    <div class="plan"><h4>Starter</h4><div class="price">£19.99 <span>per month</span></div><p>A one-page website. 1 change request a month.</p></div>
-    <div class="plan"><h4>Standard</h4><div class="price">£39.99 <span>per month</span></div><p>A 5-page website with custom fonts, a photo gallery and reviews. 3 change requests a month.</p></div>
-    <div class="plan"><h4>Pro</h4><div class="price">£59.99 <span>per month</span></div><p>An 8-page premium website with animations, a portfolio, FAQ, booking form and dark mode. 6 change requests a month.</p></div>
-  </div>
-  <p class="note" style="margin-top:18px">Every plan comes in all 7 styles. Extra change requests are £10 each.</p>
-</div></section>
-
-<section id="templates"><div class="wrap">
+<section id="templates" style="background:var(--card)"><div class="wrap">
   <h3>Template gallery</h3>
-  <p class="lead">7 styles, each in a Starter, Standard and Pro version. These previews use a sample business, and every finished site is customised with your words, colours and photos.</p>
+  <p class="lead">7 styles, each in a Starter, Standard and Pro version. These previews use a sample business. Yours will have your own words, colours and photos. Tap a style to see it full size, or choose one now and we'll remember it.</p>
   <div class="levels" role="group" aria-label="Show plan level">
     <button type="button" data-level="starter" aria-pressed="false">Starter</button>
     <button type="button" data-level="standard" aria-pressed="true">Standard</button>
@@ -163,35 +190,86 @@ footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-s
   <div class="gallery" id="gallery"></div>
 </div></section>
 
-<section id="contact" style="background:var(--card)"><div class="wrap">
-  <h3>Join the waitlist or get in touch</h3>
-  <p class="lead">Tell us which studio you're interested in and we'll be in touch.</p>
+<section id="pricing"><div class="wrap">
+  <h3>Pricing</h3>
+  <p class="lead">One simple setup fee, then a monthly plan for hosting and care.</p>
+  <div class="paynow" role="note">
+    <div><b>£50 today</b><span>One-off setup fee to design and build your website.</span></div>
+    <div><b>£0 a month until you're live</b><span>Monthly payments only start once your website is live<span class="trial-txt"></span>.</span></div>
+  </div>
+  <div class="plans">
+    <div class="plan">
+      <h4>Starter</h4><div class="price">£19.99 <span>a month</span></div>
+      <ul><li>A one-page website</li><li>All 7 styles</li><li>Hosting and care included</li><li>1 change request a month</li></ul>
+      <a class="choose" href="account.html?plan=starter">Choose Starter</a>
+    </div>
+    <div class="plan pop">
+      <span class="badge">Most popular</span>
+      <h4>Standard</h4><div class="price">£39.99 <span>a month</span></div>
+      <ul><li>A 5-page website</li><li>Photo gallery and reviews</li><li>Custom fonts</li><li>3 change requests a month</li></ul>
+      <a class="choose" href="account.html?plan=standard">Choose Standard</a>
+    </div>
+    <div class="plan">
+      <h4>Pro</h4><div class="price">£59.99 <span>a month</span></div>
+      <ul><li>An 8-page premium website</li><li>Portfolio, FAQ and booking form</li><li>Animations and dark mode</li><li>6 change requests a month</li></ul>
+      <a class="choose" href="account.html?plan=pro">Choose Pro</a>
+    </div>
+  </div>
+  <p class="note" style="margin-top:18px" id="style-picked" hidden></p>
+  <p class="note" style="margin-top:18px">Extra change requests are £10 each. Switch plan or cancel any time from your account.</p>
+</div></section>
+
+
+
+<section id="faq" style="background:var(--card)"><div class="wrap">
+  <h3>Questions</h3>
+  <div class="faq">
+    <details><summary>What do I pay today?</summary><p>Just the one-off £50 setup fee. Your monthly plan doesn't start until your website is live<span class="trial-txt"></span>.</p></details>
+    <details><summary>What do I need to get started?</summary><p>An email address and a few details about your business. After payment, a short questionnaire asks about your business, your style and your words. You can add your logo and photos, and your answers save as you go so you can finish later.</p></details>
+    <details><summary>Can I see my website before it goes live?</summary><p>Yes. You'll get a private preview link in your account. Ask for as many changes as you like while you're reviewing it. Nothing goes live until you're happy.</p></details>
+    <details><summary>How do changes work after my site is live?</summary><p>Request a change from your account. Each plan includes some changes every month (1, 3 or 6), and extra ones are £10 each. We'll always ask before charging for an extra change.</p></details>
+    <details><summary>Where will my website live?</summary><p>We host it for you at your own address, like <b>yourbusiness.axencraft.co.uk</b>.</p></details>
+    <details><summary>Can I change plan or cancel?</summary><p>Yes. Use "Manage billing" in your account to switch plan, update your card, see invoices or cancel.</p></details>
+  </div>
+</div></section>
+
+<section id="contact"><div class="wrap">
+  <h3>Get notified about Print and Grow</h3>
+  <p class="lead">Print Studio and Grow Studio are coming soon. Leave your email and we'll let you know when they open.</p>
   <form id="f">
     <label>Name<input type="text" id="wl-name" autocomplete="name" required></label>
     <label>Email<input type="email" id="wl-email" autocomplete="email" required></label>
     <div class="checks" role="group" aria-label="Interested in">
-      <label><input type="checkbox" id="wl-digital" checked> Digital Studio</label>
-      <label><input type="checkbox" id="wl-print"> Print Studio</label>
-      <label><input type="checkbox" id="wl-grow"> Grow Studio</label>
+      <label><input type="checkbox" id="wl-print" checked> Print Studio</label>
+      <label><input type="checkbox" id="wl-grow" checked> Grow Studio</label>
     </div>
-    <button type="submit" id="wl-btn">Join the waitlist</button>
+    <button type="submit" id="wl-btn">Notify me</button>
     <p id="msg" role="status"></p>
   </form>
 </div></section>
 
-<footer><div class="wrap">Axencraft. Draft preview. Terms, privacy policy and cookie notice to be added before launch.</div></footer>
+<footer><div class="wrap foot"><span>© Axencraft</span><span><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="account.html">Log in</a></span><span class="note">Terms, privacy policy and cookie notice to be added before launch.</span></div></footer>
 
 <script>
 var SB_URL="https://cvkgnrrskoptdtojcwvz.supabase.co";
 var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2a2ducnJza29wdGR0b2pjd3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTE2OTksImV4cCI6MjEwNzM4NzY5OX0.WsI6YpOpyd6q4wTV0q5FJzbjs0K3qnDTL4FNhfcbwNg";
 document.querySelectorAll('[data-interest]').forEach(function(a){
-  a.addEventListener('click',function(){document.getElementById('wl-'+a.dataset.interest).checked=true});
+  a.addEventListener('click',function(){
+    document.getElementById('wl-print').checked=a.dataset.interest==='print';
+    document.getElementById('wl-grow').checked=a.dataset.interest==='grow';
+  });
 });
+/* Free trial length, shown in the pricing and FAQ */
+fetch(SB_URL+"/rest/v1/rpc/public_trial_days",{method:"POST",headers:{"Content-Type":"application/json","apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY},body:"{}"})
+  .then(function(r){return r.ok?r.json():0}).then(function(d){
+    d=+d||0;if(d>0)document.querySelectorAll('.trial-txt').forEach(function(el){el.textContent=', after a '+d+'-day free trial'});
+  }).catch(function(){});
 document.getElementById('f').addEventListener('submit',function(e){
   e.preventDefault();
   var msg=document.getElementById('msg'),btn=document.getElementById('wl-btn');
-  var picks=['digital','print','grow'].filter(function(k){return document.getElementById('wl-'+k).checked});
+  var picks=['print','grow'].filter(function(k){return document.getElementById('wl-'+k).checked});
   if(!picks.length){msg.textContent="Choose at least one studio.";return;}
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(document.getElementById('wl-email').value.trim())){msg.textContent="Please check your email address.";return;}
   var interest=picks.join(',');
   btn.disabled=true;msg.textContent="Saving...";
   fetch(SB_URL+"/rest/v1/waitlist",{
@@ -200,8 +278,8 @@ document.getElementById('f').addEventListener('submit',function(e){
     body:JSON.stringify({name:document.getElementById('wl-name').value.trim(),email:document.getElementById('wl-email').value.trim(),interest:interest})
   }).then(function(r){
     if(!r.ok)throw new Error(r.status);
-    document.getElementById('f').reset();document.getElementById('wl-digital').checked=true;
-    msg.textContent="Thanks, you're on the waitlist.";
+    document.getElementById('f').reset();
+    msg.textContent="Thanks! We'll email you when it opens.";
   }).catch(function(){
     msg.textContent="Something went wrong. Please try again in a moment.";
   }).finally(function(){btn.disabled=false;});
@@ -215,17 +293,33 @@ document.getElementById('f').addEventListener('submit',function(e){
   function fit(sh){var w=sh.clientWidth;if(w)sh.firstChild.style.transform='scale('+(w/1280)+')'}
   var ro='ResizeObserver' in window?new ResizeObserver(function(es){es.forEach(function(e){fit(e.target)})}):null;
   function scale(){box.querySelectorAll('.shot').forEach(function(sh){fit(sh);if(ro)ro.observe(sh)})}
+  var NAMES={};STYLES.forEach(function(x){NAMES[x[0]]=x[1]});
+  function picked(){try{return localStorage.getItem('axc-style')||''}catch(_){return ''}}
+  function showPicked(){
+    var st=picked(),el=document.getElementById('style-picked');
+    el.hidden=!NAMES[st];if(NAMES[st])el.innerHTML='Style chosen: <b>'+NAMES[st]+'</b>. We\u2019ll have it ready for you after payment. You can still change it later.';
+  }
   function draw(){
     box.innerHTML='';
+    var st=picked();
     STYLES.forEach(function(x){
       var url='templates/'+level+'-'+x[0]+'/';
-      var a=document.createElement('a');a.className='tpl';a.href=url;a.target='_blank';a.rel='noopener';
-      a.setAttribute('aria-label',x[1]+' style, '+level+' version (opens a preview)');
-      a.innerHTML='<div class="shot"><iframe loading="lazy" tabindex="-1" aria-hidden="true" title="" src="'+url+'"></iframe></div><div class="t"><b>'+x[1]+'</b><br><small>'+x[2]+'</small></div>';
-      box.appendChild(a);
+      var card=document.createElement('div');card.className='tpl'+(st===x[0]?' chosen':'');
+      card.innerHTML='<a class="shot" href="'+url+'" target="_blank" rel="noopener" aria-label="Preview the '+x[1]+' style, '+level+' version (opens in a new tab)"><iframe loading="lazy" tabindex="-1" aria-hidden="true" title="" src="'+url+'"></iframe></a>'+
+        '<div class="t"><div><b>'+x[1]+'</b><br><small>'+x[2]+'</small></div>'+
+        '<div class="tpl-actions"><a href="'+url+'" target="_blank" rel="noopener">Preview \u2197</a><button type="button" class="pick" data-style="'+x[0]+'" aria-pressed="'+(st===x[0])+'">'+(st===x[0]?'\u2713 Chosen':'Choose this style')+'</button></div></div>';
+      box.appendChild(card);
+    });
+    box.querySelectorAll('.pick').forEach(function(b){
+      b.onclick=function(){
+        try{localStorage.setItem('axc-style',b.dataset.style)}catch(_){}
+        draw();showPicked();
+        document.getElementById('pricing').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+      };
     });
     scale();
   }
+  showPicked();
   document.querySelectorAll('.levels button').forEach(function(b){
     b.onclick=function(){level=b.dataset.level;document.querySelectorAll('.levels button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});draw()};
   });

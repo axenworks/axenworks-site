@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Your account | Axencraft</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%232430d6%27/%3E%3Cpath d=%27M20 46 32 16l12 30M24.5 36h15%27 stroke=%27white%27 stroke-width=%276%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
@@ -52,28 +53,82 @@ h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
 .plan .go{margin-top:10px;color:var(--blue);font-weight:600}
 .plan.pop{border:2px solid var(--blue)}
 .badge{justify-self:start;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--blue);color:#fff;border-radius:999px;padding:3px 10px}
-.plan-name{font-size:28px;font-weight:800;letter-spacing:-.02em}
+.plan-name{font-size:clamp(22px,6vw,28px);font-weight:800;letter-spacing:-.02em}
 .note{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin-bottom:14px}
 :focus-visible{outline:3px solid #ffb703;outline-offset:3px}
 [hidden]{display:none!important}
+
+nav .navr{display:flex;gap:18px;align-items:center}
+nav .navr a{font-size:15px;font-weight:600;color:var(--muted)}
+nav .navr .link{font-size:15px;color:var(--muted);text-decoration:none;font-weight:600}
+.hint{font-weight:400;color:var(--muted);font-size:14px}
+.pw-wrap{position:relative;display:block}
+.pw-wrap input{width:100%;padding-right:72px}
+.pw-show{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;color:var(--blue);padding:6px 10px;font-size:14px;border-radius:8px}
+.form-msg{margin:0;min-height:1.4em;font-size:15px;color:var(--muted)}
+.form-msg.err{color:#c62828}
+.order{background:var(--card);border:2px solid var(--blue);border-radius:14px;padding:18px 20px;display:grid;gap:8px;margin-bottom:22px}
+.order-top{display:flex;justify-content:space-between;font-size:14px}
+.order-top a{color:var(--blue);font-weight:600}
+.order-plan{font-size:24px;font-weight:800;letter-spacing:-.02em}
+.order-lines{display:grid;gap:4px;border-top:1px solid var(--line);padding-top:10px}
+.order-lines div{display:flex;justify-content:space-between;gap:12px;font-size:15px}
+.mini-steps{list-style:none;padding:0;margin:0 0 18px;display:flex;flex-wrap:wrap;gap:6px 18px;font-size:14px;color:var(--muted);counter-reset:m}
+.mini-steps li{counter-increment:m}
+.mini-steps li::before{content:counter(m) ". "}
+.mini-steps li.on{color:var(--ink);font-weight:700}
+.tracker{list-style:none;margin:2px 0 4px;padding:0;display:grid;grid-template-columns:repeat(5,1fr);gap:6px;counter-reset:t}
+.tracker li{counter-increment:t;font-size:13px;color:var(--muted);display:grid;gap:6px;text-align:center;justify-items:center;position:relative}
+.tracker li::before{content:counter(t);width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-weight:700;border:2px solid var(--line);background:var(--card);position:relative;z-index:1}
+.tracker li::after{content:"";position:absolute;top:15px;left:calc(-50% + 15px);right:calc(50% + 15px);height:2px;background:var(--line)}
+.tracker li:first-child::after{display:none}
+.tracker li.done::before{content:"\2713";background:var(--blue);border-color:var(--blue);color:#fff}
+.tracker li.done::after,.tracker li.now::after{background:var(--blue)}
+.tracker li.now{color:var(--ink);font-weight:700}
+.tracker li.now::before{border-color:var(--blue);color:var(--blue)}
+@media(max-width:480px){.tracker li{font-size:11.5px}}
+.actions{display:flex;flex-wrap:wrap;gap:10px}
+.chosen{border:2px solid var(--blue);margin-bottom:8px}
 </style>
 </head>
 <body>
-<nav aria-label="Main"><a href="index.html">Axencraft</a></nav>
+<nav aria-label="Main"><a href="index.html">Axencraft</a><span class="navr"><a href="admin.html" id="admin-link" hidden>Admin</a><button type="button" class="link" id="out" hidden>Log out</button></span></nav>
 <main>
   <!-- Log in / sign up -->
   <section id="v-auth" hidden>
+    <div class="order" id="order" hidden>
+      <div class="order-top"><span class="muted">Your plan</span><a href="index.html#pricing">Change</a></div>
+      <div class="order-plan" id="o-plan"></div>
+      <div class="order-lines">
+        <div><span>Pay today</span><b>£50 setup fee</b></div>
+        <div><span>Monthly</span><b id="o-month"></b></div>
+      </div>
+      <span class="muted" style="font-size:14px" id="o-note"></span>
+    </div>
+    <ol class="mini-steps" id="mini-steps" hidden><li class="on">Create your account</li><li>Pay securely</li><li>Tell us about your business</li></ol>
     <h1 id="a-title">Log in</h1>
     <p class="sub" id="a-sub">Welcome back.</p>
-    <form class="box" id="f-auth">
+    <form class="box" id="f-auth" novalidate>
       <label>Email<input type="email" id="email" autocomplete="email" required></label>
-      <label>Password<input type="password" id="pw" autocomplete="current-password" minlength="8" required></label>
+      <label>Password<span class="pw-wrap"><input type="password" id="pw" autocomplete="current-password" minlength="8" required aria-describedby="pw-hint"><button type="button" class="pw-show" id="pw-show" aria-pressed="false">Show</button></span><span class="hint" id="pw-hint" hidden>At least 8 characters.</span></label>
       <button type="submit" id="a-btn">Log in</button>
+      <p class="form-msg" id="a-msg" role="status"></p>
       <div class="row">
         <button type="button" class="link" id="toggle">New here? Create an account</button>
         <button type="button" class="link" id="forgot">Forgot password?</button>
       </div>
     </form>
+  </section>
+
+  <!-- After sign-up, when the email must be confirmed -->
+  <section id="v-check" hidden>
+    <h1>Check your email</h1>
+    <p class="sub">We sent a confirmation link to <b id="check-email"></b>.</p>
+    <div class="box">
+      <span>Click the link in that email. You'll come back here to <b id="check-next">finish setting up</b>.</span>
+      <span class="muted" style="font-size:15px">Can't see it? Check your spam or junk folder. The email comes from Supabase on our behalf.</span>
+      <div><button type="button" class="link" id="check-back">Use a different email</button></div>
+    </div>
   </section>
 
   <!-- Set a new password (after reset email) -->
@@ -83,6 +138,7 @@ h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
     <form class="box" id="f-reset">
       <label>New password<input type="password" id="npw" autocomplete="new-password" minlength="8" required></label>
       <button type="submit">Save password</button>
+      <p class="form-msg" id="r-msg" role="status"></p>
     </form>
   </section>
 
@@ -90,22 +146,17 @@ h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
   <section id="v-dash" hidden>
     <h1>Your account</h1>
     <p class="sub">Signed in as <b id="who"></b></p>
-    <p class="note" id="d-note" hidden></p>
+    <p class="note" id="d-note" role="status" hidden></p>
 
-    <div class="box" id="d-loading"><span class="muted">Loading your plan...</span></div>
+    <div class="box" id="d-loading"><span class="muted">Loading your account...</span></div>
 
-    <div class="box" id="d-plan" hidden>
-      <b>Your website plan</b>
-      <div class="plan-name" id="p-name"></div>
-      <span id="p-status"></span>
-      <div><button type="button" class="ghost" id="billing">Manage billing</button></div>
-      <span class="muted" style="font-size:15px">Update your card, see invoices, switch plan or cancel.</span>
-    </div>
-
-    <div class="box" id="d-project" hidden style="margin-top:14px">
+    <div class="box" id="d-project" hidden>
       <b>Your website</b>
+      <ol class="tracker" id="tracker" aria-label="Progress">
+        <li>Paid</li><li>Your details</li><li>We build</li><li>Preview</li><li>Live</li>
+      </ol>
       <span id="pr-status"></span>
-      <div><a class="btn" id="pr-go" href="questionnaire.html">Start the questionnaire</a><a class="btn" id="pr-view" target="_blank" rel="noopener" hidden>View your website preview ↗</a></div>
+      <div class="actions"><a class="btn" id="pr-go" href="questionnaire.html">Start the questionnaire</a><a class="btn" id="pr-view" target="_blank" rel="noopener" hidden>View your website preview ↗</a></div>
     </div>
 
     <div class="box" id="d-changes" hidden style="margin-top:14px">
@@ -113,44 +164,58 @@ h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
       <span class="muted" id="cr-allow"></span>
       <form id="f-change" class="cr-form">
         <label>Which part of your website?<select id="cr-page"></select></label>
-        <label>What would you like changed?<textarea id="cr-msg" rows="4" required placeholder="For example: please change the opening hours to 9am to 6pm, and swap the first photo for the one I've emailed."></textarea></label>
+        <label>What would you like changed?<textarea id="cr-msg" rows="4" required placeholder="For example: please change the opening hours to 9am to 6pm, and use a different photo at the top of the home page."></textarea></label>
         <div class="cr-extra" id="cr-extra" hidden>
           <span id="cr-extra-text"></span>
           <label class="cr-check"><input type="checkbox" id="cr-confirm"> Yes, add £10 to my next bill for this change</label>
         </div>
         <div><button type="submit" id="cr-send">Send request</button></div>
+        <p class="form-msg" id="cr-msg-out" role="status"></p>
       </form>
-      <ul class="cr-list" id="cr-list"></ul>
+      <div id="cr-history" hidden><b style="font-size:15px">Your requests</b><ul class="cr-list" id="cr-list"></ul></div>
+    </div>
+
+    <div class="box" id="d-plan" hidden style="margin-top:14px">
+      <b>Your plan</b>
+      <div class="plan-name" id="p-name"></div>
+      <span id="p-status"></span>
+      <div><button type="button" class="ghost" id="billing">Manage billing</button></div>
+      <span class="muted" style="font-size:15px">Update your card, see invoices, switch plan or cancel.</span>
     </div>
 
     <div id="d-choose" hidden>
-      <h2>Choose your plan</h2>
-      <p class="sub">Every plan has a one-off £50 setup fee, paid today. Your monthly payments only start once your website is live and your free trial has ended.</p>
+      <div class="box chosen" id="chosen" hidden>
+        <span class="muted">You chose</span>
+        <div class="plan-name" id="c-name"></div>
+        <span id="c-text"></span>
+        <div><button type="button" id="c-pay">Continue to secure payment</button></div>
+        <span class="muted" style="font-size:14px">Payment is handled by Stripe. We never see your card details.</span>
+      </div>
+      <h2 id="choose-title">Choose your plan</h2>
+      <p class="sub">Every plan has a one-off £50 setup fee, paid today. Monthly payments only start once your website is live<span class="trial-txt"></span>.</p>
       <div class="plans">
         <button type="button" class="plan" data-plan="starter">
           <span class="name">Starter</span>
           <span class="price">£19.99 <small>/ month</small></span>
-          <span class="muted">A one-page website, hosted and looked after. 7 styles to choose from. 1 change request a month.</span>
+          <span class="muted">A one-page website, hosted and looked after. 1 change request a month.</span>
           <span class="go">Choose Starter →</span>
         </button>
         <button type="button" class="plan pop" data-plan="standard">
           <span class="badge">Most popular</span>
           <span class="name">Standard</span>
           <span class="price">£39.99 <small>/ month</small></span>
-          <span class="muted">A 5-page website with custom fonts, a photo gallery and a reviews slider. 3 change requests a month.</span>
+          <span class="muted">A 5-page website with custom fonts, a photo gallery and reviews. 3 change requests a month.</span>
           <span class="go">Choose Standard →</span>
         </button>
         <button type="button" class="plan" data-plan="pro">
           <span class="name">Pro</span>
           <span class="price">£59.99 <small>/ month</small></span>
-          <span class="muted">An 8-page premium website with animations, a portfolio with before-and-after photos, an FAQ, a booking form and dark mode. 6 change requests a month.</span>
+          <span class="muted">An 8-page premium website with animations, a portfolio, an FAQ, a booking form and dark mode. 6 change requests a month.</span>
           <span class="go">Choose Pro →</span>
         </button>
       </div>
-      <p class="muted" style="font-size:15px">Need a change after your included ones are used? Extra change requests are £10 each.</p>
+      <p class="muted" style="font-size:15px">All plans come in all 7 styles. Extra change requests are £10 each.</p>
     </div>
-
-    <p><a href="admin.html" id="admin-link" hidden style="margin-right:18px">Admin</a><button type="button" class="link" id="out">Log out</button></p>
   </section>
 
   <p id="msg" role="status"></p>
@@ -164,11 +229,56 @@ var sb=supabase.createClient(SB_URL,SB_KEY);
 var $=function(id){return document.getElementById(id)};
 var signup=false;
 
-function say(t){$('msg').textContent=t||''}
-function show(v){['auth','reset','dash'].forEach(function(n){$('v-'+n).hidden=(n!==v)});document.querySelector('main').classList.toggle('wide',v==='dash');say('')}
+var view='auth';
+function say(t,err){
+  var el=view==='auth'?$('a-msg'):view==='reset'?$('r-msg'):$('msg');
+  ['a-msg','r-msg','msg'].forEach(function(id){if($(id)!==el)$(id).textContent=''});
+  el.textContent=t||'';el.classList.toggle('err',!!err);
+}
+function show(v){
+  view=v;['auth','check','reset','dash'].forEach(function(n){$('v-'+n).hidden=(n!==v)});
+  document.querySelector('main').classList.toggle('wide',v==='dash');
+  $('out').hidden=v!=='dash';say('');
+}
+/* Turn technical sign-in errors into plain English. */
+function friendly(err){
+  var m=(err&&err.message)||'';
+  if(/invalid login credentials/i.test(m))return 'That email and password don\u2019t match. Check them and try again, or use \u201cForgot password?\u201d.';
+  if(/email not confirmed/i.test(m))return 'Please confirm your email first. Click the link we sent you, then log in.';
+  if(/already registered|already been registered|user already exists/i.test(m))return 'There\u2019s already an account with this email. Log in instead.';
+  if(/password should be at least|weak password/i.test(m))return 'Please use a password with at least 8 characters.';
+  if(/rate limit|too many/i.test(m))return 'Too many attempts. Please wait a minute and try again.';
+  if(/network|fetch/i.test(m))return 'We couldn\u2019t connect. Check your internet connection and try again.';
+  return m||'Something went wrong. Please try again.';
+}
+
+/* ---------- The plan chosen on the homepage ---------- */
+var PLAN_INFO={starter:'A one-page website. 1 change request a month.',standard:'A 5-page website with a gallery and reviews. 3 change requests a month.',pro:'An 8-page premium website with a portfolio, FAQ and booking form. 6 change requests a month.'};
+var TRIAL_DAYS=0;
+function getChosen(){try{return localStorage.getItem('axc-plan')||''}catch(_){return ''}}
+function setChosen(v){try{v?localStorage.setItem('axc-plan',v):localStorage.removeItem('axc-plan')}catch(_){}}
+(function(){
+  var q=new URLSearchParams(location.search),pl=q.get('plan');
+  if(pl&&{starter:1,standard:1,pro:1}[pl]){setChosen(pl);q.delete('plan');history.replaceState(null,'',location.pathname+(q.toString()?'?'+q:''))}
+})();
 
 /* ---------- Plans and checkout ---------- */
 var PLANS={starter:{name:'Starter',price:'£19.99'},standard:{name:'Standard',price:'£39.99'},pro:{name:'Pro',price:'£59.99'}};
+function monthText(pl){return (PLANS[pl]?PLANS[pl].price:'')+' a month, starting once your website is live'+(TRIAL_DAYS?' and your '+TRIAL_DAYS+'-day free trial ends':'')}
+function renderOrder(){
+  var pl=getChosen(),has=!!PLANS[pl];
+  $('order').hidden=!has;$('mini-steps').hidden=!(has&&signup);
+  if(has){
+    $('o-plan').textContent=PLANS[pl].name;
+    $('o-month').textContent=PLANS[pl].price+' / month';
+    $('o-note').textContent=PLAN_INFO[pl]+' You won\u2019t pay monthly until your website is live'+(TRIAL_DAYS?', then you get a '+TRIAL_DAYS+'-day free trial':'')+'.';
+  }
+}
+sb.rpc('public_trial_days').then(function(r){
+  TRIAL_DAYS=+r.data||0;
+  if(TRIAL_DAYS)document.querySelectorAll('.trial-txt').forEach(function(el){el.textContent=' and your '+TRIAL_DAYS+'-day free trial has ended'});
+  renderOrder();
+});
 var LIVE=['trialing','active','past_due'];
 var checkoutState=new URLSearchParams(location.search).get('checkout');
 if(checkoutState)history.replaceState(null,'',location.pathname);
@@ -178,19 +288,27 @@ function day(iso){return iso?new Date(iso).toLocaleDateString('en-GB',{day:'nume
 function note(t){$('d-note').textContent=t||'';$('d-note').hidden=!t}
 
 var PROJECT_TEXT={
-  submitted:'Questionnaire received. We’re getting ready to build your website.',
-  generating:'We’re building your website now.',
-  in_review:'Your website is built and we’re checking it over.',
-  with_customer:'Your website preview is ready. Have a look, and tell us if you\u2019d like anything changed.',
-  live:'Your website is live.'
+  submitted:'Thanks, we\u2019ve got your answers. We\u2019re building your website now, and your preview will appear here when it\u2019s ready.',
+  generating:'We\u2019re building your website now. Your preview will appear here when it\u2019s ready.',
+  in_review:'Your website is built and we\u2019re checking it over. Your preview will appear here soon.',
+  with_customer:'Your preview is ready! Have a look, then request any changes below. Nothing goes live until you\u2019re happy.',
+  live:'Your website is live. Need something updated? Request a change below.'
 };
+var STAGE={draft:1,submitted:2,generating:2,in_review:2,with_customer:3,live:5};
+function drawTracker(p){
+  var at=p?(STAGE[p.status]||1):1;
+  [].forEach.call($('tracker').children,function(li,i){
+    li.className=i<at?'done':(i===at?'now':'');
+    if(i===at)li.setAttribute('aria-current','step');else li.removeAttribute('aria-current');
+  });
+}
 async function loadProject(){
   var r=await sb.from('projects').select('status,template,answers,preview_token,built_at,subdomain').maybeSingle();
   var p=r.data;
-  currentProject=p;
+  currentProject=p;drawTracker(p);
   if(!p||p.status==='draft'){
     var started=p&&(p.template||Object.keys(p.answers||{}).length);
-    $('pr-status').textContent=started?'You’ve started the questionnaire. Pick up where you left off.':'Next step: choose a template and tell us about your business. It takes about 15 minutes, and your answers save as you go.';
+    $('pr-status').textContent=started?'You\u2019ve started the questionnaire. Pick up where you left off, your answers are saved.':'Next step: tell us about your business. It takes about 15 minutes, and your answers save as you go, so you can finish later.';
     $('pr-go').textContent=started?'Continue the questionnaire':'Start the questionnaire';
     $('pr-go').hidden=false;
   }else{
@@ -231,7 +349,7 @@ async function loadChanges(project){
   var r=await sb.functions.invoke('request-change',{body:{action:'status'}});
   crState=r.data||null;$('cr-allow').textContent=crAllowText(crState);
   var l=await sb.from('change_requests').select('*').order('created_at',{ascending:false}).limit(20);
-  var ul=$('cr-list');ul.innerHTML='';
+  var ul=$('cr-list');ul.innerHTML='';$('cr-history').hidden=!(l.data&&l.data.length);
   (l.data||[]).forEach(function(c){
     var li=document.createElement('li');
     var meta=document.createElement('div');meta.className='meta';
@@ -246,7 +364,10 @@ async function loadChanges(project){
 }
 $('f-change').addEventListener('submit',async function(e){
   e.preventDefault();
-  var b=$('cr-send');b.disabled=true;say('Sending your request...');
+  var b=$('cr-send'),out=$('cr-msg-out');
+  function crSay(t,err){out.textContent=t||'';out.classList.toggle('err',!!err)}
+  if($('cr-msg').value.trim().length<3){crSay('Please describe the change you\u2019d like.',true);$('cr-msg').focus();return}
+  b.disabled=true;crSay('Sending your request...');
   try{
     var r=await sb.functions.invoke('request-change',{body:{action:'submit',page:$('cr-page').value,message:$('cr-msg').value,confirm_extra:$('cr-confirm').checked}});
     if(r.error){
@@ -254,14 +375,14 @@ $('f-change').addEventListener('submit',async function(e){
       if(body.needs_extra){
         $('cr-extra').hidden=false;
         $('cr-extra-text').textContent='You\u2019ve used this month\u2019s included changes. This one will cost \u00a310, added to your next monthly bill.';
-        say('Please confirm the \u00a310 charge to send this request.');b.disabled=false;return;
+        crSay('Tick the box above to confirm the \u00a310 charge, then send again.');b.disabled=false;return;
       }
       throw new Error(body.error||'Couldn\u2019t send your request.');
     }
     $('cr-msg').value='';$('cr-confirm').checked=false;$('cr-extra').hidden=true;
-    say('Thanks, your request has been sent. We\u2019ll update it here as we work on it.');
+    crSay('Thanks, your request has been sent. You\u2019ll see updates on it below.');
     await loadChanges(currentProject);
-  }catch(err){say(err.message)}
+  }catch(err){crSay(err.message,true)}
   b.disabled=false;
 });
 
@@ -282,8 +403,20 @@ async function renderPlan(row){
   $('d-loading').hidden=true;
   var live=row&&LIVE.indexOf(row.status)>-1;
   $('d-plan').hidden=!live;$('d-choose').hidden=live;
+  if(!live){
+    var pl=getChosen();
+    $('chosen').hidden=!PLANS[pl];
+    $('choose-title').textContent=PLANS[pl]?'Or choose a different plan':'Choose your plan';
+    if(PLANS[pl]){
+      $('c-name').textContent=PLANS[pl].name+' plan';
+      $('c-text').textContent='\u00a350 setup fee today. Then '+monthText(pl)+'.';
+      var go=false;try{go=sessionStorage.getItem('axc-go')==='1';sessionStorage.removeItem('axc-go')}catch(_){}
+      if(go)startCheckout(pl,$('c-pay'));
+    }
+  }
   $('d-project').hidden=true;$('d-changes').hidden=true;
   if(!live)return;
+  setChosen('');
   currentPlan=row.plan;
   var proj=await loadProject();
   var siteLive=proj&&proj.status==='live';
@@ -293,7 +426,7 @@ async function renderPlan(row){
   if(row.cancel_at_period_end)s='Cancelled. Your plan ends on '+day(row.current_period_end||row.trial_end)+'.';
   else if(row.status==='trialing'&&!siteLive)s='Setup fee paid. Your monthly payments haven\u2019t started: '+(days?'your '+days+'-day free trial begins':'billing begins')+' when your website goes live.';
   else if(row.status==='trialing')s='Your website is live. Free trial until '+day(row.trial_end)+', then '+(p.price||'your plan')+' a month.';
-  else if(row.status==='past_due')s='Your last payment didn’t go through. Please contact us so we can sort it out.';
+  else if(row.status==='past_due')s='Your last payment didn\u2019t go through. Please update your card using Manage billing below.';
   else s='Active. Next payment on '+day(row.current_period_end)+'.';
   $('p-status').textContent=s;
 }
@@ -307,7 +440,7 @@ async function loadPlan(){
     var r=await sb.from('subscriptions').select('*').maybeSingle();
     var row=r.data;
     if(row&&LIVE.indexOf(row.status)>-1){
-      if(checkoutState==='success')note('You’re all set. Welcome to Axencraft!');
+      if(checkoutState==='success'){note('Payment received. Welcome to Axencraft! Next, tell us about your business.');setChosen('')}
       checkoutState=null;renderPlan(row);loadingPlan=false;return;
     }
     if(i<tries-1)await new Promise(function(res){setTimeout(res,2000)});
@@ -316,63 +449,81 @@ async function loadPlan(){
   checkoutState=null;renderPlan(row);loadingPlan=false;
 }
 
+var checkingOut=false;
+async function startCheckout(plan,btn){
+  if(checkingOut)return;checkingOut=true;
+  if(btn){btn.setAttribute('aria-busy','true');btn.disabled=true}
+  setChosen(plan);
+  note('Taking you to secure payment...');
+  try{
+    var r=await sb.functions.invoke('create-checkout',{body:{plan:plan}});
+    if(r.error){
+      var msg='Something went wrong. Please try again.';
+      try{msg=(await r.error.context.json()).error||msg}catch(_){}
+      throw new Error(msg);
+    }
+    location.href=r.data.url;
+  }catch(err){note(err.message);if(btn){btn.removeAttribute('aria-busy');btn.disabled=false}checkingOut=false}
+}
+$('c-pay').onclick=function(){startCheckout(getChosen(),this)};
 document.querySelectorAll('.plan').forEach(function(btn){
-  btn.onclick=async function(){
-    if(document.querySelector('.plan[aria-busy="true"]'))return;
-    btn.setAttribute('aria-busy','true');say('Taking you to secure checkout...');
-    try{
-      var r=await sb.functions.invoke('create-checkout',{body:{plan:btn.dataset.plan}});
-      if(r.error){
-        var msg='Something went wrong. Please try again.';
-        try{msg=(await r.error.context.json()).error||msg}catch(_){}
-        throw new Error(msg);
-      }
-      location.href=r.data.url;
-    }catch(err){say(err.message);btn.removeAttribute('aria-busy')}
-  };
+  btn.onclick=function(){startCheckout(btn.dataset.plan,btn)};
 });
 function setMode(s){
   signup=s;
+  var has=!!PLANS[getChosen()];
   $('a-title').textContent=s?'Create your account':'Log in';
-  $('a-sub').textContent=s?'Start by choosing an email and password.':'Welcome back.';
-  $('a-btn').textContent=s?'Create account':'Log in';
+  $('a-sub').textContent=s?'You\u2019ll use it to follow your website\u2019s progress, see your preview and request changes.':(has?'Log in to continue to payment.':'Welcome back.');
+  $('a-btn').textContent=s?(has?'Create account and continue':'Create account'):(has?'Log in and continue':'Log in');
+  $('pw-hint').hidden=!s;renderOrder();
   $('toggle').textContent=s?'Already have an account? Log in':'New here? Create an account';
   $('pw').autocomplete=s?'new-password':'current-password';
   $('forgot').hidden=s;say('');
 }
 
-$('toggle').onclick=function(){setMode(!signup)};
+$('toggle').onclick=function(){setMode(!signup);$('email').focus()};
+$('pw-show').onclick=function(){var on=$('pw').type==='password';$('pw').type=on?'text':'password';this.textContent=on?'Hide':'Show';this.setAttribute('aria-pressed',String(on))};
+$('check-back').onclick=function(){show('auth');setMode(true);$('email').focus()};
 
 $('f-auth').addEventListener('submit',async function(e){
   e.preventDefault();
-  var b=$('a-btn');b.disabled=true;say('One moment...');
   var email=$('email').value.trim(),pw=$('pw').value;
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){say('Please enter a valid email address.',true);$('email').focus();return}
+  if(pw.length<(signup?8:1)){say(signup?'Please use a password with at least 8 characters.':'Please enter your password.',true);$('pw').focus();return}
+  var b=$('a-btn');b.disabled=true;say('One moment...');
+  try{sessionStorage.setItem('axc-go',PLANS[getChosen()]?'1':'')}catch(_){}
   try{
     if(signup){
       var r=await sb.auth.signUp({email:email,password:pw,options:{emailRedirectTo:location.origin+'/account.html'}});
       if(r.error)throw r.error;
-      if(!r.data.session)say('Almost done. We sent a confirmation link to '+email+'. Click it, then log in.');
+      if(r.data.user&&r.data.user.identities&&r.data.user.identities.length===0)throw new Error('already registered');
+      if(!r.data.session){
+        $('check-email').textContent=email;
+        $('check-next').textContent=PLANS[getChosen()]?'pay and get started':'finish setting up';
+        show('check');
+      }
     }else{
       var r2=await sb.auth.signInWithPassword({email:email,password:pw});
       if(r2.error)throw r2.error;
     }
-  }catch(err){say(err.message||'Something went wrong. Please try again.')}
+  }catch(err){say(friendly(err),true)}
   b.disabled=false;
 });
 
 $('forgot').onclick=async function(){
   var email=$('email').value.trim();
-  if(!email){say('Enter your email above first, then select "Forgot password?".');return}
+  if(!email){say('Type your email above first, then select \u201cForgot password?\u201d again.',true);$('email').focus();return}
   var r=await sb.auth.resetPasswordForEmail(email,{redirectTo:location.origin+'/account.html'});
-  say(r.error?r.error.message:'If that email has an account, a reset link is on its way.');
+  say(r.error?friendly(r.error):'If that email has an account, a reset link is on its way. Check your inbox.',!!r.error);
 };
 
 $('f-reset').addEventListener('submit',async function(e){
   e.preventDefault();
+  if($('npw').value.length<8){say('Please use at least 8 characters.',true);return}
   var r=await sb.auth.updateUser({password:$('npw').value});
-  if(r.error){say(r.error.message);return}
+  if(r.error){say(friendly(r.error),true);return}
   var s=(await sb.auth.getSession()).data.session;
-  if(s){$('who').textContent=s.user.email;show('dash');say('Password updated.');setTimeout(loadPlan,0)}
+  if(s){$('who').textContent=s.user.email;show('dash');note('Password updated.');setTimeout(loadPlan,0)}
 });
 
 $('out').onclick=async function(){await sb.auth.signOut()};
@@ -389,7 +540,7 @@ sb.auth.onAuthStateChange(function(ev,session){
   }
   else{show('auth')}
 });
-setMode(false);
+setMode(!!PLANS[getChosen()]);
 </script>
 </body>
 </html>
