@@ -367,6 +367,8 @@ async function openDetail(c){
   $('sub-save').hidden=!isLive;
   $('live-link').hidden=!(isLive&&subd);
   if(isLive&&subd){$('live-link').href='https://'+subd+'.axencraft.co.uk';$('live-link').textContent=subd+'.axencraft.co.uk \u2197'}
+  var cd=c.project&&c.project.custom_domain;
+  if(isLive&&cd){$('live-link').href='https://'+cd;$('live-link').textContent=cd+' \u2197 (their own domain; also '+subd+'.axencraft.co.uk)'}
   $('golive-text').textContent=isLive?'Live since '+day(c.project.went_live_at)+'.':
     (s&&s.status==='trialing'?'Publishes the site and starts the customer\u2019s '+(s.trial_days||0)+'-day free trial. Monthly billing begins when the trial ends.':'Publishes the site. This customer is already being billed monthly.');
   $('f-cust-trial').hidden=!hasPlan||isLive||s.status!=='trialing';

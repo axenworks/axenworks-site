@@ -101,5 +101,7 @@ Deno.serve(async (req) => {
     return json(502, { error: "Sorry, your message couldn't be sent. Please try again later." });
   }
   await db.from("form_events").insert({ project_id: p.id, ip_hash: ipHash, kind });
+  // Keep the spam-protection log for 30 days at most (see the privacy policy).
+  await db.from("form_events").delete().lt("created_at", new Date(Date.now() - 30 * 86400000).toISOString());
   return json(200, { ok: true });
 });

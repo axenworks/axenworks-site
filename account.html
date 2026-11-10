@@ -89,9 +89,20 @@ nav .navr .link{font-size:15px;color:var(--muted);text-decoration:none;font-weig
 @media(max-width:480px){.tracker li{font-size:11.5px}}
 .actions{display:flex;flex-wrap:wrap;gap:10px}
 .chosen{border:2px solid var(--blue);margin-bottom:8px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+#d-domain details summary{cursor:pointer;color:var(--blue);font-weight:600}
+.dm-form{display:flex;gap:8px;flex-wrap:wrap}.dm-form input{flex:1;min-width:200px}
+.dm-status{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.pill.ok{background:#dcf5e3;border-color:#5fbf7c;color:#14532d}.pill.wait{background:#fff7e0;border-color:#f0c64a;color:#5c4400}
+.tw{overflow-x:auto}
+table.dns{border-collapse:collapse;width:100%;font-size:14px;margin:8px 0}
+table.dns th,table.dns td{text-align:left;padding:8px;border-bottom:1px solid var(--line);vertical-align:top}
+table.dns td code{font-size:13.5px;word-break:break-all;background:var(--bg);padding:2px 6px;border-radius:6px;cursor:copy}
+#dm-steps{display:grid;gap:6px}
 .warn{border:2px solid #e0a800;background:#fff8e1;color:#4a3800;margin-bottom:14px}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .warn{background:#2a2410;color:#f5e6b8}}
 #p-status.alert{color:#b3261e;font-weight:600}
+footer.mini{text-align:center;padding:24px 20px 32px;font-size:14px;color:var(--muted)}footer.mini a{color:var(--muted)}
 </style>
 </head>
 <body>
@@ -116,6 +127,7 @@ nav .navr .link{font-size:15px;color:var(--muted);text-decoration:none;font-weig
       <label>Password<span class="pw-wrap"><input type="password" id="pw" autocomplete="current-password" minlength="8" required aria-describedby="pw-hint"><button type="button" class="pw-show" id="pw-show" aria-pressed="false">Show</button></span><span class="hint" id="pw-hint" hidden>At least 8 characters.</span></label>
       <button type="submit" id="a-btn">Log in</button>
       <p class="form-msg" id="a-msg" role="status"></p>
+      <p class="hint" id="agree" hidden style="margin:-6px 0 0">By creating an account you agree to our <a href="terms.html" target="_blank">terms</a> and <a href="privacy.html" target="_blank">privacy policy</a>.</p>
       <div class="row">
         <button type="button" class="link" id="toggle">New here? Create an account</button>
         <button type="button" class="link" id="forgot">Forgot password?</button>
@@ -160,6 +172,27 @@ nav .navr .link{font-size:15px;color:var(--muted);text-decoration:none;font-weig
       </ol>
       <span id="pr-status"></span>
       <div class="actions"><a class="btn" id="pr-go" href="questionnaire.html">Start the questionnaire</a><a class="btn" id="pr-view" target="_blank" rel="noopener" hidden>View your website preview ↗</a></div>
+    </div>
+
+    <div class="box" id="d-domain" hidden style="margin-top:14px">
+      <b>Your web address</b>
+      <span>Your website is at <a id="dm-sub" target="_blank" rel="noopener"></a><span id="dm-also"></span></span>
+      <div id="dm-none">
+        <details id="dm-open"><summary>Use your own domain name instead</summary>
+          <p class="muted" style="font-size:15px;margin:8px 0 10px">Already own a domain, like <i>yourbusiness.co.uk</i>? Connect it here and your website will show at that address. You'll need to add a couple of settings where you bought the domain, and we'll show you exactly what to enter. Don't have one yet? You can buy one from a provider such as Porkbun or 123 Reg, then come back here.</p>
+          <form id="f-domain" class="dm-form"><label for="dm-input" class="sr">Your domain name</label><input id="dm-input" placeholder="yourbusiness.co.uk" autocomplete="off" autocapitalize="off" spellcheck="false"><button type="submit" id="dm-add">Connect</button></form>
+        </details>
+      </div>
+      <div id="dm-set" hidden>
+        <div class="dm-status"><span class="pill" id="dm-pill"></span> <b id="dm-name"></b></div>
+        <div id="dm-steps">
+          <span id="dm-help"></span>
+          <div class="tw"><table class="dns"><thead><tr><th>Type</th><th>Name</th><th>Value</th></tr></thead><tbody id="dm-records"></tbody></table></div>
+          <span class="muted" style="font-size:14px">Changes can take from a few minutes to a few hours to work. If your domain provider already has an A record for @ or a record for www, edit those instead of adding new ones.</span>
+        </div>
+        <div class="actions"><button type="button" class="ghost" id="dm-check">Check again</button><button type="button" class="link" id="dm-remove">Disconnect this domain</button></div>
+      </div>
+      <p class="form-msg" id="dm-msg" role="status"></p>
     </div>
 
     <div class="box" id="d-changes" hidden style="margin-top:14px">
@@ -231,6 +264,7 @@ nav .navr .link{font-size:15px;color:var(--muted);text-decoration:none;font-weig
   <p id="msg" role="status"></p>
 </main>
 
+<footer class="mini"><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="cookies.html">Cookies</a> · <a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></footer>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
 <script>
 var SB_URL="https://cvkgnrrskoptdtojcwvz.supabase.co";
@@ -332,10 +366,66 @@ async function loadProject(){
     $('pr-view').textContent=p.status==='live'?(p.subdomain?'Visit '+p.subdomain+'.axencraft.co.uk \u2197':'View your website \u2197'):'View your website preview \u2197';
   }
   $('d-project').hidden=false;
-  loadChanges(p);
+  loadChanges(p);loadDomain(p);
   return p;
 }
 
+
+/* ---------- Web address and the customer's own domain ---------- */
+async function domainCall(body){
+  var r=await sb.functions.invoke('custom-domain',{body:body});
+  if(r.error){var m='Something went wrong. Please try again.';try{m=(await r.error.context.json()).error||m}catch(_){}throw new Error(m)}
+  return r.data;
+}
+function drawDomain(st){
+  var has=st&&st.domain;
+  $('dm-none').hidden=!!has;$('dm-set').hidden=!has;
+  $('dm-also').textContent='';
+  if(!has)return;
+  $('dm-name').textContent=st.domain;
+  $('dm-pill').textContent=st.connected?'Connected':'Waiting for settings';
+  $('dm-pill').className='pill '+(st.connected?'ok':'wait');
+  $('dm-steps').hidden=!!st.connected;
+  if(st.connected){
+    $('dm-also').innerHTML='';var a=document.createElement('a');a.href='https://'+st.domain;a.target='_blank';a.rel='noopener';a.textContent=st.domain;
+    $('dm-also').append(' and ',a);
+    if(currentProject)$('pr-view').href='https://'+st.domain,$('pr-view').textContent='Visit '+st.domain+' \u2197';
+  }else{
+    $('dm-help').textContent='Log in where you bought '+st.domain+', find its DNS settings, and add these records:';
+    var tb=$('dm-records');tb.innerHTML='';
+    (st.records||[]).forEach(function(r){
+      var tr=document.createElement('tr');
+      [r.type,r.name,r.value].forEach(function(v,i){var td=document.createElement('td');if(i===2){var c=document.createElement('code');c.textContent=v;c.title='Click to copy';c.onclick=function(){navigator.clipboard&&navigator.clipboard.writeText(v);$('dm-msg').textContent='Copied.'};td.appendChild(c);if(r.note){var n=document.createElement('div');n.className='muted';n.style.fontSize='13px';n.textContent=r.note;td.appendChild(n)}}else td.textContent=v;tr.appendChild(td)});
+      tb.appendChild(tr);
+    });
+  }
+}
+async function loadDomain(p){
+  var live=p&&p.status==='live'&&p.subdomain;
+  $('d-domain').hidden=!live;if(!live)return;
+  $('dm-sub').href='https://'+p.subdomain+'.axencraft.co.uk';$('dm-sub').textContent=p.subdomain+'.axencraft.co.uk';
+  $('dm-msg').textContent='';
+  try{drawDomain(await domainCall({action:'status'}))}catch(e){drawDomain(null)}
+}
+$('f-domain').addEventListener('submit',async function(e){
+  e.preventDefault();var v=$('dm-input').value.trim(),b=$('dm-add');
+  if(!v){$('dm-msg').textContent='Type your domain name, for example yourbusiness.co.uk.';return}
+  b.disabled=true;$('dm-msg').classList.remove('err');$('dm-msg').textContent='Connecting...';
+  try{drawDomain(await domainCall({action:'add',domain:v}));$('dm-msg').textContent='Domain added. Now add the settings below where you bought it.'}
+  catch(err){$('dm-msg').classList.add('err');$('dm-msg').textContent=err.message}
+  b.disabled=false;
+});
+$('dm-check').onclick=async function(){
+  var b=this;b.disabled=true;$('dm-msg').classList.remove('err');$('dm-msg').textContent='Checking...';
+  try{var st=await domainCall({action:'status'});drawDomain(st);$('dm-msg').textContent=st.connected?'All set! Your website now shows at '+st.domain+'.':'Not working yet. Double-check the settings, and give it a little longer if you\u2019ve just added them.'}
+  catch(err){$('dm-msg').classList.add('err');$('dm-msg').textContent=err.message}
+  b.disabled=false;
+};
+$('dm-remove').onclick=async function(){
+  if(!confirm('Disconnect this domain? Your website will still be at your axencraft.co.uk address.'))return;
+  try{drawDomain(await domainCall({action:'remove'}));$('dm-msg').textContent='Domain disconnected.';if(currentProject)loadProject()}
+  catch(err){$('dm-msg').classList.add('err');$('dm-msg').textContent=err.message}
+};
 
 /* ---------- Change requests ---------- */
 var CR_PAGES={
@@ -548,7 +638,7 @@ function setMode(s){
   $('a-title').textContent=s?'Create your account':'Log in';
   $('a-sub').textContent=s?'You\u2019ll use it to follow your website\u2019s progress, see your preview and request changes.':(has?'Log in to continue to payment.':'Welcome back.');
   $('a-btn').textContent=s?(has?'Create account and continue':'Create account'):(has?'Log in and continue':'Log in');
-  $('pw-hint').hidden=!s;renderOrder();
+  $('pw-hint').hidden=!s;$('agree').hidden=!s;renderOrder();
   $('toggle').textContent=s?'Already have an account? Log in':'New here? Create an account';
   $('pw').autocomplete=s?'new-password':'current-password';
   $('forgot').hidden=s;say('');
