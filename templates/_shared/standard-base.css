@@ -159,3 +159,7 @@ form.enquiry .btn{justify-self:start}
 .foot>div{min-width:0}
 .foot a,.foot li,.details dd{overflow-wrap:anywhere}
 @media(max-width:520px){.foot{grid-template-columns:1fr}}
+
+/* Spam trap: hidden from people, filled in by bots */
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
+.enquiry .done.err,.err{color:#b3261e}

@@ -257,6 +257,7 @@
             '<label>What do you need?<select name="service"><option value="">Choose a service</option>' +
               (d.services || []).map(function (s) { return '<option>' + esc(s.name) + '</option>'; }).join('') + '<option>Something else</option></select></label>' +
             '<label>Your message<textarea name="message" required></textarea></label>' +
+            '<p class="hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></p>' +
             '<button class="btn" type="submit">Send message</button>' +
             '<p class="done" id="sent" role="status" hidden>Thanks! Your message has been sent. We’ll be in touch soon.</p>' +
           '</form>' +
@@ -353,9 +354,40 @@
     });
   }
 
-  // Enquiry form (preview: on live sites this will send to the business owner)
+
+  /* ---------- Website forms: sent to the business on live sites ---------- */
+  // Live sites are served at the site's own address; previews live under /templates/.
+  var LIVE_SITE = !/^\/templates\//.test(location.pathname);
+  var PREVIEW_NOTE = 'This is a preview, so nothing was sent. On the live website, messages go straight to the business by email.';
+  function sendForm(kind, form, fields) {
+    if (!LIVE_SITE) return Promise.resolve({ preview: true });
+    var hp = form.querySelector('[name=website]');
+    return fetch('/api/contact', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ kind: kind, hp: hp ? hp.value : '', fields: fields })
+    }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (b) {
+      if (!r.ok) throw new Error(b.error || 'Sorry, your message couldn\u2019t be sent. Please try again.');
+      return b;
+    }); });
+  }
+  function formFields(form) {
+    var o = {}; [].forEach.call(form.elements, function (el) {
+      if (!el.name || el.name === 'website' || ((el.type === 'radio' || el.type === 'checkbox') && !el.checked)) return;
+      o[el.name] = el.value;
+    }); return o;
+  }
+
+  // Enquiry form
   var form = document.getElementById('enquiry');
   if (form) form.addEventListener('submit', function (e) {
-    e.preventDefault(); form.reset(); document.getElementById('sent').hidden = false;
+    e.preventDefault();
+    var out = document.getElementById('sent'), btn = form.querySelector('button[type=submit]');
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    btn.disabled = true; out.hidden = false; out.classList.remove('err'); out.textContent = 'Sending...';
+    sendForm('enquiry', form, formFields(form)).then(function (r) {
+      out.textContent = r.preview ? PREVIEW_NOTE : 'Thanks! Your message has been sent. We\u2019ll be in touch soon.';
+      if (!r.preview) form.reset();
+    }).catch(function (err) { out.classList.add('err'); out.textContent = err.message; })
+      .then(function () { btn.disabled = false; });
   });
 })();

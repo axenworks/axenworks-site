@@ -1,6 +1,7 @@
 // Public, read-only website content.
 //  ?token=<preview token>  a customer's draft, for their private preview link.
 //  ?host=<subdomain>       a live website, served at <subdomain>.axencraft.co.uk.
+//  ?domain=<their domain>  a live website on the customer's own domain.
 //                          Add &meta=1 to get just which template folder to use,
 //                          or { offline: true } if the plan is unpaid or cancelled.
 import { admin, siteFor } from "../_shared/stripe.ts";
@@ -22,9 +23,17 @@ Deno.serve(async (req) => {
   const db = admin();
 
   const host = (params.get("host") ?? "").toLowerCase();
-  if (host) {
-    if (!/^[a-z0-9]([a-z0-9-]{0,40}[a-z0-9])?$/.test(host)) return notFound();
-    const { data: p } = await db.from("projects").select("site,template,user_id,status").eq("subdomain", host).maybeSingle();
+  const domain = (params.get("domain") ?? "").toLowerCase().replace(/^www\./, "");
+  if (host || domain) {
+    let q = db.from("projects").select("site,template,user_id,status");
+    if (host) {
+      if (!/^[a-z0-9]([a-z0-9-]{0,40}[a-z0-9])?$/.test(host)) return notFound();
+      q = q.eq("subdomain", host);
+    } else {
+      if (!/^[a-z0-9.-]{3,253}$/.test(domain)) return notFound();
+      q = q.eq("custom_domain", domain);
+    }
+    const { data: p } = await q.maybeSingle();
     if (!p || p.status !== "live" || !p.site || !p.template) return notFound();
     const { data: sub } = await db.from("subscriptions").select("plan,status,past_due_since").eq("user_id", p.user_id).maybeSingle();
     if (!sub?.plan) return notFound();

@@ -152,7 +152,7 @@
     '<div class="wrap foot">' +
       '<div class="foot-brand"><a class="brand" href="index.html">' + brandHtml + '</a><p>' + esc(d.intro) + '</p>' +
         '<form class="newsletter" novalidate><label for="nl-email">Tips and news, once a month</label><div class="nl-row">' +
-        '<input id="nl-email" type="email" placeholder="Your email" autocomplete="email" required><button type="submit" class="btn small">Sign up</button></div>' +
+        '<input name="website" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true"><input id="nl-email" name="email" type="email" placeholder="Your email" autocomplete="email" required><button type="submit" class="btn small">Sign up</button></div>' +
         '<p class="nl-done" role="status" hidden>Thanks, you’re signed up.</p></form></div>' +
       '<div><h4>Explore</h4><ul>' + PAGES.map(function (p) { return '<li><a href="' + p[0] + '">' + p[1] + '</a></li>'; }).join('') + '</ul></div>' +
       '<div><h4>Contact</h4><ul>' +
@@ -358,7 +358,8 @@
               }).join('') + '</div></div>' +
               '<label>Postcode<input name="postcode" autocomplete="postal-code" required></label></fieldset>' +
             '<fieldset class="bstep" data-step="3" hidden><legend>Your details</legend>' +
-              '<label>Your name<input name="name" autocomplete="name" required></label>' +
+                '<p class="hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></p>' +
+            '<label>Your name<input name="name" autocomplete="name" required></label>' +
               '<label>Email<input name="email" type="email" autocomplete="email" required></label>' +
               '<label>Phone<input name="phone" type="tel" autocomplete="tel"></label>' +
               '<label>Anything we should know?<textarea name="message"></textarea></label></fieldset>' +
@@ -546,7 +547,30 @@
     });
   });
 
-  // Booking form: three steps (preview: on live sites this will send to the business owner)
+
+  /* ---------- Website forms: sent to the business on live sites ---------- */
+  // Live sites are served at the site's own address; previews live under /templates/.
+  var LIVE_SITE = !/^\/templates\//.test(location.pathname);
+  var PREVIEW_NOTE = 'This is a preview, so nothing was sent. On the live website, messages go straight to the business by email.';
+  function sendForm(kind, form, fields) {
+    if (!LIVE_SITE) return Promise.resolve({ preview: true });
+    var hp = form.querySelector('[name=website]');
+    return fetch('/api/contact', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ kind: kind, hp: hp ? hp.value : '', fields: fields })
+    }).then(function (r) { return r.json().catch(function () { return {}; }).then(function (b) {
+      if (!r.ok) throw new Error(b.error || 'Sorry, your message couldn\u2019t be sent. Please try again.');
+      return b;
+    }); });
+  }
+  function formFields(form) {
+    var o = {}; [].forEach.call(form.elements, function (el) {
+      if (!el.name || el.name === 'website' || ((el.type === 'radio' || el.type === 'checkbox') && !el.checked)) return;
+      o[el.name] = el.value;
+    }); return o;
+  }
+
+  // Booking form: three steps
   var form = document.getElementById('book');
   if (form) {
     var stepN = 1, steps = form.querySelectorAll('.bstep'), bars = form.querySelectorAll('.steps-bar span');
@@ -571,17 +595,30 @@
       if (bad) { bad.focus(); return 'Please fill in ' + (bad.closest('label') ? bad.closest('label').firstChild.textContent.toLowerCase() : 'this field') + '.'; }
       return '';
     }
-    next.addEventListener('click', function () { var p = valid(stepN); if (p) { err.textContent = p; return; } go(stepN + 1); });
+    next.addEventListener('click', function () {
+      var p = valid(stepN); if (p) { err.textContent = p; return; }
+      if (stepN < 3) { go(stepN + 1); return; }
+      next.disabled = true; next.textContent = 'Sending...'; err.textContent = '';
+      sendForm('booking', form, formFields(form)).then(function (r) {
+        var done = form.querySelector('.bstep[data-step="4"] p');
+        if (r.preview && done) done.textContent = PREVIEW_NOTE;
+        go(4); if (!r.preview) form.reset();
+      }).catch(function (e2) { err.textContent = e2.message; next.textContent = 'Send request'; })
+        .then(function () { next.disabled = false; });
+    });
     back.addEventListener('click', function () { go(stepN - 1); });
     form.addEventListener('submit', function (e) { e.preventDefault(); next.click(); });
     if (location.hash === '#book') setTimeout(function () { form.scrollIntoView({ block: 'start' }); }, 50);
   }
 
-  // Newsletter (preview)
+  // Newsletter sign-up
   var nl = document.querySelector('.newsletter');
   if (nl) nl.addEventListener('submit', function (e) {
-    e.preventDefault(); var i = nl.querySelector('input');
+    e.preventDefault(); var i = nl.querySelector('input[type=email]'), done = nl.querySelector('.nl-done');
     if (!i.checkValidity()) { i.focus(); return; }
-    nl.reset(); nl.querySelector('.nl-done').hidden = false;
+    done.hidden = false; done.textContent = 'Signing you up...';
+    sendForm('newsletter', nl, { email: i.value }).then(function (r) {
+      done.textContent = r.preview ? PREVIEW_NOTE : 'Thanks, you\u2019re signed up.'; if (!r.preview) nl.reset();
+    }).catch(function (e2) { done.textContent = e2.message; });
   });
 })();

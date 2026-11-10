@@ -133,6 +133,7 @@ form.enquiry .done{margin:0;color:var(--main);font-weight:600}
 footer{padding:36px 0;font-size:14px;color:var(--muted)}
 footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
 [hidden]{display:none!important}
+.hp{position:absolute!important;left:-9999px!important;width:1px;height:1px;overflow:hidden}
 </style>
 </head>
 <body data-style="classic">
@@ -200,6 +201,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
         <label>Email<input name="email" type="email" autocomplete="email" required></label>
         <label>Phone (optional)<input name="phone" type="tel" autocomplete="tel"></label>
         <label>How can we help?<textarea name="message" required></textarea></label>
+        <p class="hp" aria-hidden="true"><label>Leave this empty<input name="website" tabindex="-1" autocomplete="off"></label></p>
         <button class="btn" type="submit">Send message</button>
         <p class="done" id="sent" hidden role="status">Thanks! Your message has been sent. We'll be in touch soon.</p>
       </form>
@@ -368,9 +370,19 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
   $('foot-name').textContent='© '+new Date().getFullYear()+' '+d.business_name;
   $('foot-area').textContent=c.area||'';
 
-  // Preview only: on live sites the form will send enquiries to the business.
+  // Enquiry form: on live sites messages are emailed to the business; previews (under /templates/) send nothing.
   $('enquiry').addEventListener('submit',function(e){
-    e.preventDefault();this.reset();$('sent').hidden=false;
+    e.preventDefault();var f=this,out=$('sent'),btn=f.querySelector('button[type=submit]');
+    if(!f.checkValidity()){f.reportValidity();return}
+    out.hidden=false;out.style.color='';
+    if(/^\/templates\//.test(location.pathname)){out.textContent='This is a preview, so nothing was sent. On the live website, messages go straight to the business by email.';return}
+    btn.disabled=true;out.textContent='Sending...';
+    var fields={};[].forEach.call(f.elements,function(el){if(el.name&&el.name!=='website')fields[el.name]=el.value});
+    fetch('/api/contact',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({kind:'enquiry',hp:f.website.value,fields:fields})})
+      .then(function(r){return r.json().catch(function(){return{}}).then(function(b){if(!r.ok)throw new Error(b.error||'Sorry, your message couldn\u2019t be sent. Please try again.')})})
+      .then(function(){out.textContent='Thanks! Your message has been sent. We\u2019ll be in touch soon.';f.reset()})
+      .catch(function(err){out.style.color='#b3261e';out.textContent=err.message})
+      .then(function(){btn.disabled=false});
   });
 })();
 </script>
