@@ -1,5 +1,5 @@
 import re
-OWNER='[Your full name]'
+OWNER='Freddie Joseph Green'
 ADDR='Upover, Stockleigh English, Crediton, EX17 4DD'
 UPDATED='10 November 2026'
 FAV='<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%232430d6%27/%3E%3Cpath d=%27M20 46 32 16l12 30M24.5 36h15%27 stroke=%27white%27 stroke-width=%276%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">'
