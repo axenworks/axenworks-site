@@ -27,8 +27,9 @@ Deno.serve(async (req) => {
     return new Response("Email not configured", { status: 500 });
   }
 
-  const [{ data: owner }, { data: sub }, { data: userRes }] = await Promise.all([
+  const [{ data: owner }, { data: fromRow }, { data: sub }, { data: userRes }] = await Promise.all([
     db.from("app_settings").select("value").eq("key", "owner_email").maybeSingle(),
+    db.from("app_settings").select("value").eq("key", "email_from").maybeSingle(),
     db.from("subscriptions").select("plan,status").eq("user_id", p.user_id).maybeSingle(),
     db.auth.admin.getUserById(p.user_id),
   ]);
@@ -69,7 +70,7 @@ ${links ? `<p style="margin-top:16px"><b>Uploads</b> (links work for 7 days): ${
     method: "POST",
     headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
     body: JSON.stringify({
-      from: "Axencraft <onboarding@resend.dev>",
+      from: fromRow?.value || "Axencraft <onboarding@resend.dev>",
       to: [to],
       reply_to: customerEmail || undefined,
       subject: `New questionnaire: ${a.business_name || "Unnamed business"}`,

@@ -75,13 +75,14 @@ Deno.serve(async (req) => {
     // Email the owner (best effort).
     const key = Deno.env.get("RESEND_API_KEY");
     const { data: owner } = await db.from("app_settings").select("value").eq("key", "owner_email").maybeSingle();
+    const { data: fromRow } = await db.from("app_settings").select("value").eq("key", "email_from").maybeSingle();
     if (key && owner?.value) {
       const biz = project.answers?.business_name || user.email;
       await fetch("https://api.resend.com/emails", {
         method: "POST",
         headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-          from: "Axencraft <onboarding@resend.dev>", to: [owner.value], reply_to: user.email || undefined,
+          from: fromRow?.value || "Axencraft <onboarding@resend.dev>", to: [owner.value], reply_to: user.email || undefined,
           subject: `Change request: ${biz}${isExtra ? " (extra, £10)" : ""}`,
           html: `<div style="font-family:system-ui,sans-serif;font-size:15px"><h2 style="margin:0 0 6px">New change request</h2>
 <p style="margin:0 0 14px;color:#585e69">${esc(biz)} · ${esc(user.email)} · ${esc(sub.plan)} plan · ${live ? (isExtra ? "extra £10 change" : `${used + 1} of ${allowance} this month`) : "during preview (free)"}</p>
