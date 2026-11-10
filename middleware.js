@@ -20,7 +20,8 @@ async function folderFor(sub) {
     const res = await fetch(`${SITE_API}?host=${sub}&meta=1`);
     if (res.ok) {
       const data = await res.json();
-      if (/^(starter|standard|pro)-[a-z]+$/.test(data.folder || '')) folder = data.folder;
+      if (data.offline) folder = 'offline';
+      else if (/^(starter|standard|pro)-[a-z]+$/.test(data.folder || '')) folder = data.folder;
     }
   } catch (_) { /* treat as not found */ }
   folders.set(sub, { folder, at: Date.now() });
@@ -54,6 +55,15 @@ export default async function middleware(request) {
   }
 
   const folder = await folderFor(sub);
+  if (folder === 'offline') {
+    return new Response(
+      `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>Temporarily unavailable</title>` +
+      `<body style="font:18px/1.5 system-ui,sans-serif;max-width:560px;margin:15vh auto;padding:0 24px;color:#16181d">` +
+      `<h1 style="font-size:28px">This website is temporarily unavailable</h1><p>Please check back soon.</p>` +
+      `<p style="color:#585e69;font-size:15px">If this is your website, log in to your <a href="https://${SITE_DOMAIN}/account.html">Axencraft account</a> to bring it back online.</p>`,
+      { status: 503, headers: { 'content-type': 'text/html; charset=utf-8', 'cache-control': 'no-store', 'retry-after': '3600' } },
+    );
+  }
   if (!folder) {
     return new Response(
       `<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Website not found</title>` +

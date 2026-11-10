@@ -55,6 +55,10 @@ Deno.serve(async (req) => {
       .update({ trial_days: trialDays }).eq("user_id", user.id);
     if (tdErr) throw tdErr;
 
+    // Returning customers whose website is already built don't pay the setup fee again.
+    const { data: proj } = await db.from("projects").select("built_at").eq("user_id", user.id).maybeSingle();
+    const returning = !!proj?.built_at;
+
     const site = siteFor(origin);
     const params: Record<string, string> = {
       mode: "subscription",
@@ -62,13 +66,15 @@ Deno.serve(async (req) => {
       client_reference_id: user.id,
       "line_items[0][price]": price,
       "line_items[0][quantity]": "1",
-      "line_items[1][price]": SETUP_FEE_PRICE,
-      "line_items[1][quantity]": "1",
       "subscription_data[metadata][user_id]": user.id,
       "subscription_data[metadata][plan]": plan,
       success_url: `${site}/account.html?checkout=success`,
       cancel_url: `${site}/account.html?checkout=cancelled`,
     };
+    if (!returning) {
+      params["line_items[1][price]"] = SETUP_FEE_PRICE;
+      params["line_items[1][quantity]"] = "1";
+    }
     // Hold monthly billing until go-live: the subscription waits in a placeholder
     // trial (Stripe allows up to ~2 years). Go-live replaces this end date with
     // today + the customer's trial days. The setup fee is still charged today.

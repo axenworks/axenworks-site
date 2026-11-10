@@ -89,6 +89,9 @@ nav .navr .link{font-size:15px;color:var(--muted);text-decoration:none;font-weig
 @media(max-width:480px){.tracker li{font-size:11.5px}}
 .actions{display:flex;flex-wrap:wrap;gap:10px}
 .chosen{border:2px solid var(--blue);margin-bottom:8px}
+.warn{border:2px solid #e0a800;background:#fff8e1;color:#4a3800;margin-bottom:14px}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .warn{background:#2a2410;color:#f5e6b8}}
+#p-status.alert{color:#b3261e;font-weight:600}
 </style>
 </head>
 <body>
@@ -175,12 +178,19 @@ nav .navr .link{font-size:15px;color:var(--muted);text-decoration:none;font-weig
       <div id="cr-history" hidden><b style="font-size:15px">Your requests</b><ul class="cr-list" id="cr-list"></ul></div>
     </div>
 
+    <div class="box warn" id="d-offline" hidden>
+      <b>Your website is offline</b>
+      <span id="off-text">Your plan has ended, so your website is no longer online. Choose a plan below to bring it back. Your website is saved, so there's no setup fee to pay again.</span>
+      <div class="actions"><button type="button" class="ghost" id="dl-off">Download your website content</button></div>
+    </div>
+
     <div class="box" id="d-plan" hidden style="margin-top:14px">
       <b>Your plan</b>
       <div class="plan-name" id="p-name"></div>
       <span id="p-status"></span>
       <div><button type="button" class="ghost" id="billing">Manage billing</button></div>
       <span class="muted" style="font-size:15px">Update your card, see invoices, switch plan or cancel.</span>
+      <div id="dl-wrap" hidden><button type="button" class="link" id="dl-plan">Download your website content</button> <span class="muted" style="font-size:14px">(your words and photos, as a zip file)</span></div>
     </div>
 
     <div id="d-choose" hidden>
@@ -192,7 +202,7 @@ nav .navr .link{font-size:15px;color:var(--muted);text-decoration:none;font-weig
         <span class="muted" style="font-size:14px">Payment is handled by Stripe. We never see your card details.</span>
       </div>
       <h2 id="choose-title">Choose your plan</h2>
-      <p class="sub">Every plan has a one-off £50 setup fee, paid today. Monthly payments only start once your website is live<span class="trial-txt"></span>.</p>
+      <p class="sub" id="choose-sub">Every plan has a one-off £50 setup fee, paid today. Monthly payments only start once your website is live<span class="trial-txt"></span>.</p>
       <div class="plans">
         <button type="button" class="plan" data-plan="starter">
           <span class="name">Starter</span>
@@ -303,7 +313,7 @@ function drawTracker(p){
   });
 }
 async function loadProject(){
-  var r=await sb.from('projects').select('status,template,answers,preview_token,built_at,subdomain').maybeSingle();
+  var r=await sb.from('projects').select('status,template,answers,preview_token,built_at,subdomain,site').maybeSingle();
   var p=r.data;
   currentProject=p;drawTracker(p);
   if(!p||p.status==='draft'){
@@ -403,13 +413,24 @@ async function renderPlan(row){
   $('d-loading').hidden=true;
   var live=row&&LIVE.indexOf(row.status)>-1;
   $('d-plan').hidden=!live;$('d-choose').hidden=live;
+  $('d-offline').hidden=true;
   if(!live){
+    // A former customer whose plan ended: their website is offline but saved.
+    if(row&&['canceled','unpaid','incomplete_expired'].indexOf(row.status)>-1){
+      var old=(await sb.from('projects').select('status,answers,site,built_at').maybeSingle()).data;
+      currentProject=old;
+      if(old&&old.site){
+        $('d-offline').hidden=false;
+        $('off-text').textContent=(row.status==='unpaid'?'Your website is offline because a payment wasn\u2019t made. ':'Your plan has ended, so your website is offline. ')+'Choose a plan below to bring it back. Your website is saved, so there\u2019s no setup fee to pay again.';
+      }
+    }
+    if(currentProject&&currentProject.site)$('choose-sub').textContent='Your website is saved, so there\u2019s no setup fee. Your monthly plan starts straight away.';
     var pl=getChosen();
     $('chosen').hidden=!PLANS[pl];
     $('choose-title').textContent=PLANS[pl]?'Or choose a different plan':'Choose your plan';
     if(PLANS[pl]){
       $('c-name').textContent=PLANS[pl].name+' plan';
-      $('c-text').textContent='\u00a350 setup fee today. Then '+monthText(pl)+'.';
+      $('c-text').textContent=(currentProject&&currentProject.site?'No setup fee, your website is saved. ':'\u00a350 setup fee today. Then ')+monthText(pl)+'.';
       var go=false;try{go=sessionStorage.getItem('axc-go')==='1';sessionStorage.removeItem('axc-go')}catch(_){}
       if(go)startCheckout(pl,$('c-pay'));
     }
@@ -426,10 +447,62 @@ async function renderPlan(row){
   if(row.cancel_at_period_end)s='Cancelled. Your plan ends on '+day(row.current_period_end||row.trial_end)+'.';
   else if(row.status==='trialing'&&!siteLive)s='Setup fee paid. Your monthly payments haven\u2019t started: '+(days?'your '+days+'-day free trial begins':'billing begins')+' when your website goes live.';
   else if(row.status==='trialing')s='Your website is live. Free trial until '+day(row.trial_end)+', then '+(p.price||'your plan')+' a month.';
-  else if(row.status==='past_due')s='Your last payment didn\u2019t go through. Please update your card using Manage billing below.';
+  else if(row.status==='past_due'){
+    var by=new Date(new Date(row.past_due_since||Date.now()).getTime()+7*86400000);
+    s='Your last payment didn\u2019t go through. Please update your card using Manage billing below'+(siteLive?' by '+day(by.toISOString())+', or your website will be taken offline.':'.');
+    note('Action needed: your last payment didn\u2019t go through. Update your card using Manage billing'+(siteLive?' by '+day(by.toISOString())+' to keep your website online.':'.'));
+  }
   else s='Active. Next payment on '+day(row.current_period_end)+'.';
-  $('p-status').textContent=s;
+  $('p-status').textContent=s;$('p-status').classList.toggle('alert',row.status==='past_due');
+  $('dl-wrap').hidden=!(proj&&proj.site);
 }
+
+/* ---------- Download website content (words + photos as a zip) ---------- */
+function loadZipLib(){
+  return window.JSZip?Promise.resolve():new Promise(function(ok,bad){
+    var sc=document.createElement('script');sc.src='https://cdn.jsdelivr.net/npm/jszip@3.10.1/dist/jszip.min.js';sc.onload=ok;sc.onerror=bad;document.head.appendChild(sc);
+  });
+}
+function siteText(site){
+  var out=[],add=function(h,v){if(v==null||v===''||(Array.isArray(v)&&!v.length))return;out.push('== '+h+' ==');out.push(typeof v==='string'?v:JSON.stringify(v,null,2));out.push('')};
+  add('Business name',site.business_name);add('Tagline',site.tagline);add('Introduction',site.intro);
+  add(site.about_title||'About',site.about);
+  (site.services||[]).length&&add('Services',(site.services||[]).map(function(x){return '- '+x.name+(x.price?' ('+x.price+')':'')+(x.description?': '+x.description:'')}).join('\n'));
+  (site.testimonials||[]).length&&add('Reviews',site.testimonials.map(function(t){return '"'+t.quote+'" - '+(t.name||'')}).join('\n'));
+  (site.faq||[]).length&&add('FAQ',site.faq.map(function(f){return 'Q: '+f.q+'\nA: '+f.a}).join('\n\n'));
+  (site.team||[]).length&&add('Team',site.team.map(function(m){return '- '+m.name+(m.role?', '+m.role:'')+(m.bio?': '+m.bio:'')}).join('\n'));
+  var c=site.contact||{};add('Contact',[c.phone,c.email,c.area,Array.isArray(c.hours)?c.hours.map(function(h){return h.filter(Boolean).join(': ')}).join(', '):c.hours].filter(Boolean).join('\n'));
+  return out.join('\n');
+}
+function siteImages(site){
+  var urls=[];function add(u){if(u&&typeof u==='string'&&/^https:/.test(u)&&urls.indexOf(u)<0)urls.push(u)}
+  add(site.logo);add(site.hero_image);add(site.about_image);
+  (site.gallery||[]).forEach(function(g){add(g.src)});
+  (site.projects||[]).forEach(function(p){add(p.before);add(p.after);(p.images||[]).forEach(add)});
+  (site.team||[]).forEach(function(m){add(m.photo)});if(site.owner)add(site.owner.photo);
+  return urls;
+}
+async function downloadContent(btn){
+  var site=currentProject&&currentProject.site;if(!site)return;
+  btn.disabled=true;var old=btn.textContent;btn.textContent='Preparing your download...';
+  try{
+    await loadZipLib();
+    var zip=new JSZip();
+    zip.file('website-text.txt',siteText(site));
+    zip.file('website-data.json',JSON.stringify(site,null,2));
+    var imgs=siteImages(site),folder=zip.folder('photos');
+    for(var i=0;i<imgs.length;i++){
+      try{var r=await fetch(imgs[i]);if(r.ok){var name=decodeURIComponent(imgs[i].split('/').pop().split('?')[0])||('photo-'+(i+1));folder.file(name,await r.blob())}}catch(_){}
+    }
+    var blob=await zip.generateAsync({type:'blob'});
+    var a=document.createElement('a');a.href=URL.createObjectURL(blob);
+    a.download=((site.business_name||'my-website').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')||'my-website')+'-content.zip';
+    document.body.appendChild(a);a.click();a.remove();setTimeout(function(){URL.revokeObjectURL(a.href)},5000);
+  }catch(e){note('Sorry, the download didn\u2019t work. Please try again.')}
+  btn.disabled=false;btn.textContent=old;
+}
+$('dl-plan').onclick=function(){downloadContent(this)};
+$('dl-off').onclick=function(){downloadContent(this)};
 
 async function loadPlan(){
   if(loadingPlan)return;loadingPlan=true;

@@ -1,7 +1,8 @@
 // Public, read-only website content.
 //  ?token=<preview token>  a customer's draft, for their private preview link.
 //  ?host=<subdomain>       a live website, served at <subdomain>.axencraft.co.uk.
-//                          Add &meta=1 to get just which template folder to use.
+//                          Add &meta=1 to get just which template folder to use,
+//                          or { offline: true } if the plan is unpaid or cancelled.
 import { admin, siteFor } from "../_shared/stripe.ts";
 
 Deno.serve(async (req) => {
@@ -25,11 +26,20 @@ Deno.serve(async (req) => {
     if (!/^[a-z0-9]([a-z0-9-]{0,40}[a-z0-9])?$/.test(host)) return notFound();
     const { data: p } = await db.from("projects").select("site,template,user_id,status").eq("subdomain", host).maybeSingle();
     if (!p || p.status !== "live" || !p.site || !p.template) return notFound();
-    if (params.get("meta")) {
-      const { data: sub } = await db.from("subscriptions").select("plan").eq("user_id", p.user_id).maybeSingle();
-      if (!sub?.plan) return notFound();
-      return new Response(JSON.stringify({ folder: `${sub.plan}-${p.template}` }), { headers });
+    const { data: sub } = await db.from("subscriptions").select("plan,status,past_due_since").eq("user_id", p.user_id).maybeSingle();
+    if (!sub?.plan) return notFound();
+    // Billing rules: online while trialing or paid. Failed payments get a grace period.
+    // Cancelled plans stay online until the paid period ends (Stripe only marks them
+    // cancelled at that point), then go offline.
+    let online = ["trialing", "active"].includes(sub.status);
+    if (sub.status === "past_due") {
+      const { data: g } = await db.from("app_settings").select("value").eq("key", "grace_days").maybeSingle();
+      const grace = Number(g?.value ?? 7) || 7;
+      const since = sub.past_due_since ? new Date(sub.past_due_since).getTime() : Date.now();
+      online = Date.now() < since + grace * 86400000;
     }
+    if (!online) return new Response(JSON.stringify({ offline: true }), { status: params.get("meta") ? 200 : 404, headers });
+    if (params.get("meta")) return new Response(JSON.stringify({ folder: `${sub.plan}-${p.template}` }), { headers });
     return new Response(JSON.stringify(p.site), { headers });
   }
 

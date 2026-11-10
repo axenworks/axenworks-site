@@ -8,7 +8,16 @@ const PRICE_TO_PLAN = Object.fromEntries(
 );
 const ts = (s?: number | null) => (s ? new Date(s * 1000).toISOString() : null);
 
-async function syncSubscription(subId: string) {
+// Ask notify-customer to email the customer (best effort; it de-duplicates itself).
+async function notify(event: string, id: string) {
+  try {
+    await fetch(`${Deno.env.get("SUPABASE_URL")}/functions/v1/notify-customer`, {
+      method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ event, id }),
+    });
+  } catch (e) { console.error("notify failed", e); }
+}
+
+async function syncSubscription(subId: string): Promise<string | undefined> {
   const db = admin();
   const sub = await stripe(`subscriptions/${subId}`, undefined, "GET");
 
@@ -22,6 +31,8 @@ async function syncSubscription(subId: string) {
     console.warn("No Axencraft user for subscription", sub.id);
     return;
   }
+  const { data: before } = await db.from("subscriptions")
+    .select("status,past_due_since").eq("user_id", userId).maybeSingle();
 
   const item = sub.items?.data?.find((i: any) => PRICE_TO_PLAN[i.price?.id]) ?? sub.items?.data?.[0];
   // Price first: customers can switch plans in the billing portal.
@@ -40,9 +51,14 @@ async function syncSubscription(subId: string) {
     updated_at: new Date().toISOString(),
   };
   if (sub.trial_end) row.trial_used = true;
+  // Billing rules: remember when payments started failing (sites go offline after the grace period).
+  if (sub.status === "past_due") row.past_due_since = before?.past_due_since ?? new Date().toISOString();
+  else { row.past_due_since = null; row.payment_failed_emailed_at = null; }
 
   const { error } = await db.from("subscriptions").upsert(row);
   if (error) throw error;
+  if (sub.status === "past_due" && before?.status !== "past_due") await notify("payment_failed", userId);
+  return userId;
 }
 
 Deno.serve(async (req) => {
@@ -76,6 +92,12 @@ Deno.serve(async (req) => {
       case "customer.subscription.resumed":
         await syncSubscription(obj.id);
         break;
+      case "customer.subscription.trial_will_end": {
+        // Stripe sends this 3 days before a trial ends.
+        const uid = await syncSubscription(obj.id);
+        if (uid) await notify("trial_ending", uid);
+        break;
+      }
     }
     return new Response(JSON.stringify({ received: true }), {
       headers: { "Content-Type": "application/json" },
