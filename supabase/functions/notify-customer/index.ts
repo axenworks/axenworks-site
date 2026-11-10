@@ -6,6 +6,7 @@
 // database, so calling it twice or with made-up input can't send a wrong email,
 // and each email is only ever sent once.
 // Sending only happens once app_settings.email_from is set (a verified sender).
+// Replies go to app_settings.reply_to, or the owner's email if that isn't set.
 import { admin } from "../_shared/stripe.ts";
 
 const SITE = "https://axencraft.co.uk";
@@ -29,10 +30,10 @@ Deno.serve(async (req) => {
   if (!event || id == null || !/^[0-9a-z-]{1,40}$/i.test(String(id))) return new Response("Bad request", { status: 400 });
 
   const db = admin();
-  const settings = await db.from("app_settings").select("key,value").in("key", ["email_from", "owner_email"]);
+  const settings = await db.from("app_settings").select("key,value").in("key", ["email_from", "reply_to", "owner_email"]);
   const get = (k: string) => (settings.data ?? []).find((r: any) => r.key === k)?.value;
   const from = get("email_from");
-  const replyTo = get("owner_email");
+  const replyTo = get("reply_to") || get("owner_email");
   const key = Deno.env.get("RESEND_API_KEY");
   if (!from || !key) return new Response("Customer emails not switched on yet");
 
