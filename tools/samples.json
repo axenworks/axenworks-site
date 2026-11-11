@@ -120,7 +120,7 @@
   "cta_label": "Book a class",
   "trust": ["Made in Edinburgh", "Dishwasher safe", "Classes of six"],
   "trust_line": "Studio and shop, Leith",
-  "highlights": [{"value": "6", "label": "people in a class"}, {"value": "1240", "label": "degree firing"}, {"value": "3", "label": "glazes, mixed here"}],
+  "highlights": [{"value": "6", "label": "people in a class"}, {"value": "1,240", "label": "degree firing"}, {"value": "3", "label": "glazes, mixed here"}],
   "about_title": "One potter, one wheel, a lot of plates",
   "about": "Ingrid Oda trained in Kyoto and Stoke-on-Trent before opening the studio in 2016. Everything is thrown on the wheel, trimmed by hand and glazed in one of three colours mixed in the studio.\n\nThe work is made to be used every day. It stacks, it goes in the dishwasher, and it gets better with a few years of breakfasts behind it.",
   "services": [
@@ -175,7 +175,7 @@
   "cta_label": "Book a groom",
   "trust": ["One dog at a time", "Fear-free trained", "Fully insured", "Treats included"],
   "trust_line": "Grooming and day care, Brighton",
-  "highlights": [{"value": "3200", "label": "dogs groomed"}, {"value": "1", "label": "dog on the table at a time"}, {"value": "8", "label": "years of wagging"}],
+  "highlights": [{"value": "3,200", "label": "dogs groomed"}, {"value": "1", "label": "dog on the table at a time"}, {"value": "8", "label": "years of wagging"}],
   "about_title": "Run by dog people, for dogs",
   "about": "Waggy Tails started in Jess's spare room with one very patient spaniel called Biscuit. Eight years on we have a bright shop in Kemptown, four groomers and a garden for the day care gang.\n\nWe only ever groom one dog at a time, we never use cages, and nervous dogs get as many breaks and biscuits as they need.",
   "services": [
@@ -232,7 +232,7 @@
   "cta_label": "Get a repair price",
   "trust": ["Most repairs in under an hour", "No fix, no fee", "12-month warranty", "Data stays on your device"],
   "trust_line": "Northern Quarter, Manchester",
-  "highlights": [{"value": "40", "label": "minutes for most screens"}, {"value": "12", "label": "month warranty"}, {"value": "18000", "label": "devices repaired"}],
+  "highlights": [{"value": "40", "label": "minutes for most screens"}, {"value": "12", "label": "month warranty"}, {"value": "18,000", "label": "devices repaired"}],
   "about_title": "Repair first. Replace last.",
   "about": "Pixel Fix opened in 2017 in a unit the size of a lift. We now have a bright workshop on Oldham Street and six technicians who would rather mend a phone than sell you a new one.\n\nEvery repair has a fixed price, quality parts and a 12-month warranty. If we cannot fix it, you do not pay.",
   "services": [

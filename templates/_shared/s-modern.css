@@ -79,3 +79,4 @@ h3{font-family:var(--font-display);font-weight:600;letter-spacing:-.02em}
 :root[data-theme=dark] .btn{background:#f1f3fa;border-color:#f1f3fa;color:#0a0d16}:root[data-theme=dark] .btn.alt{background:var(--surface);border-color:var(--surface);color:var(--ink)}
 :root[data-theme=dark] .cta-in{background-color:#141826}
 .lv-pro .hero-badge{--star:var(--accent-ink)}
+.lv-pro{--h1:clamp(40px,5vw,72px)}

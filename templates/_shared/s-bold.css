@@ -78,3 +78,4 @@ h3{font-family:var(--font-display);font-weight:800;font-stretch:75%;text-transfo
 :root[data-theme=dark] .svc li:hover{color:#0d0d0d;--ink:#0d0d0d;--main-text:#0d0d0d}
 .lv-pro .hero-art{margin-right:18px}
 @media(max-width:560px){.stats{grid-template-columns:repeat(2,minmax(0,1fr))}.stats b{font-size:48px}}
+.lv-pro .hero h1{font-size:min(var(--h1),clamp(44px,16vh,220px))}

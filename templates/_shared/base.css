@@ -277,7 +277,16 @@ legend{padding:0;margin-bottom:6px;font-family:var(--font-display);font-weight:v
 .lv-pro .proj{grid-template-columns:repeat(auto-fill,minmax(340px,1fr))}
 .pg-portfolio .proj{grid-template-columns:repeat(auto-fill,minmax(min(100%,440px),1fr))}
 .marquee-track:not(.run) span{white-space:normal;text-align:center}
-@media(max-width:560px){.stats{grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:14px 12px}.stats b{font-size:30px}.stats span{font-size:.84rem}}
-.stats li{min-width:0}.stats b{overflow-wrap:anywhere}
+@media(max-width:560px){.stats{grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:14px 12px}.stats b{font-size:clamp(20px,6.6vw,30px)}.stats span{font-size:.84rem}}
+.stats li{min-width:0}.stats b{white-space:nowrap}
 .lv-starter .brand{max-width:100%}
 :root[data-theme=dark]{--main-text:var(--main-bright);--accent-text:var(--accent-bright)}
+
+/* links people tap get a comfortable height on touch screens */
+.more,.top-tel,.facts a,.foot-nav a,.foot-contact a,.foot-soc a,.foot-base a,.back{display:inline-block;padding-block:10px}
+.foot-nav,.foot-contact{gap:0}.foot-contact span{padding-block:6px}
+.sec-head .more{margin-block:-10px}
+@media(max-width:560px){.st-modern .stats li{padding:16px 12px}}
+/* Pro opening: the headline never grows so tall that the buttons fall off the first screen */
+.lv-pro .hero h1{font-size:min(var(--h1),clamp(40px,12vh,200px))}
+.btn{text-align:center}
