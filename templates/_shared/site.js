@@ -434,8 +434,10 @@
       var track = document.querySelector('.marquee-track');
       if (track && !REDUCED) {
         var base = track.innerHTML, guard = 0;
+        track.classList.add('run'); /* one long line, so its real width can be measured */
         while (track.scrollWidth < innerWidth * 1.2 && guard++ < 12) track.innerHTML += base;
-        track.innerHTML += track.innerHTML; track.classList.add('run');
+        track.innerHTML += track.innerHTML;
+        track.style.animationDuration = Math.max(30, Math.round(track.scrollWidth / 2 / 32)) + 's'; /* a steady, readable 32px a second however long the strip is */
       }
       /* numbers count up once, when first seen */
       var nums = [].slice.call(document.querySelectorAll('[data-count]')).filter(function (el) { return /^\d[\d,]*$/.test(el.dataset.count); });
