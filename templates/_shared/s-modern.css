@@ -1,0 +1,81 @@
+/* Modern: soft light, big rounded panels, a wash of colour behind glass. Sample: a phone repair shop. */
+:root{--main:#2f54ff;--accent:#12c99b;--bg:#eef0f6;--surface:#fff;--ink:#0e1220;--muted:#596079;--line:#dfe3ee;--art-bg:#e3e7f5;--radius:26px;--btn-r:14px;--mark-r:10px;--field-r:14px;--dw:600;--dls:-.035em;--gut:clamp(14px,3vw,28px);
+  --mesh:radial-gradient(60% 80% at 12% 10%,color-mix(in srgb,var(--main) 30%,transparent),transparent 70%),radial-gradient(50% 70% at 92% 88%,color-mix(in srgb,var(--accent) 34%,transparent),transparent 70%);
+  --font-display:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;--font-body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.lv-standard,.lv-pro{--font-display:"Sora",system-ui,sans-serif;--font-body:"Manrope",system-ui,sans-serif}
+h3{font-family:var(--font-display);font-weight:600;letter-spacing:-.02em}
+.btn{background:var(--ink);border-color:var(--ink);color:var(--bg);padding:.9em 1.4em}
+.btn.alt{background:var(--surface);border-color:var(--surface);color:var(--ink)}
+.btn:hover{background:var(--main);border-color:var(--main);color:var(--on-main)}
+.top{background:none;border:0;padding-top:12px}
+.top-in{background:color-mix(in srgb,var(--surface) 86%,transparent);border:1px solid var(--surface);border-radius:20px;padding:0 10px 0 16px;min-height:60px;box-shadow:0 10px 30px -18px rgba(20,30,80,.35)}
+.nav a{border-radius:10px}.nav a[aria-current]{background:var(--bg);color:var(--ink)}
+.top-tel{background:var(--ink);color:var(--bg);padding:9px 14px;border-radius:12px;font-size:.92rem}
+.theme,.burger{border-radius:12px}
+@media(max-width:900px){.lv-standard .nav,.lv-pro .nav{top:calc(100% + 8px);left:var(--gut);right:var(--gut);border:0;border-radius:20px;padding:8px 16px}}
+.hero{padding:14px 0 0}
+.hero-in{background:var(--surface);background-image:var(--mesh);border-radius:36px;padding:clamp(28px,5vw,72px);align-items:center}
+.hero-place{display:inline-flex;align-items:center;gap:8px;background:var(--surface);color:var(--ink);padding:7px 14px;border-radius:999px;font-size:.9rem;box-shadow:0 2px 10px -4px rgba(20,30,80,.3)}
+.hero-place::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent)}
+.hero-trust{gap:8px}.hero-trust li{background:color-mix(in srgb,var(--surface) 70%,transparent);border:1px solid var(--surface);padding:6px 12px;border-radius:10px;color:var(--ink);font-weight:600}
+.hero-art .ph{border-radius:28px;box-shadow:0 30px 60px -30px rgba(20,30,80,.5);aspect-ratio:1}
+.stats-sec{padding:14px 0 0}.stats{gap:14px}
+.stats li{background:var(--surface);border-radius:var(--radius);padding:26px}
+.svc{grid-template-columns:1fr;gap:14px}
+.svc li{background:var(--surface);padding:26px;display:flex;flex-direction:column;gap:6px}
+.svc li:first-child{background:var(--main);color:var(--on-main);--muted:color-mix(in srgb,var(--on-main) 80%,transparent);background-image:radial-gradient(70% 90% at 100% 100%,color-mix(in srgb,var(--accent) 60%,transparent),transparent 70%)}
+@media(min-width:601px){.svc{grid-template-columns:1fr 1fr}.svc li:first-child{grid-column:1/-1}}
+@media(min-width:901px){
+  .svc{grid-template-columns:repeat(6,minmax(0,1fr))}
+  .svc li{grid-column:span 2;min-height:190px}
+  .svc li:first-child{grid-column:span 4}
+  .svc li:last-child:nth-child(3n),.svc li:only-child{grid-column:span 6;min-height:0}
+  .svc li:nth-last-child(2):nth-child(3n),.svc li:last-child:nth-child(3n+1){grid-column:span 3}
+}
+.svc li:first-child h3{font-size:clamp(1.5rem,2.6vw,2.2rem)}.svc li:first-child .price{background:var(--on-main);color:var(--main)}
+.svc-t{flex-direction:column-reverse;align-items:flex-start;gap:14px;margin:auto 0 0}.svc li p{order:2}
+.price{background:var(--bg);color:var(--ink);padding:5px 11px;border-radius:9px;font-size:.86rem}
+
+.about-in{background:var(--surface);border-radius:36px;padding:clamp(20px,3vw,36px)}.about-pic .ph{border-radius:22px}
+.steps{gap:14px}.steps li{background:var(--surface);border-radius:var(--radius);padding:72px 24px 24px}.steps li::before{top:22px;left:24px;border-radius:12px;background:var(--bg);color:var(--ink)}
+.vals{gap:14px}.vals li{background:var(--surface);border-radius:var(--radius);padding:26px}
+.rev{background:var(--surface);padding:28px}
+.avatar{border-radius:18px}.team li{background:var(--surface);border-radius:var(--radius);padding:20px}
+.gal-item .ph,.proj-card .ph{border-radius:22px}
+.proj-card{background:var(--surface);border-radius:var(--radius);padding:12px 12px 22px}.proj-card h3,.proj-card p,.proj-meta{padding-inline:10px}
+.form{background:var(--surface);border-radius:32px}.form input:not([type=radio]),.form select,.form textarea{background:var(--bg);border-color:transparent}.choice span{background:var(--bg);border-color:transparent}
+.q{background:var(--surface);border:0;border-radius:20px;padding:0 24px;margin-bottom:10px}.qs{border:0}
+.cta-band{background:none;padding:0 0 14px}
+.cta-in{background:var(--ink);background-image:var(--mesh);color:#fff;border-radius:36px;padding:clamp(30px,5vw,64px)}
+:root:not([data-theme=dark]) .cta-in{--muted:#c9cee0}
+.cta-band .btn{background:#fff;color:#0e1220;border-color:#fff}
+.foot{background:none;padding:0 0 14px}.foot .wrap{background:var(--surface);padding-inline:clamp(20px,4vw,48px)}
+.foot-in{border-radius:36px 36px 0 0;padding-top:clamp(28px,4vw,48px)}.foot-base{margin-top:0;padding:26px clamp(20px,4vw,48px) 22px;border:0;border-radius:0 0 36px 36px}
+.pagehead .wrap{background:var(--surface);background-image:var(--mesh);border-radius:36px;padding:clamp(28px,5vw,64px)}.pagehead{padding:14px 0}
+
+/* Starter: plain white cards, no colour wash */
+.lv-starter .hero-in{background-image:none;border-radius:28px;padding:clamp(24px,5vw,44px)}
+.lv-starter .sec{padding:8px 0}.lv-starter .sec>.wrap{background:var(--surface);border-radius:28px;padding:clamp(22px,5vw,40px)}
+.lv-starter .svc{grid-template-columns:1fr}
+.lv-starter .svc li:nth-child(n){grid-column:auto;background:none;color:inherit;--muted:#596079;min-height:0;padding:16px 0;border-radius:0;display:block}
+.lv-starter .svc-t{flex-direction:row;align-items:baseline;margin:0 0 6px}.lv-starter .svc li:first-child h3{font-size:1.15rem}.lv-starter .svc li:first-child .price{background:var(--bg);color:var(--ink)}
+.lv-starter .form{background:var(--bg);border-radius:20px}.lv-starter .form input,.lv-starter .form textarea{background:var(--surface)}
+.lv-starter .foot{padding-top:8px}
+
+/* Pro: the opening panel goes dark and glows */
+.lv-pro .hero{min-height:0}
+.lv-pro .hero-in{background-color:var(--ink);color:#fff;--muted:#c3c9de;min-height:min(84vh,860px);
+  --mesh:radial-gradient(55% 75% at 8% 0%,color-mix(in srgb,var(--main) 85%,transparent),transparent 70%),radial-gradient(50% 70% at 100% 100%,color-mix(in srgb,var(--accent) 70%,transparent),transparent 70%)}
+:root[data-theme=dark] .lv-pro .hero-in{background-color:#05070d}
+.lv-pro .hero-place{background:rgba(255,255,255,.14);color:#fff;box-shadow:none}
+.lv-pro .hero-trust li{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:#fff}
+.lv-pro .hero .btn{background:#fff;color:#0e1220;border-color:#fff}.lv-pro .hero .btn.alt{background:rgba(255,255,255,.14);color:#fff;border-color:transparent}
+.lv-pro .hero-art .ph{aspect-ratio:4/5;border:1px solid rgba(255,255,255,.25)}
+.lv-pro .hero-badge{--muted:#596079;color:#0e1220;background:rgba(255,255,255,.9);backdrop-filter:blur(14px);border-radius:20px;left:-28px}
+.lv-pro .marquee{border:0;padding:20px 0 6px;font-weight:600;font-size:1rem}
+.lv-pro .marquee-track span{background:var(--surface);padding:10px 18px;border-radius:999px;margin-right:10px}.lv-pro .marquee-track span::after{display:none}
+.lv-pro .marquee-track span::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:10px}
+:root[data-theme=dark]{--bg:#0a0d16;--surface:#141826;--ink:#f1f3fa;--muted:#9aa2bd;--line:#252b3f;--art-bg:#1b2033;--main-text:var(--main-bright);--accent-text:var(--accent-bright)}
+:root[data-theme=dark] .btn{background:#f1f3fa;border-color:#f1f3fa;color:#0a0d16}:root[data-theme=dark] .btn.alt{background:var(--surface);border-color:var(--surface);color:var(--ink)}
+:root[data-theme=dark] .cta-in{background-color:#141826}
+.lv-pro .hero-badge{--star:var(--accent-ink)}

@@ -1,0 +1,235 @@
+{
+ "business_name": "Pixel Fix",
+ "tagline": "Cracked it? We fix phones and laptops while you wait.",
+ "intro": "Screens, batteries and water damage repaired the same day in the Northern Quarter, with a price you see before we start.",
+ "cta_label": "Get a repair price",
+ "trust": [
+  "Most repairs in under an hour",
+  "No fix, no fee",
+  "12-month warranty",
+  "Data stays on your device"
+ ],
+ "trust_line": "Northern Quarter, Manchester",
+ "highlights": [
+  {
+   "value": "40",
+   "label": "minutes for most screens"
+  },
+  {
+   "value": "12",
+   "label": "month warranty"
+  },
+  {
+   "value": "18000",
+   "label": "devices repaired"
+  }
+ ],
+ "about_title": "Repair first. Replace last.",
+ "about": "Pixel Fix opened in 2017 in a unit the size of a lift. We now have a bright workshop on Oldham Street and six technicians who would rather mend a phone than sell you a new one.\n\nEvery repair has a fixed price, quality parts and a 12-month warranty. If we cannot fix it, you do not pay.",
+ "services": [
+  {
+   "name": "Screen replacement",
+   "description": "Cracked or unresponsive screens replaced for iPhone, Samsung, Pixel and iPad.",
+   "price": "From £59"
+  },
+  {
+   "name": "Battery replacement",
+   "description": "A new battery fitted and tested in about thirty minutes.",
+   "price": "From £45"
+  },
+  {
+   "name": "Water damage",
+   "description": "Opened, cleaned and dried properly, with an honest report on what we find.",
+   "price": "From £49"
+  },
+  {
+   "name": "Laptop repair",
+   "description": "Keyboards, hinges, screens and slow machines for Mac and Windows.",
+   "price": "From £69"
+  },
+  {
+   "name": "Data recovery",
+   "description": "Photos and files rescued from phones and drives that will not turn on.",
+   "price": "From £90"
+  },
+  {
+   "name": "Charging and ports",
+   "description": "Loose or dead charging ports cleaned or replaced.",
+   "price": "From £39"
+  }
+ ],
+ "values": [
+  {
+   "title": "Price first",
+   "text": "You see a fixed price before we open your device."
+  },
+  {
+   "title": "No fix, no fee",
+   "text": "If we cannot repair it, the diagnosis costs you nothing."
+  },
+  {
+   "title": "Your data stays put",
+   "text": "We never copy, read or wipe your data without asking."
+  }
+ ],
+ "process": [
+  {
+   "title": "Tell us what broke",
+   "text": "Pick your device and the problem to get a price in seconds."
+  },
+  {
+   "title": "Drop in or post it",
+   "text": "Walk in any day, or use our free tracked postal service."
+  },
+  {
+   "title": "We repair it",
+   "text": "Most jobs take under an hour. We text you when it is ready."
+  },
+  {
+   "title": "Test and collect",
+   "text": "We test everything with you before you pay."
+  }
+ ],
+ "faq": [
+  {
+   "q": "How long will it take?",
+   "a": "Screens and batteries usually take 30 to 60 minutes. Water damage and laptops can take a day or two."
+  },
+  {
+   "q": "Will I lose my data?",
+   "a": "Almost never. Screen and battery repairs do not touch your data. We still recommend a backup first."
+  },
+  {
+   "q": "Do you use genuine parts?",
+   "a": "We offer genuine parts where they are available and high-quality alternatives at a lower price. You choose."
+  },
+  {
+   "q": "What does the warranty cover?",
+   "a": "Any fault with the part or our work for 12 months. It does not cover new accidental damage."
+  }
+ ],
+ "projects": [
+  {
+   "title": "iPhone back from the canal",
+   "location": "Ancoats",
+   "category": "Water damage",
+   "summary": "Two days underwater, every photo recovered.",
+   "details": "We cleaned the board in an ultrasonic bath, replaced the battery and got it running long enough to back up 9,000 photos."
+  },
+  {
+   "title": "A designer's MacBook",
+   "location": "Northern Quarter",
+   "category": "Laptops",
+   "summary": "New keyboard and battery, back the same afternoon.",
+   "details": "Dropped off at ten, collected at three with a full health report."
+  },
+  {
+   "title": "Fifty tablets for a primary school",
+   "location": "Salford",
+   "category": "Business",
+   "summary": "Screens and cases refreshed over half term.",
+   "details": "Collected on Friday, returned the following Friday, each one tested and labelled."
+  },
+  {
+   "title": "The folding phone",
+   "location": "Manchester",
+   "category": "Screens",
+   "summary": "An inner screen replacement most shops turn away.",
+   "details": "A three-hour job done under the microscope with a genuine part."
+  }
+ ],
+ "testimonials": [
+  {
+   "quote": "Screen done in thirty-five minutes while I had a coffee next door. Cheaper than the quote from the brand shop.",
+   "name": "Aaliyah Brooks",
+   "detail": "iPhone 14",
+   "rating": 5
+  },
+  {
+   "quote": "They got my photos back off a phone that had been in a river. I cried a bit.",
+   "name": "Owen Hartley",
+   "detail": "Data recovery",
+   "rating": 5
+  },
+  {
+   "quote": "Told me straight that my laptop was not worth fixing and did not charge me. I will be back.",
+   "name": "Mei Lin",
+   "detail": "Laptop check",
+   "rating": 5
+  },
+  {
+   "quote": "Fifty tablets, one week, no drama. Brilliant for the school.",
+   "name": "Mr Daniels",
+   "detail": "Primary school",
+   "rating": 5
+  }
+ ],
+ "team": [
+  {
+   "name": "Tariq Aziz",
+   "role": "Founder",
+   "bio": "Started fixing phones at sixteen. Still does the tricky ones."
+  },
+  {
+   "name": "Elena Novak",
+   "role": "Lead technician",
+   "bio": "Micro-soldering and board repair."
+  },
+  {
+   "name": "Josh Kerr",
+   "role": "Front of house",
+   "bio": "Explains everything without the jargon."
+  }
+ ],
+ "gallery": [
+  {
+   "caption": "The workshop"
+  },
+  {
+   "caption": "Under the microscope"
+  },
+  {
+   "caption": "New screen going on"
+  },
+  {
+   "caption": "Parts wall"
+  },
+  {
+   "caption": "Front counter"
+  },
+  {
+   "caption": "The team"
+  }
+ ],
+ "contact": {
+  "phone": "0161 496 0155",
+  "email": "hello@pixelfix.example",
+  "area": "Manchester",
+  "address": "58 Oldham Street, Manchester M4 1LE",
+  "hours": [
+   [
+    "Monday to Saturday",
+    "9am to 6pm"
+   ],
+   [
+    "Sunday",
+    "11am to 4pm"
+   ]
+  ]
+ },
+ "socials": [
+  {
+   "label": "Instagram",
+   "url": "https://www.instagram.com/"
+  },
+  {
+   "label": "TikTok",
+   "url": "https://www.tiktok.com/"
+  }
+ ],
+ "colours": {
+  "main": "#2f54ff",
+  "accent": "#12c99b"
+ },
+ "_sample": true
+}

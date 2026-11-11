@@ -1,67 +1,241 @@
 {
-  "business_name": "Green Leaf Gardening",
-  "tagline": "Gardens you love, all year round",
-  "intro": "Friendly, reliable garden design and maintenance across Bristol and the surrounding villages.",
-  "cta_label": "Get a free quote",
-  "trust": ["Fully insured", "Free quotes", "No call-out fee"],
-  "highlights": [
-    { "value": "12", "label": "years in Bristol" },
-    { "value": "200+", "label": "gardens looked after" },
-    { "value": "4.9★", "label": "average review" }
-  ],
-  "about_title": "Rooted in Bristol",
-  "about": "Green Leaf started with one van, one mower and a love of tidy borders. Twelve years later we look after more than two hundred gardens across Bristol, from small terraced courtyards to large family lawns.\n\nWe turn up when we say we will, leave every garden tidier than we found it, and give honest advice about what will actually thrive in your space.",
-  "owner": {
-    "name": "Sam Hart",
-    "role": "Founder and head gardener",
-    "bio": "Sam trained in horticulture at Bath and spent five years on large country estates before starting Green Leaf. He still visits every new garden himself.",
-    "photo": null
+ "business_name": "Orchard Lane Farm Shop",
+ "tagline": "Grown down the lane, baked this morning",
+ "intro": "A family farm shop and café near Ledbury selling our own fruit, vegetables, cider and bread, with breakfast served until noon.",
+ "cta_label": "Plan your visit",
+ "trust": [
+  "Fourth-generation farm",
+  "Dogs welcome",
+  "Free parking",
+  "Pick your own from June"
+ ],
+ "trust_line": "Farm shop and café, Herefordshire",
+ "highlights": [
+  {
+   "value": "140",
+   "label": "acres of orchard"
   },
-  "values": [
-    { "title": "We turn up", "text": "Booked visits happen on the day we agree, every time." },
-    { "title": "Honest advice", "text": "We'll tell you what will really grow, not what costs the most." },
-    { "title": "Tidy finish", "text": "Every clipping is cleared and taken away before we leave." }
-  ],
-  "services": [
-    { "name": "Garden design", "description": "Planting plans and new layouts, designed around how you actually use your garden.", "price": "From £250" },
-    { "name": "Lawn care", "description": "Regular mowing, feeding, scarifying and edging to keep your lawn thick and green.", "price": "From £30 a visit" },
-    { "name": "Hedge trimming", "description": "Neat, healthy hedges of any size, with all clippings taken away.", "price": "From £45" },
-    { "name": "Seasonal clear-ups", "description": "Leaves, weeds and overgrowth cleared, ready for the season ahead.", "price": "From £90" },
-    { "name": "Planting", "description": "New borders, bulbs and shrubs chosen to suit your soil and light.", "price": "From £60" },
-    { "name": "Regular maintenance", "description": "Weekly or fortnightly visits so your garden always looks its best.", "price": "From £120 a month" }
-  ],
-  "gallery": [
-    { "src": null, "caption": "Cottage border, Clifton" },
-    { "src": null, "caption": "New lawn, Redland" },
-    { "src": null, "caption": "Courtyard makeover, Totterdown" },
-    { "src": null, "caption": "Hedge restoration, Westbury" },
-    { "src": null, "caption": "Raised beds, Bishopston" },
-    { "src": null, "caption": "Spring clear-up, Henleaze" },
-    { "src": null, "caption": "Wildflower meadow, Stoke Bishop" },
-    { "src": null, "caption": "Patio planting, Southville" }
-  ],
-  "testimonials": [
-    { "quote": "Sam and the team transformed our tired back garden in a week. Always on time and they left it spotless.", "name": "Rachel M.", "detail": "Clifton" },
-    { "quote": "Honest advice and fair prices. Our lawn has never looked this good.", "name": "David K.", "detail": "Redland" },
-    { "quote": "We've had them every fortnight for three years. Couldn't recommend them more.", "name": "Priya S.", "detail": "Bishopston" }
-  ],
-  "contact": {
-    "phone": "0117 496 0123",
-    "email": "hello@greenleafgardening.co.uk",
-    "area": "Bristol and surrounding villages",
-    "hours": [
-      ["Monday to Friday", "8am to 5pm"],
-      ["Saturday", "9am to 1pm"],
-      ["Sunday", "Closed"]
-    ],
-    "address": null
+  {
+   "value": "4",
+   "label": "generations of the family"
   },
-  "socials": [
-    { "label": "Instagram", "url": "https://instagram.com/" },
-    { "label": "Facebook", "url": "https://facebook.com/" }
-  ],
-  "colours": { "main": "#3f6b3a", "accent": "#c08a3e" },
-  "logo": null,
-  "hero_image": null,
-  "about_image": null
+  {
+   "value": "22",
+   "label": "varieties of apple"
+  }
+ ],
+ "about_title": "The same family, the same fields, since 1921",
+ "about": "The Pembertons have grown apples at Orchard Lane for more than a hundred years. The shop began as a table at the gate with an honesty box. The table is still there, in the corner by the till.\n\nToday we sell what we grow, what our neighbours make and what Nan bakes. If it has travelled more than thirty miles to reach the shelf, we have had a long argument about it.",
+ "services": [
+  {
+   "name": "The farm shop",
+   "description": "Our own fruit and vegetables, local meat, cheese, eggs and store-cupboard things.",
+   "price": "Open daily"
+  },
+  {
+   "name": "The café",
+   "description": "Breakfast until noon, soup and pies at lunch, and cake all afternoon.",
+   "price": "Mains from £9"
+  },
+  {
+   "name": "Pick your own",
+   "description": "Strawberries from June, plums in August and apples through to October.",
+   "price": "From £4 a punnet"
+  },
+  {
+   "name": "Cider and juice",
+   "description": "Pressed on the farm from our own apples. Tastings every Saturday.",
+   "price": "From £3.50"
+  },
+  {
+   "name": "Veg boxes",
+   "description": "A weekly box of what is ready, delivered within ten miles on Thursdays.",
+   "price": "£16 a week"
+  },
+  {
+   "name": "Christmas orders",
+   "description": "Turkeys, trees, wreaths and hampers to order from November.",
+   "price": "Order by 10 December"
+  }
+ ],
+ "values": [
+  {
+   "title": "We grow it",
+   "text": "Most of the fruit and vegetables come from fields you can see from the car park."
+  },
+  {
+   "title": "Thirty-mile rule",
+   "text": "What we do not grow comes from farms and makers nearby."
+  },
+  {
+   "title": "Nothing wasted",
+   "text": "Wonky fruit becomes juice, jam and Tuesday's crumble."
+  }
+ ],
+ "process": [
+  {
+   "title": "Spring",
+   "text": "Blossom in the orchard, asparagus and the first rhubarb in the shop."
+  },
+  {
+   "title": "Summer",
+   "text": "Pick-your-own strawberries, salad from the tunnels and suppers outside."
+  },
+  {
+   "title": "Autumn",
+   "text": "Apple harvest, cider pressing and pumpkins in the top field."
+  },
+  {
+   "title": "Winter",
+   "text": "Christmas trees, wreath making and proper soup in the café."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can I bring my dog?",
+   "a": "Yes. Dogs on leads are welcome in the shop, the café garden and the orchard walk."
+  },
+  {
+   "q": "Do I need to book the café?",
+   "a": "Not on weekdays. We recommend booking for weekend breakfast and Sunday lunch."
+  },
+  {
+   "q": "When is pick-your-own open?",
+   "a": "From early June to late October, depending on the weather. Check our opening times before you travel."
+  },
+  {
+   "q": "Do you deliver?",
+   "a": "Veg boxes and Christmas orders are delivered within ten miles every Thursday."
+  }
+ ],
+ "projects": [
+  {
+   "title": "Blossom week",
+   "location": "The old orchard",
+   "category": "Spring",
+   "summary": "Walk the orchard in full flower, with tea and cake at the end.",
+   "details": "Paths are mown through the oldest trees for two weeks in late April."
+  },
+  {
+   "title": "Strawberry season",
+   "location": "Top field",
+   "category": "Summer",
+   "summary": "Six weeks of pick-your-own, weather allowing.",
+   "details": "Bring a basket or borrow one. Under-fives pick free."
+  },
+  {
+   "title": "Pressing day",
+   "location": "The cider barn",
+   "category": "Autumn",
+   "summary": "Watch the press at work and taste the first juice.",
+   "details": "Every Saturday in October, with the family on hand to explain how it is done."
+  },
+  {
+   "title": "Wreath workshops",
+   "location": "The café",
+   "category": "Winter",
+   "summary": "Make your own from holly, ivy and orchard prunings.",
+   "details": "Two hours with mulled juice and mince pies. Book early."
+  }
+ ],
+ "testimonials": [
+  {
+   "quote": "The best bacon sandwich in Herefordshire and you can see where the eggs came from.",
+   "name": "Alan Preece",
+   "detail": "Café regular",
+   "rating": 5
+  },
+  {
+   "quote": "Our veg box is the highlight of Thursday. Proper carrots with the mud still on.",
+   "name": "Bethan Lloyd",
+   "detail": "Veg box customer",
+   "rating": 5
+  },
+  {
+   "quote": "The children picked strawberries for two hours. Most of them made it home.",
+   "name": "Yusuf Karim",
+   "detail": "Pick your own",
+   "rating": 5
+  },
+  {
+   "quote": "We order our Christmas turkey here every year. Never once been let down.",
+   "name": "Margaret Howells",
+   "detail": "Customer since 1994",
+   "rating": 5
+  }
+ ],
+ "team": [
+  {
+   "name": "Will Pemberton",
+   "role": "Farmer",
+   "bio": "Fourth generation. Up before the cockerel."
+  },
+  {
+   "name": "Kate Pemberton",
+   "role": "Shop and café",
+   "bio": "Runs the shop and writes the specials board."
+  },
+  {
+   "name": "Nan",
+   "role": "Head baker",
+   "bio": "Eighty-one. Still makes every loaf and will not share the scone recipe."
+  }
+ ],
+ "gallery": [
+  {
+   "caption": "The shop"
+  },
+  {
+   "caption": "Apple harvest"
+  },
+  {
+   "caption": "Nan's loaves"
+  },
+  {
+   "caption": "The café garden"
+  },
+  {
+   "caption": "Pressing day"
+  },
+  {
+   "caption": "The honesty table"
+  }
+ ],
+ "contact": {
+  "phone": "01632 960 318",
+  "email": "hello@orchardlane.example",
+  "area": "Ledbury, Herefordshire",
+  "address": "Orchard Lane, Wellington Heath, Ledbury HR8 1NQ",
+  "hours": [
+   [
+    "Monday to Saturday",
+    "8.30am to 5pm"
+   ],
+   [
+    "Sunday",
+    "10am to 4pm"
+   ],
+   [
+    "Café breakfast",
+    "Until noon"
+   ]
+  ]
+ },
+ "socials": [
+  {
+   "label": "Facebook",
+   "url": "https://www.facebook.com/"
+  },
+  {
+   "label": "Instagram",
+   "url": "https://www.instagram.com/"
+  }
+ ],
+ "colours": {
+  "main": "#7d2a20",
+  "accent": "#d79a2b"
+ },
+ "_sample": true,
+ "process_title": "The farming year",
+ "projects_title": "What’s on"
 }

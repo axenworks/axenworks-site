@@ -1,67 +1,230 @@
 {
-  "business_name": "Green Leaf Gardening",
-  "tagline": "Gardens you love, all year round",
-  "intro": "Friendly, reliable garden design and maintenance across Bristol and the surrounding villages.",
-  "cta_label": "Get a free quote",
-  "trust": ["Fully insured", "Free quotes", "No call-out fee"],
-  "highlights": [
-    { "value": "12", "label": "years in Bristol" },
-    { "value": "200+", "label": "gardens looked after" },
-    { "value": "4.9★", "label": "average review" }
-  ],
-  "about_title": "Rooted in Bristol",
-  "about": "Green Leaf started with one van, one mower and a love of tidy borders. Twelve years later we look after more than two hundred gardens across Bristol, from small terraced courtyards to large family lawns.\n\nWe turn up when we say we will, leave every garden tidier than we found it, and give honest advice about what will actually thrive in your space.",
-  "owner": {
-    "name": "Sam Hart",
-    "role": "Founder and head gardener",
-    "bio": "Sam trained in horticulture at Bath and spent five years on large country estates before starting Green Leaf. He still visits every new garden himself.",
-    "photo": null
+ "business_name": "Juniper & Rye",
+ "tagline": "Flowers for weddings that look like the season they are in",
+ "intro": "A Cotswold studio making loose, garden-led flowers for weddings and gatherings, grown here or within a morning's drive.",
+ "cta_label": "Check your date",
+ "trust": [
+  "British-grown flowers",
+  "No floral foam",
+  "Twenty weddings a year"
+ ],
+ "trust_line": "Wedding and event florist, the Cotswolds",
+ "highlights": [
+  {
+   "value": "20",
+   "label": "weddings a year, no more"
   },
-  "values": [
-    { "title": "We turn up", "text": "Booked visits happen on the day we agree, every time." },
-    { "title": "Honest advice", "text": "We'll tell you what will really grow, not what costs the most." },
-    { "title": "Tidy finish", "text": "Every clipping is cleared and taken away before we leave." }
-  ],
-  "services": [
-    { "name": "Garden design", "description": "Planting plans and new layouts, designed around how you actually use your garden.", "price": "From £250" },
-    { "name": "Lawn care", "description": "Regular mowing, feeding, scarifying and edging to keep your lawn thick and green.", "price": "From £30 a visit" },
-    { "name": "Hedge trimming", "description": "Neat, healthy hedges of any size, with all clippings taken away.", "price": "From £45" },
-    { "name": "Seasonal clear-ups", "description": "Leaves, weeds and overgrowth cleared, ready for the season ahead.", "price": "From £90" },
-    { "name": "Planting", "description": "New borders, bulbs and shrubs chosen to suit your soil and light.", "price": "From £60" },
-    { "name": "Regular maintenance", "description": "Weekly or fortnightly visits so your garden always looks its best.", "price": "From £120 a month" }
-  ],
-  "gallery": [
-    { "src": null, "caption": "Cottage border, Clifton" },
-    { "src": null, "caption": "New lawn, Redland" },
-    { "src": null, "caption": "Courtyard makeover, Totterdown" },
-    { "src": null, "caption": "Hedge restoration, Westbury" },
-    { "src": null, "caption": "Raised beds, Bishopston" },
-    { "src": null, "caption": "Spring clear-up, Henleaze" },
-    { "src": null, "caption": "Wildflower meadow, Stoke Bishop" },
-    { "src": null, "caption": "Patio planting, Southville" }
-  ],
-  "testimonials": [
-    { "quote": "Sam and the team transformed our tired back garden in a week. Always on time and they left it spotless.", "name": "Rachel M.", "detail": "Clifton" },
-    { "quote": "Honest advice and fair prices. Our lawn has never looked this good.", "name": "David K.", "detail": "Redland" },
-    { "quote": "We've had them every fortnight for three years. Couldn't recommend them more.", "name": "Priya S.", "detail": "Bishopston" }
-  ],
-  "contact": {
-    "phone": "0117 496 0123",
-    "email": "hello@greenleafgardening.co.uk",
-    "area": "Bristol and surrounding villages",
-    "hours": [
-      ["Monday to Friday", "8am to 5pm"],
-      ["Saturday", "9am to 1pm"],
-      ["Sunday", "Closed"]
-    ],
-    "address": null
+  {
+   "value": "90",
+   "label": "per cent British stems"
   },
-  "socials": [
-    { "label": "Instagram", "url": "https://instagram.com/" },
-    { "label": "Facebook", "url": "https://facebook.com/" }
-  ],
-  "colours": { "main": "#3f6b3a", "accent": "#c08a3e" },
-  "logo": null,
-  "hero_image": null,
-  "about_image": null
+  {
+   "value": "0",
+   "label": "floral foam used"
+  }
+ ],
+ "about_title": "A cutting garden, a barn and a very full diary",
+ "about": "Clara Rye left a career in publishing to grow flowers in a walled garden outside Stow-on-the-Wold. The studio now takes on twenty weddings a year, so that each one has her full attention.\n\nWe work with what the season offers: blossom and tulips in spring, roses and sweet peas in June, dahlias and grasses in autumn. Nothing is flown in and nothing is arranged in foam.",
+ "services": [
+  {
+   "name": "Full wedding flowers",
+   "description": "Ceremony, reception and everything carried or worn, designed around your venue and month.",
+   "price": "From £2,800"
+  },
+  {
+   "name": "Bridal party only",
+   "description": "Bouquets, buttonholes and flower crowns for smaller celebrations.",
+   "price": "From £450"
+  },
+  {
+   "name": "Installations",
+   "description": "Arches, hanging clouds and staircases built on site the day before.",
+   "price": "From £900"
+  },
+  {
+   "name": "Supper clubs and events",
+   "description": "Table flowers for private dinners, launches and editorial shoots.",
+   "price": "From £350"
+  },
+  {
+   "name": "Buckets of flowers",
+   "description": "Seasonal stems by the bucket for those arranging their own.",
+   "price": "£75 a bucket"
+  },
+  {
+   "name": "Workshops",
+   "description": "A morning in the garden learning to arrange a hand-tied bouquet.",
+   "price": "£95"
+  }
+ ],
+ "values": [
+  {
+   "title": "In season, always",
+   "text": "Your flowers reflect the month you marry in, not a photograph from another one."
+  },
+  {
+   "title": "Grown, not flown",
+   "text": "Nine in ten stems are cut within fifty miles of the studio."
+  },
+  {
+   "title": "Foam free",
+   "text": "Everything is arranged in water, moss and reusable frames."
+  }
+ ],
+ "process": [
+  {
+   "title": "A conversation",
+   "text": "We talk about your venue, your month and the feeling you want in the room."
+  },
+  {
+   "title": "A proposal",
+   "text": "A written design with a palette, a list of likely flowers and a clear price."
+  },
+  {
+   "title": "A walk through",
+   "text": "We visit the venue together six weeks before to settle every detail."
+  },
+  {
+   "title": "The day itself",
+   "text": "We arrive early, stay until everything is right and return to clear."
+  }
+ ],
+ "faq": [
+  {
+   "q": "How far ahead should we book?",
+   "a": "Most couples book nine to fourteen months ahead. We take one wedding a weekend."
+  },
+  {
+   "q": "Can we choose exact flowers?",
+   "a": "We agree a palette and a mood, then choose the best of what is flowering that week. It always looks better."
+  },
+  {
+   "q": "Do you travel?",
+   "a": "Yes, within about ninety minutes of Stow-on-the-Wold. Further by arrangement."
+  },
+  {
+   "q": "What happens to the flowers afterwards?",
+   "a": "Guests are encouraged to take them home. Anything left goes to a local hospice."
+  }
+ ],
+ "projects": [
+  {
+   "title": "Isobel and Hugh",
+   "location": "Cornwell Manor",
+   "category": "Summer",
+   "summary": "Roses, foxgloves and sweet peas down a forty-foot table.",
+   "details": "A June wedding in a walled garden. The ceremony arch was moved to the marquee by six ushers and a wheelbarrow."
+  },
+  {
+   "title": "Amara and Jon",
+   "location": "Stone Barn",
+   "category": "Autumn",
+   "summary": "Dahlias, rosehips and copper beech in a barn lit by candles.",
+   "details": "Three hundred stems of dahlia cut the morning before, in a palette of plum and rust."
+  },
+  {
+   "title": "A spring elopement",
+   "location": "Chastleton",
+   "category": "Spring",
+   "summary": "One bouquet, one buttonhole and a doorway of blossom.",
+   "details": "Twelve guests, a church porch and branches cut from the orchard at dawn."
+  },
+  {
+   "title": "Midwinter supper",
+   "location": "Daylesford",
+   "category": "Winter",
+   "summary": "Hellebores, paperwhites and bare branches for a dinner of sixty.",
+   "details": "Planted bowls that guests took home at the end of the night."
+  }
+ ],
+ "testimonials": [
+  {
+   "quote": "People are still talking about the table. It looked as though the garden had simply wandered indoors.",
+   "name": "Isobel Fairfax",
+   "detail": "Married in June",
+   "rating": 5
+  },
+  {
+   "quote": "Clara listened, then made something far better than we could have described.",
+   "name": "Amara Osei",
+   "detail": "Married in October",
+   "rating": 5
+  },
+  {
+   "quote": "Calm, exacting and kind. The only supplier we never had to chase.",
+   "name": "Laura Penhale",
+   "detail": "Wedding planner",
+   "rating": 5
+  },
+  {
+   "quote": "My bouquet smelled like my grandmother's garden. I had not asked for that. She just knew.",
+   "name": "Hattie Lowe",
+   "detail": "Married in May",
+   "rating": 5
+  }
+ ],
+ "team": [
+  {
+   "name": "Clara Rye",
+   "role": "Founder and florist",
+   "bio": "Designs every wedding and grows most of the flowers."
+  },
+  {
+   "name": "Tomasz Juniper",
+   "role": "Grower",
+   "bio": "Keeps the walled garden cutting from March to November."
+  }
+ ],
+ "gallery": [
+  {
+   "caption": "The walled garden in June"
+  },
+  {
+   "caption": "A bride's bouquet"
+  },
+  {
+   "caption": "Dahlias, cut at dawn"
+  },
+  {
+   "caption": "The studio barn"
+  },
+  {
+   "caption": "A ceremony arch"
+  },
+  {
+   "caption": "Table flowers"
+  }
+ ],
+ "contact": {
+  "phone": "01632 960 409",
+  "email": "studio@juniperandrye.example",
+  "area": "The Cotswolds",
+  "address": "The Walled Garden, Maugersbury, Stow-on-the-Wold GL54 1HP",
+  "hours": [
+   [
+    "Studio visits",
+    "By appointment"
+   ],
+   [
+    "Tuesday to Friday",
+    "9am to 5pm"
+   ]
+  ]
+ },
+ "socials": [
+  {
+   "label": "Instagram",
+   "url": "https://www.instagram.com/"
+  },
+  {
+   "label": "Pinterest",
+   "url": "https://www.pinterest.co.uk/"
+  }
+ ],
+ "colours": {
+  "main": "#8f1d3f",
+  "accent": "#e9b8a8"
+ },
+ "_sample": true,
+ "projects_title": "Recent weddings"
 }

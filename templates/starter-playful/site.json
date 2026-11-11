@@ -1,0 +1,240 @@
+{
+ "business_name": "Waggy Tails",
+ "tagline": "Happy dogs, fresh haircuts, zero stress",
+ "intro": "Gentle grooming and fun-packed day care for dogs of every shape and fluff level, five minutes from Brighton seafront.",
+ "cta_label": "Book a groom",
+ "trust": [
+  "One dog at a time",
+  "Fear-free trained",
+  "Fully insured",
+  "Treats included"
+ ],
+ "trust_line": "Grooming and day care, Brighton",
+ "highlights": [
+  {
+   "value": "3200",
+   "label": "dogs groomed"
+  },
+  {
+   "value": "1",
+   "label": "dog on the table at a time"
+  },
+  {
+   "value": "8",
+   "label": "years of wagging"
+  }
+ ],
+ "about_title": "Run by dog people, for dogs",
+ "about": "Waggy Tails started in Jess's spare room with one very patient spaniel called Biscuit. Eight years on we have a bright shop in Kemptown, four groomers and a garden for the day care gang.\n\nWe only ever groom one dog at a time, we never use cages, and nervous dogs get as many breaks and biscuits as they need.",
+ "services": [
+  {
+   "name": "Full groom",
+   "description": "Bath, blow dry, haircut, nails and ears. Priced by size and coat.",
+   "price": "From £42"
+  },
+  {
+   "name": "Bath and tidy",
+   "description": "A good wash, dry and brush with a trim round the face, feet and tail.",
+   "price": "From £28"
+  },
+  {
+   "name": "Puppy's first groom",
+   "description": "A gentle half hour to meet the dryer, the table and us. For pups under six months.",
+   "price": "£20"
+  },
+  {
+   "name": "Day care",
+   "description": "Small groups, a garden to tear around and a nap after lunch.",
+   "price": "£32 a day"
+  },
+  {
+   "name": "Nail clip",
+   "description": "Ten minutes, no appointment needed on weekday mornings.",
+   "price": "£8"
+  },
+  {
+   "name": "De-shed treatment",
+   "description": "A deep wash and blow-out that takes the loose coat with it.",
+   "price": "From £35"
+  }
+ ],
+ "values": [
+  {
+   "title": "One at a time",
+   "text": "Your dog gets a groomer's full attention from hello to goodbye."
+  },
+  {
+   "title": "No cages, ever",
+   "text": "Dogs wait in the play room or on a comfy bed next to us."
+  },
+  {
+   "title": "Go at their pace",
+   "text": "Nervous dogs get breaks, treats and a slower visit at no extra cost."
+  }
+ ],
+ "process": [
+  {
+   "title": "Say hello",
+   "text": "A sniff around and a chat about the cut you would like."
+  },
+  {
+   "title": "Bath time",
+   "text": "Warm water and shampoo chosen for their coat and skin."
+  },
+  {
+   "title": "Snip snip",
+   "text": "Dry, brush and cut, with breaks whenever they are needed."
+  },
+  {
+   "title": "Ta-da",
+   "text": "A photo, a treat and one very smart dog to take home."
+  }
+ ],
+ "faq": [
+  {
+   "q": "My dog is nervous. Is that OK?",
+   "a": "Very. Tell us when you book and we will plan a quieter slot and take things slowly."
+  },
+  {
+   "q": "How long does a groom take?",
+   "a": "Between ninety minutes and three hours depending on size and coat. We text you when they are ready."
+  },
+  {
+   "q": "How often should my dog be groomed?",
+   "a": "Most coats do well every six to eight weeks. We will suggest what suits your dog."
+  },
+  {
+   "q": "What do I need for day care?",
+   "a": "Up-to-date vaccinations and a short trial morning so everyone can make friends."
+  }
+ ],
+ "projects": [
+  {
+   "title": "Monty the cockapoo",
+   "location": "Hove",
+   "category": "Full groom",
+   "summary": "From tangled teddy bear to tidy gentleman.",
+   "details": "Three hours, two treat breaks and a short summer cut that he can run on the beach in."
+  },
+  {
+   "title": "Luna's first visit",
+   "location": "Kemptown",
+   "category": "Puppies",
+   "summary": "A twelve-week-old collie meets the hairdryer.",
+   "details": "Twenty minutes of play first, then a gentle bath and a very fluffy dry."
+  },
+  {
+   "title": "Bruno's big de-shed",
+   "location": "Patcham",
+   "category": "De-shed",
+   "summary": "One husky. Two bin bags of fluff.",
+   "details": "A deep wash and a long blow-out before the summer."
+  },
+  {
+   "title": "Poppy the rescue",
+   "location": "Brighton",
+   "category": "Nervous dogs",
+   "summary": "Four short visits to build trust before a full groom.",
+   "details": "We started with five minutes on the table and built up over a month."
+  }
+ ],
+ "testimonials": [
+  {
+   "quote": "Monty pulls me through the door now. He used to shake at the old groomer.",
+   "name": "Leanne Carter",
+   "detail": "Monty, cockapoo",
+   "rating": 5
+  },
+  {
+   "quote": "They sent me photos all day. I think he had a better Tuesday than I did.",
+   "name": "Ravi Menon",
+   "detail": "Day care",
+   "rating": 5
+  },
+  {
+   "quote": "So patient with our rescue. Four visits in and she wags her tail on the table.",
+   "name": "Chris Dunne",
+   "detail": "Poppy, lurcher",
+   "rating": 5
+  },
+  {
+   "quote": "Best haircut in the family and he is the one with four legs.",
+   "name": "Sophie Ward",
+   "detail": "Alfie, schnauzer",
+   "rating": 5
+  }
+ ],
+ "team": [
+  {
+   "name": "Jess Holloway",
+   "role": "Owner and head groomer",
+   "bio": "City and Guilds level 3. Biscuit's mum."
+  },
+  {
+   "name": "Dani Reyes",
+   "role": "Groomer",
+   "bio": "Doodle and poodle specialist with endless patience."
+  },
+  {
+   "name": "Marcus Bell",
+   "role": "Day care leader",
+   "bio": "Referee, ball thrower and nap supervisor."
+  }
+ ],
+ "gallery": [
+  {
+   "caption": "Monty, after"
+  },
+  {
+   "caption": "Bath time"
+  },
+  {
+   "caption": "The garden gang"
+  },
+  {
+   "caption": "Luna's first groom"
+  },
+  {
+   "caption": "The shop"
+  },
+  {
+   "caption": "Nap time"
+  }
+ ],
+ "contact": {
+  "phone": "01632 960 771",
+  "email": "woof@waggytails.example",
+  "area": "Brighton and Hove",
+  "address": "31 St George's Road, Brighton BN2 1ED",
+  "hours": [
+   [
+    "Tuesday to Friday",
+    "8am to 6pm"
+   ],
+   [
+    "Saturday",
+    "9am to 4pm"
+   ],
+   [
+    "Sunday and Monday",
+    "Closed"
+   ]
+  ]
+ },
+ "socials": [
+  {
+   "label": "Instagram",
+   "url": "https://www.instagram.com/"
+  },
+  {
+   "label": "Facebook",
+   "url": "https://www.facebook.com/"
+  }
+ ],
+ "colours": {
+  "main": "#4b3bd6",
+  "accent": "#ffb72b"
+ },
+ "_sample": true,
+ "projects_title": "Before and after"
+}

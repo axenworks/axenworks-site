@@ -1,0 +1,235 @@
+{
+ "business_name": "Hartwell & Finch",
+ "tagline": "Accounts kept in good order, and advice you can act on",
+ "intro": "Chartered accountants for small businesses, landlords and the self-employed across Bath and north Somerset.",
+ "cta_label": "Book a free first meeting",
+ "trust": [
+  "ICAEW chartered",
+  "Fixed fees agreed up front",
+  "Making Tax Digital ready",
+  "Established 1998"
+ ],
+ "trust_line": "Chartered accountants, Bath",
+ "highlights": [
+  {
+   "value": "27",
+   "label": "years in practice"
+  },
+  {
+   "value": "640",
+   "label": "clients looked after"
+  },
+  {
+   "value": "2",
+   "label": "working days to reply"
+  }
+ ],
+ "about_title": "A small practice that knows your name",
+ "about": "Margaret Hartwell opened the practice above a bookshop on Milsom Street in 1998. Daniel Finch joined as a trainee and became a partner twelve years later. We are still a small firm on purpose.\n\nYou deal with the same accountant all year, not a call centre. We explain what the numbers mean in plain English, tell you what is due and when, and agree our fee before any work begins.",
+ "services": [
+  {
+   "name": "Year-end accounts",
+   "description": "Accounts prepared, explained and filed on time for sole traders, partnerships and limited companies.",
+   "price": "From £480"
+  },
+  {
+   "name": "Self assessment",
+   "description": "Your tax return completed and checked, with a clear note of what to pay and when.",
+   "price": "From £190"
+  },
+  {
+   "name": "Bookkeeping and VAT",
+   "description": "Monthly or quarterly bookkeeping and VAT returns filed through Making Tax Digital software.",
+   "price": "From £85 a month"
+  },
+  {
+   "name": "Payroll",
+   "description": "Payslips, pensions and submissions handled for teams of one to fifty.",
+   "price": "From £40 a month"
+  },
+  {
+   "name": "Landlord accounts",
+   "description": "Rental income, allowable costs and capital gains worked out properly for one property or twenty.",
+   "price": "From £220"
+  },
+  {
+   "name": "Business advice",
+   "description": "Help with starting up, taking on staff, buying premises or planning to sell.",
+   "price": "£120 an hour"
+  }
+ ],
+ "values": [
+  {
+   "title": "One accountant, all year",
+   "text": "You always know who is looking after your affairs and how to reach them."
+  },
+  {
+   "title": "Fees agreed first",
+   "text": "We quote a fixed fee before we start, so the invoice is never a surprise."
+  },
+  {
+   "title": "Plain English",
+   "text": "We explain what we have done and why, without the jargon."
+  }
+ ],
+ "process": [
+  {
+   "title": "A free first meeting",
+   "text": "Half an hour, in person or by video, to understand your business and what you need."
+  },
+  {
+   "title": "A fixed quote",
+   "text": "We write down exactly what we will do and what it will cost each year."
+  },
+  {
+   "title": "We take over the paperwork",
+   "text": "We contact your previous accountant and HMRC so you do not have to."
+  },
+  {
+   "title": "Regular check-ins",
+   "text": "We remind you of every deadline and review your position before the year ends."
+  }
+ ],
+ "faq": [
+  {
+   "q": "How do I switch accountant?",
+   "a": "Tell us who you use now and sign one letter. We request your records from them and register with HMRC as your agent. It normally takes about two weeks."
+  },
+  {
+   "q": "Do I have to come to your office?",
+   "a": "No. Around half our clients work with us entirely by email, phone and video. You are always welcome to call in."
+  },
+  {
+   "q": "What software do you use?",
+   "a": "We support Xero, FreeAgent and QuickBooks, and can set one up for you. If you prefer a spreadsheet, that is fine too."
+  },
+  {
+   "q": "When will I know what tax I owe?",
+   "a": "For most clients, within four weeks of sending us your records, and always well before the payment date."
+  }
+ ],
+ "projects": [
+  {
+   "title": "A bakery taking on its first staff",
+   "location": "Larkhall",
+   "category": "Start-ups",
+   "summary": "Set up payroll and pensions for six new employees in three weeks.",
+   "details": "The owner had been a sole trader for four years. We moved the business to a limited company, registered for PAYE, set up a workplace pension and trained the manager to approve payroll each month."
+  },
+  {
+   "title": "Eleven rental flats, one clear picture",
+   "location": "Bath",
+   "category": "Landlords",
+   "summary": "Untangled five years of rental records and reduced the tax bill legitimately.",
+   "details": "Records were spread across three letting agents. We rebuilt the figures property by property, claimed finance costs and repairs that had been missed, and set up a simple quarterly routine."
+  },
+  {
+   "title": "A joinery firm preparing to sell",
+   "location": "Keynsham",
+   "category": "Advice",
+   "summary": "Three years of planning so the owner could retire on good terms.",
+   "details": "We tidied the balance sheet, documented the order book and worked with the solicitor on the sale. The business was sold to its manager."
+  },
+  {
+   "title": "From shoebox to software",
+   "location": "Bradford-on-Avon",
+   "category": "Bookkeeping",
+   "summary": "Moved a busy café from paper receipts to Xero in a month.",
+   "details": "We connected the till and bank feed, photographed the backlog of receipts and showed the owner how to check the week's figures in ten minutes."
+  }
+ ],
+ "testimonials": [
+  {
+   "quote": "Daniel explained my accounts properly for the first time in eleven years of being in business.",
+   "name": "Ruth Okafor",
+   "detail": "Café owner, Bradford-on-Avon",
+   "rating": 5
+  },
+  {
+   "quote": "They told me the fee before they started and it has not changed since. Everything is filed early.",
+   "name": "Tom Whitcombe",
+   "detail": "Landlord, Bath",
+   "rating": 5
+  },
+  {
+   "quote": "Switching was painless. I signed one letter and they dealt with the rest.",
+   "name": "Priya Nair",
+   "detail": "Freelance designer",
+   "rating": 5
+  },
+  {
+   "quote": "A proper, old-fashioned level of care with thoroughly modern software.",
+   "name": "George Ellery",
+   "detail": "Joinery firm owner",
+   "rating": 5
+  }
+ ],
+ "team": [
+  {
+   "name": "Margaret Hartwell",
+   "role": "Founding partner",
+   "bio": "Chartered since 1989. Looks after landlords and family businesses."
+  },
+  {
+   "name": "Daniel Finch",
+   "role": "Partner",
+   "bio": "Specialises in limited companies and business sales."
+  },
+  {
+   "name": "Aisha Rahman",
+   "role": "Payroll manager",
+   "bio": "Runs payroll for more than ninety employers."
+  }
+ ],
+ "gallery": [
+  {
+   "caption": "Our office on Milsom Street"
+  },
+  {
+   "caption": "The meeting room"
+  },
+  {
+   "caption": "Margaret and Daniel"
+  },
+  {
+   "caption": "Year-end review"
+  },
+  {
+   "caption": "Front desk"
+  },
+  {
+   "caption": "Client evening"
+  }
+ ],
+ "contact": {
+  "phone": "01632 960 142",
+  "email": "hello@hartwellfinch.example",
+  "area": "Bath and north Somerset",
+  "address": "14 Milsom Street, Bath BA1 1DE",
+  "hours": [
+   [
+    "Monday to Thursday",
+    "9am to 5.30pm"
+   ],
+   [
+    "Friday",
+    "9am to 4pm"
+   ],
+   [
+    "Weekends",
+    "Closed"
+   ]
+  ]
+ },
+ "socials": [
+  {
+   "label": "LinkedIn",
+   "url": "https://www.linkedin.com/"
+  }
+ ],
+ "colours": {
+  "main": "#1d2b4f",
+  "accent": "#b08a3e"
+ },
+ "_sample": true
+}

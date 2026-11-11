@@ -1,0 +1,239 @@
+{
+ "business_name": "Redline Motors",
+ "tagline": "Fixed right. First time.",
+ "intro": "MOTs, servicing and repairs for every make of car and van. Straight prices, no surprises, on Kirkstall Road in Leeds.",
+ "cta_label": "Book your car in",
+ "trust": [
+  "MOT while you wait",
+  "12-month parts and labour guarantee",
+  "Free courtesy car",
+  "All makes and models"
+ ],
+ "trust_line": "Kirkstall Road, Leeds",
+ "highlights": [
+  {
+   "value": "45",
+   "label": "minute MOT"
+  },
+  {
+   "value": "9",
+   "label": "ramps and bays"
+  },
+  {
+   "value": "12",
+   "label": "month guarantee"
+  }
+ ],
+ "about_title": "Three brothers. One garage. No nonsense.",
+ "about": "Our dad opened Redline in 1987 with one ramp and a kettle. We grew up sweeping the floor here. Today there are nine bays, eleven technicians and the same rule: show the customer the problem before you fix it.\n\nWe photograph every fault, price every job before we start and never fit a part you do not need. If we would not do it to our own car, we will not do it to yours.",
+ "services": [
+  {
+   "name": "MOT test",
+   "description": "Class 4 and class 7 tests. Free re-test within ten working days.",
+   "price": "£45"
+  },
+  {
+   "name": "Full service",
+   "description": "A 60-point check with oil, filters and a written health report.",
+   "price": "From £189"
+  },
+  {
+   "name": "Brakes",
+   "description": "Pads, discs and fluid, fitted and road-tested the same day.",
+   "price": "From £95"
+  },
+  {
+   "name": "Clutch and gearbox",
+   "description": "Clutch replacement and gearbox repairs with a 12-month guarantee.",
+   "price": "From £420"
+  },
+  {
+   "name": "Diagnostics",
+   "description": "Dealer-level fault finding for warning lights and electrical problems.",
+   "price": "£60"
+  },
+  {
+   "name": "Tyres and tracking",
+   "description": "Budget to premium tyres fitted while you wait, with four-wheel alignment.",
+   "price": "From £55"
+  }
+ ],
+ "values": [
+  {
+   "title": "See it before we fix it",
+   "text": "We send photos of every fault so you can decide with the facts in front of you."
+  },
+  {
+   "title": "The quote is the price",
+   "text": "If we find something else, we call you before we touch it."
+  },
+  {
+   "title": "Guaranteed for a year",
+   "text": "Every repair carries a 12-month parts and labour guarantee."
+  }
+ ],
+ "process": [
+  {
+   "title": "Book a slot",
+   "text": "Online or by phone. Same-week appointments most weeks."
+  },
+  {
+   "title": "Drop it off",
+   "text": "Leave the keys and take a free courtesy car if you need one."
+  },
+  {
+   "title": "We call with the facts",
+   "text": "Photos, a fixed price and a finish time before any work starts."
+  },
+  {
+   "title": "Collect and go",
+   "text": "Pay on collection and keep the old parts if you want to see them."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Can I wait while you do the MOT?",
+   "a": "Yes. It takes about 45 minutes and there is a waiting room with coffee and wifi."
+  },
+  {
+   "q": "Do you work on electric and hybrid cars?",
+   "a": "Yes. Four of our technicians are qualified to work on high-voltage systems."
+  },
+  {
+   "q": "Will a service here affect my warranty?",
+   "a": "No. We service to the manufacturer's schedule with approved parts, which keeps your warranty valid."
+  },
+  {
+   "q": "How do I pay?",
+   "a": "Card, cash or bank transfer on collection. We can spread larger repairs over three months."
+  }
+ ],
+ "projects": [
+  {
+   "title": "Transit van back on the road in a day",
+   "location": "Armley",
+   "category": "Vans",
+   "summary": "New clutch and flywheel fitted before the next morning's deliveries.",
+   "details": "A courier's van failed at 8am. We sourced the parts by ten, had it on the ramp by noon and road-tested it at five."
+  },
+  {
+   "title": "Chasing an electrical fault",
+   "location": "Headingley",
+   "category": "Diagnostics",
+   "summary": "A warning light three other garages could not trace.",
+   "details": "We found a chafed wire behind the dashboard after two hours of testing. The repair itself took twenty minutes."
+  },
+  {
+   "title": "Classic Mini recommission",
+   "location": "Horsforth",
+   "category": "Classics",
+   "summary": "Brakes, fuel system and MOT after nine years in a garage.",
+   "details": "New brake lines, a rebuilt carburettor and fresh tyres. It passed first time."
+  },
+  {
+   "title": "Fleet servicing for a local bakery",
+   "location": "Leeds",
+   "category": "Vans",
+   "summary": "Six vans serviced overnight so none miss a morning round.",
+   "details": "We collect at 6pm and return by 5am, with a health report for each vehicle."
+  }
+ ],
+ "testimonials": [
+  {
+   "quote": "They sent me a photo of the worn part and a price before doing anything. Never had that from a garage before.",
+   "name": "Sam Hirst",
+   "detail": "Ford Focus",
+   "rating": 5
+  },
+  {
+   "quote": "Van failed at eight in the morning. Driving it again by five. Saved my week.",
+   "name": "Dawn Pickles",
+   "detail": "Courier",
+   "rating": 5
+  },
+  {
+   "quote": "Cheaper than the dealer and they actually explain what they have done.",
+   "name": "Imran Sheikh",
+   "detail": "VW Golf",
+   "rating": 5
+  },
+  {
+   "quote": "Honest. Told me the brakes had another year in them when I expected a bill.",
+   "name": "Kelly Marsden",
+   "detail": "Nissan Juke",
+   "rating": 5
+  }
+ ],
+ "team": [
+  {
+   "name": "Mick Dawson",
+   "role": "Workshop manager",
+   "bio": "Thirty years on the tools. MOT tester since 2001."
+  },
+  {
+   "name": "Carl Dawson",
+   "role": "Master technician",
+   "bio": "Diagnostics and electrics. Hybrid and EV qualified."
+  },
+  {
+   "name": "Jo Dawson",
+   "role": "Front desk",
+   "bio": "Runs the diary and keeps everyone honest."
+  }
+ ],
+ "gallery": [
+  {
+   "caption": "Bay one"
+  },
+  {
+   "caption": "On the ramp"
+  },
+  {
+   "caption": "Diagnostics"
+  },
+  {
+   "caption": "Tyre fitting"
+  },
+  {
+   "caption": "The waiting room"
+  },
+  {
+   "caption": "The team"
+  }
+ ],
+ "contact": {
+  "phone": "0113 496 0188",
+  "email": "bookings@redlinemotors.example",
+  "area": "Leeds and west Yorkshire",
+  "address": "212 Kirkstall Road, Leeds LS4 2AB",
+  "hours": [
+   [
+    "Monday to Friday",
+    "7.30am to 6pm"
+   ],
+   [
+    "Saturday",
+    "8am to 1pm"
+   ],
+   [
+    "Sunday",
+    "Closed"
+   ]
+  ]
+ },
+ "socials": [
+  {
+   "label": "Facebook",
+   "url": "https://www.facebook.com/"
+  },
+  {
+   "label": "Instagram",
+   "url": "https://www.instagram.com/"
+  }
+ ],
+ "colours": {
+  "main": "#d7261e",
+  "accent": "#ffcd1f"
+ },
+ "_sample": true
+}

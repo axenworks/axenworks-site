@@ -1,385 +1,235 @@
 {
-  "business_name": "Green Leaf Gardening",
-  "tagline": "Gardens you love, all year round",
-  "intro": "Friendly, reliable garden design and maintenance across Bristol and the surrounding villages.",
-  "cta_label": "Get a free quote",
-  "trust": [
-    "Fully insured",
-    "Free quotes",
-    "No call-out fee"
-  ],
-  "highlights": [
-    {
-      "value": "12",
-      "label": "years in Bristol"
-    },
-    {
-      "value": "200+",
-      "label": "gardens looked after"
-    },
-    {
-      "value": "4.9★",
-      "label": "average review"
-    },
-    {
-      "value": "6",
-      "label": "specialists on the team"
-    }
-  ],
-  "about_title": "Rooted in Bristol",
-  "about": "Green Leaf started with one van, one mower and a love of tidy borders. Twelve years later we look after more than two hundred gardens across Bristol, from small terraced courtyards to large family lawns.\n\nWe turn up when we say we will, leave every garden tidier than we found it, and give honest advice about what will actually thrive in your space.",
-  "values": [
-    {
-      "title": "We turn up",
-      "text": "Booked visits happen on the day we agree, every time."
-    },
-    {
-      "title": "Honest advice",
-      "text": "We'll tell you what will really grow, not what costs the most."
-    },
-    {
-      "title": "Tidy finish",
-      "text": "Every clipping is cleared and taken away before we leave."
-    }
-  ],
-  "services": [
-    {
-      "name": "Garden design",
-      "description": "Planting plans and new layouts, designed around how you actually use your garden.",
-      "price": "From £250"
-    },
-    {
-      "name": "Lawn care",
-      "description": "Regular mowing, feeding, scarifying and edging to keep your lawn thick and green.",
-      "price": "From £30 a visit"
-    },
-    {
-      "name": "Hedge trimming",
-      "description": "Neat, healthy hedges of any size, with all clippings taken away.",
-      "price": "From £45"
-    },
-    {
-      "name": "Seasonal clear-ups",
-      "description": "Leaves, weeds and overgrowth cleared, ready for the season ahead.",
-      "price": "From £90"
-    },
-    {
-      "name": "Planting",
-      "description": "New borders, bulbs and shrubs chosen to suit your soil and light.",
-      "price": "From £60"
-    },
-    {
-      "name": "Regular maintenance",
-      "description": "Weekly or fortnightly visits so your garden always looks its best.",
-      "price": "From £120 a month"
-    }
-  ],
-  "gallery": [
-    {
-      "src": null,
-      "caption": "Cottage border, Clifton"
-    },
-    {
-      "src": null,
-      "caption": "New lawn, Redland"
-    },
-    {
-      "src": null,
-      "caption": "Courtyard makeover, Totterdown"
-    },
-    {
-      "src": null,
-      "caption": "Hedge restoration, Westbury"
-    },
-    {
-      "src": null,
-      "caption": "Raised beds, Bishopston"
-    },
-    {
-      "src": null,
-      "caption": "Spring clear-up, Henleaze"
-    },
-    {
-      "src": null,
-      "caption": "Wildflower meadow, Stoke Bishop"
-    },
-    {
-      "src": null,
-      "caption": "Patio planting, Southville"
-    }
-  ],
-  "testimonials": [
-    {
-      "quote": "Sam and the team transformed our tired back garden in a week. Always on time and they left it spotless.",
-      "name": "Rachel M.",
-      "detail": "Clifton",
-      "rating": 5
-    },
-    {
-      "quote": "Honest advice and fair prices. Our lawn has never looked this good.",
-      "name": "David K.",
-      "detail": "Redland",
-      "rating": 5
-    },
-    {
-      "quote": "We've had them every fortnight for three years. Couldn't recommend them more.",
-      "name": "Priya S.",
-      "detail": "Bishopston",
-      "rating": 5
-    },
-    {
-      "quote": "Ella's design for our border is the best thing we've done to the house.",
-      "name": "Mark T.",
-      "detail": "Clifton",
-      "rating": 5
-    },
-    {
-      "quote": "Quick quote, fair price, and the lawn looks brand new.",
-      "name": "Hannah L.",
-      "detail": "Redland",
-      "rating": 5
-    },
-    {
-      "quote": "Reliable every single visit. They even sent photos when we were away.",
-      "name": "George W.",
-      "detail": "Westbury",
-      "rating": 4
-    }
-  ],
-  "contact": {
-    "phone": "0117 496 0123",
-    "email": "hello@greenleafgardening.co.uk",
-    "area": "Bristol and surrounding villages",
-    "hours": [
-      [
-        "Monday to Friday",
-        "8am to 5pm"
-      ],
-      [
-        "Saturday",
-        "9am to 1pm"
-      ],
-      [
-        "Sunday",
-        "Closed"
-      ]
-    ],
-    "address": null
+ "business_name": "Pixel Fix",
+ "tagline": "Cracked it? We fix phones and laptops while you wait.",
+ "intro": "Screens, batteries and water damage repaired the same day in the Northern Quarter, with a price you see before we start.",
+ "cta_label": "Get a repair price",
+ "trust": [
+  "Most repairs in under an hour",
+  "No fix, no fee",
+  "12-month warranty",
+  "Data stays on your device"
+ ],
+ "trust_line": "Northern Quarter, Manchester",
+ "highlights": [
+  {
+   "value": "40",
+   "label": "minutes for most screens"
   },
-  "socials": [
-    {
-      "label": "Instagram",
-      "url": "https://instagram.com/"
-    },
-    {
-      "label": "Facebook",
-      "url": "https://facebook.com/"
-    }
-  ],
-  "colours": {
-    "main": "#3f6b3a",
-    "accent": "#c08a3e"
+  {
+   "value": "12",
+   "label": "month warranty"
   },
-  "logo": null,
-  "hero_image": null,
-  "about_image": null,
-  "team": [
-    {
-      "name": "Sam Hart",
-      "role": "Founder and head gardener",
-      "bio": "Trained in horticulture at Bath and spent five years on country estates before starting Green Leaf.",
-      "photo": null
-    },
-    {
-      "name": "Ella Price",
-      "role": "Garden designer",
-      "bio": "Ella draws every planting plan by hand and loves a cottage border.",
-      "photo": null
-    },
-    {
-      "name": "Tom Reid",
-      "role": "Maintenance lead",
-      "bio": "Tom runs our regular-care rounds and knows every lawn in Redland.",
-      "photo": null
-    }
-  ],
-  "timeline": [
-    {
-      "year": "2012",
-      "text": "Sam starts Green Leaf with one van and one mower."
-    },
-    {
-      "year": "2016",
-      "text": "Ella joins and we begin offering full garden design."
-    },
-    {
-      "year": "2020",
-      "text": "We pass 100 regular customers across Bristol."
-    },
-    {
-      "year": "2024",
-      "text": "Named one of Bristol's top local trades by our customers."
-    }
-  ],
-  "process": [
-    {
-      "title": "Free visit",
-      "text": "We come and see your garden, listen, and measure up."
-    },
-    {
-      "title": "Clear quote",
-      "text": "A fixed written price within two days. No surprises."
-    },
-    {
-      "title": "The work",
-      "text": "Done on the agreed days, tidy and on time."
-    },
-    {
-      "title": "Aftercare",
-      "text": "Planting advice and optional regular visits to keep it looking great."
-    }
-  ],
-  "packages": [
-    {
-      "name": "Tidy",
-      "price": "£95",
-      "period": "per visit",
-      "features": [
-        "Mowing and edging",
-        "Weeding beds",
-        "Clippings removed"
-      ],
-      "featured": false
-    },
-    {
-      "name": "Care",
-      "price": "£180",
-      "period": "per month",
-      "features": [
-        "Fortnightly visits",
-        "Lawn feeding",
-        "Hedge trims",
-        "Seasonal planting advice"
-      ],
-      "featured": true
-    },
-    {
-      "name": "Complete",
-      "price": "£320",
-      "period": "per month",
-      "features": [
-        "Weekly visits",
-        "Full lawn programme",
-        "All hedges and pruning",
-        "Seasonal planting included"
-      ],
-      "featured": false
-    }
-  ],
-  "projects": [
-    {
-      "title": "Cottage border",
-      "location": "Clifton",
-      "category": "Design",
-      "summary": "A tired lawn edge turned into a deep, colourful cottage border that flowers from April to October.",
-      "details": "We lifted the old turf, improved the soil with compost, and planted foxgloves, salvias, roses and grasses in loose drifts.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    },
-    {
-      "title": "New lawn",
-      "location": "Redland",
-      "category": "Lawns",
-      "summary": "A patchy, mossy lawn replaced with fresh turf and a simple care plan.",
-      "details": "Full strip, levelled and re-turfed in two days, followed by a monthly feeding programme.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    },
-    {
-      "title": "Courtyard makeover",
-      "location": "Totterdown",
-      "category": "Design",
-      "summary": "A dark, paved yard became a green outdoor room with raised beds and climbers.",
-      "details": "Oak raised beds, shade-loving ferns and hostas, and jasmine on new trellis to soften the walls.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    },
-    {
-      "title": "Hedge restoration",
-      "location": "Westbury",
-      "category": "Maintenance",
-      "summary": "An overgrown laurel hedge brought back to a neat, healthy shape.",
-      "details": "Staged reduction over two visits to keep the hedge healthy, with all waste removed.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    },
-    {
-      "title": "Wildflower meadow",
-      "location": "Stoke Bishop",
-      "category": "Design",
-      "summary": "Part of a large lawn sown as a wildflower meadow for bees and butterflies.",
-      "details": "Ground prepared and sown with a native mix, with a mown path through the middle.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    },
-    {
-      "title": "Spring clear-up",
-      "location": "Henleaze",
-      "category": "Maintenance",
-      "summary": "A full spring clear-up to get a neglected garden ready for the season.",
-      "details": "Beds weeded and mulched, shrubs pruned, and lawn scarified and fed.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    }
-  ],
-  "faq": [
-    {
-      "q": "Do you charge for quotes?",
-      "a": "No. Visits and quotes are always free, with no obligation."
-    },
-    {
-      "q": "Which areas do you cover?",
-      "a": "Bristol and the surrounding villages, within about 15 miles of the city centre."
-    },
-    {
-      "q": "Are you insured?",
-      "a": "Yes, we carry full public liability insurance. We're happy to share a copy."
-    },
-    {
-      "q": "Do you take away garden waste?",
-      "a": "Always. Every clipping and bag of waste leaves with us, and it's included in the price."
-    },
-    {
-      "q": "Can I book regular visits?",
-      "a": "Yes. Our Care and Complete packages include weekly or fortnightly visits on a set day."
-    },
-    {
-      "q": "What happens if it rains?",
-      "a": "Light rain is fine. If it's too wet to work safely we'll rebook you for the next free day."
-    }
+  {
+   "value": "18000",
+   "label": "devices repaired"
+  }
+ ],
+ "about_title": "Repair first. Replace last.",
+ "about": "Pixel Fix opened in 2017 in a unit the size of a lift. We now have a bright workshop on Oldham Street and six technicians who would rather mend a phone than sell you a new one.\n\nEvery repair has a fixed price, quality parts and a 12-month warranty. If we cannot fix it, you do not pay.",
+ "services": [
+  {
+   "name": "Screen replacement",
+   "description": "Cracked or unresponsive screens replaced for iPhone, Samsung, Pixel and iPad.",
+   "price": "From £59"
+  },
+  {
+   "name": "Battery replacement",
+   "description": "A new battery fitted and tested in about thirty minutes.",
+   "price": "From £45"
+  },
+  {
+   "name": "Water damage",
+   "description": "Opened, cleaned and dried properly, with an honest report on what we find.",
+   "price": "From £49"
+  },
+  {
+   "name": "Laptop repair",
+   "description": "Keyboards, hinges, screens and slow machines for Mac and Windows.",
+   "price": "From £69"
+  },
+  {
+   "name": "Data recovery",
+   "description": "Photos and files rescued from phones and drives that will not turn on.",
+   "price": "From £90"
+  },
+  {
+   "name": "Charging and ports",
+   "description": "Loose or dead charging ports cleaned or replaced.",
+   "price": "From £39"
+  }
+ ],
+ "values": [
+  {
+   "title": "Price first",
+   "text": "You see a fixed price before we open your device."
+  },
+  {
+   "title": "No fix, no fee",
+   "text": "If we cannot repair it, the diagnosis costs you nothing."
+  },
+  {
+   "title": "Your data stays put",
+   "text": "We never copy, read or wipe your data without asking."
+  }
+ ],
+ "process": [
+  {
+   "title": "Tell us what broke",
+   "text": "Pick your device and the problem to get a price in seconds."
+  },
+  {
+   "title": "Drop in or post it",
+   "text": "Walk in any day, or use our free tracked postal service."
+  },
+  {
+   "title": "We repair it",
+   "text": "Most jobs take under an hour. We text you when it is ready."
+  },
+  {
+   "title": "Test and collect",
+   "text": "We test everything with you before you pay."
+  }
+ ],
+ "faq": [
+  {
+   "q": "How long will it take?",
+   "a": "Screens and batteries usually take 30 to 60 minutes. Water damage and laptops can take a day or two."
+  },
+  {
+   "q": "Will I lose my data?",
+   "a": "Almost never. Screen and battery repairs do not touch your data. We still recommend a backup first."
+  },
+  {
+   "q": "Do you use genuine parts?",
+   "a": "We offer genuine parts where they are available and high-quality alternatives at a lower price. You choose."
+  },
+  {
+   "q": "What does the warranty cover?",
+   "a": "Any fault with the part or our work for 12 months. It does not cover new accidental damage."
+  }
+ ],
+ "projects": [
+  {
+   "title": "iPhone back from the canal",
+   "location": "Ancoats",
+   "category": "Water damage",
+   "summary": "Two days underwater, every photo recovered.",
+   "details": "We cleaned the board in an ultrasonic bath, replaced the battery and got it running long enough to back up 9,000 photos."
+  },
+  {
+   "title": "A designer's MacBook",
+   "location": "Northern Quarter",
+   "category": "Laptops",
+   "summary": "New keyboard and battery, back the same afternoon.",
+   "details": "Dropped off at ten, collected at three with a full health report."
+  },
+  {
+   "title": "Fifty tablets for a primary school",
+   "location": "Salford",
+   "category": "Business",
+   "summary": "Screens and cases refreshed over half term.",
+   "details": "Collected on Friday, returned the following Friday, each one tested and labelled."
+  },
+  {
+   "title": "The folding phone",
+   "location": "Manchester",
+   "category": "Screens",
+   "summary": "An inner screen replacement most shops turn away.",
+   "details": "A three-hour job done under the microscope with a genuine part."
+  }
+ ],
+ "testimonials": [
+  {
+   "quote": "Screen done in thirty-five minutes while I had a coffee next door. Cheaper than the quote from the brand shop.",
+   "name": "Aaliyah Brooks",
+   "detail": "iPhone 14",
+   "rating": 5
+  },
+  {
+   "quote": "They got my photos back off a phone that had been in a river. I cried a bit.",
+   "name": "Owen Hartley",
+   "detail": "Data recovery",
+   "rating": 5
+  },
+  {
+   "quote": "Told me straight that my laptop was not worth fixing and did not charge me. I will be back.",
+   "name": "Mei Lin",
+   "detail": "Laptop check",
+   "rating": 5
+  },
+  {
+   "quote": "Fifty tablets, one week, no drama. Brilliant for the school.",
+   "name": "Mr Daniels",
+   "detail": "Primary school",
+   "rating": 5
+  }
+ ],
+ "team": [
+  {
+   "name": "Tariq Aziz",
+   "role": "Founder",
+   "bio": "Started fixing phones at sixteen. Still does the tricky ones."
+  },
+  {
+   "name": "Elena Novak",
+   "role": "Lead technician",
+   "bio": "Micro-soldering and board repair."
+  },
+  {
+   "name": "Josh Kerr",
+   "role": "Front of house",
+   "bio": "Explains everything without the jargon."
+  }
+ ],
+ "gallery": [
+  {
+   "caption": "The workshop"
+  },
+  {
+   "caption": "Under the microscope"
+  },
+  {
+   "caption": "New screen going on"
+  },
+  {
+   "caption": "Parts wall"
+  },
+  {
+   "caption": "Front counter"
+  },
+  {
+   "caption": "The team"
+  }
+ ],
+ "contact": {
+  "phone": "0161 496 0155",
+  "email": "hello@pixelfix.example",
+  "area": "Manchester",
+  "address": "58 Oldham Street, Manchester M4 1LE",
+  "hours": [
+   [
+    "Monday to Saturday",
+    "9am to 6pm"
+   ],
+   [
+    "Sunday",
+    "11am to 4pm"
+   ]
   ]
+ },
+ "socials": [
+  {
+   "label": "Instagram",
+   "url": "https://www.instagram.com/"
+  },
+  {
+   "label": "TikTok",
+   "url": "https://www.tiktok.com/"
+  }
+ ],
+ "colours": {
+  "main": "#2f54ff",
+  "accent": "#12c99b"
+ },
+ "_sample": true
 }

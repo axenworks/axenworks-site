@@ -1,385 +1,226 @@
 {
-  "business_name": "Green Leaf Gardening",
-  "tagline": "Gardens you love, all year round",
-  "intro": "Friendly, reliable garden design and maintenance across Bristol and the surrounding villages.",
-  "cta_label": "Get a free quote",
-  "trust": [
-    "Fully insured",
-    "Free quotes",
-    "No call-out fee"
-  ],
-  "highlights": [
-    {
-      "value": "12",
-      "label": "years in Bristol"
-    },
-    {
-      "value": "200+",
-      "label": "gardens looked after"
-    },
-    {
-      "value": "4.9★",
-      "label": "average review"
-    },
-    {
-      "value": "6",
-      "label": "specialists on the team"
-    }
-  ],
-  "about_title": "Rooted in Bristol",
-  "about": "Green Leaf started with one van, one mower and a love of tidy borders. Twelve years later we look after more than two hundred gardens across Bristol, from small terraced courtyards to large family lawns.\n\nWe turn up when we say we will, leave every garden tidier than we found it, and give honest advice about what will actually thrive in your space.",
-  "values": [
-    {
-      "title": "We turn up",
-      "text": "Booked visits happen on the day we agree, every time."
-    },
-    {
-      "title": "Honest advice",
-      "text": "We'll tell you what will really grow, not what costs the most."
-    },
-    {
-      "title": "Tidy finish",
-      "text": "Every clipping is cleared and taken away before we leave."
-    }
-  ],
-  "services": [
-    {
-      "name": "Garden design",
-      "description": "Planting plans and new layouts, designed around how you actually use your garden.",
-      "price": "From £250"
-    },
-    {
-      "name": "Lawn care",
-      "description": "Regular mowing, feeding, scarifying and edging to keep your lawn thick and green.",
-      "price": "From £30 a visit"
-    },
-    {
-      "name": "Hedge trimming",
-      "description": "Neat, healthy hedges of any size, with all clippings taken away.",
-      "price": "From £45"
-    },
-    {
-      "name": "Seasonal clear-ups",
-      "description": "Leaves, weeds and overgrowth cleared, ready for the season ahead.",
-      "price": "From £90"
-    },
-    {
-      "name": "Planting",
-      "description": "New borders, bulbs and shrubs chosen to suit your soil and light.",
-      "price": "From £60"
-    },
-    {
-      "name": "Regular maintenance",
-      "description": "Weekly or fortnightly visits so your garden always looks its best.",
-      "price": "From £120 a month"
-    }
-  ],
-  "gallery": [
-    {
-      "src": null,
-      "caption": "Cottage border, Clifton"
-    },
-    {
-      "src": null,
-      "caption": "New lawn, Redland"
-    },
-    {
-      "src": null,
-      "caption": "Courtyard makeover, Totterdown"
-    },
-    {
-      "src": null,
-      "caption": "Hedge restoration, Westbury"
-    },
-    {
-      "src": null,
-      "caption": "Raised beds, Bishopston"
-    },
-    {
-      "src": null,
-      "caption": "Spring clear-up, Henleaze"
-    },
-    {
-      "src": null,
-      "caption": "Wildflower meadow, Stoke Bishop"
-    },
-    {
-      "src": null,
-      "caption": "Patio planting, Southville"
-    }
-  ],
-  "testimonials": [
-    {
-      "quote": "Sam and the team transformed our tired back garden in a week. Always on time and they left it spotless.",
-      "name": "Rachel M.",
-      "detail": "Clifton",
-      "rating": 5
-    },
-    {
-      "quote": "Honest advice and fair prices. Our lawn has never looked this good.",
-      "name": "David K.",
-      "detail": "Redland",
-      "rating": 5
-    },
-    {
-      "quote": "We've had them every fortnight for three years. Couldn't recommend them more.",
-      "name": "Priya S.",
-      "detail": "Bishopston",
-      "rating": 5
-    },
-    {
-      "quote": "Ella's design for our border is the best thing we've done to the house.",
-      "name": "Mark T.",
-      "detail": "Clifton",
-      "rating": 5
-    },
-    {
-      "quote": "Quick quote, fair price, and the lawn looks brand new.",
-      "name": "Hannah L.",
-      "detail": "Redland",
-      "rating": 5
-    },
-    {
-      "quote": "Reliable every single visit. They even sent photos when we were away.",
-      "name": "George W.",
-      "detail": "Westbury",
-      "rating": 4
-    }
-  ],
-  "contact": {
-    "phone": "0117 496 0123",
-    "email": "hello@greenleafgardening.co.uk",
-    "area": "Bristol and surrounding villages",
-    "hours": [
-      [
-        "Monday to Friday",
-        "8am to 5pm"
-      ],
-      [
-        "Saturday",
-        "9am to 1pm"
-      ],
-      [
-        "Sunday",
-        "Closed"
-      ]
-    ],
-    "address": null
+ "business_name": "Oda Ceramics",
+ "tagline": "Tableware thrown by hand in Leith",
+ "intro": "Plates, bowls and cups made in small batches, and wheel classes for beginners in our studio by the water.",
+ "cta_label": "Book a class",
+ "trust": [
+  "Made in Edinburgh",
+  "Dishwasher safe",
+  "Classes of six"
+ ],
+ "trust_line": "Studio and shop, Leith",
+ "highlights": [
+  {
+   "value": "6",
+   "label": "people in a class"
   },
-  "socials": [
-    {
-      "label": "Instagram",
-      "url": "https://instagram.com/"
-    },
-    {
-      "label": "Facebook",
-      "url": "https://facebook.com/"
-    }
-  ],
-  "colours": {
-    "main": "#3f6b3a",
-    "accent": "#c08a3e"
+  {
+   "value": "1240",
+   "label": "degree firing"
   },
-  "logo": null,
-  "hero_image": null,
-  "about_image": null,
-  "team": [
-    {
-      "name": "Sam Hart",
-      "role": "Founder and head gardener",
-      "bio": "Trained in horticulture at Bath and spent five years on country estates before starting Green Leaf.",
-      "photo": null
-    },
-    {
-      "name": "Ella Price",
-      "role": "Garden designer",
-      "bio": "Ella draws every planting plan by hand and loves a cottage border.",
-      "photo": null
-    },
-    {
-      "name": "Tom Reid",
-      "role": "Maintenance lead",
-      "bio": "Tom runs our regular-care rounds and knows every lawn in Redland.",
-      "photo": null
-    }
-  ],
-  "timeline": [
-    {
-      "year": "2012",
-      "text": "Sam starts Green Leaf with one van and one mower."
-    },
-    {
-      "year": "2016",
-      "text": "Ella joins and we begin offering full garden design."
-    },
-    {
-      "year": "2020",
-      "text": "We pass 100 regular customers across Bristol."
-    },
-    {
-      "year": "2024",
-      "text": "Named one of Bristol's top local trades by our customers."
-    }
-  ],
-  "process": [
-    {
-      "title": "Free visit",
-      "text": "We come and see your garden, listen, and measure up."
-    },
-    {
-      "title": "Clear quote",
-      "text": "A fixed written price within two days. No surprises."
-    },
-    {
-      "title": "The work",
-      "text": "Done on the agreed days, tidy and on time."
-    },
-    {
-      "title": "Aftercare",
-      "text": "Planting advice and optional regular visits to keep it looking great."
-    }
-  ],
-  "packages": [
-    {
-      "name": "Tidy",
-      "price": "£95",
-      "period": "per visit",
-      "features": [
-        "Mowing and edging",
-        "Weeding beds",
-        "Clippings removed"
-      ],
-      "featured": false
-    },
-    {
-      "name": "Care",
-      "price": "£180",
-      "period": "per month",
-      "features": [
-        "Fortnightly visits",
-        "Lawn feeding",
-        "Hedge trims",
-        "Seasonal planting advice"
-      ],
-      "featured": true
-    },
-    {
-      "name": "Complete",
-      "price": "£320",
-      "period": "per month",
-      "features": [
-        "Weekly visits",
-        "Full lawn programme",
-        "All hedges and pruning",
-        "Seasonal planting included"
-      ],
-      "featured": false
-    }
-  ],
-  "projects": [
-    {
-      "title": "Cottage border",
-      "location": "Clifton",
-      "category": "Design",
-      "summary": "A tired lawn edge turned into a deep, colourful cottage border that flowers from April to October.",
-      "details": "We lifted the old turf, improved the soil with compost, and planted foxgloves, salvias, roses and grasses in loose drifts.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    },
-    {
-      "title": "New lawn",
-      "location": "Redland",
-      "category": "Lawns",
-      "summary": "A patchy, mossy lawn replaced with fresh turf and a simple care plan.",
-      "details": "Full strip, levelled and re-turfed in two days, followed by a monthly feeding programme.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    },
-    {
-      "title": "Courtyard makeover",
-      "location": "Totterdown",
-      "category": "Design",
-      "summary": "A dark, paved yard became a green outdoor room with raised beds and climbers.",
-      "details": "Oak raised beds, shade-loving ferns and hostas, and jasmine on new trellis to soften the walls.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    },
-    {
-      "title": "Hedge restoration",
-      "location": "Westbury",
-      "category": "Maintenance",
-      "summary": "An overgrown laurel hedge brought back to a neat, healthy shape.",
-      "details": "Staged reduction over two visits to keep the hedge healthy, with all waste removed.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    },
-    {
-      "title": "Wildflower meadow",
-      "location": "Stoke Bishop",
-      "category": "Design",
-      "summary": "Part of a large lawn sown as a wildflower meadow for bees and butterflies.",
-      "details": "Ground prepared and sown with a native mix, with a mown path through the middle.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    },
-    {
-      "title": "Spring clear-up",
-      "location": "Henleaze",
-      "category": "Maintenance",
-      "summary": "A full spring clear-up to get a neglected garden ready for the season.",
-      "details": "Beds weeded and mulched, shrubs pruned, and lawn scarified and fed.",
-      "before": null,
-      "after": null,
-      "images": [
-        null,
-        null
-      ]
-    }
-  ],
-  "faq": [
-    {
-      "q": "Do you charge for quotes?",
-      "a": "No. Visits and quotes are always free, with no obligation."
-    },
-    {
-      "q": "Which areas do you cover?",
-      "a": "Bristol and the surrounding villages, within about 15 miles of the city centre."
-    },
-    {
-      "q": "Are you insured?",
-      "a": "Yes, we carry full public liability insurance. We're happy to share a copy."
-    },
-    {
-      "q": "Do you take away garden waste?",
-      "a": "Always. Every clipping and bag of waste leaves with us, and it's included in the price."
-    },
-    {
-      "q": "Can I book regular visits?",
-      "a": "Yes. Our Care and Complete packages include weekly or fortnightly visits on a set day."
-    },
-    {
-      "q": "What happens if it rains?",
-      "a": "Light rain is fine. If it's too wet to work safely we'll rebook you for the next free day."
-    }
+  {
+   "value": "3",
+   "label": "glazes, mixed here"
+  }
+ ],
+ "about_title": "One potter, one wheel, a lot of plates",
+ "about": "Ingrid Oda trained in Kyoto and Stoke-on-Trent before opening the studio in 2016. Everything is thrown on the wheel, trimmed by hand and glazed in one of three colours mixed in the studio.\n\nThe work is made to be used every day. It stacks, it goes in the dishwasher, and it gets better with a few years of breakfasts behind it.",
+ "services": [
+  {
+   "name": "Beginner wheel class",
+   "description": "Two and a half hours at the wheel. We fire and glaze your two best pieces.",
+   "price": "£65"
+  },
+  {
+   "name": "Six-week course",
+   "description": "One evening a week, from centring clay to a finished set of bowls.",
+   "price": "£290"
+  },
+  {
+   "name": "Tableware",
+   "description": "Plates, bowls, cups and jugs from the current batch, in the shop and online.",
+   "price": "From £18"
+  },
+  {
+   "name": "Restaurant commissions",
+   "description": "Tableware designed with your kitchen and made in runs of forty or more.",
+   "price": "On request"
+  },
+  {
+   "name": "Private sessions",
+   "description": "The studio to yourselves for birthdays and small groups of up to eight.",
+   "price": "£380"
+  }
+ ],
+ "values": [
+  {
+   "title": "Small batches",
+   "text": "No more than sixty pieces in a firing, each one checked by hand."
+  },
+  {
+   "title": "Made to be used",
+   "text": "Stoneware fired hot enough for daily use and the dishwasher."
+  },
+  {
+   "title": "Local clay where we can",
+   "text": "Our stoneware body comes from a supplier forty miles away."
+  }
+ ],
+ "process": [
+  {
+   "title": "Throw",
+   "text": "Each piece is shaped on the wheel from a weighed ball of clay."
+  },
+  {
+   "title": "Trim",
+   "text": "A day later the foot is cut and the surface smoothed."
+  },
+  {
+   "title": "Glaze",
+   "text": "After a first firing, pieces are dipped in glaze mixed in the studio."
+  },
+  {
+   "title": "Fire",
+   "text": "A final firing at 1,240 degrees makes the piece strong and watertight."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Do I need any experience?",
+   "a": "None. The beginner class starts from the very first step and there are only six of you."
+  },
+  {
+   "q": "When do I get my pieces?",
+   "a": "About three weeks after your class. You can collect them or we can post them."
+  },
+  {
+   "q": "Can it go in the dishwasher?",
+   "a": "Yes. All our tableware is dishwasher and microwave safe."
+  },
+  {
+   "q": "Do you sell gift vouchers?",
+   "a": "Yes, for classes or for the shop. They are valid for a year."
+  }
+ ],
+ "projects": [
+  {
+   "title": "Tableware for Fhior",
+   "location": "Edinburgh",
+   "category": "Restaurants",
+   "summary": "One hundred and twenty plates in a grey ash glaze.",
+   "details": "Designed with the kitchen over three tastings. The rim was lowered twice so sauces sit properly."
+  },
+  {
+   "title": "The breakfast set",
+   "location": "Studio range",
+   "category": "Tableware",
+   "summary": "A bowl, a plate and a cup that stack into one another.",
+   "details": "Our most popular set, made in every batch since 2018."
+  },
+  {
+   "title": "Wedding favours",
+   "location": "Fife",
+   "category": "Commissions",
+   "summary": "Ninety small dishes, each stamped with a date.",
+   "details": "Thrown over two weeks and wrapped in recycled paper."
+  },
+  {
+   "title": "Café cups for Lowdown",
+   "location": "Leith",
+   "category": "Restaurants",
+   "summary": "Handleless cups in two sizes for a coffee bar.",
+   "details": "Tested with the baristas for weight and heat before the full run."
+  }
+ ],
+ "testimonials": [
+  {
+   "quote": "The calmest two hours of my month. I came home with a bowl I actually use.",
+   "name": "Fiona Lennox",
+   "detail": "Beginner class",
+   "rating": 5
+  },
+  {
+   "quote": "Ingrid understood what the kitchen needed before we finished explaining.",
+   "name": "Callum Reid",
+   "detail": "Head chef",
+   "rating": 5
+  },
+  {
+   "quote": "Six of us, one teacher, proper attention. Worth every penny.",
+   "name": "Hannah Okoro",
+   "detail": "Six-week course",
+   "rating": 5
+  },
+  {
+   "quote": "Our plates have survived two children and a house move.",
+   "name": "Ben Sorley",
+   "detail": "Shop customer",
+   "rating": 5
+  }
+ ],
+ "team": [
+  {
+   "name": "Ingrid Oda",
+   "role": "Potter",
+   "bio": "Makes everything in the shop and teaches the weekend classes."
+  },
+  {
+   "name": "Jamie Muir",
+   "role": "Studio assistant",
+   "bio": "Mixes glazes, packs orders and teaches Thursday evenings."
+  }
+ ],
+ "gallery": [
+  {
+   "caption": "The studio"
+  },
+  {
+   "caption": "Bowls before glazing"
+  },
+  {
+   "caption": "Ash glaze"
+  },
+  {
+   "caption": "The kiln"
+  },
+  {
+   "caption": "Saturday class"
+  },
+  {
+   "caption": "The breakfast set"
+  }
+ ],
+ "contact": {
+  "phone": "0131 496 0127",
+  "email": "studio@odaceramics.example",
+  "area": "Leith, Edinburgh",
+  "address": "9 Shore Place, Edinburgh EH6 6SW",
+  "hours": [
+   [
+    "Wednesday to Friday",
+    "10am to 5pm"
+   ],
+   [
+    "Saturday",
+    "10am to 4pm"
+   ],
+   [
+    "Sunday to Tuesday",
+    "Closed"
+   ]
   ]
+ },
+ "socials": [
+  {
+   "label": "Instagram",
+   "url": "https://www.instagram.com/"
+  }
+ ],
+ "colours": {
+  "main": "#22262b",
+  "accent": "#4f7f72"
+ },
+ "_sample": true,
+ "process_title": "How a piece is made",
+ "projects_title": "Selected work"
 }

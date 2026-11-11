@@ -247,13 +247,13 @@ var $=function(id){return document.getElementById(id)};
 var form=$('f'),steps=[].slice.call(document.querySelectorAll('.step'));
 var uid=null,project=null,answers={},step=0,saveTimer=null,saving=Promise.resolve();
 var STYLES=[
-  ['classic','Classic','Warm and trustworthy. Suits trades, caf\u00e9s and local services.'],
-  ['bold','Bold','Big headlines and strong colour. Suits fitness, events and creative work.'],
-  ['minimal','Minimal','Clean with lots of space. Suits consultants, studios and portfolios.'],
-  ['playful','Playful','Rounded and bright. Suits caf\u00e9s, kids\u2019 clubs and pet businesses.'],
-  ['modern','Modern','Sleek gradients and glassy cards. Suits startups, studios and consultants.'],
-  ['rustic','Rustic','Earthy and hand-made. Suits farm shops, makers and outdoor trades.'],
-  ['editorial','Editorial','Like a magazine. Suits photographers, venues and salons.']
+  ['classic','Classic','Like good stationery: serif type, fine rules, everything centred. Suits accountants, solicitors and consultants.'],
+  ['bold','Bold','A workshop poster: huge capitals and flat blocks of colour. Suits garages, gyms and trades.'],
+  ['minimal','Minimal','A quiet catalogue: thin lines and plenty of space. Suits makers, studios and architects.'],
+  ['playful','Playful','Stickers on a pinboard: chunky outlines and bright colour. Suits pet businesses, kids\u2019 clubs and caf\u00e9s.'],
+  ['modern','Modern','Soft light, rounded panels and a wash of colour. Suits repair shops, clinics and agencies.'],
+  ['rustic','Rustic','Brown paper, taped snapshots and an ink stamp. Suits farm shops, bakers and outdoor trades.'],
+  ['editorial','Editorial','A fashion magazine: giant headlines, drop caps and pull quotes. Suits florists, photographers and salons.']
 ];
 var TEMPLATE_NAMES={};STYLES.forEach(function(x){TEMPLATE_NAMES[x[0]]=x[1]});
 var PLAN_RANK={starter:1,standard:2,pro:3};

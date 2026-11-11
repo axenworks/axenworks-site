@@ -1,0 +1,67 @@
+/* Classic: the look of good stationery. Symmetrical, ruled, serif. Sample: an accountancy practice. */
+:root{--main:#1d2b4f;--accent:#b08a3e;--bg:#fdfcf9;--surface:#f4f2ec;--ink:#1b1d24;--muted:#5a5d68;--line:#d9d5ca;--art-bg:#ece8dd;--radius:2px;--btn-r:2px;--mark-r:2px;--field-r:2px;--dw:400;--dls:-.01em;
+  --font-display:Georgia,"Iowan Old Style","Times New Roman",serif;--font-body:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+.lv-standard,.lv-pro{--font-display:"Libre Caslon Display",Georgia,serif;--font-body:"Public Sans",system-ui,sans-serif}
+.rule{display:none}
+h3{font-family:var(--font-body);font-weight:700}
+.btn{letter-spacing:.01em;padding:.9em 1.6em}
+.brand-mark{font-family:var(--font-display);background:none;color:var(--main-text);border:1px solid currentColor;outline:1px solid currentColor;outline-offset:2px;width:30px;height:30px}
+.top{border-bottom:0;box-shadow:0 1px 0 var(--line),0 4px 0 var(--bg),0 5px 0 var(--line)}
+.sec-head{justify-content:center;text-align:center;flex-direction:column;align-items:center}
+.sec-head::after{content:"";width:64px;height:5px;border-block:1px solid var(--accent)}
+.hero-place{display:flex;align-items:center;justify-content:center;gap:16px;font-size:.95rem;letter-spacing:.04em}
+.hero-place::before,.hero-place::after{content:"";width:44px;height:1px;background:var(--accent)}
+.hero-trust li::before{width:6px;height:6px;border-radius:0;transform:rotate(45deg)}
+.hero-copy{text-align:center}.hero-intro{margin-inline:auto}.hero-cta,.hero-trust{justify-content:center}
+.price{font-family:var(--font-display);font-size:1.1rem;font-weight:400}
+.svc{grid-template-columns:repeat(auto-fit,minmax(min(100%,420px),1fr));gap:0 64px}
+.svc li,.lv-starter .svc li{padding:20px 0;background:none;border-radius:0;border-top:1px solid var(--line);border-bottom:0}
+.svc-t h3{flex:1;display:flex;align-items:baseline;font-family:var(--font-display);font-weight:400;font-size:1.3rem}
+.svc-t h3::after{content:"";flex:1;margin:0 4px 0 12px;border-bottom:1px dotted var(--muted);transform:translateY(-5px)}
+.steps li{padding-top:46px;text-align:center}
+.steps li::before{left:50%;transform:translateX(-50%);content:counter(s,upper-roman);background:none;color:var(--accent-text);font-size:1.5rem;border-radius:0;width:auto;height:auto;font-weight:400}
+.vals{text-align:center}.vals h3{font-family:var(--font-display);font-weight:400;font-size:1.4rem}
+.rev{background:none;border-top:3px double var(--line);padding:26px 4px;text-align:center;align-items:center}
+.rev blockquote{font-family:var(--font-display);font-size:1.3rem;line-height:1.4}
+.avatar{border-radius:2px;font-weight:400;font-size:1.3rem}
+.stats{text-align:center}.stats li+li{border-left:1px solid var(--line)}.stats b{font-weight:400;color:var(--main-text)}.stats span{margin-inline:auto}
+.stats-sec{border-block:1px solid var(--line);background:var(--surface)}
+.cta-band{box-shadow:inset 0 0 0 10px var(--main),inset 0 0 0 11px var(--accent)}.cta-in{flex-direction:column;text-align:center}
+.foot{--foot-bg:var(--main);--foot-ink:var(--on-main)}
+.form{border:1px solid var(--line);outline:1px solid var(--line);outline-offset:4px}
+.pagehead{text-align:center}.pagehead h1,.pagehead .lede{margin-inline:auto}
+.q summary{font-size:1.3rem}
+
+/* Starter: a letterhead */
+.lv-starter .top-in{flex-direction:column;justify-content:center;gap:6px;padding:26px 0 18px;text-align:center}
+.lv-starter .brand{margin:0;font-size:1.5rem}.lv-starter .nav a{font-size:.9rem}
+.lv-starter .hero{padding:48px 0 36px}
+.lv-starter .about-copy,.lv-starter .contact-info{text-align:center}.lv-starter .prose{margin-inline:auto}
+.lv-starter .about h2::after,.lv-starter .contact-info h2::after{content:"";display:block;width:64px;height:5px;margin:16px auto 0;border-block:1px solid var(--accent)}
+.lv-starter .facts{justify-items:center}.lv-starter .hours{margin-inline:auto}
+
+/* Standard: centred hero over a wide framed plate */
+.lv-standard .top-in{flex-wrap:wrap;justify-content:center;padding:14px 0 6px;position:relative}
+.lv-standard .brand{flex-basis:100%;justify-content:center;margin:0;font-size:1.5rem}
+.lv-standard .top-cta{position:absolute;right:0;top:14px}
+.lv-standard .hero-in{grid-template-columns:1fr;gap:44px}
+.lv-standard .hero-copy{max-width:820px;margin-inline:auto}
+.lv-standard .hero-art .ph{aspect-ratio:21/8;outline:1px solid var(--line);outline-offset:8px}
+@media(max-width:900px){.lv-standard .top-in{justify-content:space-between;padding:0}.lv-standard .brand{flex-basis:auto;font-size:1.15rem}.lv-standard .hero-art .ph{aspect-ratio:4/3}}
+
+/* Pro: a deep navy opening with an arched window and a brass seal */
+.lv-pro .hero{background:var(--main);color:var(--on-main);--muted:color-mix(in srgb,var(--on-main) 72%,transparent)}
+.lv-pro .hero-copy{text-align:left}.lv-pro .hero-intro{margin-inline:0}.lv-pro .hero-cta,.lv-pro .hero-trust,.lv-pro .hero-place{justify-content:flex-start}
+.lv-pro .hero-place{color:var(--accent-on-main)}.lv-pro .hero-place::before{display:none}
+.lv-pro .hero .btn{background:var(--accent);border-color:var(--accent);color:var(--on-accent)}.lv-pro .hero .btn.alt{background:none;color:var(--on-main);border-color:color-mix(in srgb,var(--on-main) 45%,transparent)}
+.lv-pro .hero-art{justify-self:end;width:min(100%,430px);margin-right:22px}
+.lv-pro .hero-art .ph{aspect-ratio:3/4;border-radius:999px 999px 0 0;outline:1px solid var(--accent);outline-offset:10px}
+.lv-pro .seal{display:block;position:absolute;right:-12px;top:8%}
+.lv-pro .marquee{font-weight:400;border-block:3px double var(--line)}.lv-pro .marquee{--mq-dot:0}.lv-pro .marquee-track span::after{transform:rotate(45deg);width:7px;height:7px}
+.lv-pro .proj-card .ph{outline:1px solid var(--line);outline-offset:6px}
+:root[data-theme=dark]{--bg:#10141f;--surface:#181d2b;--ink:#eef0f5;--muted:#a4abbb;--line:#2c3346;--art-bg:#232a3d;--main-text:var(--accent-bright);--star:var(--accent-bright)}
+:root[data-theme=dark] .lv-pro .hero{background:#0b0e17}
+@media(max-width:820px){.lv-pro .hero-art{justify-self:center;width:min(100%,340px);margin-right:0}.lv-pro .seal{right:-8px}.lv-pro .hero-art .ph{aspect-ratio:3/4}}
+.lv-starter .brand-name{white-space:normal;text-align:center}
+@media(max-width:560px){.stats li+li{border-left:0}}
+:root[data-theme=dark] .lv-pro .hero{color:#eef0f5;--muted:#a4abbb}:root[data-theme=dark] .lv-pro .hero-place{color:var(--accent-bright)}:root[data-theme=dark] .lv-pro .hero .btn.alt{color:#eef0f5;border-color:#5a6278}
