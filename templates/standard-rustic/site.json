@@ -114,28 +114,32 @@
    "location": "The old orchard",
    "category": "Spring",
    "summary": "Walk the orchard in full flower, with tea and cake at the end.",
-   "details": "Paths are mown through the oldest trees for two weeks in late April."
+   "details": "Paths are mown through the oldest trees for two weeks in late April.",
+   "after": "https://images.unsplash.com/photo-1567306295427-94503f8300d7?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Strawberry season",
    "location": "Top field",
    "category": "Summer",
    "summary": "Six weeks of pick-your-own, weather allowing.",
-   "details": "Bring a basket or borrow one. Under-fives pick free."
+   "details": "Bring a basket or borrow one. Under-fives pick free.",
+   "after": "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Pressing day",
    "location": "The cider barn",
    "category": "Autumn",
    "summary": "Watch the press at work and taste the first juice.",
-   "details": "Every Saturday in October, with the family on hand to explain how it is done."
+   "details": "Every Saturday in October, with the family on hand to explain how it is done.",
+   "after": "https://images.unsplash.com/photo-1591586116988-62fe65164f8d?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Wreath workshops",
    "location": "The café",
    "category": "Winter",
    "summary": "Make your own from holly, ivy and orchard prunings.",
-   "details": "Two hours with mulled juice and mince pies. Book early."
+   "details": "Two hours with mulled juice and mince pies. Book early.",
+   "after": "https://images.unsplash.com/photo-1696134228075-7fa1c3fb8a9e?auto=format&fit=crop&w=1200&q=70"
   }
  ],
  "testimonials": [
@@ -183,22 +187,28 @@
  ],
  "gallery": [
   {
+   "src": "https://images.unsplash.com/photo-1632776350300-11016768b521?auto=format&fit=crop&w=1000&q=70",
    "caption": "The shop"
   },
   {
+   "src": "https://images.unsplash.com/photo-1437275625246-b7a923f3d0f5?auto=format&fit=crop&w=1000&q=70",
    "caption": "Apple harvest"
   },
   {
-   "caption": "Nan's loaves"
+   "src": "https://images.unsplash.com/photo-1567306295427-94503f8300d7?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Picked this morning"
   },
   {
-   "caption": "The café garden"
+   "src": "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Carrots and leeks"
   },
   {
-   "caption": "Pressing day"
+   "src": "https://images.unsplash.com/photo-1591586116988-62fe65164f8d?auto=format&fit=crop&w=1000&q=70",
+   "caption": "The veg table"
   },
   {
-   "caption": "The honesty table"
+   "src": "https://images.unsplash.com/photo-1696134228075-7fa1c3fb8a9e?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Baskets by the door"
   }
  ],
  "contact": {
@@ -235,6 +245,9 @@
   "main": "#7d2a20",
   "accent": "#d79a2b"
  },
+ "hero_image": "https://images.unsplash.com/photo-1632776350300-11016768b521?auto=format&fit=crop&w=1400&q=70",
+ "about_image": "https://images.unsplash.com/photo-1437275625246-b7a923f3d0f5?auto=format&fit=crop&w=1100&q=70",
+ "photo_credit": "Sample photos by mk. s, Melissa Askew, Shelley Pauls, Peter Wendt, Bruno Guerrero, Anne Preble on Unsplash",
  "_sample": true,
  "process_title": "The farming year",
  "projects_title": "What’s on"

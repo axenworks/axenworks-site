@@ -113,28 +113,32 @@
    "location": "Cornwell Manor",
    "category": "Summer",
    "summary": "Roses, foxgloves and sweet peas down a forty-foot table.",
-   "details": "A June wedding in a walled garden. The ceremony arch was moved to the marquee by six ushers and a wheelbarrow."
+   "details": "A June wedding in a walled garden. The ceremony arch was moved to the marquee by six ushers and a wheelbarrow.",
+   "after": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Amara and Jon",
    "location": "Stone Barn",
    "category": "Autumn",
    "summary": "Dahlias, rosehips and copper beech in a barn lit by candles.",
-   "details": "Three hundred stems of dahlia cut the morning before, in a palette of plum and rust."
+   "details": "Three hundred stems of dahlia cut the morning before, in a palette of plum and rust.",
+   "after": "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "A spring elopement",
    "location": "Chastleton",
    "category": "Spring",
    "summary": "One bouquet, one buttonhole and a doorway of blossom.",
-   "details": "Twelve guests, a church porch and branches cut from the orchard at dawn."
+   "details": "Twelve guests, a church porch and branches cut from the orchard at dawn.",
+   "after": "https://images.unsplash.com/photo-1511288702291-e55d6cfbe3b5?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Midwinter supper",
    "location": "Daylesford",
    "category": "Winter",
    "summary": "Hellebores, paperwhites and bare branches for a dinner of sixty.",
-   "details": "Planted bowls that guests took home at the end of the night."
+   "details": "Planted bowls that guests took home at the end of the night.",
+   "after": "https://images.unsplash.com/photo-1595467959554-9ffcbf37f10f?auto=format&fit=crop&w=1200&q=70"
   }
  ],
  "testimonials": [
@@ -177,22 +181,24 @@
  ],
  "gallery": [
   {
-   "caption": "The walled garden in June"
+   "src": "https://images.unsplash.com/photo-1595467959554-9ffcbf37f10f?auto=format&fit=crop&w=1000&q=70",
+   "caption": "A bride’s bouquet"
   },
   {
-   "caption": "A bride's bouquet"
-  },
-  {
-   "caption": "Dahlias, cut at dawn"
-  },
-  {
-   "caption": "The studio barn"
-  },
-  {
+   "src": "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1000&q=70",
    "caption": "A ceremony arch"
   },
   {
+   "src": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=70",
    "caption": "Table flowers"
+  },
+  {
+   "src": "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Garden roses"
+  },
+  {
+   "src": "https://images.unsplash.com/photo-1511288702291-e55d6cfbe3b5?auto=format&fit=crop&w=1000&q=70",
+   "caption": "The day itself"
   }
  ],
  "contact": {
@@ -225,6 +231,9 @@
   "main": "#8f1d3f",
   "accent": "#e9b8a8"
  },
+ "hero_image": "https://images.unsplash.com/photo-1595467959554-9ffcbf37f10f?auto=format&fit=crop&w=1400&q=70",
+ "about_image": "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1100&q=70",
+ "photo_credit": "Sample photos by nikki gibson, Samantha Gades, Photos by Lanty, Beatriz Pérez Moya, Nathan Dumlao on Unsplash",
  "_sample": true,
  "projects_title": "Recent weddings"
 }

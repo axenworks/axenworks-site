@@ -114,28 +114,33 @@
    "location": "Hove",
    "category": "Full groom",
    "summary": "From tangled teddy bear to tidy gentleman.",
-   "details": "Three hours, two treat breaks and a short summer cut that he can run on the beach in."
+   "details": "Three hours, two treat breaks and a short summer cut that he can run on the beach in.",
+   "after": "https://images.unsplash.com/photo-1719464454959-9cf304ef4774?auto=format&fit=crop&w=1200&q=70",
+   "before": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Luna's first visit",
    "location": "Kemptown",
    "category": "Puppies",
    "summary": "A twelve-week-old collie meets the hairdryer.",
-   "details": "Twenty minutes of play first, then a gentle bath and a very fluffy dry."
+   "details": "Twenty minutes of play first, then a gentle bath and a very fluffy dry.",
+   "after": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Bruno's big de-shed",
    "location": "Patcham",
    "category": "De-shed",
    "summary": "One husky. Two bin bags of fluff.",
-   "details": "A deep wash and a long blow-out before the summer."
+   "details": "A deep wash and a long blow-out before the summer.",
+   "after": "https://images.unsplash.com/photo-1760596687383-887f0eeae71b?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Poppy the rescue",
    "location": "Brighton",
    "category": "Nervous dogs",
    "summary": "Four short visits to build trust before a full groom.",
-   "details": "We started with five minutes on the table and built up over a month."
+   "details": "We started with five minutes on the table and built up over a month.",
+   "after": "https://images.unsplash.com/photo-1776880952098-1cc6dbbda513?auto=format&fit=crop&w=1200&q=70"
   }
  ],
  "testimonials": [
@@ -183,22 +188,28 @@
  ],
  "gallery": [
   {
+   "src": "https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=1000&q=70",
    "caption": "Monty, after"
   },
   {
-   "caption": "Bath time"
+   "src": "https://images.unsplash.com/photo-1719464454959-9cf304ef4774?auto=format&fit=crop&w=1000&q=70",
+   "caption": "A careful trim"
   },
   {
+   "src": "https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Fresh from the bath"
+  },
+  {
+   "src": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1000&q=70",
    "caption": "The garden gang"
   },
   {
-   "caption": "Luna's first groom"
+   "src": "https://images.unsplash.com/photo-1760596687383-887f0eeae71b?auto=format&fit=crop&w=1000&q=70",
+   "caption": "All smiles"
   },
   {
-   "caption": "The shop"
-  },
-  {
-   "caption": "Nap time"
+   "src": "https://images.unsplash.com/photo-1776880952098-1cc6dbbda513?auto=format&fit=crop&w=1000&q=70",
+   "caption": "A calm hello"
   }
  ],
  "contact": {
@@ -235,6 +246,9 @@
   "main": "#4b3bd6",
   "accent": "#ffb72b"
  },
+ "hero_image": "https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=1400&q=70",
+ "about_image": "https://images.unsplash.com/photo-1719464454959-9cf304ef4774?auto=format&fit=crop&w=1100&q=70",
+ "photo_credit": "Sample photos by Joe Caione, Buddy AN, Victor G, Alvan Nee, Cham Pets Family, Vinícius Costa on Unsplash",
  "_sample": true,
  "projects_title": "Before and after"
 }

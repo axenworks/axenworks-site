@@ -108,28 +108,32 @@
    "location": "Edinburgh",
    "category": "Restaurants",
    "summary": "One hundred and twenty plates in a grey ash glaze.",
-   "details": "Designed with the kitchen over three tastings. The rim was lowered twice so sauces sit properly."
+   "details": "Designed with the kitchen over three tastings. The rim was lowered twice so sauces sit properly.",
+   "after": "https://images.unsplash.com/photo-1778698993355-2c5f29edbfb9?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "The breakfast set",
    "location": "Studio range",
    "category": "Tableware",
    "summary": "A bowl, a plate and a cup that stack into one another.",
-   "details": "Our most popular set, made in every batch since 2018."
+   "details": "Our most popular set, made in every batch since 2018.",
+   "after": "https://images.unsplash.com/photo-1776972334890-018cb3b3e3c6?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Wedding favours",
    "location": "Fife",
    "category": "Commissions",
    "summary": "Ninety small dishes, each stamped with a date.",
-   "details": "Thrown over two weeks and wrapped in recycled paper."
+   "details": "Thrown over two weeks and wrapped in recycled paper.",
+   "after": "https://images.unsplash.com/photo-1776584615508-e70141dc7823?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Café cups for Lowdown",
    "location": "Leith",
    "category": "Restaurants",
    "summary": "Handleless cups in two sizes for a coffee bar.",
-   "details": "Tested with the baristas for weight and heat before the full run."
+   "details": "Tested with the baristas for weight and heat before the full run.",
+   "after": "https://images.unsplash.com/photo-1610206349499-c932c3b3aacb?auto=format&fit=crop&w=1200&q=70"
   }
  ],
  "testimonials": [
@@ -172,22 +176,28 @@
  ],
  "gallery": [
   {
-   "caption": "The studio"
+   "src": "https://images.unsplash.com/photo-1772607407371-44031ae3b69f?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Bowls on the shelf"
   },
   {
-   "caption": "Bowls before glazing"
+   "src": "https://images.unsplash.com/photo-1764507768733-667e135d8cb9?auto=format&fit=crop&w=1000&q=70",
+   "caption": "At the wheel"
   },
   {
-   "caption": "Ash glaze"
+   "src": "https://images.unsplash.com/photo-1778698993355-2c5f29edbfb9?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Pots drying"
   },
   {
-   "caption": "The kiln"
+   "src": "https://images.unsplash.com/photo-1776972334890-018cb3b3e3c6?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Small pots"
   },
   {
-   "caption": "Saturday class"
+   "src": "https://images.unsplash.com/photo-1776584615508-e70141dc7823?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Cups before glazing"
   },
   {
-   "caption": "The breakfast set"
+   "src": "https://images.unsplash.com/photo-1610206349499-c932c3b3aacb?auto=format&fit=crop&w=1000&q=70",
+   "caption": "The breakfast cup"
   }
  ],
  "contact": {
@@ -220,6 +230,9 @@
   "main": "#22262b",
   "accent": "#4f7f72"
  },
+ "hero_image": "https://images.unsplash.com/photo-1772607407371-44031ae3b69f?auto=format&fit=crop&w=1400&q=70",
+ "about_image": "https://images.unsplash.com/photo-1764507768733-667e135d8cb9?auto=format&fit=crop&w=1100&q=70",
+ "photo_credit": "Sample photos by lei qian, Laura Tommasina, Jonathan Cosens Photography, jason hu, Manki Kim on Unsplash",
  "_sample": true,
  "process_title": "How a piece is made",
  "projects_title": "Selected work"

@@ -4,395 +4,1710 @@
   "tagline": "Accounts kept in good order, and advice you can act on",
   "intro": "Chartered accountants for small businesses, landlords and the self-employed across Bath and north Somerset.",
   "cta_label": "Book a free first meeting",
-  "trust": ["ICAEW chartered", "Fixed fees agreed up front", "Making Tax Digital ready", "Established 1998"],
+  "trust": [
+   "ICAEW chartered",
+   "Fixed fees agreed up front",
+   "Making Tax Digital ready",
+   "Established 1998"
+  ],
   "trust_line": "Chartered accountants, Bath",
-  "highlights": [{"value": "27", "label": "years in practice"}, {"value": "640", "label": "clients looked after"}, {"value": "2", "label": "working days to reply"}],
+  "highlights": [
+   {
+    "value": "27",
+    "label": "years in practice"
+   },
+   {
+    "value": "640",
+    "label": "clients looked after"
+   },
+   {
+    "value": "2",
+    "label": "working days to reply"
+   }
+  ],
   "about_title": "A small practice that knows your name",
   "about": "Margaret Hartwell opened the practice above a bookshop on Milsom Street in 1998. Daniel Finch joined as a trainee and became a partner twelve years later. We are still a small firm on purpose.\n\nYou deal with the same accountant all year, not a call centre. We explain what the numbers mean in plain English, tell you what is due and when, and agree our fee before any work begins.",
   "services": [
-   {"name": "Year-end accounts", "description": "Accounts prepared, explained and filed on time for sole traders, partnerships and limited companies.", "price": "From £480"},
-   {"name": "Self assessment", "description": "Your tax return completed and checked, with a clear note of what to pay and when.", "price": "From £190"},
-   {"name": "Bookkeeping and VAT", "description": "Monthly or quarterly bookkeeping and VAT returns filed through Making Tax Digital software.", "price": "From £85 a month"},
-   {"name": "Payroll", "description": "Payslips, pensions and submissions handled for teams of one to fifty.", "price": "From £40 a month"},
-   {"name": "Landlord accounts", "description": "Rental income, allowable costs and capital gains worked out properly for one property or twenty.", "price": "From £220"},
-   {"name": "Business advice", "description": "Help with starting up, taking on staff, buying premises or planning to sell.", "price": "£120 an hour"}
+   {
+    "name": "Year-end accounts",
+    "description": "Accounts prepared, explained and filed on time for sole traders, partnerships and limited companies.",
+    "price": "From £480"
+   },
+   {
+    "name": "Self assessment",
+    "description": "Your tax return completed and checked, with a clear note of what to pay and when.",
+    "price": "From £190"
+   },
+   {
+    "name": "Bookkeeping and VAT",
+    "description": "Monthly or quarterly bookkeeping and VAT returns filed through Making Tax Digital software.",
+    "price": "From £85 a month"
+   },
+   {
+    "name": "Payroll",
+    "description": "Payslips, pensions and submissions handled for teams of one to fifty.",
+    "price": "From £40 a month"
+   },
+   {
+    "name": "Landlord accounts",
+    "description": "Rental income, allowable costs and capital gains worked out properly for one property or twenty.",
+    "price": "From £220"
+   },
+   {
+    "name": "Business advice",
+    "description": "Help with starting up, taking on staff, buying premises or planning to sell.",
+    "price": "£120 an hour"
+   }
   ],
   "values": [
-   {"title": "One accountant, all year", "text": "You always know who is looking after your affairs and how to reach them."},
-   {"title": "Fees agreed first", "text": "We quote a fixed fee before we start, so the invoice is never a surprise."},
-   {"title": "Plain English", "text": "We explain what we have done and why, without the jargon."}
+   {
+    "title": "One accountant, all year",
+    "text": "You always know who is looking after your affairs and how to reach them."
+   },
+   {
+    "title": "Fees agreed first",
+    "text": "We quote a fixed fee before we start, so the invoice is never a surprise."
+   },
+   {
+    "title": "Plain English",
+    "text": "We explain what we have done and why, without the jargon."
+   }
   ],
   "process": [
-   {"title": "A free first meeting", "text": "Half an hour, in person or by video, to understand your business and what you need."},
-   {"title": "A fixed quote", "text": "We write down exactly what we will do and what it will cost each year."},
-   {"title": "We take over the paperwork", "text": "We contact your previous accountant and HMRC so you do not have to."},
-   {"title": "Regular check-ins", "text": "We remind you of every deadline and review your position before the year ends."}
+   {
+    "title": "A free first meeting",
+    "text": "Half an hour, in person or by video, to understand your business and what you need."
+   },
+   {
+    "title": "A fixed quote",
+    "text": "We write down exactly what we will do and what it will cost each year."
+   },
+   {
+    "title": "We take over the paperwork",
+    "text": "We contact your previous accountant and HMRC so you do not have to."
+   },
+   {
+    "title": "Regular check-ins",
+    "text": "We remind you of every deadline and review your position before the year ends."
+   }
   ],
   "faq": [
-   {"q": "How do I switch accountant?", "a": "Tell us who you use now and sign one letter. We request your records from them and register with HMRC as your agent. It normally takes about two weeks."},
-   {"q": "Do I have to come to your office?", "a": "No. Around half our clients work with us entirely by email, phone and video. You are always welcome to call in."},
-   {"q": "What software do you use?", "a": "We support Xero, FreeAgent and QuickBooks, and can set one up for you. If you prefer a spreadsheet, that is fine too."},
-   {"q": "When will I know what tax I owe?", "a": "For most clients, within four weeks of sending us your records, and always well before the payment date."}
+   {
+    "q": "How do I switch accountant?",
+    "a": "Tell us who you use now and sign one letter. We request your records from them and register with HMRC as your agent. It normally takes about two weeks."
+   },
+   {
+    "q": "Do I have to come to your office?",
+    "a": "No. Around half our clients work with us entirely by email, phone and video. You are always welcome to call in."
+   },
+   {
+    "q": "What software do you use?",
+    "a": "We support Xero, FreeAgent and QuickBooks, and can set one up for you. If you prefer a spreadsheet, that is fine too."
+   },
+   {
+    "q": "When will I know what tax I owe?",
+    "a": "For most clients, within four weeks of sending us your records, and always well before the payment date."
+   }
   ],
   "projects": [
-   {"title": "A bakery taking on its first staff", "location": "Larkhall", "category": "Start-ups", "summary": "Set up payroll and pensions for six new employees in three weeks.", "details": "The owner had been a sole trader for four years. We moved the business to a limited company, registered for PAYE, set up a workplace pension and trained the manager to approve payroll each month."},
-   {"title": "Eleven rental flats, one clear picture", "location": "Bath", "category": "Landlords", "summary": "Untangled five years of rental records and reduced the tax bill legitimately.", "details": "Records were spread across three letting agents. We rebuilt the figures property by property, claimed finance costs and repairs that had been missed, and set up a simple quarterly routine."},
-   {"title": "A joinery firm preparing to sell", "location": "Keynsham", "category": "Advice", "summary": "Three years of planning so the owner could retire on good terms.", "details": "We tidied the balance sheet, documented the order book and worked with the solicitor on the sale. The business was sold to its manager."},
-   {"title": "From shoebox to software", "location": "Bradford-on-Avon", "category": "Bookkeeping", "summary": "Moved a busy café from paper receipts to Xero in a month.", "details": "We connected the till and bank feed, photographed the backlog of receipts and showed the owner how to check the week's figures in ten minutes."}
+   {
+    "title": "A bakery taking on its first staff",
+    "location": "Larkhall",
+    "category": "Start-ups",
+    "summary": "Set up payroll and pensions for six new employees in three weeks.",
+    "details": "The owner had been a sole trader for four years. We moved the business to a limited company, registered for PAYE, set up a workplace pension and trained the manager to approve payroll each month.",
+    "after": "https://images.unsplash.com/photo-1787532378729-fe4241197405?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Eleven rental flats, one clear picture",
+    "location": "Bath",
+    "category": "Landlords",
+    "summary": "Untangled five years of rental records and reduced the tax bill legitimately.",
+    "details": "Records were spread across three letting agents. We rebuilt the figures property by property, claimed finance costs and repairs that had been missed, and set up a simple quarterly routine.",
+    "after": "https://images.unsplash.com/photo-1713947503588-8ff8196dc4a3?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "A joinery firm preparing to sell",
+    "location": "Keynsham",
+    "category": "Advice",
+    "summary": "Three years of planning so the owner could retire on good terms.",
+    "details": "We tidied the balance sheet, documented the order book and worked with the solicitor on the sale. The business was sold to its manager.",
+    "after": "https://images.unsplash.com/photo-1713461983836-de0a45009424?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "From shoebox to software",
+    "location": "Bradford-on-Avon",
+    "category": "Bookkeeping",
+    "summary": "Moved a busy café from paper receipts to Xero in a month.",
+    "details": "We connected the till and bank feed, photographed the backlog of receipts and showed the owner how to check the week's figures in ten minutes.",
+    "after": "https://images.unsplash.com/photo-1706169582307-8ae586631e8a?auto=format&fit=crop&w=1200&q=70"
+   }
   ],
   "testimonials": [
-   {"quote": "Daniel explained my accounts properly for the first time in eleven years of being in business.", "name": "Ruth Okafor", "detail": "Café owner, Bradford-on-Avon", "rating": 5},
-   {"quote": "They told me the fee before they started and it has not changed since. Everything is filed early.", "name": "Tom Whitcombe", "detail": "Landlord, Bath", "rating": 5},
-   {"quote": "Switching was painless. I signed one letter and they dealt with the rest.", "name": "Priya Nair", "detail": "Freelance designer", "rating": 5},
-   {"quote": "A proper, old-fashioned level of care with thoroughly modern software.", "name": "George Ellery", "detail": "Joinery firm owner", "rating": 5}
+   {
+    "quote": "Daniel explained my accounts properly for the first time in eleven years of being in business.",
+    "name": "Ruth Okafor",
+    "detail": "Café owner, Bradford-on-Avon",
+    "rating": 5
+   },
+   {
+    "quote": "They told me the fee before they started and it has not changed since. Everything is filed early.",
+    "name": "Tom Whitcombe",
+    "detail": "Landlord, Bath",
+    "rating": 5
+   },
+   {
+    "quote": "Switching was painless. I signed one letter and they dealt with the rest.",
+    "name": "Priya Nair",
+    "detail": "Freelance designer",
+    "rating": 5
+   },
+   {
+    "quote": "A proper, old-fashioned level of care with thoroughly modern software.",
+    "name": "George Ellery",
+    "detail": "Joinery firm owner",
+    "rating": 5
+   }
   ],
   "team": [
-   {"name": "Margaret Hartwell", "role": "Founding partner", "bio": "Chartered since 1989. Looks after landlords and family businesses."},
-   {"name": "Daniel Finch", "role": "Partner", "bio": "Specialises in limited companies and business sales."},
-   {"name": "Aisha Rahman", "role": "Payroll manager", "bio": "Runs payroll for more than ninety employers."}
+   {
+    "name": "Margaret Hartwell",
+    "role": "Founding partner",
+    "bio": "Chartered since 1989. Looks after landlords and family businesses."
+   },
+   {
+    "name": "Daniel Finch",
+    "role": "Partner",
+    "bio": "Specialises in limited companies and business sales."
+   },
+   {
+    "name": "Aisha Rahman",
+    "role": "Payroll manager",
+    "bio": "Runs payroll for more than ninety employers."
+   }
   ],
-  "gallery": [{"caption": "Our office on Milsom Street"}, {"caption": "The meeting room"}, {"caption": "Margaret and Daniel"}, {"caption": "Year-end review"}, {"caption": "Front desk"}, {"caption": "Client evening"}],
-  "contact": {"phone": "01632 960 142", "email": "hello@hartwellfinch.example", "area": "Bath and north Somerset", "address": "14 Milsom Street, Bath BA1 1DE", "hours": [["Monday to Thursday", "9am to 5.30pm"], ["Friday", "9am to 4pm"], ["Weekends", "Closed"]]},
-  "socials": [{"label": "LinkedIn", "url": "https://www.linkedin.com/"}],
-  "colours": {"main": "#1d2b4f", "accent": "#b08a3e"}
+  "gallery": [
+   {
+    "src": "https://images.unsplash.com/photo-1713461983836-de0a45009424?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Going through the figures"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1706169582307-8ae586631e8a?auto=format&fit=crop&w=1000&q=70",
+    "caption": "A tidy desk"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1787532378729-fe4241197405?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Signing off the accounts"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1713947503588-8ff8196dc4a3?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Year-end review"
+   }
+  ],
+  "contact": {
+   "phone": "01632 960 142",
+   "email": "hello@hartwellfinch.example",
+   "area": "Bath and north Somerset",
+   "address": "14 Milsom Street, Bath BA1 1DE",
+   "hours": [
+    [
+     "Monday to Thursday",
+     "9am to 5.30pm"
+    ],
+    [
+     "Friday",
+     "9am to 4pm"
+    ],
+    [
+     "Weekends",
+     "Closed"
+    ]
+   ]
+  },
+  "socials": [
+   {
+    "label": "LinkedIn",
+    "url": "https://www.linkedin.com/"
+   }
+  ],
+  "colours": {
+   "main": "#1d2b4f",
+   "accent": "#b08a3e"
+  },
+  "hero_image": "https://images.unsplash.com/photo-1713461983836-de0a45009424?auto=format&fit=crop&w=1400&q=70",
+  "about_image": "https://images.unsplash.com/photo-1706169582307-8ae586631e8a?auto=format&fit=crop&w=1100&q=70",
+  "photo_credit": "Sample photos by Jakub Żerdzicki, Gylain Omer, Vitaly Gariev on Unsplash"
  },
  "bold": {
   "business_name": "Redline Motors",
   "tagline": "Fixed right. First time.",
   "intro": "MOTs, servicing and repairs for every make of car and van. Straight prices, no surprises, on Kirkstall Road in Leeds.",
   "cta_label": "Book your car in",
-  "trust": ["MOT while you wait", "12-month parts and labour guarantee", "Free courtesy car", "All makes and models"],
+  "trust": [
+   "MOT while you wait",
+   "12-month parts and labour guarantee",
+   "Free courtesy car",
+   "All makes and models"
+  ],
   "trust_line": "Kirkstall Road, Leeds",
-  "highlights": [{"value": "45", "label": "minute MOT"}, {"value": "9", "label": "ramps and bays"}, {"value": "12", "label": "month guarantee"}],
+  "highlights": [
+   {
+    "value": "45",
+    "label": "minute MOT"
+   },
+   {
+    "value": "9",
+    "label": "ramps and bays"
+   },
+   {
+    "value": "12",
+    "label": "month guarantee"
+   }
+  ],
   "about_title": "Three brothers. One garage. No nonsense.",
   "about": "Our dad opened Redline in 1987 with one ramp and a kettle. We grew up sweeping the floor here. Today there are nine bays, eleven technicians and the same rule: show the customer the problem before you fix it.\n\nWe photograph every fault, price every job before we start and never fit a part you do not need. If we would not do it to our own car, we will not do it to yours.",
   "services": [
-   {"name": "MOT test", "description": "Class 4 and class 7 tests. Free re-test within ten working days.", "price": "£45"},
-   {"name": "Full service", "description": "A 60-point check with oil, filters and a written health report.", "price": "From £189"},
-   {"name": "Brakes", "description": "Pads, discs and fluid, fitted and road-tested the same day.", "price": "From £95"},
-   {"name": "Clutch and gearbox", "description": "Clutch replacement and gearbox repairs with a 12-month guarantee.", "price": "From £420"},
-   {"name": "Diagnostics", "description": "Dealer-level fault finding for warning lights and electrical problems.", "price": "£60"},
-   {"name": "Tyres and tracking", "description": "Budget to premium tyres fitted while you wait, with four-wheel alignment.", "price": "From £55"}
+   {
+    "name": "MOT test",
+    "description": "Class 4 and class 7 tests. Free re-test within ten working days.",
+    "price": "£45"
+   },
+   {
+    "name": "Full service",
+    "description": "A 60-point check with oil, filters and a written health report.",
+    "price": "From £189"
+   },
+   {
+    "name": "Brakes",
+    "description": "Pads, discs and fluid, fitted and road-tested the same day.",
+    "price": "From £95"
+   },
+   {
+    "name": "Clutch and gearbox",
+    "description": "Clutch replacement and gearbox repairs with a 12-month guarantee.",
+    "price": "From £420"
+   },
+   {
+    "name": "Diagnostics",
+    "description": "Dealer-level fault finding for warning lights and electrical problems.",
+    "price": "£60"
+   },
+   {
+    "name": "Tyres and tracking",
+    "description": "Budget to premium tyres fitted while you wait, with four-wheel alignment.",
+    "price": "From £55"
+   }
   ],
   "values": [
-   {"title": "See it before we fix it", "text": "We send photos of every fault so you can decide with the facts in front of you."},
-   {"title": "The quote is the price", "text": "If we find something else, we call you before we touch it."},
-   {"title": "Guaranteed for a year", "text": "Every repair carries a 12-month parts and labour guarantee."}
+   {
+    "title": "See it before we fix it",
+    "text": "We send photos of every fault so you can decide with the facts in front of you."
+   },
+   {
+    "title": "The quote is the price",
+    "text": "If we find something else, we call you before we touch it."
+   },
+   {
+    "title": "Guaranteed for a year",
+    "text": "Every repair carries a 12-month parts and labour guarantee."
+   }
   ],
   "process": [
-   {"title": "Book a slot", "text": "Online or by phone. Same-week appointments most weeks."},
-   {"title": "Drop it off", "text": "Leave the keys and take a free courtesy car if you need one."},
-   {"title": "We call with the facts", "text": "Photos, a fixed price and a finish time before any work starts."},
-   {"title": "Collect and go", "text": "Pay on collection and keep the old parts if you want to see them."}
+   {
+    "title": "Book a slot",
+    "text": "Online or by phone. Same-week appointments most weeks."
+   },
+   {
+    "title": "Drop it off",
+    "text": "Leave the keys and take a free courtesy car if you need one."
+   },
+   {
+    "title": "We call with the facts",
+    "text": "Photos, a fixed price and a finish time before any work starts."
+   },
+   {
+    "title": "Collect and go",
+    "text": "Pay on collection and keep the old parts if you want to see them."
+   }
   ],
   "faq": [
-   {"q": "Can I wait while you do the MOT?", "a": "Yes. It takes about 45 minutes and there is a waiting room with coffee and wifi."},
-   {"q": "Do you work on electric and hybrid cars?", "a": "Yes. Four of our technicians are qualified to work on high-voltage systems."},
-   {"q": "Will a service here affect my warranty?", "a": "No. We service to the manufacturer's schedule with approved parts, which keeps your warranty valid."},
-   {"q": "How do I pay?", "a": "Card, cash or bank transfer on collection. We can spread larger repairs over three months."}
+   {
+    "q": "Can I wait while you do the MOT?",
+    "a": "Yes. It takes about 45 minutes and there is a waiting room with coffee and wifi."
+   },
+   {
+    "q": "Do you work on electric and hybrid cars?",
+    "a": "Yes. Four of our technicians are qualified to work on high-voltage systems."
+   },
+   {
+    "q": "Will a service here affect my warranty?",
+    "a": "No. We service to the manufacturer's schedule with approved parts, which keeps your warranty valid."
+   },
+   {
+    "q": "How do I pay?",
+    "a": "Card, cash or bank transfer on collection. We can spread larger repairs over three months."
+   }
   ],
   "projects": [
-   {"title": "Transit van back on the road in a day", "location": "Armley", "category": "Vans", "summary": "New clutch and flywheel fitted before the next morning's deliveries.", "details": "A courier's van failed at 8am. We sourced the parts by ten, had it on the ramp by noon and road-tested it at five."},
-   {"title": "Chasing an electrical fault", "location": "Headingley", "category": "Diagnostics", "summary": "A warning light three other garages could not trace.", "details": "We found a chafed wire behind the dashboard after two hours of testing. The repair itself took twenty minutes."},
-   {"title": "Classic Mini recommission", "location": "Horsforth", "category": "Classics", "summary": "Brakes, fuel system and MOT after nine years in a garage.", "details": "New brake lines, a rebuilt carburettor and fresh tyres. It passed first time."},
-   {"title": "Fleet servicing for a local bakery", "location": "Leeds", "category": "Vans", "summary": "Six vans serviced overnight so none miss a morning round.", "details": "We collect at 6pm and return by 5am, with a health report for each vehicle."}
+   {
+    "title": "Transit van back on the road in a day",
+    "location": "Armley",
+    "category": "Vans",
+    "summary": "New clutch and flywheel fitted before the next morning's deliveries.",
+    "details": "A courier's van failed at 8am. We sourced the parts by ten, had it on the ramp by noon and road-tested it at five.",
+    "after": "https://images.unsplash.com/photo-1613214150132-9606e332d68e?auto=format&fit=crop&w=1200&q=70",
+    "before": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Chasing an electrical fault",
+    "location": "Headingley",
+    "category": "Diagnostics",
+    "summary": "A warning light three other garages could not trace.",
+    "details": "We found a chafed wire behind the dashboard after two hours of testing. The repair itself took twenty minutes.",
+    "after": "https://images.unsplash.com/photo-1676018366904-c083ed678e60?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Classic Mini recommission",
+    "location": "Horsforth",
+    "category": "Classics",
+    "summary": "Brakes, fuel system and MOT after nine years in a garage.",
+    "details": "New brake lines, a rebuilt carburettor and fresh tyres. It passed first time.",
+    "after": "https://images.unsplash.com/photo-1613214150132-9606e332d68e?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Fleet servicing for a local bakery",
+    "location": "Leeds",
+    "category": "Vans",
+    "summary": "Six vans serviced overnight so none miss a morning round.",
+    "details": "We collect at 6pm and return by 5am, with a health report for each vehicle.",
+    "after": "https://images.unsplash.com/photo-1599256872237-5dcc0fbe9668?auto=format&fit=crop&w=1200&q=70"
+   }
   ],
   "testimonials": [
-   {"quote": "They sent me a photo of the worn part and a price before doing anything. Never had that from a garage before.", "name": "Sam Hirst", "detail": "Ford Focus", "rating": 5},
-   {"quote": "Van failed at eight in the morning. Driving it again by five. Saved my week.", "name": "Dawn Pickles", "detail": "Courier", "rating": 5},
-   {"quote": "Cheaper than the dealer and they actually explain what they have done.", "name": "Imran Sheikh", "detail": "VW Golf", "rating": 5},
-   {"quote": "Honest. Told me the brakes had another year in them when I expected a bill.", "name": "Kelly Marsden", "detail": "Nissan Juke", "rating": 5}
+   {
+    "quote": "They sent me a photo of the worn part and a price before doing anything. Never had that from a garage before.",
+    "name": "Sam Hirst",
+    "detail": "Ford Focus",
+    "rating": 5
+   },
+   {
+    "quote": "Van failed at eight in the morning. Driving it again by five. Saved my week.",
+    "name": "Dawn Pickles",
+    "detail": "Courier",
+    "rating": 5
+   },
+   {
+    "quote": "Cheaper than the dealer and they actually explain what they have done.",
+    "name": "Imran Sheikh",
+    "detail": "VW Golf",
+    "rating": 5
+   },
+   {
+    "quote": "Honest. Told me the brakes had another year in them when I expected a bill.",
+    "name": "Kelly Marsden",
+    "detail": "Nissan Juke",
+    "rating": 5
+   }
   ],
   "team": [
-   {"name": "Mick Dawson", "role": "Workshop manager", "bio": "Thirty years on the tools. MOT tester since 2001."},
-   {"name": "Carl Dawson", "role": "Master technician", "bio": "Diagnostics and electrics. Hybrid and EV qualified."},
-   {"name": "Jo Dawson", "role": "Front desk", "bio": "Runs the diary and keeps everyone honest."}
+   {
+    "name": "Mick Dawson",
+    "role": "Workshop manager",
+    "bio": "Thirty years on the tools. MOT tester since 2001."
+   },
+   {
+    "name": "Carl Dawson",
+    "role": "Master technician",
+    "bio": "Diagnostics and electrics. Hybrid and EV qualified."
+   },
+   {
+    "name": "Jo Dawson",
+    "role": "Front desk",
+    "bio": "Runs the diary and keeps everyone honest."
+   }
   ],
-  "gallery": [{"caption": "Bay one"}, {"caption": "On the ramp"}, {"caption": "Diagnostics"}, {"caption": "Tyre fitting"}, {"caption": "The waiting room"}, {"caption": "The team"}],
-  "contact": {"phone": "0113 496 0188", "email": "bookings@redlinemotors.example", "area": "Leeds and west Yorkshire", "address": "212 Kirkstall Road, Leeds LS4 2AB", "hours": [["Monday to Friday", "7.30am to 6pm"], ["Saturday", "8am to 1pm"], ["Sunday", "Closed"]]},
-  "socials": [{"label": "Facebook", "url": "https://www.facebook.com/"}, {"label": "Instagram", "url": "https://www.instagram.com/"}],
-  "colours": {"main": "#d7261e", "accent": "#ffcd1f"}
+  "gallery": [
+   {
+    "src": "https://images.unsplash.com/photo-1771340012319-0b4fca008b54?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Under the bonnet"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1631720040176-0d789a643a78?auto=format&fit=crop&w=1000&q=70",
+    "caption": "The workshop"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Hands on"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1676018366904-c083ed678e60?auto=format&fit=crop&w=1000&q=70",
+    "caption": "On the bench"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1613214150132-9606e332d68e?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Ready to collect"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1599256872237-5dcc0fbe9668?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Parts in hand"
+   }
+  ],
+  "contact": {
+   "phone": "0113 496 0188",
+   "email": "bookings@redlinemotors.example",
+   "area": "Leeds and west Yorkshire",
+   "address": "212 Kirkstall Road, Leeds LS4 2AB",
+   "hours": [
+    [
+     "Monday to Friday",
+     "7.30am to 6pm"
+    ],
+    [
+     "Saturday",
+     "8am to 1pm"
+    ],
+    [
+     "Sunday",
+     "Closed"
+    ]
+   ]
+  },
+  "socials": [
+   {
+    "label": "Facebook",
+    "url": "https://www.facebook.com/"
+   },
+   {
+    "label": "Instagram",
+    "url": "https://www.instagram.com/"
+   }
+  ],
+  "colours": {
+   "main": "#d7261e",
+   "accent": "#ffcd1f"
+  },
+  "hero_image": "https://images.unsplash.com/photo-1771340012319-0b4fca008b54?auto=format&fit=crop&w=1400&q=70",
+  "about_image": "https://images.unsplash.com/photo-1631720040176-0d789a643a78?auto=format&fit=crop&w=1100&q=70",
+  "photo_credit": "Sample photos by Dextar Studio, sq lim, Christian Buehner, Kato Blackmore, Benjamin Brunner, Nina Mercado on Unsplash"
  },
  "minimal": {
   "business_name": "Oda Ceramics",
   "tagline": "Tableware thrown by hand in Leith",
   "intro": "Plates, bowls and cups made in small batches, and wheel classes for beginners in our studio by the water.",
   "cta_label": "Book a class",
-  "trust": ["Made in Edinburgh", "Dishwasher safe", "Classes of six"],
+  "trust": [
+   "Made in Edinburgh",
+   "Dishwasher safe",
+   "Classes of six"
+  ],
   "trust_line": "Studio and shop, Leith",
-  "highlights": [{"value": "6", "label": "people in a class"}, {"value": "1,240", "label": "degree firing"}, {"value": "3", "label": "glazes, mixed here"}],
+  "highlights": [
+   {
+    "value": "6",
+    "label": "people in a class"
+   },
+   {
+    "value": "1,240",
+    "label": "degree firing"
+   },
+   {
+    "value": "3",
+    "label": "glazes, mixed here"
+   }
+  ],
   "about_title": "One potter, one wheel, a lot of plates",
   "about": "Ingrid Oda trained in Kyoto and Stoke-on-Trent before opening the studio in 2016. Everything is thrown on the wheel, trimmed by hand and glazed in one of three colours mixed in the studio.\n\nThe work is made to be used every day. It stacks, it goes in the dishwasher, and it gets better with a few years of breakfasts behind it.",
   "services": [
-   {"name": "Beginner wheel class", "description": "Two and a half hours at the wheel. We fire and glaze your two best pieces.", "price": "£65"},
-   {"name": "Six-week course", "description": "One evening a week, from centring clay to a finished set of bowls.", "price": "£290"},
-   {"name": "Tableware", "description": "Plates, bowls, cups and jugs from the current batch, in the shop and online.", "price": "From £18"},
-   {"name": "Restaurant commissions", "description": "Tableware designed with your kitchen and made in runs of forty or more.", "price": "On request"},
-   {"name": "Private sessions", "description": "The studio to yourselves for birthdays and small groups of up to eight.", "price": "£380"}
+   {
+    "name": "Beginner wheel class",
+    "description": "Two and a half hours at the wheel. We fire and glaze your two best pieces.",
+    "price": "£65"
+   },
+   {
+    "name": "Six-week course",
+    "description": "One evening a week, from centring clay to a finished set of bowls.",
+    "price": "£290"
+   },
+   {
+    "name": "Tableware",
+    "description": "Plates, bowls, cups and jugs from the current batch, in the shop and online.",
+    "price": "From £18"
+   },
+   {
+    "name": "Restaurant commissions",
+    "description": "Tableware designed with your kitchen and made in runs of forty or more.",
+    "price": "On request"
+   },
+   {
+    "name": "Private sessions",
+    "description": "The studio to yourselves for birthdays and small groups of up to eight.",
+    "price": "£380"
+   }
   ],
   "values": [
-   {"title": "Small batches", "text": "No more than sixty pieces in a firing, each one checked by hand."},
-   {"title": "Made to be used", "text": "Stoneware fired hot enough for daily use and the dishwasher."},
-   {"title": "Local clay where we can", "text": "Our stoneware body comes from a supplier forty miles away."}
+   {
+    "title": "Small batches",
+    "text": "No more than sixty pieces in a firing, each one checked by hand."
+   },
+   {
+    "title": "Made to be used",
+    "text": "Stoneware fired hot enough for daily use and the dishwasher."
+   },
+   {
+    "title": "Local clay where we can",
+    "text": "Our stoneware body comes from a supplier forty miles away."
+   }
   ],
   "process": [
-   {"title": "Throw", "text": "Each piece is shaped on the wheel from a weighed ball of clay."},
-   {"title": "Trim", "text": "A day later the foot is cut and the surface smoothed."},
-   {"title": "Glaze", "text": "After a first firing, pieces are dipped in glaze mixed in the studio."},
-   {"title": "Fire", "text": "A final firing at 1,240 degrees makes the piece strong and watertight."}
+   {
+    "title": "Throw",
+    "text": "Each piece is shaped on the wheel from a weighed ball of clay."
+   },
+   {
+    "title": "Trim",
+    "text": "A day later the foot is cut and the surface smoothed."
+   },
+   {
+    "title": "Glaze",
+    "text": "After a first firing, pieces are dipped in glaze mixed in the studio."
+   },
+   {
+    "title": "Fire",
+    "text": "A final firing at 1,240 degrees makes the piece strong and watertight."
+   }
   ],
   "faq": [
-   {"q": "Do I need any experience?", "a": "None. The beginner class starts from the very first step and there are only six of you."},
-   {"q": "When do I get my pieces?", "a": "About three weeks after your class. You can collect them or we can post them."},
-   {"q": "Can it go in the dishwasher?", "a": "Yes. All our tableware is dishwasher and microwave safe."},
-   {"q": "Do you sell gift vouchers?", "a": "Yes, for classes or for the shop. They are valid for a year."}
+   {
+    "q": "Do I need any experience?",
+    "a": "None. The beginner class starts from the very first step and there are only six of you."
+   },
+   {
+    "q": "When do I get my pieces?",
+    "a": "About three weeks after your class. You can collect them or we can post them."
+   },
+   {
+    "q": "Can it go in the dishwasher?",
+    "a": "Yes. All our tableware is dishwasher and microwave safe."
+   },
+   {
+    "q": "Do you sell gift vouchers?",
+    "a": "Yes, for classes or for the shop. They are valid for a year."
+   }
   ],
   "projects": [
-   {"title": "Tableware for Fhior", "location": "Edinburgh", "category": "Restaurants", "summary": "One hundred and twenty plates in a grey ash glaze.", "details": "Designed with the kitchen over three tastings. The rim was lowered twice so sauces sit properly."},
-   {"title": "The breakfast set", "location": "Studio range", "category": "Tableware", "summary": "A bowl, a plate and a cup that stack into one another.", "details": "Our most popular set, made in every batch since 2018."},
-   {"title": "Wedding favours", "location": "Fife", "category": "Commissions", "summary": "Ninety small dishes, each stamped with a date.", "details": "Thrown over two weeks and wrapped in recycled paper."},
-   {"title": "Café cups for Lowdown", "location": "Leith", "category": "Restaurants", "summary": "Handleless cups in two sizes for a coffee bar.", "details": "Tested with the baristas for weight and heat before the full run."}
+   {
+    "title": "Tableware for Fhior",
+    "location": "Edinburgh",
+    "category": "Restaurants",
+    "summary": "One hundred and twenty plates in a grey ash glaze.",
+    "details": "Designed with the kitchen over three tastings. The rim was lowered twice so sauces sit properly.",
+    "after": "https://images.unsplash.com/photo-1778698993355-2c5f29edbfb9?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "The breakfast set",
+    "location": "Studio range",
+    "category": "Tableware",
+    "summary": "A bowl, a plate and a cup that stack into one another.",
+    "details": "Our most popular set, made in every batch since 2018.",
+    "after": "https://images.unsplash.com/photo-1776972334890-018cb3b3e3c6?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Wedding favours",
+    "location": "Fife",
+    "category": "Commissions",
+    "summary": "Ninety small dishes, each stamped with a date.",
+    "details": "Thrown over two weeks and wrapped in recycled paper.",
+    "after": "https://images.unsplash.com/photo-1776584615508-e70141dc7823?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Café cups for Lowdown",
+    "location": "Leith",
+    "category": "Restaurants",
+    "summary": "Handleless cups in two sizes for a coffee bar.",
+    "details": "Tested with the baristas for weight and heat before the full run.",
+    "after": "https://images.unsplash.com/photo-1610206349499-c932c3b3aacb?auto=format&fit=crop&w=1200&q=70"
+   }
   ],
   "testimonials": [
-   {"quote": "The calmest two hours of my month. I came home with a bowl I actually use.", "name": "Fiona Lennox", "detail": "Beginner class", "rating": 5},
-   {"quote": "Ingrid understood what the kitchen needed before we finished explaining.", "name": "Callum Reid", "detail": "Head chef", "rating": 5},
-   {"quote": "Six of us, one teacher, proper attention. Worth every penny.", "name": "Hannah Okoro", "detail": "Six-week course", "rating": 5},
-   {"quote": "Our plates have survived two children and a house move.", "name": "Ben Sorley", "detail": "Shop customer", "rating": 5}
+   {
+    "quote": "The calmest two hours of my month. I came home with a bowl I actually use.",
+    "name": "Fiona Lennox",
+    "detail": "Beginner class",
+    "rating": 5
+   },
+   {
+    "quote": "Ingrid understood what the kitchen needed before we finished explaining.",
+    "name": "Callum Reid",
+    "detail": "Head chef",
+    "rating": 5
+   },
+   {
+    "quote": "Six of us, one teacher, proper attention. Worth every penny.",
+    "name": "Hannah Okoro",
+    "detail": "Six-week course",
+    "rating": 5
+   },
+   {
+    "quote": "Our plates have survived two children and a house move.",
+    "name": "Ben Sorley",
+    "detail": "Shop customer",
+    "rating": 5
+   }
   ],
   "team": [
-   {"name": "Ingrid Oda", "role": "Potter", "bio": "Makes everything in the shop and teaches the weekend classes."},
-   {"name": "Jamie Muir", "role": "Studio assistant", "bio": "Mixes glazes, packs orders and teaches Thursday evenings."}
+   {
+    "name": "Ingrid Oda",
+    "role": "Potter",
+    "bio": "Makes everything in the shop and teaches the weekend classes."
+   },
+   {
+    "name": "Jamie Muir",
+    "role": "Studio assistant",
+    "bio": "Mixes glazes, packs orders and teaches Thursday evenings."
+   }
   ],
-  "gallery": [{"caption": "The studio"}, {"caption": "Bowls before glazing"}, {"caption": "Ash glaze"}, {"caption": "The kiln"}, {"caption": "Saturday class"}, {"caption": "The breakfast set"}],
-  "contact": {"phone": "0131 496 0127", "email": "studio@odaceramics.example", "area": "Leith, Edinburgh", "address": "9 Shore Place, Edinburgh EH6 6SW", "hours": [["Wednesday to Friday", "10am to 5pm"], ["Saturday", "10am to 4pm"], ["Sunday to Tuesday", "Closed"]]},
-  "socials": [{"label": "Instagram", "url": "https://www.instagram.com/"}],
-  "colours": {"main": "#22262b", "accent": "#4f7f72"}
+  "gallery": [
+   {
+    "src": "https://images.unsplash.com/photo-1772607407371-44031ae3b69f?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Bowls on the shelf"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1764507768733-667e135d8cb9?auto=format&fit=crop&w=1000&q=70",
+    "caption": "At the wheel"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1778698993355-2c5f29edbfb9?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Pots drying"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1776972334890-018cb3b3e3c6?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Small pots"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1776584615508-e70141dc7823?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Cups before glazing"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1610206349499-c932c3b3aacb?auto=format&fit=crop&w=1000&q=70",
+    "caption": "The breakfast cup"
+   }
+  ],
+  "contact": {
+   "phone": "0131 496 0127",
+   "email": "studio@odaceramics.example",
+   "area": "Leith, Edinburgh",
+   "address": "9 Shore Place, Edinburgh EH6 6SW",
+   "hours": [
+    [
+     "Wednesday to Friday",
+     "10am to 5pm"
+    ],
+    [
+     "Saturday",
+     "10am to 4pm"
+    ],
+    [
+     "Sunday to Tuesday",
+     "Closed"
+    ]
+   ]
+  },
+  "socials": [
+   {
+    "label": "Instagram",
+    "url": "https://www.instagram.com/"
+   }
+  ],
+  "colours": {
+   "main": "#22262b",
+   "accent": "#4f7f72"
+  },
+  "hero_image": "https://images.unsplash.com/photo-1772607407371-44031ae3b69f?auto=format&fit=crop&w=1400&q=70",
+  "about_image": "https://images.unsplash.com/photo-1764507768733-667e135d8cb9?auto=format&fit=crop&w=1100&q=70",
+  "photo_credit": "Sample photos by lei qian, Laura Tommasina, Jonathan Cosens Photography, jason hu, Manki Kim on Unsplash"
  },
  "playful": {
   "business_name": "Waggy Tails",
   "tagline": "Happy dogs, fresh haircuts, zero stress",
   "intro": "Gentle grooming and fun-packed day care for dogs of every shape and fluff level, five minutes from Brighton seafront.",
   "cta_label": "Book a groom",
-  "trust": ["One dog at a time", "Fear-free trained", "Fully insured", "Treats included"],
+  "trust": [
+   "One dog at a time",
+   "Fear-free trained",
+   "Fully insured",
+   "Treats included"
+  ],
   "trust_line": "Grooming and day care, Brighton",
-  "highlights": [{"value": "3,200", "label": "dogs groomed"}, {"value": "1", "label": "dog on the table at a time"}, {"value": "8", "label": "years of wagging"}],
+  "highlights": [
+   {
+    "value": "3,200",
+    "label": "dogs groomed"
+   },
+   {
+    "value": "1",
+    "label": "dog on the table at a time"
+   },
+   {
+    "value": "8",
+    "label": "years of wagging"
+   }
+  ],
   "about_title": "Run by dog people, for dogs",
   "about": "Waggy Tails started in Jess's spare room with one very patient spaniel called Biscuit. Eight years on we have a bright shop in Kemptown, four groomers and a garden for the day care gang.\n\nWe only ever groom one dog at a time, we never use cages, and nervous dogs get as many breaks and biscuits as they need.",
   "services": [
-   {"name": "Full groom", "description": "Bath, blow dry, haircut, nails and ears. Priced by size and coat.", "price": "From £42"},
-   {"name": "Bath and tidy", "description": "A good wash, dry and brush with a trim round the face, feet and tail.", "price": "From £28"},
-   {"name": "Puppy's first groom", "description": "A gentle half hour to meet the dryer, the table and us. For pups under six months.", "price": "£20"},
-   {"name": "Day care", "description": "Small groups, a garden to tear around and a nap after lunch.", "price": "£32 a day"},
-   {"name": "Nail clip", "description": "Ten minutes, no appointment needed on weekday mornings.", "price": "£8"},
-   {"name": "De-shed treatment", "description": "A deep wash and blow-out that takes the loose coat with it.", "price": "From £35"}
+   {
+    "name": "Full groom",
+    "description": "Bath, blow dry, haircut, nails and ears. Priced by size and coat.",
+    "price": "From £42"
+   },
+   {
+    "name": "Bath and tidy",
+    "description": "A good wash, dry and brush with a trim round the face, feet and tail.",
+    "price": "From £28"
+   },
+   {
+    "name": "Puppy's first groom",
+    "description": "A gentle half hour to meet the dryer, the table and us. For pups under six months.",
+    "price": "£20"
+   },
+   {
+    "name": "Day care",
+    "description": "Small groups, a garden to tear around and a nap after lunch.",
+    "price": "£32 a day"
+   },
+   {
+    "name": "Nail clip",
+    "description": "Ten minutes, no appointment needed on weekday mornings.",
+    "price": "£8"
+   },
+   {
+    "name": "De-shed treatment",
+    "description": "A deep wash and blow-out that takes the loose coat with it.",
+    "price": "From £35"
+   }
   ],
   "values": [
-   {"title": "One at a time", "text": "Your dog gets a groomer's full attention from hello to goodbye."},
-   {"title": "No cages, ever", "text": "Dogs wait in the play room or on a comfy bed next to us."},
-   {"title": "Go at their pace", "text": "Nervous dogs get breaks, treats and a slower visit at no extra cost."}
+   {
+    "title": "One at a time",
+    "text": "Your dog gets a groomer's full attention from hello to goodbye."
+   },
+   {
+    "title": "No cages, ever",
+    "text": "Dogs wait in the play room or on a comfy bed next to us."
+   },
+   {
+    "title": "Go at their pace",
+    "text": "Nervous dogs get breaks, treats and a slower visit at no extra cost."
+   }
   ],
   "process": [
-   {"title": "Say hello", "text": "A sniff around and a chat about the cut you would like."},
-   {"title": "Bath time", "text": "Warm water and shampoo chosen for their coat and skin."},
-   {"title": "Snip snip", "text": "Dry, brush and cut, with breaks whenever they are needed."},
-   {"title": "Ta-da", "text": "A photo, a treat and one very smart dog to take home."}
+   {
+    "title": "Say hello",
+    "text": "A sniff around and a chat about the cut you would like."
+   },
+   {
+    "title": "Bath time",
+    "text": "Warm water and shampoo chosen for their coat and skin."
+   },
+   {
+    "title": "Snip snip",
+    "text": "Dry, brush and cut, with breaks whenever they are needed."
+   },
+   {
+    "title": "Ta-da",
+    "text": "A photo, a treat and one very smart dog to take home."
+   }
   ],
   "faq": [
-   {"q": "My dog is nervous. Is that OK?", "a": "Very. Tell us when you book and we will plan a quieter slot and take things slowly."},
-   {"q": "How long does a groom take?", "a": "Between ninety minutes and three hours depending on size and coat. We text you when they are ready."},
-   {"q": "How often should my dog be groomed?", "a": "Most coats do well every six to eight weeks. We will suggest what suits your dog."},
-   {"q": "What do I need for day care?", "a": "Up-to-date vaccinations and a short trial morning so everyone can make friends."}
+   {
+    "q": "My dog is nervous. Is that OK?",
+    "a": "Very. Tell us when you book and we will plan a quieter slot and take things slowly."
+   },
+   {
+    "q": "How long does a groom take?",
+    "a": "Between ninety minutes and three hours depending on size and coat. We text you when they are ready."
+   },
+   {
+    "q": "How often should my dog be groomed?",
+    "a": "Most coats do well every six to eight weeks. We will suggest what suits your dog."
+   },
+   {
+    "q": "What do I need for day care?",
+    "a": "Up-to-date vaccinations and a short trial morning so everyone can make friends."
+   }
   ],
   "projects": [
-   {"title": "Monty the cockapoo", "location": "Hove", "category": "Full groom", "summary": "From tangled teddy bear to tidy gentleman.", "details": "Three hours, two treat breaks and a short summer cut that he can run on the beach in."},
-   {"title": "Luna's first visit", "location": "Kemptown", "category": "Puppies", "summary": "A twelve-week-old collie meets the hairdryer.", "details": "Twenty minutes of play first, then a gentle bath and a very fluffy dry."},
-   {"title": "Bruno's big de-shed", "location": "Patcham", "category": "De-shed", "summary": "One husky. Two bin bags of fluff.", "details": "A deep wash and a long blow-out before the summer."},
-   {"title": "Poppy the rescue", "location": "Brighton", "category": "Nervous dogs", "summary": "Four short visits to build trust before a full groom.", "details": "We started with five minutes on the table and built up over a month."}
+   {
+    "title": "Monty the cockapoo",
+    "location": "Hove",
+    "category": "Full groom",
+    "summary": "From tangled teddy bear to tidy gentleman.",
+    "details": "Three hours, two treat breaks and a short summer cut that he can run on the beach in.",
+    "after": "https://images.unsplash.com/photo-1719464454959-9cf304ef4774?auto=format&fit=crop&w=1200&q=70",
+    "before": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Luna's first visit",
+    "location": "Kemptown",
+    "category": "Puppies",
+    "summary": "A twelve-week-old collie meets the hairdryer.",
+    "details": "Twenty minutes of play first, then a gentle bath and a very fluffy dry.",
+    "after": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Bruno's big de-shed",
+    "location": "Patcham",
+    "category": "De-shed",
+    "summary": "One husky. Two bin bags of fluff.",
+    "details": "A deep wash and a long blow-out before the summer.",
+    "after": "https://images.unsplash.com/photo-1760596687383-887f0eeae71b?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Poppy the rescue",
+    "location": "Brighton",
+    "category": "Nervous dogs",
+    "summary": "Four short visits to build trust before a full groom.",
+    "details": "We started with five minutes on the table and built up over a month.",
+    "after": "https://images.unsplash.com/photo-1776880952098-1cc6dbbda513?auto=format&fit=crop&w=1200&q=70"
+   }
   ],
   "testimonials": [
-   {"quote": "Monty pulls me through the door now. He used to shake at the old groomer.", "name": "Leanne Carter", "detail": "Monty, cockapoo", "rating": 5},
-   {"quote": "They sent me photos all day. I think he had a better Tuesday than I did.", "name": "Ravi Menon", "detail": "Day care", "rating": 5},
-   {"quote": "So patient with our rescue. Four visits in and she wags her tail on the table.", "name": "Chris Dunne", "detail": "Poppy, lurcher", "rating": 5},
-   {"quote": "Best haircut in the family and he is the one with four legs.", "name": "Sophie Ward", "detail": "Alfie, schnauzer", "rating": 5}
+   {
+    "quote": "Monty pulls me through the door now. He used to shake at the old groomer.",
+    "name": "Leanne Carter",
+    "detail": "Monty, cockapoo",
+    "rating": 5
+   },
+   {
+    "quote": "They sent me photos all day. I think he had a better Tuesday than I did.",
+    "name": "Ravi Menon",
+    "detail": "Day care",
+    "rating": 5
+   },
+   {
+    "quote": "So patient with our rescue. Four visits in and she wags her tail on the table.",
+    "name": "Chris Dunne",
+    "detail": "Poppy, lurcher",
+    "rating": 5
+   },
+   {
+    "quote": "Best haircut in the family and he is the one with four legs.",
+    "name": "Sophie Ward",
+    "detail": "Alfie, schnauzer",
+    "rating": 5
+   }
   ],
   "team": [
-   {"name": "Jess Holloway", "role": "Owner and head groomer", "bio": "City and Guilds level 3. Biscuit's mum."},
-   {"name": "Dani Reyes", "role": "Groomer", "bio": "Doodle and poodle specialist with endless patience."},
-   {"name": "Marcus Bell", "role": "Day care leader", "bio": "Referee, ball thrower and nap supervisor."}
+   {
+    "name": "Jess Holloway",
+    "role": "Owner and head groomer",
+    "bio": "City and Guilds level 3. Biscuit's mum."
+   },
+   {
+    "name": "Dani Reyes",
+    "role": "Groomer",
+    "bio": "Doodle and poodle specialist with endless patience."
+   },
+   {
+    "name": "Marcus Bell",
+    "role": "Day care leader",
+    "bio": "Referee, ball thrower and nap supervisor."
+   }
   ],
-  "gallery": [{"caption": "Monty, after"}, {"caption": "Bath time"}, {"caption": "The garden gang"}, {"caption": "Luna's first groom"}, {"caption": "The shop"}, {"caption": "Nap time"}],
-  "contact": {"phone": "01632 960 771", "email": "woof@waggytails.example", "area": "Brighton and Hove", "address": "31 St George's Road, Brighton BN2 1ED", "hours": [["Tuesday to Friday", "8am to 6pm"], ["Saturday", "9am to 4pm"], ["Sunday and Monday", "Closed"]]},
-  "socials": [{"label": "Instagram", "url": "https://www.instagram.com/"}, {"label": "Facebook", "url": "https://www.facebook.com/"}],
-  "colours": {"main": "#4b3bd6", "accent": "#ffb72b"}
+  "gallery": [
+   {
+    "src": "https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Monty, after"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1719464454959-9cf304ef4774?auto=format&fit=crop&w=1000&q=70",
+    "caption": "A careful trim"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1561037404-61cd46aa615b?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Fresh from the bath"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=1000&q=70",
+    "caption": "The garden gang"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1760596687383-887f0eeae71b?auto=format&fit=crop&w=1000&q=70",
+    "caption": "All smiles"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1776880952098-1cc6dbbda513?auto=format&fit=crop&w=1000&q=70",
+    "caption": "A calm hello"
+   }
+  ],
+  "contact": {
+   "phone": "01632 960 771",
+   "email": "woof@waggytails.example",
+   "area": "Brighton and Hove",
+   "address": "31 St George's Road, Brighton BN2 1ED",
+   "hours": [
+    [
+     "Tuesday to Friday",
+     "8am to 6pm"
+    ],
+    [
+     "Saturday",
+     "9am to 4pm"
+    ],
+    [
+     "Sunday and Monday",
+     "Closed"
+    ]
+   ]
+  },
+  "socials": [
+   {
+    "label": "Instagram",
+    "url": "https://www.instagram.com/"
+   },
+   {
+    "label": "Facebook",
+    "url": "https://www.facebook.com/"
+   }
+  ],
+  "colours": {
+   "main": "#4b3bd6",
+   "accent": "#ffb72b"
+  },
+  "hero_image": "https://images.unsplash.com/photo-1534361960057-19889db9621e?auto=format&fit=crop&w=1400&q=70",
+  "about_image": "https://images.unsplash.com/photo-1719464454959-9cf304ef4774?auto=format&fit=crop&w=1100&q=70",
+  "photo_credit": "Sample photos by Joe Caione, Buddy AN, Victor G, Alvan Nee, Cham Pets Family, Vinícius Costa on Unsplash"
  },
  "modern": {
   "business_name": "Pixel Fix",
   "tagline": "Cracked it? We fix phones and laptops while you wait.",
   "intro": "Screens, batteries and water damage repaired the same day in the Northern Quarter, with a price you see before we start.",
   "cta_label": "Get a repair price",
-  "trust": ["Most repairs in under an hour", "No fix, no fee", "12-month warranty", "Data stays on your device"],
+  "trust": [
+   "Most repairs in under an hour",
+   "No fix, no fee",
+   "12-month warranty",
+   "Data stays on your device"
+  ],
   "trust_line": "Northern Quarter, Manchester",
-  "highlights": [{"value": "40", "label": "minutes for most screens"}, {"value": "12", "label": "month warranty"}, {"value": "18,000", "label": "devices repaired"}],
+  "highlights": [
+   {
+    "value": "40",
+    "label": "minutes for most screens"
+   },
+   {
+    "value": "12",
+    "label": "month warranty"
+   },
+   {
+    "value": "18,000",
+    "label": "devices repaired"
+   }
+  ],
   "about_title": "Repair first. Replace last.",
   "about": "Pixel Fix opened in 2017 in a unit the size of a lift. We now have a bright workshop on Oldham Street and six technicians who would rather mend a phone than sell you a new one.\n\nEvery repair has a fixed price, quality parts and a 12-month warranty. If we cannot fix it, you do not pay.",
   "services": [
-   {"name": "Screen replacement", "description": "Cracked or unresponsive screens replaced for iPhone, Samsung, Pixel and iPad.", "price": "From £59"},
-   {"name": "Battery replacement", "description": "A new battery fitted and tested in about thirty minutes.", "price": "From £45"},
-   {"name": "Water damage", "description": "Opened, cleaned and dried properly, with an honest report on what we find.", "price": "From £49"},
-   {"name": "Laptop repair", "description": "Keyboards, hinges, screens and slow machines for Mac and Windows.", "price": "From £69"},
-   {"name": "Data recovery", "description": "Photos and files rescued from phones and drives that will not turn on.", "price": "From £90"},
-   {"name": "Charging and ports", "description": "Loose or dead charging ports cleaned or replaced.", "price": "From £39"}
+   {
+    "name": "Screen replacement",
+    "description": "Cracked or unresponsive screens replaced for iPhone, Samsung, Pixel and iPad.",
+    "price": "From £59"
+   },
+   {
+    "name": "Battery replacement",
+    "description": "A new battery fitted and tested in about thirty minutes.",
+    "price": "From £45"
+   },
+   {
+    "name": "Water damage",
+    "description": "Opened, cleaned and dried properly, with an honest report on what we find.",
+    "price": "From £49"
+   },
+   {
+    "name": "Laptop repair",
+    "description": "Keyboards, hinges, screens and slow machines for Mac and Windows.",
+    "price": "From £69"
+   },
+   {
+    "name": "Data recovery",
+    "description": "Photos and files rescued from phones and drives that will not turn on.",
+    "price": "From £90"
+   },
+   {
+    "name": "Charging and ports",
+    "description": "Loose or dead charging ports cleaned or replaced.",
+    "price": "From £39"
+   }
   ],
   "values": [
-   {"title": "Price first", "text": "You see a fixed price before we open your device."},
-   {"title": "No fix, no fee", "text": "If we cannot repair it, the diagnosis costs you nothing."},
-   {"title": "Your data stays put", "text": "We never copy, read or wipe your data without asking."}
+   {
+    "title": "Price first",
+    "text": "You see a fixed price before we open your device."
+   },
+   {
+    "title": "No fix, no fee",
+    "text": "If we cannot repair it, the diagnosis costs you nothing."
+   },
+   {
+    "title": "Your data stays put",
+    "text": "We never copy, read or wipe your data without asking."
+   }
   ],
   "process": [
-   {"title": "Tell us what broke", "text": "Pick your device and the problem to get a price in seconds."},
-   {"title": "Drop in or post it", "text": "Walk in any day, or use our free tracked postal service."},
-   {"title": "We repair it", "text": "Most jobs take under an hour. We text you when it is ready."},
-   {"title": "Test and collect", "text": "We test everything with you before you pay."}
+   {
+    "title": "Tell us what broke",
+    "text": "Pick your device and the problem to get a price in seconds."
+   },
+   {
+    "title": "Drop in or post it",
+    "text": "Walk in any day, or use our free tracked postal service."
+   },
+   {
+    "title": "We repair it",
+    "text": "Most jobs take under an hour. We text you when it is ready."
+   },
+   {
+    "title": "Test and collect",
+    "text": "We test everything with you before you pay."
+   }
   ],
   "faq": [
-   {"q": "How long will it take?", "a": "Screens and batteries usually take 30 to 60 minutes. Water damage and laptops can take a day or two."},
-   {"q": "Will I lose my data?", "a": "Almost never. Screen and battery repairs do not touch your data. We still recommend a backup first."},
-   {"q": "Do you use genuine parts?", "a": "We offer genuine parts where they are available and high-quality alternatives at a lower price. You choose."},
-   {"q": "What does the warranty cover?", "a": "Any fault with the part or our work for 12 months. It does not cover new accidental damage."}
+   {
+    "q": "How long will it take?",
+    "a": "Screens and batteries usually take 30 to 60 minutes. Water damage and laptops can take a day or two."
+   },
+   {
+    "q": "Will I lose my data?",
+    "a": "Almost never. Screen and battery repairs do not touch your data. We still recommend a backup first."
+   },
+   {
+    "q": "Do you use genuine parts?",
+    "a": "We offer genuine parts where they are available and high-quality alternatives at a lower price. You choose."
+   },
+   {
+    "q": "What does the warranty cover?",
+    "a": "Any fault with the part or our work for 12 months. It does not cover new accidental damage."
+   }
   ],
   "projects": [
-   {"title": "iPhone back from the canal", "location": "Ancoats", "category": "Water damage", "summary": "Two days underwater, every photo recovered.", "details": "We cleaned the board in an ultrasonic bath, replaced the battery and got it running long enough to back up 9,000 photos."},
-   {"title": "A designer's MacBook", "location": "Northern Quarter", "category": "Laptops", "summary": "New keyboard and battery, back the same afternoon.", "details": "Dropped off at ten, collected at three with a full health report."},
-   {"title": "Fifty tablets for a primary school", "location": "Salford", "category": "Business", "summary": "Screens and cases refreshed over half term.", "details": "Collected on Friday, returned the following Friday, each one tested and labelled."},
-   {"title": "The folding phone", "location": "Manchester", "category": "Screens", "summary": "An inner screen replacement most shops turn away.", "details": "A three-hour job done under the microscope with a genuine part."}
+   {
+    "title": "iPhone back from the canal",
+    "location": "Ancoats",
+    "category": "Water damage",
+    "summary": "Two days underwater, every photo recovered.",
+    "details": "We cleaned the board in an ultrasonic bath, replaced the battery and got it running long enough to back up 9,000 photos.",
+    "after": "https://images.unsplash.com/photo-1611396000732-f8c9a933424f?auto=format&fit=crop&w=1200&q=70",
+    "before": "https://images.unsplash.com/photo-1566728595333-75a1d7cae961?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "A designer's MacBook",
+    "location": "Northern Quarter",
+    "category": "Laptops",
+    "summary": "New keyboard and battery, back the same afternoon.",
+    "details": "Dropped off at ten, collected at three with a full health report.",
+    "after": "https://images.unsplash.com/photo-1588515603140-81bd9f7d1db0?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Fifty tablets for a primary school",
+    "location": "Salford",
+    "category": "Business",
+    "summary": "Screens and cases refreshed over half term.",
+    "details": "Collected on Friday, returned the following Friday, each one tested and labelled.",
+    "after": "https://images.unsplash.com/photo-1566728595333-75a1d7cae961?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "The folding phone",
+    "location": "Manchester",
+    "category": "Screens",
+    "summary": "An inner screen replacement most shops turn away.",
+    "details": "A three-hour job done under the microscope with a genuine part.",
+    "after": "https://images.unsplash.com/photo-1611396000732-f8c9a933424f?auto=format&fit=crop&w=1200&q=70"
+   }
   ],
   "testimonials": [
-   {"quote": "Screen done in thirty-five minutes while I had a coffee next door. Cheaper than the quote from the brand shop.", "name": "Aaliyah Brooks", "detail": "iPhone 14", "rating": 5},
-   {"quote": "They got my photos back off a phone that had been in a river. I cried a bit.", "name": "Owen Hartley", "detail": "Data recovery", "rating": 5},
-   {"quote": "Told me straight that my laptop was not worth fixing and did not charge me. I will be back.", "name": "Mei Lin", "detail": "Laptop check", "rating": 5},
-   {"quote": "Fifty tablets, one week, no drama. Brilliant for the school.", "name": "Mr Daniels", "detail": "Primary school", "rating": 5}
+   {
+    "quote": "Screen done in thirty-five minutes while I had a coffee next door. Cheaper than the quote from the brand shop.",
+    "name": "Aaliyah Brooks",
+    "detail": "iPhone 14",
+    "rating": 5
+   },
+   {
+    "quote": "They got my photos back off a phone that had been in a river. I cried a bit.",
+    "name": "Owen Hartley",
+    "detail": "Data recovery",
+    "rating": 5
+   },
+   {
+    "quote": "Told me straight that my laptop was not worth fixing and did not charge me. I will be back.",
+    "name": "Mei Lin",
+    "detail": "Laptop check",
+    "rating": 5
+   },
+   {
+    "quote": "Fifty tablets, one week, no drama. Brilliant for the school.",
+    "name": "Mr Daniels",
+    "detail": "Primary school",
+    "rating": 5
+   }
   ],
   "team": [
-   {"name": "Tariq Aziz", "role": "Founder", "bio": "Started fixing phones at sixteen. Still does the tricky ones."},
-   {"name": "Elena Novak", "role": "Lead technician", "bio": "Micro-soldering and board repair."},
-   {"name": "Josh Kerr", "role": "Front of house", "bio": "Explains everything without the jargon."}
+   {
+    "name": "Tariq Aziz",
+    "role": "Founder",
+    "bio": "Started fixing phones at sixteen. Still does the tricky ones."
+   },
+   {
+    "name": "Elena Novak",
+    "role": "Lead technician",
+    "bio": "Micro-soldering and board repair."
+   },
+   {
+    "name": "Josh Kerr",
+    "role": "Front of house",
+    "bio": "Explains everything without the jargon."
+   }
   ],
-  "gallery": [{"caption": "The workshop"}, {"caption": "Under the microscope"}, {"caption": "New screen going on"}, {"caption": "Parts wall"}, {"caption": "Front counter"}, {"caption": "The team"}],
-  "contact": {"phone": "0161 496 0155", "email": "hello@pixelfix.example", "area": "Manchester", "address": "58 Oldham Street, Manchester M4 1LE", "hours": [["Monday to Saturday", "9am to 6pm"], ["Sunday", "11am to 4pm"]]},
-  "socials": [{"label": "Instagram", "url": "https://www.instagram.com/"}, {"label": "TikTok", "url": "https://www.tiktok.com/"}],
-  "colours": {"main": "#2f54ff", "accent": "#12c99b"}
+  "gallery": [
+   {
+    "src": "https://images.unsplash.com/photo-1611396000732-f8c9a933424f?auto=format&fit=crop&w=1000&q=70",
+    "caption": "On the bench"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1639776738932-956082f0b704?auto=format&fit=crop&w=1000&q=70",
+    "caption": "New screen going on"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1782671987176-a9b521bcf296?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Opened up"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1588515603140-81bd9f7d1db0?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Under the microscope"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1566728595333-75a1d7cae961?auto=format&fit=crop&w=1000&q=70",
+    "caption": "How they arrive"
+   }
+  ],
+  "contact": {
+   "phone": "0161 496 0155",
+   "email": "hello@pixelfix.example",
+   "area": "Manchester",
+   "address": "58 Oldham Street, Manchester M4 1LE",
+   "hours": [
+    [
+     "Monday to Saturday",
+     "9am to 6pm"
+    ],
+    [
+     "Sunday",
+     "11am to 4pm"
+    ]
+   ]
+  },
+  "socials": [
+   {
+    "label": "Instagram",
+    "url": "https://www.instagram.com/"
+   },
+   {
+    "label": "TikTok",
+    "url": "https://www.tiktok.com/"
+   }
+  ],
+  "colours": {
+   "main": "#2f54ff",
+   "accent": "#12c99b"
+  },
+  "hero_image": "https://images.unsplash.com/photo-1611396000732-f8c9a933424f?auto=format&fit=crop&w=1400&q=70",
+  "about_image": "https://images.unsplash.com/photo-1639776738932-956082f0b704?auto=format&fit=crop&w=1100&q=70",
+  "photo_credit": "Sample photos by insung yoon, Vitalijus, Sandeep, Joel Rohland, PR MEDIA on Unsplash"
  },
  "rustic": {
   "business_name": "Orchard Lane Farm Shop",
   "tagline": "Grown down the lane, baked this morning",
   "intro": "A family farm shop and café near Ledbury selling our own fruit, vegetables, cider and bread, with breakfast served until noon.",
   "cta_label": "Plan your visit",
-  "trust": ["Fourth-generation farm", "Dogs welcome", "Free parking", "Pick your own from June"],
+  "trust": [
+   "Fourth-generation farm",
+   "Dogs welcome",
+   "Free parking",
+   "Pick your own from June"
+  ],
   "trust_line": "Farm shop and café, Herefordshire",
-  "highlights": [{"value": "140", "label": "acres of orchard"}, {"value": "4", "label": "generations of the family"}, {"value": "22", "label": "varieties of apple"}],
+  "highlights": [
+   {
+    "value": "140",
+    "label": "acres of orchard"
+   },
+   {
+    "value": "4",
+    "label": "generations of the family"
+   },
+   {
+    "value": "22",
+    "label": "varieties of apple"
+   }
+  ],
   "about_title": "The same family, the same fields, since 1921",
   "about": "The Pembertons have grown apples at Orchard Lane for more than a hundred years. The shop began as a table at the gate with an honesty box. The table is still there, in the corner by the till.\n\nToday we sell what we grow, what our neighbours make and what Nan bakes. If it has travelled more than thirty miles to reach the shelf, we have had a long argument about it.",
   "services": [
-   {"name": "The farm shop", "description": "Our own fruit and vegetables, local meat, cheese, eggs and store-cupboard things.", "price": "Open daily"},
-   {"name": "The café", "description": "Breakfast until noon, soup and pies at lunch, and cake all afternoon.", "price": "Mains from £9"},
-   {"name": "Pick your own", "description": "Strawberries from June, plums in August and apples through to October.", "price": "From £4 a punnet"},
-   {"name": "Cider and juice", "description": "Pressed on the farm from our own apples. Tastings every Saturday.", "price": "From £3.50"},
-   {"name": "Veg boxes", "description": "A weekly box of what is ready, delivered within ten miles on Thursdays.", "price": "£16 a week"},
-   {"name": "Christmas orders", "description": "Turkeys, trees, wreaths and hampers to order from November.", "price": "Order by 10 December"}
+   {
+    "name": "The farm shop",
+    "description": "Our own fruit and vegetables, local meat, cheese, eggs and store-cupboard things.",
+    "price": "Open daily"
+   },
+   {
+    "name": "The café",
+    "description": "Breakfast until noon, soup and pies at lunch, and cake all afternoon.",
+    "price": "Mains from £9"
+   },
+   {
+    "name": "Pick your own",
+    "description": "Strawberries from June, plums in August and apples through to October.",
+    "price": "From £4 a punnet"
+   },
+   {
+    "name": "Cider and juice",
+    "description": "Pressed on the farm from our own apples. Tastings every Saturday.",
+    "price": "From £3.50"
+   },
+   {
+    "name": "Veg boxes",
+    "description": "A weekly box of what is ready, delivered within ten miles on Thursdays.",
+    "price": "£16 a week"
+   },
+   {
+    "name": "Christmas orders",
+    "description": "Turkeys, trees, wreaths and hampers to order from November.",
+    "price": "Order by 10 December"
+   }
   ],
   "values": [
-   {"title": "We grow it", "text": "Most of the fruit and vegetables come from fields you can see from the car park."},
-   {"title": "Thirty-mile rule", "text": "What we do not grow comes from farms and makers nearby."},
-   {"title": "Nothing wasted", "text": "Wonky fruit becomes juice, jam and Tuesday's crumble."}
+   {
+    "title": "We grow it",
+    "text": "Most of the fruit and vegetables come from fields you can see from the car park."
+   },
+   {
+    "title": "Thirty-mile rule",
+    "text": "What we do not grow comes from farms and makers nearby."
+   },
+   {
+    "title": "Nothing wasted",
+    "text": "Wonky fruit becomes juice, jam and Tuesday's crumble."
+   }
   ],
   "process": [
-   {"title": "Spring", "text": "Blossom in the orchard, asparagus and the first rhubarb in the shop."},
-   {"title": "Summer", "text": "Pick-your-own strawberries, salad from the tunnels and suppers outside."},
-   {"title": "Autumn", "text": "Apple harvest, cider pressing and pumpkins in the top field."},
-   {"title": "Winter", "text": "Christmas trees, wreath making and proper soup in the café."}
+   {
+    "title": "Spring",
+    "text": "Blossom in the orchard, asparagus and the first rhubarb in the shop."
+   },
+   {
+    "title": "Summer",
+    "text": "Pick-your-own strawberries, salad from the tunnels and suppers outside."
+   },
+   {
+    "title": "Autumn",
+    "text": "Apple harvest, cider pressing and pumpkins in the top field."
+   },
+   {
+    "title": "Winter",
+    "text": "Christmas trees, wreath making and proper soup in the café."
+   }
   ],
   "faq": [
-   {"q": "Can I bring my dog?", "a": "Yes. Dogs on leads are welcome in the shop, the café garden and the orchard walk."},
-   {"q": "Do I need to book the café?", "a": "Not on weekdays. We recommend booking for weekend breakfast and Sunday lunch."},
-   {"q": "When is pick-your-own open?", "a": "From early June to late October, depending on the weather. Check our opening times before you travel."},
-   {"q": "Do you deliver?", "a": "Veg boxes and Christmas orders are delivered within ten miles every Thursday."}
+   {
+    "q": "Can I bring my dog?",
+    "a": "Yes. Dogs on leads are welcome in the shop, the café garden and the orchard walk."
+   },
+   {
+    "q": "Do I need to book the café?",
+    "a": "Not on weekdays. We recommend booking for weekend breakfast and Sunday lunch."
+   },
+   {
+    "q": "When is pick-your-own open?",
+    "a": "From early June to late October, depending on the weather. Check our opening times before you travel."
+   },
+   {
+    "q": "Do you deliver?",
+    "a": "Veg boxes and Christmas orders are delivered within ten miles every Thursday."
+   }
   ],
   "projects": [
-   {"title": "Blossom week", "location": "The old orchard", "category": "Spring", "summary": "Walk the orchard in full flower, with tea and cake at the end.", "details": "Paths are mown through the oldest trees for two weeks in late April."},
-   {"title": "Strawberry season", "location": "Top field", "category": "Summer", "summary": "Six weeks of pick-your-own, weather allowing.", "details": "Bring a basket or borrow one. Under-fives pick free."},
-   {"title": "Pressing day", "location": "The cider barn", "category": "Autumn", "summary": "Watch the press at work and taste the first juice.", "details": "Every Saturday in October, with the family on hand to explain how it is done."},
-   {"title": "Wreath workshops", "location": "The café", "category": "Winter", "summary": "Make your own from holly, ivy and orchard prunings.", "details": "Two hours with mulled juice and mince pies. Book early."}
+   {
+    "title": "Blossom week",
+    "location": "The old orchard",
+    "category": "Spring",
+    "summary": "Walk the orchard in full flower, with tea and cake at the end.",
+    "details": "Paths are mown through the oldest trees for two weeks in late April.",
+    "after": "https://images.unsplash.com/photo-1567306295427-94503f8300d7?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Strawberry season",
+    "location": "Top field",
+    "category": "Summer",
+    "summary": "Six weeks of pick-your-own, weather allowing.",
+    "details": "Bring a basket or borrow one. Under-fives pick free.",
+    "after": "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Pressing day",
+    "location": "The cider barn",
+    "category": "Autumn",
+    "summary": "Watch the press at work and taste the first juice.",
+    "details": "Every Saturday in October, with the family on hand to explain how it is done.",
+    "after": "https://images.unsplash.com/photo-1591586116988-62fe65164f8d?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Wreath workshops",
+    "location": "The café",
+    "category": "Winter",
+    "summary": "Make your own from holly, ivy and orchard prunings.",
+    "details": "Two hours with mulled juice and mince pies. Book early.",
+    "after": "https://images.unsplash.com/photo-1696134228075-7fa1c3fb8a9e?auto=format&fit=crop&w=1200&q=70"
+   }
   ],
   "testimonials": [
-   {"quote": "The best bacon sandwich in Herefordshire and you can see where the eggs came from.", "name": "Alan Preece", "detail": "Café regular", "rating": 5},
-   {"quote": "Our veg box is the highlight of Thursday. Proper carrots with the mud still on.", "name": "Bethan Lloyd", "detail": "Veg box customer", "rating": 5},
-   {"quote": "The children picked strawberries for two hours. Most of them made it home.", "name": "Yusuf Karim", "detail": "Pick your own", "rating": 5},
-   {"quote": "We order our Christmas turkey here every year. Never once been let down.", "name": "Margaret Howells", "detail": "Customer since 1994", "rating": 5}
+   {
+    "quote": "The best bacon sandwich in Herefordshire and you can see where the eggs came from.",
+    "name": "Alan Preece",
+    "detail": "Café regular",
+    "rating": 5
+   },
+   {
+    "quote": "Our veg box is the highlight of Thursday. Proper carrots with the mud still on.",
+    "name": "Bethan Lloyd",
+    "detail": "Veg box customer",
+    "rating": 5
+   },
+   {
+    "quote": "The children picked strawberries for two hours. Most of them made it home.",
+    "name": "Yusuf Karim",
+    "detail": "Pick your own",
+    "rating": 5
+   },
+   {
+    "quote": "We order our Christmas turkey here every year. Never once been let down.",
+    "name": "Margaret Howells",
+    "detail": "Customer since 1994",
+    "rating": 5
+   }
   ],
   "team": [
-   {"name": "Will Pemberton", "role": "Farmer", "bio": "Fourth generation. Up before the cockerel."},
-   {"name": "Kate Pemberton", "role": "Shop and café", "bio": "Runs the shop and writes the specials board."},
-   {"name": "Nan", "role": "Head baker", "bio": "Eighty-one. Still makes every loaf and will not share the scone recipe."}
+   {
+    "name": "Will Pemberton",
+    "role": "Farmer",
+    "bio": "Fourth generation. Up before the cockerel."
+   },
+   {
+    "name": "Kate Pemberton",
+    "role": "Shop and café",
+    "bio": "Runs the shop and writes the specials board."
+   },
+   {
+    "name": "Nan",
+    "role": "Head baker",
+    "bio": "Eighty-one. Still makes every loaf and will not share the scone recipe."
+   }
   ],
-  "gallery": [{"caption": "The shop"}, {"caption": "Apple harvest"}, {"caption": "Nan's loaves"}, {"caption": "The café garden"}, {"caption": "Pressing day"}, {"caption": "The honesty table"}],
-  "contact": {"phone": "01632 960 318", "email": "hello@orchardlane.example", "area": "Ledbury, Herefordshire", "address": "Orchard Lane, Wellington Heath, Ledbury HR8 1NQ", "hours": [["Monday to Saturday", "8.30am to 5pm"], ["Sunday", "10am to 4pm"], ["Café breakfast", "Until noon"]]},
-  "socials": [{"label": "Facebook", "url": "https://www.facebook.com/"}, {"label": "Instagram", "url": "https://www.instagram.com/"}],
-  "colours": {"main": "#7d2a20", "accent": "#d79a2b"}
+  "gallery": [
+   {
+    "src": "https://images.unsplash.com/photo-1632776350300-11016768b521?auto=format&fit=crop&w=1000&q=70",
+    "caption": "The shop"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1437275625246-b7a923f3d0f5?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Apple harvest"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1567306295427-94503f8300d7?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Picked this morning"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Carrots and leeks"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1591586116988-62fe65164f8d?auto=format&fit=crop&w=1000&q=70",
+    "caption": "The veg table"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1696134228075-7fa1c3fb8a9e?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Baskets by the door"
+   }
+  ],
+  "contact": {
+   "phone": "01632 960 318",
+   "email": "hello@orchardlane.example",
+   "area": "Ledbury, Herefordshire",
+   "address": "Orchard Lane, Wellington Heath, Ledbury HR8 1NQ",
+   "hours": [
+    [
+     "Monday to Saturday",
+     "8.30am to 5pm"
+    ],
+    [
+     "Sunday",
+     "10am to 4pm"
+    ],
+    [
+     "Café breakfast",
+     "Until noon"
+    ]
+   ]
+  },
+  "socials": [
+   {
+    "label": "Facebook",
+    "url": "https://www.facebook.com/"
+   },
+   {
+    "label": "Instagram",
+    "url": "https://www.instagram.com/"
+   }
+  ],
+  "colours": {
+   "main": "#7d2a20",
+   "accent": "#d79a2b"
+  },
+  "hero_image": "https://images.unsplash.com/photo-1632776350300-11016768b521?auto=format&fit=crop&w=1400&q=70",
+  "about_image": "https://images.unsplash.com/photo-1437275625246-b7a923f3d0f5?auto=format&fit=crop&w=1100&q=70",
+  "photo_credit": "Sample photos by mk. s, Melissa Askew, Shelley Pauls, Peter Wendt, Bruno Guerrero, Anne Preble on Unsplash"
  },
  "editorial": {
   "business_name": "Juniper & Rye",
   "tagline": "Flowers for weddings that look like the season they are in",
   "intro": "A Cotswold studio making loose, garden-led flowers for weddings and gatherings, grown here or within a morning's drive.",
   "cta_label": "Check your date",
-  "trust": ["British-grown flowers", "No floral foam", "Twenty weddings a year"],
+  "trust": [
+   "British-grown flowers",
+   "No floral foam",
+   "Twenty weddings a year"
+  ],
   "trust_line": "Wedding and event florist, the Cotswolds",
-  "highlights": [{"value": "20", "label": "weddings a year, no more"}, {"value": "90", "label": "per cent British stems"}, {"value": "0", "label": "floral foam used"}],
+  "highlights": [
+   {
+    "value": "20",
+    "label": "weddings a year, no more"
+   },
+   {
+    "value": "90",
+    "label": "per cent British stems"
+   },
+   {
+    "value": "0",
+    "label": "floral foam used"
+   }
+  ],
   "about_title": "A cutting garden, a barn and a very full diary",
   "about": "Clara Rye left a career in publishing to grow flowers in a walled garden outside Stow-on-the-Wold. The studio now takes on twenty weddings a year, so that each one has her full attention.\n\nWe work with what the season offers: blossom and tulips in spring, roses and sweet peas in June, dahlias and grasses in autumn. Nothing is flown in and nothing is arranged in foam.",
   "services": [
-   {"name": "Full wedding flowers", "description": "Ceremony, reception and everything carried or worn, designed around your venue and month.", "price": "From £2,800"},
-   {"name": "Bridal party only", "description": "Bouquets, buttonholes and flower crowns for smaller celebrations.", "price": "From £450"},
-   {"name": "Installations", "description": "Arches, hanging clouds and staircases built on site the day before.", "price": "From £900"},
-   {"name": "Supper clubs and events", "description": "Table flowers for private dinners, launches and editorial shoots.", "price": "From £350"},
-   {"name": "Buckets of flowers", "description": "Seasonal stems by the bucket for those arranging their own.", "price": "£75 a bucket"},
-   {"name": "Workshops", "description": "A morning in the garden learning to arrange a hand-tied bouquet.", "price": "£95"}
+   {
+    "name": "Full wedding flowers",
+    "description": "Ceremony, reception and everything carried or worn, designed around your venue and month.",
+    "price": "From £2,800"
+   },
+   {
+    "name": "Bridal party only",
+    "description": "Bouquets, buttonholes and flower crowns for smaller celebrations.",
+    "price": "From £450"
+   },
+   {
+    "name": "Installations",
+    "description": "Arches, hanging clouds and staircases built on site the day before.",
+    "price": "From £900"
+   },
+   {
+    "name": "Supper clubs and events",
+    "description": "Table flowers for private dinners, launches and editorial shoots.",
+    "price": "From £350"
+   },
+   {
+    "name": "Buckets of flowers",
+    "description": "Seasonal stems by the bucket for those arranging their own.",
+    "price": "£75 a bucket"
+   },
+   {
+    "name": "Workshops",
+    "description": "A morning in the garden learning to arrange a hand-tied bouquet.",
+    "price": "£95"
+   }
   ],
   "values": [
-   {"title": "In season, always", "text": "Your flowers reflect the month you marry in, not a photograph from another one."},
-   {"title": "Grown, not flown", "text": "Nine in ten stems are cut within fifty miles of the studio."},
-   {"title": "Foam free", "text": "Everything is arranged in water, moss and reusable frames."}
+   {
+    "title": "In season, always",
+    "text": "Your flowers reflect the month you marry in, not a photograph from another one."
+   },
+   {
+    "title": "Grown, not flown",
+    "text": "Nine in ten stems are cut within fifty miles of the studio."
+   },
+   {
+    "title": "Foam free",
+    "text": "Everything is arranged in water, moss and reusable frames."
+   }
   ],
   "process": [
-   {"title": "A conversation", "text": "We talk about your venue, your month and the feeling you want in the room."},
-   {"title": "A proposal", "text": "A written design with a palette, a list of likely flowers and a clear price."},
-   {"title": "A walk through", "text": "We visit the venue together six weeks before to settle every detail."},
-   {"title": "The day itself", "text": "We arrive early, stay until everything is right and return to clear."}
+   {
+    "title": "A conversation",
+    "text": "We talk about your venue, your month and the feeling you want in the room."
+   },
+   {
+    "title": "A proposal",
+    "text": "A written design with a palette, a list of likely flowers and a clear price."
+   },
+   {
+    "title": "A walk through",
+    "text": "We visit the venue together six weeks before to settle every detail."
+   },
+   {
+    "title": "The day itself",
+    "text": "We arrive early, stay until everything is right and return to clear."
+   }
   ],
   "faq": [
-   {"q": "How far ahead should we book?", "a": "Most couples book nine to fourteen months ahead. We take one wedding a weekend."},
-   {"q": "Can we choose exact flowers?", "a": "We agree a palette and a mood, then choose the best of what is flowering that week. It always looks better."},
-   {"q": "Do you travel?", "a": "Yes, within about ninety minutes of Stow-on-the-Wold. Further by arrangement."},
-   {"q": "What happens to the flowers afterwards?", "a": "Guests are encouraged to take them home. Anything left goes to a local hospice."}
+   {
+    "q": "How far ahead should we book?",
+    "a": "Most couples book nine to fourteen months ahead. We take one wedding a weekend."
+   },
+   {
+    "q": "Can we choose exact flowers?",
+    "a": "We agree a palette and a mood, then choose the best of what is flowering that week. It always looks better."
+   },
+   {
+    "q": "Do you travel?",
+    "a": "Yes, within about ninety minutes of Stow-on-the-Wold. Further by arrangement."
+   },
+   {
+    "q": "What happens to the flowers afterwards?",
+    "a": "Guests are encouraged to take them home. Anything left goes to a local hospice."
+   }
   ],
   "projects": [
-   {"title": "Isobel and Hugh", "location": "Cornwell Manor", "category": "Summer", "summary": "Roses, foxgloves and sweet peas down a forty-foot table.", "details": "A June wedding in a walled garden. The ceremony arch was moved to the marquee by six ushers and a wheelbarrow."},
-   {"title": "Amara and Jon", "location": "Stone Barn", "category": "Autumn", "summary": "Dahlias, rosehips and copper beech in a barn lit by candles.", "details": "Three hundred stems of dahlia cut the morning before, in a palette of plum and rust."},
-   {"title": "A spring elopement", "location": "Chastleton", "category": "Spring", "summary": "One bouquet, one buttonhole and a doorway of blossom.", "details": "Twelve guests, a church porch and branches cut from the orchard at dawn."},
-   {"title": "Midwinter supper", "location": "Daylesford", "category": "Winter", "summary": "Hellebores, paperwhites and bare branches for a dinner of sixty.", "details": "Planted bowls that guests took home at the end of the night."}
+   {
+    "title": "Isobel and Hugh",
+    "location": "Cornwell Manor",
+    "category": "Summer",
+    "summary": "Roses, foxgloves and sweet peas down a forty-foot table.",
+    "details": "A June wedding in a walled garden. The ceremony arch was moved to the marquee by six ushers and a wheelbarrow.",
+    "after": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Amara and Jon",
+    "location": "Stone Barn",
+    "category": "Autumn",
+    "summary": "Dahlias, rosehips and copper beech in a barn lit by candles.",
+    "details": "Three hundred stems of dahlia cut the morning before, in a palette of plum and rust.",
+    "after": "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "A spring elopement",
+    "location": "Chastleton",
+    "category": "Spring",
+    "summary": "One bouquet, one buttonhole and a doorway of blossom.",
+    "details": "Twelve guests, a church porch and branches cut from the orchard at dawn.",
+    "after": "https://images.unsplash.com/photo-1511288702291-e55d6cfbe3b5?auto=format&fit=crop&w=1200&q=70"
+   },
+   {
+    "title": "Midwinter supper",
+    "location": "Daylesford",
+    "category": "Winter",
+    "summary": "Hellebores, paperwhites and bare branches for a dinner of sixty.",
+    "details": "Planted bowls that guests took home at the end of the night.",
+    "after": "https://images.unsplash.com/photo-1595467959554-9ffcbf37f10f?auto=format&fit=crop&w=1200&q=70"
+   }
   ],
   "testimonials": [
-   {"quote": "People are still talking about the table. It looked as though the garden had simply wandered indoors.", "name": "Isobel Fairfax", "detail": "Married in June", "rating": 5},
-   {"quote": "Clara listened, then made something far better than we could have described.", "name": "Amara Osei", "detail": "Married in October", "rating": 5},
-   {"quote": "Calm, exacting and kind. The only supplier we never had to chase.", "name": "Laura Penhale", "detail": "Wedding planner", "rating": 5},
-   {"quote": "My bouquet smelled like my grandmother's garden. I had not asked for that. She just knew.", "name": "Hattie Lowe", "detail": "Married in May", "rating": 5}
+   {
+    "quote": "People are still talking about the table. It looked as though the garden had simply wandered indoors.",
+    "name": "Isobel Fairfax",
+    "detail": "Married in June",
+    "rating": 5
+   },
+   {
+    "quote": "Clara listened, then made something far better than we could have described.",
+    "name": "Amara Osei",
+    "detail": "Married in October",
+    "rating": 5
+   },
+   {
+    "quote": "Calm, exacting and kind. The only supplier we never had to chase.",
+    "name": "Laura Penhale",
+    "detail": "Wedding planner",
+    "rating": 5
+   },
+   {
+    "quote": "My bouquet smelled like my grandmother's garden. I had not asked for that. She just knew.",
+    "name": "Hattie Lowe",
+    "detail": "Married in May",
+    "rating": 5
+   }
   ],
   "team": [
-   {"name": "Clara Rye", "role": "Founder and florist", "bio": "Designs every wedding and grows most of the flowers."},
-   {"name": "Tomasz Juniper", "role": "Grower", "bio": "Keeps the walled garden cutting from March to November."}
+   {
+    "name": "Clara Rye",
+    "role": "Founder and florist",
+    "bio": "Designs every wedding and grows most of the flowers."
+   },
+   {
+    "name": "Tomasz Juniper",
+    "role": "Grower",
+    "bio": "Keeps the walled garden cutting from March to November."
+   }
   ],
-  "gallery": [{"caption": "The walled garden in June"}, {"caption": "A bride's bouquet"}, {"caption": "Dahlias, cut at dawn"}, {"caption": "The studio barn"}, {"caption": "A ceremony arch"}, {"caption": "Table flowers"}],
-  "contact": {"phone": "01632 960 409", "email": "studio@juniperandrye.example", "area": "The Cotswolds", "address": "The Walled Garden, Maugersbury, Stow-on-the-Wold GL54 1HP", "hours": [["Studio visits", "By appointment"], ["Tuesday to Friday", "9am to 5pm"]]},
-  "socials": [{"label": "Instagram", "url": "https://www.instagram.com/"}, {"label": "Pinterest", "url": "https://www.pinterest.co.uk/"}],
-  "colours": {"main": "#8f1d3f", "accent": "#e9b8a8"}
+  "gallery": [
+   {
+    "src": "https://images.unsplash.com/photo-1595467959554-9ffcbf37f10f?auto=format&fit=crop&w=1000&q=70",
+    "caption": "A bride’s bouquet"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1000&q=70",
+    "caption": "A ceremony arch"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Table flowers"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1000&q=70",
+    "caption": "Garden roses"
+   },
+   {
+    "src": "https://images.unsplash.com/photo-1511288702291-e55d6cfbe3b5?auto=format&fit=crop&w=1000&q=70",
+    "caption": "The day itself"
+   }
+  ],
+  "contact": {
+   "phone": "01632 960 409",
+   "email": "studio@juniperandrye.example",
+   "area": "The Cotswolds",
+   "address": "The Walled Garden, Maugersbury, Stow-on-the-Wold GL54 1HP",
+   "hours": [
+    [
+     "Studio visits",
+     "By appointment"
+    ],
+    [
+     "Tuesday to Friday",
+     "9am to 5pm"
+    ]
+   ]
+  },
+  "socials": [
+   {
+    "label": "Instagram",
+    "url": "https://www.instagram.com/"
+   },
+   {
+    "label": "Pinterest",
+    "url": "https://www.pinterest.co.uk/"
+   }
+  ],
+  "colours": {
+   "main": "#8f1d3f",
+   "accent": "#e9b8a8"
+  },
+  "hero_image": "https://images.unsplash.com/photo-1595467959554-9ffcbf37f10f?auto=format&fit=crop&w=1400&q=70",
+  "about_image": "https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=1100&q=70",
+  "photo_credit": "Sample photos by nikki gibson, Samantha Gades, Photos by Lanty, Beatriz Pérez Moya, Nathan Dumlao on Unsplash"
  }
 }

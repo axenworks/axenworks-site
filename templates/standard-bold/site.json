@@ -114,28 +114,33 @@
    "location": "Armley",
    "category": "Vans",
    "summary": "New clutch and flywheel fitted before the next morning's deliveries.",
-   "details": "A courier's van failed at 8am. We sourced the parts by ten, had it on the ramp by noon and road-tested it at five."
+   "details": "A courier's van failed at 8am. We sourced the parts by ten, had it on the ramp by noon and road-tested it at five.",
+   "after": "https://images.unsplash.com/photo-1613214150132-9606e332d68e?auto=format&fit=crop&w=1200&q=70",
+   "before": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Chasing an electrical fault",
    "location": "Headingley",
    "category": "Diagnostics",
    "summary": "A warning light three other garages could not trace.",
-   "details": "We found a chafed wire behind the dashboard after two hours of testing. The repair itself took twenty minutes."
+   "details": "We found a chafed wire behind the dashboard after two hours of testing. The repair itself took twenty minutes.",
+   "after": "https://images.unsplash.com/photo-1676018366904-c083ed678e60?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Classic Mini recommission",
    "location": "Horsforth",
    "category": "Classics",
    "summary": "Brakes, fuel system and MOT after nine years in a garage.",
-   "details": "New brake lines, a rebuilt carburettor and fresh tyres. It passed first time."
+   "details": "New brake lines, a rebuilt carburettor and fresh tyres. It passed first time.",
+   "after": "https://images.unsplash.com/photo-1613214150132-9606e332d68e?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Fleet servicing for a local bakery",
    "location": "Leeds",
    "category": "Vans",
    "summary": "Six vans serviced overnight so none miss a morning round.",
-   "details": "We collect at 6pm and return by 5am, with a health report for each vehicle."
+   "details": "We collect at 6pm and return by 5am, with a health report for each vehicle.",
+   "after": "https://images.unsplash.com/photo-1599256872237-5dcc0fbe9668?auto=format&fit=crop&w=1200&q=70"
   }
  ],
  "testimonials": [
@@ -183,22 +188,28 @@
  ],
  "gallery": [
   {
-   "caption": "Bay one"
+   "src": "https://images.unsplash.com/photo-1771340012319-0b4fca008b54?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Under the bonnet"
   },
   {
-   "caption": "On the ramp"
+   "src": "https://images.unsplash.com/photo-1631720040176-0d789a643a78?auto=format&fit=crop&w=1000&q=70",
+   "caption": "The workshop"
   },
   {
-   "caption": "Diagnostics"
+   "src": "https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Hands on"
   },
   {
-   "caption": "Tyre fitting"
+   "src": "https://images.unsplash.com/photo-1676018366904-c083ed678e60?auto=format&fit=crop&w=1000&q=70",
+   "caption": "On the bench"
   },
   {
-   "caption": "The waiting room"
+   "src": "https://images.unsplash.com/photo-1613214150132-9606e332d68e?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Ready to collect"
   },
   {
-   "caption": "The team"
+   "src": "https://images.unsplash.com/photo-1599256872237-5dcc0fbe9668?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Parts in hand"
   }
  ],
  "contact": {
@@ -235,5 +246,8 @@
   "main": "#d7261e",
   "accent": "#ffcd1f"
  },
+ "hero_image": "https://images.unsplash.com/photo-1771340012319-0b4fca008b54?auto=format&fit=crop&w=1400&q=70",
+ "about_image": "https://images.unsplash.com/photo-1631720040176-0d789a643a78?auto=format&fit=crop&w=1100&q=70",
+ "photo_credit": "Sample photos by Dextar Studio, sq lim, Christian Buehner, Kato Blackmore, Benjamin Brunner, Nina Mercado on Unsplash",
  "_sample": true
 }

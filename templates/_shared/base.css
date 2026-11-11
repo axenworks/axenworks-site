@@ -290,3 +290,4 @@ legend{padding:0;margin-bottom:6px;font-family:var(--font-display);font-weight:v
 /* Pro opening: the headline never grows so tall that the buttons fall off the first screen */
 .lv-pro .hero h1{font-size:min(var(--h1),clamp(40px,12vh,200px))}
 .btn{text-align:center}
+.foot-credit{margin-top:14px;font-size:.8rem;opacity:.7}

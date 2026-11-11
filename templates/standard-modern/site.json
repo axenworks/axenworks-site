@@ -114,28 +114,33 @@
    "location": "Ancoats",
    "category": "Water damage",
    "summary": "Two days underwater, every photo recovered.",
-   "details": "We cleaned the board in an ultrasonic bath, replaced the battery and got it running long enough to back up 9,000 photos."
+   "details": "We cleaned the board in an ultrasonic bath, replaced the battery and got it running long enough to back up 9,000 photos.",
+   "after": "https://images.unsplash.com/photo-1611396000732-f8c9a933424f?auto=format&fit=crop&w=1200&q=70",
+   "before": "https://images.unsplash.com/photo-1566728595333-75a1d7cae961?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "A designer's MacBook",
    "location": "Northern Quarter",
    "category": "Laptops",
    "summary": "New keyboard and battery, back the same afternoon.",
-   "details": "Dropped off at ten, collected at three with a full health report."
+   "details": "Dropped off at ten, collected at three with a full health report.",
+   "after": "https://images.unsplash.com/photo-1588515603140-81bd9f7d1db0?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Fifty tablets for a primary school",
    "location": "Salford",
    "category": "Business",
    "summary": "Screens and cases refreshed over half term.",
-   "details": "Collected on Friday, returned the following Friday, each one tested and labelled."
+   "details": "Collected on Friday, returned the following Friday, each one tested and labelled.",
+   "after": "https://images.unsplash.com/photo-1566728595333-75a1d7cae961?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "The folding phone",
    "location": "Manchester",
    "category": "Screens",
    "summary": "An inner screen replacement most shops turn away.",
-   "details": "A three-hour job done under the microscope with a genuine part."
+   "details": "A three-hour job done under the microscope with a genuine part.",
+   "after": "https://images.unsplash.com/photo-1611396000732-f8c9a933424f?auto=format&fit=crop&w=1200&q=70"
   }
  ],
  "testimonials": [
@@ -183,22 +188,24 @@
  ],
  "gallery": [
   {
-   "caption": "The workshop"
+   "src": "https://images.unsplash.com/photo-1611396000732-f8c9a933424f?auto=format&fit=crop&w=1000&q=70",
+   "caption": "On the bench"
   },
   {
-   "caption": "Under the microscope"
-  },
-  {
+   "src": "https://images.unsplash.com/photo-1639776738932-956082f0b704?auto=format&fit=crop&w=1000&q=70",
    "caption": "New screen going on"
   },
   {
-   "caption": "Parts wall"
+   "src": "https://images.unsplash.com/photo-1782671987176-a9b521bcf296?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Opened up"
   },
   {
-   "caption": "Front counter"
+   "src": "https://images.unsplash.com/photo-1588515603140-81bd9f7d1db0?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Under the microscope"
   },
   {
-   "caption": "The team"
+   "src": "https://images.unsplash.com/photo-1566728595333-75a1d7cae961?auto=format&fit=crop&w=1000&q=70",
+   "caption": "How they arrive"
   }
  ],
  "contact": {
@@ -231,5 +238,8 @@
   "main": "#2f54ff",
   "accent": "#12c99b"
  },
+ "hero_image": "https://images.unsplash.com/photo-1611396000732-f8c9a933424f?auto=format&fit=crop&w=1400&q=70",
+ "about_image": "https://images.unsplash.com/photo-1639776738932-956082f0b704?auto=format&fit=crop&w=1100&q=70",
+ "photo_credit": "Sample photos by insung yoon, Vitalijus, Sandeep, Joel Rohland, PR MEDIA on Unsplash",
  "_sample": true
 }

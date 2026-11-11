@@ -114,28 +114,32 @@
    "location": "Larkhall",
    "category": "Start-ups",
    "summary": "Set up payroll and pensions for six new employees in three weeks.",
-   "details": "The owner had been a sole trader for four years. We moved the business to a limited company, registered for PAYE, set up a workplace pension and trained the manager to approve payroll each month."
+   "details": "The owner had been a sole trader for four years. We moved the business to a limited company, registered for PAYE, set up a workplace pension and trained the manager to approve payroll each month.",
+   "after": "https://images.unsplash.com/photo-1787532378729-fe4241197405?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "Eleven rental flats, one clear picture",
    "location": "Bath",
    "category": "Landlords",
    "summary": "Untangled five years of rental records and reduced the tax bill legitimately.",
-   "details": "Records were spread across three letting agents. We rebuilt the figures property by property, claimed finance costs and repairs that had been missed, and set up a simple quarterly routine."
+   "details": "Records were spread across three letting agents. We rebuilt the figures property by property, claimed finance costs and repairs that had been missed, and set up a simple quarterly routine.",
+   "after": "https://images.unsplash.com/photo-1713947503588-8ff8196dc4a3?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "A joinery firm preparing to sell",
    "location": "Keynsham",
    "category": "Advice",
    "summary": "Three years of planning so the owner could retire on good terms.",
-   "details": "We tidied the balance sheet, documented the order book and worked with the solicitor on the sale. The business was sold to its manager."
+   "details": "We tidied the balance sheet, documented the order book and worked with the solicitor on the sale. The business was sold to its manager.",
+   "after": "https://images.unsplash.com/photo-1713461983836-de0a45009424?auto=format&fit=crop&w=1200&q=70"
   },
   {
    "title": "From shoebox to software",
    "location": "Bradford-on-Avon",
    "category": "Bookkeeping",
    "summary": "Moved a busy café from paper receipts to Xero in a month.",
-   "details": "We connected the till and bank feed, photographed the backlog of receipts and showed the owner how to check the week's figures in ten minutes."
+   "details": "We connected the till and bank feed, photographed the backlog of receipts and showed the owner how to check the week's figures in ten minutes.",
+   "after": "https://images.unsplash.com/photo-1706169582307-8ae586631e8a?auto=format&fit=crop&w=1200&q=70"
   }
  ],
  "testimonials": [
@@ -183,22 +187,20 @@
  ],
  "gallery": [
   {
-   "caption": "Our office on Milsom Street"
+   "src": "https://images.unsplash.com/photo-1713461983836-de0a45009424?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Going through the figures"
   },
   {
-   "caption": "The meeting room"
+   "src": "https://images.unsplash.com/photo-1706169582307-8ae586631e8a?auto=format&fit=crop&w=1000&q=70",
+   "caption": "A tidy desk"
   },
   {
-   "caption": "Margaret and Daniel"
+   "src": "https://images.unsplash.com/photo-1787532378729-fe4241197405?auto=format&fit=crop&w=1000&q=70",
+   "caption": "Signing off the accounts"
   },
   {
+   "src": "https://images.unsplash.com/photo-1713947503588-8ff8196dc4a3?auto=format&fit=crop&w=1000&q=70",
    "caption": "Year-end review"
-  },
-  {
-   "caption": "Front desk"
-  },
-  {
-   "caption": "Client evening"
   }
  ],
  "contact": {
@@ -231,5 +233,8 @@
   "main": "#1d2b4f",
   "accent": "#b08a3e"
  },
+ "hero_image": "https://images.unsplash.com/photo-1713461983836-de0a45009424?auto=format&fit=crop&w=1400&q=70",
+ "about_image": "https://images.unsplash.com/photo-1706169582307-8ae586631e8a?auto=format&fit=crop&w=1100&q=70",
+ "photo_credit": "Sample photos by Jakub Żerdzicki, Gylain Omer, Vitaly Gariev on Unsplash",
  "_sample": true
 }
