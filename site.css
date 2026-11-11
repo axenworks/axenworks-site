@@ -1,0 +1,75 @@
+/* Axencraft house style.
+   The idea: a maker's workbench. A green cutting mat with a measured grid, paper laid on top,
+   masking-tape labels and one orange tool colour. Loaded after each page's own styles. */
+
+:root{
+  --mat:#14503c; --mat-deep:#0e3b2c; --mat-line:rgba(233,243,205,.2); --mat-line-fine:rgba(233,243,205,.07);
+  --hot:#ff5a2b; --tape:#f3d26a; --tape-ink:#3b3006;
+  --brand:#14503c;
+  /* names the older pages already use */
+  --blue:#14503c; --bg:#f3f5f0; --ink:#15201b; --muted:#55605a; --line:#d3d9d0; --card:#ffffff;
+  --display:"Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){--bg:#0f1512;--ink:#eaf0ea;--muted:#a2ada6;--line:#2b352f;--card:#171f1b;--blue:#2a8763;--brand:#2a8763}
+}
+:root[data-theme="dark"]{--bg:#0f1512;--ink:#eaf0ea;--muted:#a2ada6;--line:#2b352f;--card:#171f1b;--blue:#2a8763;--brand:#2a8763}
+
+*:focus-visible{outline-color:var(--hot)!important}
+::selection{background:var(--tape);color:var(--tape-ink)}
+
+/* the mat: used for the home page bands and the top bar on every other page */
+.mat,.app>nav{
+  background-color:var(--mat);color:#f2f6ef;
+  background-image:
+    linear-gradient(var(--mat-line) 1px,transparent 1px),linear-gradient(90deg,var(--mat-line) 1px,transparent 1px),
+    linear-gradient(var(--mat-line-fine) 1px,transparent 1px),linear-gradient(90deg,var(--mat-line-fine) 1px,transparent 1px);
+  background-size:120px 120px,120px 120px,24px 24px,24px 24px;background-position:0 0;
+}
+
+/* strips of masking tape used as labels */
+.tape{display:inline-block;background:var(--tape);color:var(--tape-ink);font-weight:700;font-size:14px;line-height:1.2;padding:6px 14px;
+  clip-path:polygon(0 0,100% 0,calc(100% - 4px) 25%,100% 50%,calc(100% - 4px) 75%,100% 100%,0 100%,4px 75%,0 50%,4px 25%)}
+.tape.hot{background:var(--hot);color:#1d0d05}
+
+/* ---------- account, questionnaire, admin and legal pages ---------- */
+.app{background-image:linear-gradient(rgba(20,80,60,.035) 1px,transparent 1px),linear-gradient(90deg,rgba(20,80,60,.035) 1px,transparent 1px);background-size:24px 24px}
+.app>nav{max-width:none;margin:0 0 28px;padding:14px max(24px,calc(50vw - 496px))}
+.app>nav a,.app>nav .logo{color:#fff}
+.app>nav>a:first-child,.app>nav .logo{font-stretch:75%;font-weight:800;font-size:24px;letter-spacing:0}
+.app>nav .navr a,.app>nav .navr .link,.app>nav .back,.app>nav button.link,.app>nav .me,.app>nav .r{color:#d6e6dc}
+.app>nav>a:first-child::before{content:"";display:inline-block;width:24px;height:24px;margin-right:9px;vertical-align:-3px;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath d='M3 27 15 3l12 24z' fill='none' stroke='%23ff5a2b' stroke-width='3.2' stroke-linejoin='round'/%3E%3Cpath d='M10.5 20h9' stroke='%23fff' stroke-width='3.2' stroke-linecap='round'/%3E%3C/svg%3E") center/contain no-repeat}
+.app>nav .logo small{background:var(--tape);color:var(--tape-ink);border-radius:2px;font-stretch:100%}
+.app>nav .navr a:hover,.app>nav .back:hover,.app>nav button.link:hover{color:#fff}
+.app h1,.app h2,.app .plan-name,.app .order-plan,.app .plan .name{font-family:var(--display);font-stretch:75%;font-weight:800;letter-spacing:-.005em}
+.app h1{font-size:clamp(36px,6vw,46px);line-height:1}
+.app h2{font-size:28px;line-height:1.05}
+.app .box,.app .note,.app .order,.app .plan,.app .included,.app .tpl{border-radius:6px}
+.app .box{box-shadow:0 18px 26px -24px rgba(20,50,35,.55)}
+.app button,.app a.btn{border-radius:8px}
+.app .pw-show,.app button.link{border-radius:4px}
+.app .chip span{border-radius:8px}
+.app .thumb button{border-radius:50%}
+.app .badge{background:var(--tape);color:var(--tape-ink);border-radius:2px;letter-spacing:.02em;text-transform:none;font-size:13px;padding:4px 10px;transform:rotate(-2deg)}
+.app .tpl .tick{border-radius:3px}
+.app .order{border-color:var(--ink);box-shadow:5px 5px 0 var(--tape)}
+.app .pill.in_progress{background:#fff3c9;border-color:#e2bd45;color:#5c4400}
+.app .bar{border-radius:2px;height:8px}.app .bar i{background:var(--hot)}
+.app .tracker li.done::before{background:var(--brand);border-color:var(--brand)}
+.app footer.mini{border-top:1px solid var(--line);margin-top:24px}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]) .app{background-image:linear-gradient(rgba(233,243,205,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(233,243,205,.03) 1px,transparent 1px)}
+  :root:not([data-theme="light"]) .app .order{box-shadow:5px 5px 0 #6b5a1c}
+}
+
+/* legal pages */
+.app>footer:not(.mini){background:var(--mat-deep);color:#c6d6cc;border:0}
+.app>footer:not(.mini) a{color:#fff}
+.app .toc{box-shadow:5px 5px 0 var(--tape);border-color:var(--ink)}
+
+/* links and small type details */
+:root{--link:#14503c}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--link:#6fcaa5}}
+:root[data-theme="dark"]{--link:#6fcaa5}
+.app main a:not(.btn):not(.shot){color:var(--link)}
+.app .plan-name,.app .order-plan{line-height:1.1}

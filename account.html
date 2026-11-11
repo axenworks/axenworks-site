@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Your account | Axencraft</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%232430d6%27/%3E%3Cpath d=%27M20 46 32 16l12 30M24.5 36h15%27 stroke=%27white%27 stroke-width=%276%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2710%27 fill=%27%2314503c%27/%3E%3Cpath d=%27M20 46 32 16l12 30M24.5 36h15%27 stroke=%27white%27 stroke-width=%276%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
 <style>
 :root{--blue:#2430d6;--bg:#f7f8f6;--ink:#16181d;--muted:#585e69;--line:#d9dcd6;--card:#ffffff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101216;--ink:#eef0ee;--muted:#a3a9b2;--line:#2a2e36;--card:#171a20;--blue:#3a46f0}}
@@ -104,8 +104,9 @@ table.dns td code{font-size:13.5px;word-break:break-all;background:var(--bg);pad
 #p-status.alert{color:#b3261e;font-weight:600}
 footer.mini{text-align:center;padding:24px 20px 32px;font-size:14px;color:var(--muted)}footer.mini a{color:var(--muted)}
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
-<body>
+<body class="app">
 <nav aria-label="Main"><a href="index.html">Axencraft</a><span class="navr"><a href="admin.html" id="admin-link" hidden>Admin</a><button type="button" class="link" id="out" hidden>Log out</button></span></nav>
 <main>
   <!-- Log in / sign up -->

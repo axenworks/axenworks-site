@@ -5,237 +5,295 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Axencraft | Websites built and hosted for you</title>
 <meta name="description" content="Axencraft Digital Studio builds and hosts a website for your business. Choose a plan and style, answer a short questionnaire, and we do the rest.">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2714%27 fill=%27%232430d6%27/%3E%3Cpath d=%27M20 46 32 16l12 30M24.5 36h15%27 stroke=%27white%27 stroke-width=%276%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<meta name="theme-color" content="#14503c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2710%27 fill=%27%2314503c%27/%3E%3Cpath d=%27M20 46 32 16l12 30M24.5 36h15%27 stroke=%27white%27 stroke-width=%276%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
 <style>
-:root{
-  --blue:#2430d6; --blue-ink:#ffffff;
-  --mint:#dbe6dc; --mint-ink:#16231a;
-  --grow:#efe2c4; --grow-ink:#3a2a12;
-  --bg:#f7f8f6; --ink:#16181d; --muted:#585e69; --line:#d9dcd6; --card:#ffffff;
-  box-sizing:border-box;
-  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
-}
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){--bg:#101216;--ink:#eef0ee;--muted:#a3a9b2;--line:#2a2e36;--card:#171a20;--mint:#1d2a22;--mint-ink:#e3efe5;--grow:#2a2216;--grow-ink:#f1e4c9;--blue:#3a46f0}
-}
-:root[data-theme="dark"]{--bg:#101216;--ink:#eef0ee;--muted:#a3a9b2;--line:#2a2e36;--card:#171a20;--mint:#1d2a22;--mint-ink:#e3efe5;--grow:#2a2216;--grow-ink:#f1e4c9;--blue:#3a46f0}
-html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:16px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 *,*::before,*::after{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 "Bricolage Grotesque",system-ui,-apple-system,"Segoe UI",sans-serif}
-a{color:inherit}
-:focus-visible{outline:3px solid #ffb703;outline-offset:3px}
-.wrap{max-width:1040px;margin:0 auto;padding:0 24px}
-nav{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;max-width:1040px;margin:0 auto}
-nav b{font-weight:800;font-size:20px;letter-spacing:-.02em}
-nav div{display:flex;gap:20px;font-size:15px}
-nav a{text-decoration:none;color:var(--muted)}
-nav a:hover{color:var(--ink)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--display);overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:.2em}
+h1,h2,h3{font-stretch:75%;font-weight:800;letter-spacing:-.005em;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{width:min(1120px,100% - 48px);margin-inline:auto}
+.wrap.wide{width:min(1400px,100% - 48px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--hot);outline-offset:3px;border-radius:3px}
 
-/* split hero */
-.split{display:grid;grid-template-columns:repeat(3,1fr);min-height:76vh}
-.half{padding:56px clamp(22px,3vw,48px);display:flex;flex-direction:column;justify-content:space-between;gap:36px}
-.half h2{font-size:clamp(32px,3.8vw,52px);line-height:1.02;letter-spacing:-.035em;font-weight:800;margin:0 0 16px}
-.half p{margin:0;max-width:30ch;font-size:18px}
-.grow{background:var(--grow);color:var(--grow-ink);position:relative;overflow:hidden}
-.grow::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;pointer-events:none;
-  background:radial-gradient(circle,color-mix(in srgb,var(--grow-ink) 30%,transparent) 2.5px,transparent 3px) 0 0/22px 22px;
-  -webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
-.grow>*{position:relative;z-index:1}
-.grow .tag{background:var(--grow-ink);color:var(--grow)}
-.digital .tag.open{background:#fff;color:var(--blue)}
-.digital{background:var(--blue);color:var(--blue-ink)}
-.print{background:var(--mint);color:var(--mint-ink);position:relative;overflow:hidden}
-.print::after{content:"";position:absolute;inset:auto 0 0 0;height:46%;pointer-events:none;
-  background:repeating-linear-gradient(0deg,rgba(22,35,26,.16) 0 2px,transparent 2px 9px);
-  -webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
-.print>*{position:relative;z-index:1}
-.btn{display:inline-block;padding:13px 22px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid currentColor;font-size:16px}
-.digital .btn{background:#fff;color:var(--blue);border-color:#fff}
-.tag{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--mint-ink);color:var(--mint);font-size:14px;font-weight:600;margin-bottom:18px}
-.mock{border-radius:10px;background:rgba(255,255,255,.13);padding:14px;max-width:340px}
-.mock i{display:block;height:9px;border-radius:5px;background:rgba(255,255,255,.55);margin:8px 0}
-.mock i:nth-child(1){width:42%;height:12px;background:#fff}.mock i:nth-child(2){width:88%}.mock i:nth-child(3){width:70%}
-@media(max-width:900px){.split{grid-template-columns:1fr;min-height:0}.half{padding:44px 24px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:8px;border:2px solid var(--brand);background:var(--brand);color:#fff;font:inherit;font-weight:700;line-height:1.2;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.12)}
+.btn.line{background:none;color:inherit;border-color:currentColor}
+.btn.line:hover{filter:none;background:rgba(0,0,0,.06)}
+button:disabled{opacity:.6;cursor:wait}
 
-section{padding:72px 0}
-section h3{font-size:clamp(28px,4vw,40px);letter-spacing:-.03em;line-height:1.1;margin:0 0 12px;font-weight:800}
-.lead{color:var(--muted);max-width:56ch;margin:0 0 32px}
-ol.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:0 40px;counter-reset:s}
-ol.steps li{counter-increment:s;padding:16px 0 16px 46px;position:relative;border-top:1px solid var(--line)}
-ol.steps li::before{content:counter(s);position:absolute;left:0;top:14px;width:30px;height:30px;border-radius:50%;background:var(--blue);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px}
-ol.steps b{display:block}
-.plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
-.plan{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px}
-.plan h4{margin:0 0 6px;font-size:19px}
-.price{font-size:30px;font-weight:800;letter-spacing:-.03em;margin:6px 0}
-.price span{font-size:15px;font-weight:400;color:var(--muted)}
-.plan p{margin:6px 0 0;color:var(--muted);font-size:15px}
-.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
-.tpl{border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line);display:flex;flex-direction:column;text-decoration:none;color:inherit;transition:transform .2s,box-shadow .2s}
-.tpl:hover{box-shadow:0 14px 30px -18px rgba(0,0,0,.4)}
-.tpl .shot{position:relative;aspect-ratio:16/11;overflow:hidden;border-bottom:1px solid var(--line);background:var(--bg)}
+/* top bar */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0}
+.brand{display:inline-flex;align-items:center;gap:10px;font-stretch:75%;font-weight:800;font-size:28px;line-height:1;text-decoration:none;color:#fff}
+.brand svg{flex:none}
+.top nav{display:flex;align-items:center;gap:6px 22px;font-size:16px}
+.top nav a{text-decoration:none;color:#d6e6dc;white-space:nowrap}
+.top nav a:hover{color:#fff;text-decoration:underline}
+.top nav .go{background:#fff;color:var(--mat);padding:9px 16px;border-radius:8px;font-weight:700;white-space:nowrap}
+.top nav .go:hover{color:var(--mat);text-decoration:none;background:var(--tape)}
+@media(max-width:720px){.top nav a:not(.login):not(.go){display:none}.brand{font-size:24px}}
+
+/* opening: three pieces of work laid out on the mat */
+.intro{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(0,1fr);gap:20px clamp(24px,5vw,72px);align-items:end;padding:clamp(22px,4vw,48px) 0 0}
+.intro h1{font-size:clamp(46px,7.4vw,104px);line-height:.88;color:#fff;max-width:9.5em}
+.intro p{font-size:clamp(18px,1.7vw,20px);max-width:40ch;color:#d6e6dc;padding-bottom:.5em}
+@media(max-width:820px){.intro{grid-template-columns:1fr}}
+.bench{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(18px,2.6vw,34px);align-items:end;padding:clamp(44px,5vw,64px) 0 clamp(52px,7vw,92px)}
+.piece{position:relative;display:flex;flex-direction:column;gap:18px;padding:34px 26px 26px;border-radius:3px;color:#15201b;box-shadow:0 1px 0 rgba(0,0,0,.25),0 28px 34px -24px rgba(0,0,0,.7)}
+.piece .tape{position:absolute;top:-14px;left:20px;transform:rotate(-3deg)}
+.piece h2{font-size:clamp(32px,3.6vw,46px);line-height:.95}
+.piece p{font-size:17px;max-width:34ch}
+.piece .acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:auto}
+.piece .btn.line{border-color:#15201b}
+.digital{background:#fff;transform:rotate(-.8deg);padding-bottom:30px}
+.digital h2{font-size:clamp(40px,5vw,64px)}
+.digital p{font-size:19px}
+.digital .more{font-weight:700}
+.swatches{display:flex;align-items:center;gap:8px;flex-wrap:wrap;text-decoration:none;font-size:15px;color:#55605a}
+.swatches i{display:block;width:26px;height:34px;border-radius:2px;background:linear-gradient(135deg,var(--a) 0 58%,var(--b) 58%);box-shadow:0 0 0 1px rgba(0,0,0,.12)}
+.swatches span{margin-left:6px;text-decoration:underline;text-underline-offset:.2em}
+.print{background:#dde5e3;transform:rotate(1.1deg);overflow:hidden}
+.print::after{content:"";position:absolute;inset:auto 0 0 0;height:38%;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(21,32,27,.17) 0 2px,transparent 2px 9px);-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
+.grow{background:#ead9b0;transform:rotate(-.7deg);overflow:hidden}
+.grow::after{content:"";position:absolute;inset:auto 0 0 0;height:38%;pointer-events:none;background:radial-gradient(circle,rgba(58,42,18,.3) 2.5px,transparent 3px) 0 0/22px 22px;-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
+.print,.grow{overflow:visible}
+.print>*,.grow>*{position:relative;z-index:1}
+.piece .draw{width:64px;height:64px;color:#15201b}
+@media(max-width:940px){.bench{grid-template-columns:1fr 1fr}.digital{grid-column:1/-1}}
+@media(max-width:600px){.bench{grid-template-columns:1fr;gap:34px}.piece{transform:none}}
+@media (prefers-reduced-motion:no-preference){
+  .piece{animation:lay .7s cubic-bezier(.2,.8,.2,1) both}
+  .print{animation-delay:.12s}.grow{animation-delay:.22s}
+  @keyframes lay{from{opacity:0;translate:0 -34px;rotate:-3deg}to{opacity:1;translate:0 0;rotate:0deg}}
+}
+.ruler{display:flex;height:34px;overflow:hidden;background:var(--tape) repeating-linear-gradient(90deg,rgba(59,48,6,.6) 0 1px,transparent 1px 12px) 0 0/auto 8px repeat-x;color:var(--tape-ink);counter-reset:r -1}
+.ruler i{flex:0 0 120px;height:17px;border-left:1.5px solid rgba(59,48,6,.85);position:relative;counter-increment:r;font-style:normal}
+.ruler i::after{content:counter(r);position:absolute;left:5px;top:13px;font-size:12px;font-weight:700;line-height:1}
+
+/* sections on paper */
+.sec{padding:clamp(60px,8vw,104px) 0}
+.sec h3{font-size:clamp(34px,5vw,60px);line-height:.95}
+.lead{color:var(--muted);max-width:56ch;margin:14px 0 0;font-size:19px}
+.mat .lead{color:#d6e6dc}
+.note{font-size:15px;color:var(--muted)}
+
+.how{list-style:none;margin:clamp(30px,4vw,48px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px clamp(24px,4vw,56px);counter-reset:s}
+.how li{counter-increment:s;border-top:2px solid var(--ink);padding-top:14px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:start}
+.how li::before{content:counter(s);grid-row:1/4;font-stretch:75%;font-weight:800;font-size:76px;line-height:.82;color:var(--brand);min-width:44px}
+.how .who{justify-self:start;font-size:13px;padding:4px 11px;margin-bottom:4px}
+.how .who.us{background:var(--brand);color:#fff}
+.how b{font-size:20px;line-height:1.2}
+.how p{color:var(--muted);font-size:16px}
+@media(max-width:900px){.how{grid-template-columns:1fr 1fr}}@media(max-width:600px){.how{grid-template-columns:1fr;gap:26px}}
+
+/* template samples pinned to the mat */
+.levels{display:inline-flex;gap:4px;padding:4px;border-radius:10px;background:rgba(0,0,0,.25);margin-top:28px}
+.levels button{font:inherit;font-weight:700;font-size:16px;border:0;background:none;color:#d6e6dc;padding:9px 20px;border-radius:7px;cursor:pointer}
+.levels button[aria-pressed="true"]{background:#fff;color:var(--mat)}
+#level-note{margin:14px 0 26px;font-size:17px;color:#fff;min-height:1.6em}
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px 26px}
+@media(max-width:1180px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.gallery{grid-template-columns:1fr}}
+.tpl.later{background:var(--tape);color:var(--tape-ink);padding:26px 24px;justify-content:center;gap:14px;transform:rotate(1deg)}
+.tpl.later::before{background:#fff}
+.tpl.later b{font-stretch:75%;font-weight:800;font-size:30px;line-height:1}
+.tpl.later .btn{align-self:flex-start;background:var(--tape-ink);border-color:var(--tape-ink)}
+.tpl{position:relative;background:#fff;color:#15201b;border-radius:3px;padding:10px 10px 0;display:flex;flex-direction:column;box-shadow:0 1px 0 rgba(0,0,0,.25),0 24px 30px -22px rgba(0,0,0,.7)}
+.tpl::before{content:"";position:absolute;top:-11px;left:50%;width:92px;height:24px;margin-left:-46px;background:var(--tape);opacity:.92;transform:rotate(-2deg);z-index:2}
+.tpl:nth-child(even)::before{transform:rotate(2.5deg);margin-left:-30px}
+.tpl.chosen{outline:4px solid var(--hot);outline-offset:3px}
+.tpl .shot{display:block;position:relative;aspect-ratio:16/11;overflow:hidden;background:#eef1ec;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}
 .tpl .shot iframe{position:absolute;left:0;top:0;width:1280px;height:880px;border:0;transform-origin:0 0;pointer-events:none}
-.tpl .t{padding:14px 16px 16px}
-.tpl .t small{color:var(--muted)}
-.levels{display:inline-flex;gap:4px;padding:4px;border:1px solid var(--line);border-radius:999px;margin:0 0 22px;background:var(--card)}
-.levels button{font:inherit;font-weight:600;font-size:15px;border:0;background:none;color:var(--muted);padding:8px 18px;border-radius:999px;cursor:pointer}
-.levels button[aria-pressed="true"]{background:var(--blue);color:#fff}
-.tpl div.t{padding:14px 18px}.tpl small{color:var(--muted)}
-form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;max-width:560px;display:grid;gap:14px}
-label{display:grid;gap:5px;font-weight:600;font-size:15px}
-input[type=text],input[type=email],textarea{font:inherit;padding:11px 12px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
-.checks{display:flex;gap:18px;flex-wrap:wrap;font-weight:400}
-.checks label{display:flex;gap:8px;align-items:center;font-weight:400}
-button{font:inherit;font-weight:600;padding:13px 22px;border-radius:999px;border:0;background:var(--blue);color:#fff;cursor:pointer;justify-self:start}
-#msg{margin:0;color:var(--muted);font-size:15px}
-footer{border-top:1px solid var(--line);padding:28px 0;color:var(--muted);font-size:15px}
-.note{font-size:14px;color:var(--muted)}
-
-.brand{font-weight:800;font-size:20px;letter-spacing:-.02em;color:var(--ink)!important}
-nav div{align-items:center}
-nav a.cta{background:var(--blue);color:#fff;padding:9px 18px;border-radius:999px;font-weight:600}
-nav a.cta:hover{color:#fff;filter:brightness(1.1)}
-@media(max-width:640px){nav div a:not(.login):not(.cta){display:none}nav div{gap:14px}}
-.hero-actions{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
-.textlink{color:#fff;font-weight:600;text-underline-offset:4px}
-.paynow{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;margin:0 0 22px}
-.paynow div{display:grid;gap:2px;padding:14px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line)}
-.paynow b{font-size:18px}.paynow span{color:var(--muted);font-size:15px}.paynow span span{font-size:inherit}
-.plan{display:flex;flex-direction:column;position:relative}
-.plan.pop{border:2px solid var(--blue)}
-.plan .badge{position:absolute;top:-12px;left:20px;background:var(--blue);color:#fff;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;border-radius:999px;padding:3px 10px}
-.plan ul{list-style:none;margin:10px 0 20px;padding:0;display:grid;gap:7px;font-size:15px}
-.plan li{padding-left:24px;position:relative}
-.plan li::before{content:"";position:absolute;left:2px;top:.45em;width:11px;height:6px;border-left:2.5px solid var(--blue);border-bottom:2.5px solid var(--blue);transform:rotate(-45deg)}
-.choose{margin-top:auto;display:block;text-align:center;padding:12px 18px;border-radius:999px;font-weight:600;text-decoration:none;border:2px solid var(--blue);color:var(--blue)}
-.plan.pop .choose,.choose:hover{background:var(--blue);color:#fff}
-.tpl{transition:transform .2s,box-shadow .2s}
-.tpl.chosen{border:2px solid var(--blue)}
-.tpl .shot{display:block}
-.tpl .t{display:grid;gap:12px}
+.tpl .t{display:grid;gap:12px;padding:14px 8px 16px}
+.tpl .t b{display:block;font-stretch:75%;font-weight:800;font-size:26px;line-height:1}
+.tpl .t small{display:block;margin-top:6px;color:#55605a;font-size:15px;line-height:1.4}
 .tpl-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:15px}
-.tpl-actions a{color:var(--muted);font-weight:600;text-underline-offset:3px}
-.tpl-actions .pick{padding:8px 14px;font-size:14px;background:none;color:var(--blue);border:2px solid var(--blue);justify-self:auto}
-.tpl-actions .pick[aria-pressed="true"]{background:var(--blue);color:#fff}
-.faq{display:grid;gap:10px;max-width:760px}
-.faq details{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:0 18px}
-.faq summary{cursor:pointer;font-weight:600;padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.tpl-actions a{font-weight:700}
+.tpl-actions .pick{font:inherit;font-size:15px;font-weight:700;padding:8px 14px;border-radius:8px;background:none;color:#14503c;border:2px solid #14503c;cursor:pointer}
+.tpl-actions .pick[aria-pressed="true"]{background:#14503c;color:#fff}
+
+/* pricing */
+.paynow{display:flex;flex-wrap:wrap;gap:14px 28px;margin:30px 0 34px}
+.paynow div{display:grid;gap:6px;justify-items:start;max-width:38ch}
+.paynow span{color:var(--muted);font-size:16px}.paynow span span{font-size:inherit}
+.plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch}
+.plan{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:0 24px 24px}
+.plan-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 -24px;padding:16px 24px;border-bottom:1px solid var(--line)}
+.plan h4{margin:0;font-stretch:75%;font-weight:800;font-size:30px;line-height:1}
+.plan-head span{font-weight:700;font-size:15px;color:var(--muted)}
+.price{font-stretch:75%;font-weight:800;font-size:clamp(44px,12vw,60px);line-height:1;margin:22px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.price span{font-stretch:100%;font-size:16px;font-weight:400;color:var(--muted);white-space:nowrap}
+.plan ul{list-style:none;margin:18px 0 24px;padding:0;display:grid;gap:9px;font-size:16px}
+.plan li{padding-left:26px;position:relative}
+.plan li::before{content:"";position:absolute;left:2px;top:.45em;width:12px;height:6px;border-left:2.5px solid var(--hot);border-bottom:2.5px solid var(--hot);transform:rotate(-45deg)}
+.choose{margin-top:auto}
+.plan.pop{border:2px solid var(--ink);box-shadow:8px 8px 0 var(--tape)}
+.plan.pop .plan-head{background:var(--mat);color:#fff;border-color:var(--mat);margin:0 -24px;border-radius:3px 3px 0 0}
+.plan.pop .plan-head span{color:#d6e6dc}
+.plan .tape{position:absolute;top:-15px;right:18px;transform:rotate(3deg)}
+.plan:not(.pop) .choose{background:none;color:var(--brand)}
+.plan:not(.pop) .choose:hover{background:var(--brand);color:#fff;filter:none}
+@media(max-width:860px){.plans{grid-template-columns:1fr;gap:30px}}
+
+/* questions */
+.faq-in{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(28px,5vw,72px);align-items:start}
+.faq-in .lead a{font-weight:700;color:var(--ink)}
+.faq{border-top:2px solid var(--ink)}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{cursor:pointer;font-weight:700;font-size:19px;padding:18px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";font-size:22px;line-height:1;color:var(--blue)}
+.faq summary::after{content:"+";flex:none;font-size:26px;line-height:.9;font-weight:400;color:var(--hot)}
 .faq details[open] summary::after{content:"\2212"}
-.faq details p{margin:0 0 16px;color:var(--muted)}
-.foot{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:center}
-.foot a{margin-right:16px;color:var(--muted)}
-.foot .note{flex-basis:100%}
+.faq details p{margin:0 0 20px;color:var(--muted);max-width:62ch}
+@media(max-width:820px){.faq-in{grid-template-columns:1fr}}
+
+/* waiting list, back on the mat */
+.wait-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.wait-in h3{color:#fff}
+#f{background:#fff;color:#15201b;border-radius:3px;padding:28px;display:grid;gap:16px;box-shadow:0 1px 0 rgba(0,0,0,.25),0 28px 34px -24px rgba(0,0,0,.7);transform:rotate(.6deg)}
+#f label{display:grid;gap:6px;font-weight:700;font-size:15px}
+#f input[type=text],#f input[type=email]{font:inherit;font-size:16px;padding:12px;border-radius:6px;border:1px solid #b9c2b8;background:#f6f8f4;color:#15201b}
+.checks{display:flex;gap:10px 22px;flex-wrap:wrap}
+#f .checks label{display:flex;gap:8px;align-items:center;font-weight:400;font-size:16px}
+.checks input{width:18px;height:18px;accent-color:#14503c}
+#f .btn{justify-self:start;background:#14503c;border-color:#14503c}
+#msg{margin:0;color:#55605a;font-size:15px;min-height:1.4em}
+@media(max-width:820px){.wait-in{grid-template-columns:1fr}#f{transform:none}}
+
+footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34px}
+.foot{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
+.foot nav{display:flex;flex-wrap:wrap;gap:6px 20px}
+.foot a{color:#fff}
+.foot p{flex-basis:100%;max-width:70ch}
 </style>
 </head>
 <body>
-<nav aria-label="Main">
-  <a href="index.html" class="brand">Axencraft</a>
-  <div><a href="#how">How it works</a><a href="#templates">Templates</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="account.html" class="login">Log in</a><a href="#pricing" class="cta">Get started</a></div>
-</nav>
-
-<header class="split">
-  <div class="digital half">
-    <div>
-      <span class="tag open">Open now</span>
-      <h2>Digital Studio</h2>
-      <p>A website built around your business. Pick a template, answer a few questions, and we build and host it for you.</p>
+<header class="mat">
+  <div class="wrap">
+    <div class="top">
+      <a href="index.html" class="brand"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M3 27 15 3l12 24z" fill="none" stroke="#ff5a2b" stroke-width="3.2" stroke-linejoin="round"/><path d="M10.5 20h9" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>Axencraft</a>
+      <nav aria-label="Main"><a href="#how">How it works</a><a href="#templates">Templates</a><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="account.html" class="login">Log in</a><a href="#pricing" class="go">Get started</a></nav>
     </div>
-    <div class="mock" aria-hidden="true"><i></i><i></i><i></i></div>
-    <div class="hero-actions"><a class="btn" href="#pricing">Get started</a><a class="textlink" href="#templates">See the templates →</a></div>
-  </div>
-  <div class="print half">
-    <div>
-      <span class="tag">Coming soon</span>
-      <h2>Print Studio</h2>
-      <p>3D prints made to order, in the materials and colours you ask for.</p>
+    <div class="intro">
+      <h1>Made to order in Devon</h1>
+      <p>Three small studios under one roof. Digital Studio builds and hosts websites today. Print Studio and Grow Studio open soon.</p>
     </div>
-    <div><a class="btn" href="#contact" data-interest="print">Get notified</a></div>
-  </div>
-  <div class="grow half">
-    <div>
-      <span class="tag">Coming soon</span>
-      <h2>Grow Studio</h2>
-      <p>Grow-your-own kits for plants and vegetables, with everything you need to get started.</p>
+    <div class="bench">
+      <article class="piece digital">
+        <span class="tape hot">Open now</span>
+        <h2>Digital Studio</h2>
+        <p>A website built around your business. Pick a style, answer a few questions, and we build it and host it for you.</p>
+        <a class="swatches" href="#templates" aria-label="See the 7 website styles">
+          <i style="--a:#1d2b4f;--b:#b08a3e"></i><i style="--a:#d7261e;--b:#ffcd1f"></i><i style="--a:#22262b;--b:#4f7f72"></i><i style="--a:#4b3bd6;--b:#ffb72b"></i><i style="--a:#2f54ff;--b:#12c99b"></i><i style="--a:#7d2a20;--b:#d79a2b"></i><i style="--a:#8f1d3f;--b:#e9b8a8"></i><span>7 styles</span>
+        </a>
+        <div class="acts"><a class="btn" href="#pricing">Get started</a><a class="more" href="#templates">See the templates</a></div>
+      </article>
+      <article class="piece print">
+        <span class="tape">Coming soon</span>
+        <svg class="draw" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M32 8 54 20 32 32 10 20z"/><path d="M10 28 32 40 54 28M10 36 32 48 54 36M10 44 32 56 54 44"/></svg>
+        <h2>Print Studio</h2>
+        <p>3D prints made to order, in the materials and colours you ask for.</p>
+        <div class="acts"><a class="btn line" href="#contact" data-interest="print">Get notified</a></div>
+      </article>
+      <article class="piece grow">
+        <span class="tape">Coming soon</span>
+        <svg class="draw" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 58V30"/><path d="M32 38C32 26 22 20 10 20c0 12 8 18 22 18z"/><path d="M32 30c0-12 9-20 22-20 0 13-8 20-22 20z"/></svg>
+        <h2>Grow Studio</h2>
+        <p>Grow-your-own kits for plants and vegetables, with everything you need to get started.</p>
+        <div class="acts"><a class="btn line" href="#contact" data-interest="grow">Get notified</a></div>
+      </article>
     </div>
-    <div><a class="btn" href="#contact" data-interest="grow">Get notified</a></div>
   </div>
+  <div class="ruler" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
 </header>
 
-<section id="how"><div class="wrap">
+<main>
+<section class="sec" id="how"><div class="wrap">
   <h3>How Digital Studio works</h3>
   <p class="lead">You choose and answer. We build, check and host.</p>
-  <ol class="steps">
-    <li><b>Pick a plan and style</b>Choose your plan and pay the one-off £50 setup fee. Then pick from 7 styles.</li>
-    <li><b>Answer the questionnaire</b>Tell us about your business, style, pages and content.</li>
-    <li><b>We build your draft</b>Your answers and template become a custom website.</li>
-    <li><b>We review it</b>Every draft is checked and edited by hand before you see it.</li>
-    <li><b>Preview and request changes</b>View a private preview and ask for what you'd like changed.</li>
-    <li><b>Go live</b>Once you approve, we host your site as your own website.</li>
+  <ol class="how">
+    <li><span class="tape who">You</span><b>Pick a plan and style</b><p>Choose your plan and pay the one-off £50 setup fee. Then pick from 7 styles.</p></li>
+    <li><span class="tape who">You</span><b>Answer the questionnaire</b><p>Tell us about your business in your own words, choose your colours and add your logo and photos.</p></li>
+    <li><span class="tape who us">Axencraft</span><b>We build your draft</b><p>Your answers and your chosen style become your website.</p></li>
+    <li><span class="tape who us">Axencraft</span><b>We check it by hand</b><p>Every draft is checked and edited before you see it.</p></li>
+    <li><span class="tape who">You</span><b>Preview and ask for changes</b><p>View a private preview and tell us what you'd like changed.</p></li>
+    <li><span class="tape who us">Axencraft</span><b>We put it live</b><p>Once you approve, we host it at your own web address.</p></li>
   </ol>
 </div></section>
 
-<section id="templates" style="background:var(--card)"><div class="wrap">
-  <h3>Template gallery</h3>
-  <p class="lead">7 styles, each in a Starter, Standard and Pro version. These previews use a sample business. Yours will have your own words, colours and photos. Tap a style to see it full size, or choose one now and we'll remember it.</p>
+<section class="sec mat" id="templates"><div class="wrap">
+  <h3>Seven styles, three levels</h3>
+  <p class="lead">These previews use sample businesses. Yours will have your own words, colours and photos. Open one to see it full size, or choose one now and we'll remember it.</p>
   <div class="levels" role="group" aria-label="Show plan level">
     <button type="button" data-level="starter" aria-pressed="false">Starter</button>
     <button type="button" data-level="standard" aria-pressed="true">Standard</button>
     <button type="button" data-level="pro" aria-pressed="false">Pro</button>
   </div>
+  <p id="level-note" aria-live="polite"></p>
+</div><div class="wrap wide">
   <div class="gallery" id="gallery"></div>
 </div></section>
 
-<section id="pricing"><div class="wrap">
+<section class="sec" id="pricing"><div class="wrap">
   <h3>Pricing</h3>
-  <p class="lead">One simple setup fee, then a monthly plan for hosting and care.</p>
+  <p class="lead">One setup fee, then a monthly plan that covers hosting and care.</p>
   <div class="paynow" role="note">
-    <div><b>£50 today</b><span>One-off setup fee to design and build your website.</span></div>
-    <div><b>£0 a month until you're live</b><span>Monthly payments only start once your website is live<span class="trial-txt"></span>.</span></div>
+    <div><b class="tape">£50 today</b><span>One-off setup fee to design and build your website.</span></div>
+    <div><b class="tape">£0 a month until you're live</b><span>Monthly payments only start once your website is live<span class="trial-txt"></span>.</span></div>
   </div>
   <div class="plans">
     <div class="plan">
-      <h4>Starter</h4><div class="price">£19.99 <span>a month</span></div>
-      <ul><li>A one-page website</li><li>All 7 styles</li><li>Hosting and care included</li><li>1 change request a month</li></ul>
-      <a class="choose" href="account.html?plan=starter">Choose Starter</a>
+      <div class="plan-head"><h4>Starter</h4><span>1 page</span></div>
+      <div class="price">£19.99 <span>a month</span></div>
+      <ul><li>One tidy page with services, about and contact</li><li>Any of the 7 styles in your colours</li><li>Working contact form</li><li>1 change request a month</li></ul>
+      <a class="btn choose" href="account.html?plan=starter">Choose Starter</a>
     </div>
     <div class="plan pop">
-      <span class="badge">Most popular</span>
-      <h4>Standard</h4><div class="price">£39.99 <span>a month</span></div>
-      <ul><li>A 5-page website</li><li>Photo gallery and reviews</li><li>Custom fonts</li><li>3 change requests a month</li></ul>
-      <a class="choose" href="account.html?plan=standard">Choose Standard</a>
+      <span class="tape hot">Most popular</span>
+      <div class="plan-head"><h4>Standard</h4><span>5 pages</span></div>
+      <div class="price">£39.99 <span>a month</span></div>
+      <ul><li>Home, About, Services, Gallery and Contact</li><li>Photo gallery and customer reviews</li><li>Designer fonts and key numbers</li><li>3 change requests a month</li></ul>
+      <a class="btn choose" href="account.html?plan=standard">Choose Standard</a>
     </div>
     <div class="plan">
-      <h4>Pro</h4><div class="price">£59.99 <span>a month</span></div>
-      <ul><li>An 8-page premium website</li><li>Portfolio, FAQ and booking form</li><li>Animations and dark mode</li><li>6 change requests a month</li></ul>
-      <a class="choose" href="account.html?plan=pro">Choose Pro</a>
+      <div class="plan-head"><h4>Pro</h4><span>8 pages</span></div>
+      <div class="price">£59.99 <span>a month</span></div>
+      <ul><li>Everything in Standard, plus Portfolio, Reviews and FAQ pages</li><li>Before-and-after photos and a booking form</li><li>Dark mode and animation</li><li>6 change requests a month</li></ul>
+      <a class="btn choose" href="account.html?plan=pro">Choose Pro</a>
     </div>
   </div>
-  <p class="note" style="margin-top:18px" id="style-picked" hidden></p>
-  <p class="note" style="margin-top:18px">Extra change requests are £10 each. Switch plan or cancel any time from your account.</p>
+  <p class="note" style="margin-top:26px" id="style-picked" hidden></p>
+  <p class="note" style="margin-top:14px">Every plan includes hosting and your own web address. Extra change requests are £10 each. Switch plan or cancel any time from your account.</p>
 </div></section>
 
-
-
-<section id="faq" style="background:var(--card)"><div class="wrap">
-  <h3>Questions</h3>
+<section class="sec" id="faq" style="padding-top:0"><div class="wrap faq-in">
+  <div>
+    <h3>Questions</h3>
+    <p class="lead">Can't see yours? Email <a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a>.</p>
+  </div>
   <div class="faq">
     <details><summary>What do I pay today?</summary><p>Just the one-off £50 setup fee. Your monthly plan doesn't start until your website is live<span class="trial-txt"></span>.</p></details>
     <details><summary>What do I need to get started?</summary><p>An email address and a few details about your business. After payment, a short questionnaire asks about your business, your style and your words. You can add your logo and photos, and your answers save as you go so you can finish later.</p></details>
     <details><summary>Can I see my website before it goes live?</summary><p>Yes. You'll get a private preview link in your account. Ask for as many changes as you like while you're reviewing it. Nothing goes live until you're happy.</p></details>
     <details><summary>How do changes work after my site is live?</summary><p>Request a change from your account. Each plan includes some changes every month (1, 3 or 6), and extra ones are £10 each. We'll always ask before charging for an extra change.</p></details>
-    <details><summary>Where will my website live?</summary><p>We host it for you at your own address, like <b>yourbusiness.axencraft.co.uk</b>.</p></details>
+    <details><summary>Where will my website live?</summary><p>We host it for you at an address like <b>yourbusiness.axencraft.co.uk</b>. If you have your own domain name, you can connect it from your account.</p></details>
     <details><summary>Can I change plan or cancel?</summary><p>Yes. Use "Manage billing" in your account to switch plan, update your card, see invoices or cancel.</p></details>
   </div>
 </div></section>
 
-<section id="contact"><div class="wrap">
-  <h3>Get notified about Print and Grow</h3>
-  <p class="lead">Print Studio and Grow Studio are coming soon. Leave your email and we'll let you know when they open.</p>
+<section class="sec mat" id="contact"><div class="wrap wait-in">
+  <div>
+    <h3>Hear when Print and Grow open</h3>
+    <p class="lead">Print Studio and Grow Studio are still on the bench. Leave your email and we'll tell you when they open. That's the only thing we'll use it for.</p>
+  </div>
   <form id="f">
     <label>Name<input type="text" id="wl-name" autocomplete="name" required></label>
     <label>Email<input type="email" id="wl-email" autocomplete="email" required></label>
@@ -243,12 +301,17 @@ nav a.cta:hover{color:#fff;filter:brightness(1.1)}
       <label><input type="checkbox" id="wl-print" checked> Print Studio</label>
       <label><input type="checkbox" id="wl-grow" checked> Grow Studio</label>
     </div>
-    <button type="submit" id="wl-btn">Notify me</button>
+    <button type="submit" id="wl-btn" class="btn">Notify me</button>
     <p id="msg" role="status"></p>
   </form>
 </div></section>
+</main>
 
-<footer><div class="wrap foot"><span>© Axencraft is a trading name of Freddie Joseph Green, sole trader. Upover, Stockleigh English, Crediton, EX17 4DD.</span><span><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="account.html">Log in</a></span><span><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a><a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></span></div></footer>
+<footer><div class="wrap foot">
+  <nav aria-label="Footer"><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="account.html">Log in</a><a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></nav>
+  <nav aria-label="Legal"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></nav>
+  <p>© Axencraft is a trading name of Freddie Joseph Green, sole trader. Upover, Stockleigh English, Crediton, EX17 4DD.</p>
+</div></footer>
 
 <script>
 var SB_URL="https://cvkgnrrskoptdtojcwvz.supabase.co";
@@ -287,8 +350,13 @@ document.getElementById('f').addEventListener('submit',function(e){
 
 /* Template gallery: live previews of each style at the chosen plan level */
 (function(){
-  var STYLES=[['classic','Classic','Warm and trustworthy'],['bold','Bold','Big type, strong colour'],['minimal','Minimal','Clean, calm and spacious'],
-    ['playful','Playful','Rounded, bright and friendly'],['modern','Modern','Sleek gradients and glass'],['rustic','Rustic','Earthy and hand-made'],['editorial','Editorial','Like a magazine']];
+  var STYLES=[['classic','Classic','Serif type and fine rules, like good stationery.','an accountancy practice'],['bold','Bold','Huge capitals and flat colour, like a workshop poster.','a garage'],
+    ['minimal','Minimal','Thin lines and plenty of space, like a quiet catalogue.','a ceramics studio'],['playful','Playful','Chunky outlines and bright stickers.','a dog groomer'],
+    ['modern','Modern','Soft light, rounded panels and a wash of colour.','a phone repair shop'],['rustic','Rustic','Brown paper, taped snapshots and an ink stamp.','a farm shop'],
+    ['editorial','Editorial','Giant headlines and pull quotes, like a magazine.','a wedding florist']];
+  var LEVEL_NOTES={starter:'Starter is one tidy page: what you do, who you are and how to get in touch.',
+    standard:'Standard is five pages with photos, reviews, key numbers and your own fonts.',
+    pro:'Pro is eight pages with a portfolio, before-and-after photos, a booking form, FAQ, dark mode and animation.'};
   var box=document.getElementById('gallery'),level='standard';
   function fit(sh){var w=sh.clientWidth;if(w)sh.firstChild.style.transform='scale('+(w/1280)+')'}
   var ro='ResizeObserver' in window?new ResizeObserver(function(es){es.forEach(function(e){fit(e.target)})}):null;
@@ -306,10 +374,13 @@ document.getElementById('f').addEventListener('submit',function(e){
       var url='templates/'+level+'-'+x[0]+'/';
       var card=document.createElement('div');card.className='tpl'+(st===x[0]?' chosen':'');
       card.innerHTML='<a class="shot" href="'+url+'" target="_blank" rel="noopener" aria-label="Preview the '+x[1]+' style, '+level+' version (opens in a new tab)"><iframe loading="lazy" tabindex="-1" aria-hidden="true" title="" src="'+url+'"></iframe></a>'+
-        '<div class="t"><div><b>'+x[1]+'</b><br><small>'+x[2]+'</small></div>'+
-        '<div class="tpl-actions"><a href="'+url+'" target="_blank" rel="noopener">Preview \u2197</a><button type="button" class="pick" data-style="'+x[0]+'" aria-pressed="'+(st===x[0])+'">'+(st===x[0]?'\u2713 Chosen':'Choose this style')+'</button></div></div>';
+        '<div class="t"><div><b>'+x[1]+'</b><small>'+x[2]+' Shown as '+x[3]+'.</small></div>'+
+        '<div class="tpl-actions"><a href="'+url+'" target="_blank" rel="noopener">Preview<span class="sr"> the '+x[1]+' style (opens in a new tab)</span></a><button type="button" class="pick" data-style="'+x[0]+'" aria-pressed="'+(st===x[0])+'">'+(st===x[0]?'\u2713 Chosen':'Choose this style')+'</button></div></div>';
       box.appendChild(card);
     });
+    var later=document.createElement('div');later.className='tpl later';
+    later.innerHTML='<b>Not sure yet?</b><span>You don\u2019t have to choose today. Pick your style after you sign up, and change your mind any time before we build.</span><a class="btn" href="#pricing">See pricing</a>';
+    box.appendChild(later);
     box.querySelectorAll('.pick').forEach(function(b){
       b.onclick=function(){
         try{localStorage.setItem('axc-style',b.dataset.style)}catch(_){}
@@ -321,8 +392,9 @@ document.getElementById('f').addEventListener('submit',function(e){
   }
   showPicked();
   document.querySelectorAll('.levels button').forEach(function(b){
-    b.onclick=function(){level=b.dataset.level;document.querySelectorAll('.levels button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});draw()};
+    b.onclick=function(){level=b.dataset.level;document.querySelectorAll('.levels button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});document.getElementById('level-note').textContent=LEVEL_NOTES[level];draw()};
   });
+  document.getElementById('level-note').textContent=LEVEL_NOTES[level];
   window.addEventListener('resize',scale);draw();
 })();
 </script>

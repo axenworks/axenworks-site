@@ -7,7 +7,7 @@
 <title>Admin | Axencraft</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
 <style>
 :root{--blue:#2430d6;--bg:#f7f8f6;--ink:#16181d;--muted:#585e69;--line:#d9dcd6;--card:#ffffff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#101216;--ink:#eef0ee;--muted:#a3a9b2;--line:#2a2e36;--card:#171a20;--blue:#3a46f0}}
@@ -89,8 +89,9 @@ a{color:var(--blue)}
 :focus-visible{outline:3px solid #ffb703;outline-offset:3px}
 [hidden]{display:none!important}
 </style>
+<link rel="stylesheet" href="site.css">
 </head>
-<body>
+<body class="app">
 <nav aria-label="Main">
   <a class="logo" href="index.html">Axencraft<small>Admin</small></a>
   <span class="me"><span id="who"></span><button type="button" class="link" id="out" hidden>Log out</button></span>
