@@ -80,6 +80,9 @@ button:disabled{opacity:.6;cursor:wait}
 .print,.grow{overflow:visible}
 .print>*,.grow>*{position:relative;z-index:1}
 .piece .draw{width:64px;height:64px;color:#15201b}
+.piece .peek{display:block;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(21,32,27,.18)}
+.piece .peek img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
+.piece .more{font-weight:700}
 @media(max-width:940px){.bench{grid-template-columns:1fr 1fr}.digital{grid-column:1/-1}}
 @media(max-width:600px){.bench{grid-template-columns:1fr;gap:34px}.piece{transform:none}}
 @media (prefers-reduced-motion:no-preference){
@@ -193,7 +196,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
   <div class="wrap">
     <div class="top">
       <a href="index.html" class="brand"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M3 27 15 3l12 24z" fill="none" stroke="#ff5a2b" stroke-width="3.2" stroke-linejoin="round"/><path d="M10.5 20h9" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>Axencraft</a>
-      <nav aria-label="Main"><a href="#how">How it works</a><a href="#templates">Templates</a><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="account.html" class="login">Log in</a><a href="#pricing" class="go">Get started</a></nav>
+      <nav aria-label="Main"><a href="#how">How it works</a><a href="#templates">Templates</a><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="print.html">Print Studio</a><a href="account.html" class="login">Log in</a><a href="#pricing" class="go">Get started</a></nav>
     </div>
     <div class="intro">
       <div>
@@ -217,10 +220,10 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
       </article>
       <article class="piece print">
         <span class="tape">Coming soon</span>
-        <svg class="draw" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"><path d="M32 8 54 20 32 32 10 20z"/><path d="M10 28 32 40 54 28M10 36 32 48 54 36M10 44 32 56 54 44"/></svg>
+        <a class="peek" href="print.html" tabindex="-1" aria-hidden="true"><img src="print/cable_bar_5_slot-use-orange.webp" width="720" height="540" alt="" loading="lazy"></a>
         <h2>Print Studio</h2>
-        <p>3D prints made to order, in the materials and colours you ask for.</p>
-        <div class="acts"><a class="btn line" href="#contact" data-interest="print">Get notified</a></div>
+        <p>Organisers for tools, cables and desks, 3D printed to order in eight colours.</p>
+        <div class="acts"><a class="btn line" href="#contact" data-interest="print">Get notified</a><a class="more" href="print.html">See the preview</a></div>
       </article>
       <article class="piece grow">
         <span class="tape">Coming soon</span>
@@ -327,7 +330,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
 </main>
 
 <footer><div class="wrap foot">
-  <nav aria-label="Footer"><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="account.html">Log in</a><a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></nav>
+  <nav aria-label="Footer"><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="print.html">Print Studio</a><a href="account.html">Log in</a><a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></nav>
   <nav aria-label="Legal"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></nav>
   <p>© Axencraft is a trading name of Freddie Joseph Green, sole trader. Upover, Stockleigh English, Crediton, EX17 4DD.</p>
 </div></footer>

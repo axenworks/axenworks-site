@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Print Studio preview | Axencraft</title>
+<meta name="description" content="A preview of Axencraft Print Studio: workshop and desk organisers, 3D printed to order in Devon in eight colours. Opening soon.">
+<meta name="theme-color" content="#14503c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2710%27 fill=%27%2314503c%27/%3E%3Cpath d=%27M20 46 32 16l12 30M24.5 36h15%27 stroke=%27white%27 stroke-width=%276%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{scroll-padding-top:150px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--display);overflow-x:clip;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:.2em}
+h1,h2,h3,h4{font-stretch:75%;font-weight:800;letter-spacing:-.005em;margin:0;text-wrap:balance}
+p{margin:0}
+.wrap{width:min(1120px,100% - 48px);margin-inline:auto}
+.wrap.wide{width:min(1400px,100% - 48px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+:focus-visible{outline:3px solid var(--hot);outline-offset:3px;border-radius:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:8px;border:2px solid var(--brand);background:var(--brand);color:#fff;font:inherit;font-weight:700;line-height:1.2;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.12)}
+button:disabled{opacity:.6;cursor:wait}
+
+/* top bar, as on the home page */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0}
+.brand{display:inline-flex;align-items:center;gap:10px;font-stretch:75%;font-weight:800;font-size:28px;line-height:1;text-decoration:none;color:#fff}
+.brand svg{flex:none}
+.top nav{display:flex;align-items:center;gap:6px 22px;font-size:16px}
+.top nav a{text-decoration:none;color:#d6e6dc;white-space:nowrap;padding:10px 0}
+.top nav a:hover{color:#fff;text-decoration:underline}
+.top nav a[aria-current]{color:#fff;font-weight:700}
+.top nav .go{background:#fff;color:var(--mat);padding:9px 16px;border-radius:8px;font-weight:700}
+.top nav .go:hover{color:var(--mat);text-decoration:none;background:var(--tape)}
+@media(max-width:720px){.top nav a:not(.go){display:none}.brand{font-size:24px}}
+
+.intro{padding:clamp(22px,4vw,44px) 0 clamp(40px,6vw,72px);display:grid;gap:18px;justify-items:start}
+.intro h1{font-size:clamp(46px,6.6vw,92px);line-height:.88;color:#fff;max-width:9em}
+.intro p{font-size:clamp(18px,1.7vw,20px);max-width:52ch;color:#d6e6dc}
+.ruler{display:flex;height:34px;overflow:hidden;background:var(--tape) repeating-linear-gradient(90deg,rgba(59,48,6,.6) 0 1px,transparent 1px 12px) 0 0/auto 8px repeat-x}
+
+/* colour and view controls, pinned while you scroll */
+.controls{position:sticky;top:0;z-index:5;background:var(--bg);border-bottom:1px solid var(--line);padding:12px 0}
+.controls .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 28px}
+.pick{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
+.pick>b{font-size:15px}
+.pick>b span{font-weight:400;color:var(--muted)}
+.swatches{display:flex;gap:8px}
+.swatches button{width:36px;height:36px;padding:0;border-radius:50%;border:0;cursor:pointer;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.28),inset 0 6px 8px -3px rgba(255,255,255,.55);transition:transform .15s}
+.swatches button.matte{box-shadow:inset 0 0 0 1px rgba(0,0,0,.28);background:#1b1b1c}
+.swatches button:hover{transform:translateY(-2px)}
+.swatches button[aria-pressed="true"]{outline:3px solid var(--hot);outline-offset:3px}
+.seg{display:inline-flex;gap:4px;padding:4px;border-radius:10px;background:var(--line)}
+.seg button{font:inherit;font-weight:700;font-size:15px;border:0;background:none;color:var(--ink);padding:8px 16px;border-radius:7px;cursor:pointer;min-height:40px}
+.seg button[aria-pressed="true"]{background:var(--brand);color:#fff}
+@media(max-width:520px){.swatches{gap:6px}.swatches button{width:32px;height:32px}}
+
+.sec{padding:clamp(44px,6vw,72px) 0 0}
+.sec:last-of-type{padding-bottom:clamp(60px,8vw,104px)}
+.sec h2{font-size:clamp(32px,4.4vw,52px);line-height:.95}
+.lead{color:var(--muted);max-width:58ch;margin:12px 0 0;font-size:18px}
+.note{font-size:15px;color:var(--muted);max-width:74ch}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:26px 22px;margin-top:28px}
+.item{background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px 10px 16px;display:flex;flex-direction:column}
+.item .pic{display:block;aspect-ratio:4/3;border-radius:3px;overflow:hidden;background:#e9e6df}
+.item .pic img{display:block;width:100%;height:100%;object-fit:cover}
+.thumbs{display:flex;gap:8px;margin-top:8px}
+.thumbs button{flex:1;display:flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;min-height:44px;font:inherit;font-size:14px;font-weight:700;color:var(--ink);background:none;border:2px solid var(--line);border-radius:6px;cursor:pointer;text-align:left}
+.thumbs img{width:48px;height:36px;object-fit:cover;border-radius:3px;background:#e9e6df;flex:none}
+.thumbs button[aria-pressed="true"]{border-color:var(--brand)}
+.item h3{font-size:25px;line-height:1;margin:14px 6px 0}
+.item p{margin:6px 6px 0;font-size:16px;color:var(--muted)}
+.item .size{font-size:14px;margin-top:auto;padding-top:10px}
+
+/* waiting list, back on the mat */
+.wait{padding:clamp(60px,8vw,104px) 0;margin-top:clamp(60px,8vw,104px)}
+.wait-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
+.wait-in h2{color:#fff;font-size:clamp(34px,5vw,60px);line-height:.95}
+.wait .lead{color:#d6e6dc}
+#f{background:#fff;color:#15201b;border-radius:3px;padding:28px;display:grid;gap:16px;box-shadow:0 1px 0 rgba(0,0,0,.25),0 28px 34px -24px rgba(0,0,0,.7);transform:rotate(.6deg)}
+#f label{display:grid;gap:6px;font-weight:700;font-size:15px}
+#f input{font:inherit;font-size:16px;padding:12px;border-radius:6px;border:1px solid #b9c2b8;background:#f6f8f4;color:#15201b}
+#f .btn{justify-self:start;background:#14503c;border-color:#14503c}
+#msg{margin:0;color:#55605a;font-size:15px;min-height:1.4em}
+@media(max-width:820px){.wait-in{grid-template-columns:1fr}#f{transform:none}}
+
+footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34px}
+.foot{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
+.foot nav{display:flex;flex-wrap:wrap;gap:6px 20px}
+.foot a{color:#fff;display:inline-block;padding:10px 0}
+.foot p{flex-basis:100%;max-width:70ch}
+</style>
+</head>
+<body>
+<header class="mat">
+  <div class="wrap">
+    <div class="top">
+      <a href="index.html" class="brand"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M3 27 15 3l12 24z" fill="none" stroke="#ff5a2b" stroke-width="3.2" stroke-linejoin="round"/><path d="M10.5 20h9" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>Axencraft</a>
+      <nav aria-label="Main"><a href="index.html">Digital Studio</a><a href="print.html" aria-current="page">Print Studio</a><a href="account.html">Log in</a><a href="#notify" class="go">Get notified</a></nav>
+    </div>
+    <div class="intro">
+      <span class="tape">Coming soon</span>
+      <h1>Print Studio preview</h1>
+      <p>Organisers for the workshop, the desk and the hallway, 3D printed to order in Devon. This is a first look at the range. Nothing is on sale yet, and details may change before we open.</p>
+    </div>
+  </div>
+  <div class="ruler" aria-hidden="true"></div>
+</header>
+
+<div class="controls">
+  <div class="wrap wide">
+    <div class="pick">
+      <b>Colour: <span id="colour-name"></span></b>
+      <div class="swatches" id="swatches" role="group" aria-label="Choose a colour for the pictures"></div>
+    </div>
+    <div class="seg" role="group" aria-label="Choose which pictures to show">
+      <button type="button" data-view="solo" aria-pressed="false">On its own</button>
+      <button type="button" data-view="use" aria-pressed="true">In use</button>
+    </div>
+  </div>
+</div>
+
+<main id="range"></main>
+
+<div class="wrap wide" style="margin-top:34px">
+  <p class="note">These pictures are computer drawings made from the real designs, so you can see every colour before anything is printed. Printed parts have fine layer lines and colours can look a little different on your screen. Sizes are length by width by height. Tools, cables and batteries are not included.</p>
+</div>
+
+<section class="wait mat" id="notify"><div class="wrap wait-in">
+  <div>
+    <h2>Hear when Print Studio opens</h2>
+    <p class="lead">Leave your email and we'll tell you when you can order. That's the only thing we'll use it for.</p>
+  </div>
+  <form id="f">
+    <label>Name<input type="text" id="wl-name" autocomplete="name" required></label>
+    <label>Email<input type="email" id="wl-email" autocomplete="email" required></label>
+    <button type="submit" id="wl-btn" class="btn">Notify me</button>
+    <p id="msg" role="status"></p>
+  </form>
+</div></section>
+
+<footer><div class="wrap foot">
+  <nav aria-label="Footer"><a href="index.html">Digital Studio</a><a href="print.html">Print Studio</a><a href="account.html">Log in</a><a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></nav>
+  <nav aria-label="Legal"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></nav>
+  <p>© Axencraft is a trading name of Freddie Joseph Green, sole trader. Upover, Stockleigh English, Crediton, EX17 4DD.</p>
+</div></footer>
+
+<script>
+var SB_URL="https://cvkgnrrskoptdtojcwvz.supabase.co";
+var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2a2ducnJza29wdGR0b2pjd3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTE2OTksImV4cCI6MjEwNzM4NzY5OX0.WsI6YpOpyd6q4wTV0q5FJzbjs0K3qnDTL4FNhfcbwNg";
+
+/* The eight filament colours. Each picture exists once per colour in print/ */
+var COLOURS=[['black','Black','#111112'],['orange','Orange','#FF671F'],['red','Red','#D6001C'],['yellow','Yellow','#FCE300'],
+  ['green','Green','#009639'],['white','White','#FFFFFF'],['blue','Blue','#001489'],['matte','Matte black','#1b1b1c']];
+/* The range: [picture name, name, description, size] grouped by where it is used */
+var RANGE=[
+ ['Cables','Keep leads where you left them.',[
+  ['cable_clip_5mm','Cable clip, 5 mm','Stick-on clip for phone and USB leads.','19 × 10 × 9 mm'],
+  ['cable_clip_7mm','Cable clip, 7 mm','Stick-on clip for power and monitor leads.','21 × 10 × 11 mm'],
+  ['cable_clip_10mm','Cable clip, 10 mm','Stick-on clip for thick leads and hoses.','25 × 12 × 14 mm'],
+  ['cable_bar_3_slot','Cable bar, 3 slots','Sits on the desk and stops chargers sliding off the back.','66 × 24 × 18 mm'],
+  ['cable_bar_5_slot','Cable bar, 5 slots','The longer bar, for a desk full of chargers.','106 × 24 × 18 mm'],
+  ['zip_tie_mount','Cable tie mount','Screws down so a cable tie can hold a bundle in place.','22 × 22 × 7 mm'],
+  ['cord_winder','Cord winder','Wrap earphones or a charging lead so it travels tidy.','80 × 45 × 3 mm']]],
+ ['Sockets and bits','A place for every size, and a gap when one is missing.',[
+  ['socket_rail_quarter_inch_x10','Socket rail, 1/4 inch','Holds 10 sockets with a 1/4 inch drive.','194 × 24 × 13 mm'],
+  ['socket_rail_three_eighth_inch_x8','Socket rail, 3/8 inch','Holds 8 sockets with a 3/8 inch drive.','212 × 30 × 15 mm'],
+  ['socket_rail_half_inch_x6','Socket rail, 1/2 inch','Holds 6 sockets with a 1/2 inch drive.','202 × 38 × 18 mm'],
+  ['bit_block_12','Bit block, 12','Desk block for 12 screwdriver bits.','82 × 30 × 14 mm'],
+  ['bit_block_24','Bit block, 24','Desk block for 24 screwdriver bits.','108 × 43 × 14 mm'],
+  ['bit_rail_10_wall_mount','Bit rail, 10','A row of 10 screwdriver bits that screws to the wall.','152 × 16 × 14 mm']]],
+ ['Hand tools','Stands and racks for the tools you reach for most.',[
+  ['drill_bit_stand_1_to_10mm','Drill bit stand','Ten drill bits from 1 to 10 mm, stepped by size.','103 × 22 × 38 mm'],
+  ['hex_key_stand_1p5_to_10mm','Hex key stand','Nine hex keys from 1.5 to 10 mm.','93 × 22 × 34 mm'],
+  ['spanner_rack_8','Spanner rack','Stands 8 spanners on edge, small to large.','134 × 35 × 28 mm'],
+  ['screwdriver_rack_6','Screwdriver rack','Wall rack with open slots for 6 screwdrivers.','180 × 45 × 44 mm'],
+  ['tool_clip_25mm_screw_mount','Tool clip, 25 mm','Springy wall clip for a broom, mop or garden tool.','44 × 20 × 30 mm']]],
+ ['Home and desk','Small things that make a room easier to live in.',[
+  ['battery_tray_aa_x10','Battery tray, AA','Keeps 10 AA batteries upright in a drawer.','87 × 37 × 24 mm'],
+  ['battery_tray_aaa_x10','Battery tray, AAA','Keeps 10 AAA batteries upright in a drawer.','67 × 29 × 20 mm'],
+  ['sd_card_holder_8','Memory card holder','Slots for 8 SD cards and 8 microSD cards.','50 × 46 × 20 mm'],
+  ['phone_stand','Phone stand','Holds a phone at a comfortable angle, with a gap for the charger.','70 × 90 × 87 mm'],
+  ['headphone_hook_under_desk','Headphone hook','Screws under the desk to hang headphones out of the way.','98 × 25 × 47 mm'],
+  ['wall_hook','Wall hook','A strong hook for coats, bags and coiled leads.','20 × 30 × 70 mm'],
+  ['key_rail_5_peg','Key rail','Five pegs by the door for keys.','160 × 32 × 24 mm']]]
+];
+var VIEW_NAMES={solo:'On its own',use:'In use'};
+
+(function(){
+  function get(k,d){try{return localStorage.getItem(k)||d}catch(_){return d}}
+  function set(k,v){try{localStorage.setItem(k,v)}catch(_){}}
+  var colour=get('axc-print-colour','orange'),names={};
+  COLOURS.forEach(function(c){names[c[0]]=c[1]});
+  if(!names[colour])colour='orange';
+  function src(slug,view){return 'print/'+slug+'-'+view+'-'+colour+'.webp'}
+  var cards=[];
+
+  /* the range */
+  var main=document.getElementById('range');
+  RANGE.forEach(function(g){
+    var sec=document.createElement('section');sec.className='sec';
+    sec.innerHTML='<div class="wrap wide"><h2>'+g[0]+'</h2><p class="lead">'+g[1]+'</p><div class="grid"></div></div>';
+    var grid=sec.querySelector('.grid');
+    g[2].forEach(function(it){
+      var el=document.createElement('article');el.className='item';
+      el.innerHTML='<span class="pic"><img width="720" height="540" loading="lazy" decoding="async" alt=""></span>'+
+        '<div class="thumbs" role="group" aria-label="Pictures of the '+it[1]+'">'+
+        ['solo','use'].map(function(v){return '<button type="button" data-view="'+v+'"><img width="96" height="72" loading="lazy" decoding="async" alt="">'+VIEW_NAMES[v]+'</button>'}).join('')+'</div>'+
+        '<h3>'+it[1]+'</h3><p>'+it[2]+'</p><p class="size">'+it[3]+'</p>';
+      var card={slug:it[0],name:it[1],view:'use',el:el,img:el.querySelector('.pic img'),btns:el.querySelectorAll('.thumbs button')};
+      card.btns.forEach(function(b){b.onclick=function(){card.view=b.dataset.view;paint(card)}});
+      cards.push(card);grid.appendChild(el);
+    });
+    main.appendChild(sec);
+  });
+  function paint(card){
+    card.img.src=src(card.slug,card.view);
+    card.img.alt=card.name+' in '+names[colour].toLowerCase()+(card.view==='use'?', shown in use':', shown on its own');
+    card.btns.forEach(function(b){
+      b.setAttribute('aria-pressed',String(b.dataset.view===card.view));
+      b.firstChild.src=src(card.slug,b.dataset.view);
+    });
+  }
+
+  /* colour */
+  var sw=document.getElementById('swatches');
+  COLOURS.forEach(function(c){
+    var b=document.createElement('button');b.type='button';b.dataset.c=c[0];b.setAttribute('aria-label',c[1]);b.title=c[1];
+    b.style.setProperty('--c',c[2]);if(c[0]==='matte')b.className='matte';
+    b.onclick=function(){colour=c[0];set('axc-print-colour',colour);paintAll()};
+    sw.appendChild(b);
+  });
+  function paintAll(){
+    document.getElementById('colour-name').textContent=names[colour];
+    sw.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.c===colour))});
+    cards.forEach(paint);
+  }
+
+  /* on its own / in use, for every picture at once */
+  var seg=document.querySelectorAll('.seg button');
+  seg.forEach(function(b){b.onclick=function(){
+    seg.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
+    cards.forEach(function(c){c.view=b.dataset.view});paintAll();
+  }});
+  paintAll();
+})();
+
+/* waiting list */
+document.getElementById('f').addEventListener('submit',function(e){
+  e.preventDefault();
+  var msg=document.getElementById('msg'),btn=document.getElementById('wl-btn');
+  var email=document.getElementById('wl-email').value.trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){msg.textContent="Please check your email address.";return;}
+  btn.disabled=true;msg.textContent="Saving...";
+  fetch(SB_URL+"/rest/v1/waitlist",{
+    method:"POST",
+    headers:{"Content-Type":"application/json","apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Prefer":"return=minimal"},
+    body:JSON.stringify({name:document.getElementById('wl-name').value.trim(),email:email,interest:'print'})
+  }).then(function(r){
+    if(!r.ok)throw new Error(r.status);
+    document.getElementById('f').reset();
+    msg.textContent="Thanks! We'll email you when it opens.";
+  }).catch(function(){
+    msg.textContent="Something went wrong. Please try again in a moment.";
+  }).finally(function(){btn.disabled=false;});
+});
+</script>
+</body>
+</html>
