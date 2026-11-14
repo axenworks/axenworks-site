@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Print Studio preview | Axencraft</title>
-<meta name="description" content="A preview of Axencraft Print Studio: workshop and desk organisers, 3D printed to order in Devon in eight colours. Opening soon.">
+<meta name="description" content="A preview of Axencraft Print Studio: organisers for the workshop, kitchen, home and desk, 3D printed to order in Devon in eight colours. Opening soon.">
 <meta name="theme-color" content="#14503c">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2710%27 fill=%27%2314503c%27/%3E%3Cpath d=%27M20 46 32 16l12 30M24.5 36h15%27 stroke=%27white%27 stroke-width=%276%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="site.css">
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-html{scroll-padding-top:150px}
+html{scroll-padding-top:190px}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--display);overflow-x:clip;-webkit-font-smoothing:antialiased}
@@ -59,10 +59,16 @@ button:disabled{opacity:.6;cursor:wait}
 .seg{display:inline-flex;gap:4px;padding:4px;border-radius:10px;background:var(--line)}
 .seg button{font:inherit;font-weight:700;font-size:15px;border:0;background:none;color:var(--ink);padding:8px 16px;border-radius:7px;cursor:pointer;min-height:40px}
 .seg button[aria-pressed="true"]{background:var(--brand);color:#fff}
+.cats{flex-basis:100%;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;margin:2px -4px -4px;padding:4px}
+.cats::-webkit-scrollbar{display:none}
+.cats button{flex:none;font:inherit;font-weight:700;font-size:16px;min-height:44px;padding:8px 16px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer;white-space:nowrap}
+.cats button span{font-weight:400;color:var(--muted);margin-left:2px}
+.cats button:hover{border-color:var(--brand)}
+.cats button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.cats button[aria-pressed="true"] span{color:#d6e6dc}
 @media(max-width:520px){.swatches{gap:6px}.swatches button{width:32px;height:32px}}
 
-.sec{padding:clamp(44px,6vw,72px) 0 0}
-.sec:last-of-type{padding-bottom:clamp(60px,8vw,104px)}
+.sec{padding:clamp(32px,4vw,52px) 0 clamp(24px,3vw,40px)}
 .sec h2{font-size:clamp(32px,4.4vw,52px);line-height:.95}
 .lead{color:var(--muted);max-width:58ch;margin:12px 0 0;font-size:18px}
 .note{font-size:15px;color:var(--muted);max-width:74ch}
@@ -107,7 +113,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
     <div class="intro">
       <span class="tape">Coming soon</span>
       <h1>Print Studio preview</h1>
-      <p>Organisers for the workshop, the desk and the hallway, 3D printed to order in Devon. This is a first look at the range. Nothing is on sale yet, and details may change before we open.</p>
+      <p>Organisers for the workshop, the kitchen, the home and the desk, 3D printed to order in Devon. This is a first look at the range. Nothing is on sale yet, and details may change before we open.</p>
     </div>
   </div>
   <div class="ruler" aria-hidden="true"></div>
@@ -123,13 +129,14 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
       <button type="button" data-view="solo" aria-pressed="false">On its own</button>
       <button type="button" data-view="use" aria-pressed="true">In use</button>
     </div>
+    <div class="cats" id="cats" role="group" aria-label="Choose a category"></div>
   </div>
 </div>
 
 <main id="range"></main>
 
 <div class="wrap wide" style="margin-top:34px">
-  <p class="note">These pictures are computer drawings made from the real designs, so you can see every colour before anything is printed. Printed parts have fine layer lines and colours can look a little different on your screen. Sizes are length by width by height. Tools, cables and batteries are not included.</p>
+  <p class="note">These pictures are computer drawings made from the real designs, so you can see every colour before anything is printed. Printed parts have fine layer lines and colours can look a little different on your screen. Sizes are length by width by height. The tools, jars, pens and other things shown with them are not included. Kitchen pieces are for holding and storing, not for direct contact with food.</p>
 </div>
 
 <section class="wait mat" id="notify"><div class="wrap wait-in">
@@ -158,9 +165,21 @@ var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI
 /* The eight filament colours. Each picture exists once per colour in print/ */
 var COLOURS=[['black','Black','#111112'],['orange','Orange','#FF671F'],['red','Red','#D6001C'],['yellow','Yellow','#FCE300'],
   ['green','Green','#009639'],['white','White','#FFFFFF'],['blue','Blue','#001489'],['matte','Matte black','#1b1b1c']];
-/* The range: [picture name, name, description, size] grouped by where it is used */
+/* The range, grouped by where it is used: [id, title, intro, [[picture name, name, description, size], ...]] */
 var RANGE=[
- ['Cables','Keep leads where you left them.',[
+ ['workshop','Workshop','A place for every size, and a gap when one is missing.',[
+  ['socket_rail_quarter_inch_x10','Socket rail, 1/4 inch','Holds 10 sockets with a 1/4 inch drive.','194 × 24 × 13 mm'],
+  ['socket_rail_three_eighth_inch_x8','Socket rail, 3/8 inch','Holds 8 sockets with a 3/8 inch drive.','212 × 30 × 15 mm'],
+  ['socket_rail_half_inch_x6','Socket rail, 1/2 inch','Holds 6 sockets with a 1/2 inch drive.','202 × 38 × 18 mm'],
+  ['bit_block_12','Bit block, 12','Desk block for 12 screwdriver bits.','82 × 30 × 14 mm'],
+  ['bit_block_24','Bit block, 24','Desk block for 24 screwdriver bits.','108 × 43 × 14 mm'],
+  ['bit_rail_10_wall_mount','Bit rail, 10','A row of 10 screwdriver bits that screws to the wall.','152 × 16 × 14 mm'],
+  ['drill_bit_stand_1_to_10mm','Drill bit stand','Ten drill bits from 1 to 10 mm, stepped by size.','103 × 22 × 38 mm'],
+  ['hex_key_stand_1p5_to_10mm','Hex key stand','Nine hex keys from 1.5 to 10 mm.','93 × 22 × 34 mm'],
+  ['spanner_rack_8','Spanner rack','Stands 8 spanners on edge, small to large.','134 × 35 × 28 mm'],
+  ['screwdriver_rack_6','Screwdriver rack','Wall rack with open slots for 6 screwdrivers.','180 × 45 × 44 mm'],
+  ['tool_clip_25mm_screw_mount','Tool clip, 25 mm','Springy wall clip for a broom, mop or garden tool.','44 × 20 × 30 mm']]],
+ ['cables','Cables','Keep leads where you left them.',[
   ['cable_clip_5mm','Cable clip, 5 mm','Stick-on clip for phone and USB leads.','19 × 10 × 9 mm'],
   ['cable_clip_7mm','Cable clip, 7 mm','Stick-on clip for power and monitor leads.','21 × 10 × 11 mm'],
   ['cable_clip_10mm','Cable clip, 10 mm','Stick-on clip for thick leads and hoses.','25 × 12 × 14 mm'],
@@ -168,27 +187,38 @@ var RANGE=[
   ['cable_bar_5_slot','Cable bar, 5 slots','The longer bar, for a desk full of chargers.','106 × 24 × 18 mm'],
   ['zip_tie_mount','Cable tie mount','Screws down so a cable tie can hold a bundle in place.','22 × 22 × 7 mm'],
   ['cord_winder','Cord winder','Wrap earphones or a charging lead so it travels tidy.','80 × 45 × 3 mm']]],
- ['Sockets and bits','A place for every size, and a gap when one is missing.',[
-  ['socket_rail_quarter_inch_x10','Socket rail, 1/4 inch','Holds 10 sockets with a 1/4 inch drive.','194 × 24 × 13 mm'],
-  ['socket_rail_three_eighth_inch_x8','Socket rail, 3/8 inch','Holds 8 sockets with a 3/8 inch drive.','212 × 30 × 15 mm'],
-  ['socket_rail_half_inch_x6','Socket rail, 1/2 inch','Holds 6 sockets with a 1/2 inch drive.','202 × 38 × 18 mm'],
-  ['bit_block_12','Bit block, 12','Desk block for 12 screwdriver bits.','82 × 30 × 14 mm'],
-  ['bit_block_24','Bit block, 24','Desk block for 24 screwdriver bits.','108 × 43 × 14 mm'],
-  ['bit_rail_10_wall_mount','Bit rail, 10','A row of 10 screwdriver bits that screws to the wall.','152 × 16 × 14 mm']]],
- ['Hand tools','Stands and racks for the tools you reach for most.',[
-  ['drill_bit_stand_1_to_10mm','Drill bit stand','Ten drill bits from 1 to 10 mm, stepped by size.','103 × 22 × 38 mm'],
-  ['hex_key_stand_1p5_to_10mm','Hex key stand','Nine hex keys from 1.5 to 10 mm.','93 × 22 × 34 mm'],
-  ['spanner_rack_8','Spanner rack','Stands 8 spanners on edge, small to large.','134 × 35 × 28 mm'],
-  ['screwdriver_rack_6','Screwdriver rack','Wall rack with open slots for 6 screwdrivers.','180 × 45 × 44 mm'],
-  ['tool_clip_25mm_screw_mount','Tool clip, 25 mm','Springy wall clip for a broom, mop or garden tool.','44 × 20 × 30 mm']]],
- ['Home and desk','Small things that make a room easier to live in.',[
+ ['kitchen','Kitchen','Clear the worktop and find things in the cupboard.',[
+  ['spice_rack_3_tier','Spice rack, 3 tiers','Steps the back rows up so you can read every jar. Holds 12.','180 × 150 × 68 mm'],
+  ['pan_lid_rack_4_slot','Pan lid rack','Stands lids, boards and baking trays on edge in a cupboard.','125 × 130 × 75 mm'],
+  ['sponge_holder','Sponge holder','Sits by the sink with a drained floor so the sponge dries.','125 × 75 × 48 mm'],
+  ['egg_tray_6','Egg tray, 6','Keeps six eggs from rolling about in the fridge door.','156 × 106 × 24 mm'],
+  ['napkin_holder','Napkin holder','Stands napkins upright on the table.','150 × 44 × 105 mm'],
+  ['spoon_rest','Spoon rest','Keeps a messy spoon off the worktop, with a notch for the handle.','120 × 90 × 13 mm'],
+  ['tablet_recipe_stand','Recipe stand','Props up a tablet or cookbook while you cook.','120 × 135 × 141 mm']]],
+ ['home','Home','Small things that make a room easier to live in.',[
+  ['wall_hook','Wall hook','A strong hook for coats, bags and coiled leads.','20 × 30 × 70 mm'],
+  ['key_rail_5_peg','Key rail','Five pegs by the door for keys.','160 × 32 × 24 mm'],
+  ['shelf_bracket_150mm','Shelf bracket','Braced bracket for a shelf up to 170 mm deep. Use two or more.','150 × 28 × 130 mm'],
+  ['door_stop','Door stop','A wedge that holds a door open, with a hole to hang it up.','120 × 45 × 26 mm'],
+  ['remote_caddy_3_slot','Remote caddy','Stands three remote controls upright, shortest at the front.','64 × 84 × 95 mm'],
+  ['coaster_round','Coaster','Round coaster with a rim to catch drips.','100 × 100 × 6 mm'],
+  ['soap_dish','Soap dish','Raised ribs and a drain gap so the bar dries out.','120 × 85 × 16 mm'],
+  ['toothbrush_holder_4','Toothbrush holder','Four brushes, each with its own drain hole.','112 × 38 × 60 mm'],
   ['battery_tray_aa_x10','Battery tray, AA','Keeps 10 AA batteries upright in a drawer.','87 × 37 × 24 mm'],
-  ['battery_tray_aaa_x10','Battery tray, AAA','Keeps 10 AAA batteries upright in a drawer.','67 × 29 × 20 mm'],
-  ['sd_card_holder_8','Memory card holder','Slots for 8 SD cards and 8 microSD cards.','50 × 46 × 20 mm'],
+  ['battery_tray_aaa_x10','Battery tray, AAA','Keeps 10 AAA batteries upright in a drawer.','67 × 29 × 20 mm']]],
+ ['desk','Desk','Everything in reach and nothing in the way.',[
+  ['desk_tidy_3_section','Desk tidy','Three stepped sections for pens, notes and small bits.','180 × 90 × 95 mm'],
+  ['pen_pot','Pen pot','Six-sided pot for pens and pencils.','88 × 78 × 100 mm'],
+  ['letter_sorter_3_slot','Letter sorter','Three stepped slots for post and notebooks.','160 × 90 × 121 mm'],
+  ['laptop_dock_vertical','Laptop dock','Stands a closed laptop on edge to free up desk space.','170 × 100 × 48 mm'],
   ['phone_stand','Phone stand','Holds a phone at a comfortable angle, with a gap for the charger.','70 × 90 × 87 mm'],
   ['headphone_hook_under_desk','Headphone hook','Screws under the desk to hang headphones out of the way.','98 × 25 × 47 mm'],
-  ['wall_hook','Wall hook','A strong hook for coats, bags and coiled leads.','20 × 30 × 70 mm'],
-  ['key_rail_5_peg','Key rail','Five pegs by the door for keys.','160 × 32 × 24 mm']]]
+  ['sticky_note_tray','Sticky note tray','Holds a pad of sticky notes with a groove for a pen.','83 × 100 × 14 mm'],
+  ['business_card_holder','Business card holder','Shows a stack of cards at an angle.','96 × 52 × 44 mm'],
+  ['usb_stick_holder_6','USB stick holder','Six USB sticks, plug end down.','72 × 24 × 18 mm'],
+  ['sd_card_holder_8','Memory card holder','Slots for 8 SD cards and 8 microSD cards.','50 × 46 × 20 mm'],
+  ['drawer_bin_50mm','Drawer bin, small','Open bin for coins, clips and other loose bits.','50 × 50 × 35 mm'],
+  ['drawer_bin_100mm','Drawer bin, long','Twice the length, and sits flush beside the small one.','100 × 50 × 35 mm']]]
 ];
 var VIEW_NAMES={solo:'On its own',use:'In use'};
 
@@ -203,11 +233,16 @@ var VIEW_NAMES={solo:'On its own',use:'In use'};
 
   /* the range */
   var main=document.getElementById('range');
+  var tabs=document.getElementById('cats'),secs={},cat;
   RANGE.forEach(function(g){
-    var sec=document.createElement('section');sec.className='sec';
-    sec.innerHTML='<div class="wrap wide"><h2>'+g[0]+'</h2><p class="lead">'+g[1]+'</p><div class="grid"></div></div>';
+    var sec=document.createElement('section');sec.className='sec';sec.id='range-'+g[0];sec.hidden=true;
+    sec.innerHTML='<div class="wrap wide"><h2>'+g[1]+'</h2><p class="lead">'+g[2]+'</p><div class="grid"></div></div>';
+    secs[g[0]]=sec;
+    var t=document.createElement('button');t.type='button';t.dataset.cat=g[0];
+    t.innerHTML=g[1]+' <span>'+g[3].length+'</span>';
+    t.onclick=function(){show(g[0],true)};tabs.appendChild(t);
     var grid=sec.querySelector('.grid');
-    g[2].forEach(function(it){
+    g[3].forEach(function(it){
       var el=document.createElement('article');el.className='item';
       el.innerHTML='<span class="pic"><img width="720" height="540" loading="lazy" decoding="async" alt=""></span>'+
         '<div class="thumbs" role="group" aria-label="Pictures of the '+it[1]+'">'+
@@ -219,6 +254,24 @@ var VIEW_NAMES={solo:'On its own',use:'In use'};
     });
     main.appendChild(sec);
   });
+  /* one category at a time; the address keeps your place, e.g. print.html#kitchen */
+  function show(id,jump){
+    if(!secs[id])id=RANGE[0][0];
+    cat=id;set('axc-print-cat',id);
+    RANGE.forEach(function(g){secs[g[0]].hidden=g[0]!==id});
+    tabs.querySelectorAll('button').forEach(function(b){
+      var on=b.dataset.cat===id;b.setAttribute('aria-pressed',String(on));
+      if(on&&b.scrollIntoView)b.scrollIntoView({block:'nearest',inline:'center'});
+    });
+    if(jump){
+      try{history.replaceState(null,'','#'+id)}catch(_){}
+      var top=main.getBoundingClientRect().top+window.scrollY-document.querySelector('.controls').offsetHeight;
+      if(window.scrollY>top)window.scrollTo(0,top);
+    }
+  }
+  var hash=location.hash.slice(1);
+  show(secs[hash]?hash:get('axc-print-cat',RANGE[0][0]));
+  window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(secs[h])show(h,true)});
   function paint(card){
     card.img.src=src(card.slug,card.view);
     card.img.alt=card.name+' in '+names[colour].toLowerCase()+(card.view==='use'?', shown in use':', shown on its own');
