@@ -32,6 +32,7 @@
     return (it.options||[]).map(function(k){return line.opts&&line.opts[k]?optName(k,line.opts[k]):''}).filter(Boolean)
       .concat(it.pack?[it.pack]:[]).join(' · ');
   }
+  function colourHex(id){var c=(catalog.colours||[]).filter(function(x){return x.id===id})[0];return c?c.hex:null}
   function sameLine(a,b){return a.id===b.id&&JSON.stringify(a.opts||{})===JSON.stringify(b.opts||{})}
 
   var basket={
@@ -39,11 +40,18 @@
     item:function(id){return byId[id]},
     lines:function(){return read().filter(function(l){return !catalog||byId[l.id]})},
     count:function(){return read().reduce(function(n,l){return n+l.qty},0)},
-    add:function(id,opts,qty){
+    /* fx: {from: element tapped, quiet: true to skip the message} */
+    add:function(id,opts,qty,fx){
       var v=read(),line={id:id,opts:opts||{},qty:qty||1},hit=null;
       v.forEach(function(l){if(sameLine(l,line))hit=l});
       if(hit)hit.qty=Math.min(20,hit.qty+line.qty);else v.push(line);
       write(v);
+      fx=fx||{};
+      var FX=window.AXC_FX,it=byId[id];
+      if(FX&&it){
+        FX.fly(fx.from,line.opts.colour&&catalog?colourHex(line.opts.colour):null);
+        if(!fx.quiet)FX.toast('Added to your basket',it.name+(describe(line)?', '+describe(line):''),{label:'View basket',run:openDrawer});
+      }
     },
     setQty:function(i,q){var v=read();if(!v[i])return;if(q<1)v.splice(i,1);else v[i].qty=Math.min(20,q);write(v)},
     clear:function(){write([])},
@@ -85,7 +93,7 @@
       '<div class="bk-head"><h2 id="bk-title">Your basket</h2><button type="button" class="bk-x" data-close aria-label="Close basket">×</button></div>'+
       '<div class="bk-body"><ul class="bk-list" id="bk-list"></ul><div class="bk-sug" id="bk-sug"></div></div>'+
       '<div class="bk-foot"><div id="bk-tot"></div>'+
-      '<button type="button" class="bk-go" id="bk-go">Go to checkout</button>'+
+      '<button type="button" class="bk-go" id="bk-go">Go to secure checkout</button>'+
       '<p class="bk-small" id="bk-msg" role="status"></p></div></aside>';
     document.body.appendChild(dr);
     listEl=dr.querySelector('#bk-list');sugEl=dr.querySelector('#bk-sug');totEl=dr.querySelector('#bk-tot');
@@ -106,11 +114,13 @@
     if(!dr||!catalog)return;
     var lines=read(),sub=0;
     if(!lines.length){
-      listEl.innerHTML='<li class="bk-empty">Your basket is empty.</li>';
+      listEl.innerHTML='<li class="bk-empty"><b>Your basket is empty</b><span>Pick something from one of the studios and it will appear here.</span>'+
+        '<a href="print.html">Shop Print Studio</a><a href="grow.html">Build a grow kit</a></li>';
     }else listEl.innerHTML=lines.map(function(l,i){
       var it=byId[l.id];if(!it)return '';
       sub+=it.price*l.qty;
-      return '<li class="bk-line"><div><b>'+esc(it.name)+'</b><span>'+esc(describe(l))+'</span></div>'+
+      var hx=l.opts&&l.opts.colour?colourHex(l.opts.colour):null;
+      return '<li class="bk-line">'+(hx?'<i class="bk-dot" style="--c:'+hx+'" aria-hidden="true"></i>':'<i class="bk-dot none" aria-hidden="true"></i>')+'<div><b>'+esc(it.name)+'</b><span>'+esc(describe(l))+'</span></div>'+
         '<div class="bk-qty"><button type="button" data-q="'+i+'" data-d="-1" aria-label="One fewer '+esc(it.name)+'">−</button>'+
         '<output aria-label="Quantity">'+l.qty+'</output>'+
         '<button type="button" data-q="'+i+'" data-d="1" aria-label="One more '+esc(it.name)+'">+</button></div>'+
@@ -129,10 +139,27 @@
     var post=lines.length?catalog.postage.pence:0;
     totEl.innerHTML=lines.length?'<dl class="bk-sum"><dt>Items</dt><dd>'+money(sub)+'</dd><dt>Postage ('+esc(catalog.postage.name)+')</dt><dd>'+money(post)+'</dd>'+
       '<dt class="bk-total">Total</dt><dd class="bk-total">'+money(sub+post)+'</dd></dl>'+
-      '<p class="bk-small">Made to order in Devon. Dispatched within '+catalog.dispatchDays+' days, then 2 to 3 working days to arrive. UK only.</p>':'';
+      '<p class="bk-small">Made to order in Devon. Dispatched within '+catalog.dispatchDays+' days, then 2 to 3 working days to arrive. UK only. You\u2019ll add your delivery address and pay on the next page.</p>':'';
     goBtn.hidden=!lines.length;
   }
+  var bar;
+  function shopbar(){
+    if(!document.body.hasAttribute('data-shopbar'))return;
+    if(!bar){
+      bar=document.createElement('div');bar.className='shopbar';
+      bar.innerHTML='<div class="sb-t"><b></b><span></span></div><button type="button">View basket</button>';
+      bar.querySelector('button').onclick=openDrawer;document.body.appendChild(bar);
+    }
+    var n=basket.count(),on=n>0&&catalog;
+    bar.classList.toggle('on',!!on);document.body.classList.toggle('has-shopbar',!!on);
+    bar.setAttribute('aria-hidden',on?'false':'true');bar.querySelector('button').tabIndex=on?0:-1;
+    if(!on)return;
+    var sub=read().reduce(function(t,l){var it=byId[l.id];return t+(it?it.price*l.qty:0)},0);
+    bar.querySelector('b').textContent=n+(n===1?' item':' items')+' \u00b7 '+money(sub);
+    bar.querySelector('span').textContent='Plus '+money(catalog.postage.pence)+' postage';
+  }
   function badge(){
+    shopbar();
     var n=basket.count();
     document.querySelectorAll('[data-basket]').forEach(function(b){
       var c=b.querySelector('.bk-count');if(c)c.textContent=n;
@@ -161,6 +188,6 @@
   basket.onChange(function(){badge();render()});
   window.addEventListener('storage',function(e){if(e.key===KEY){badge();render()}});
   document.addEventListener('click',function(e){var b=e.target.closest('[data-basket]');if(b){e.preventDefault();openDrawer()}});
-  function ready(){badge();load().catch(function(){})}
+  function ready(){badge();load().then(badge).catch(function(){})}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',ready);else ready();
 })();

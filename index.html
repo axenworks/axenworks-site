@@ -3,16 +3,17 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Axencraft | Websites built and hosted for you</title>
-<meta name="description" content="Axencraft Digital Studio builds and hosts a website for your business. Choose a plan and style, answer a short questionnaire, and we do the rest.">
+<title>Axencraft | Websites, 3D prints and grow kits, made to order in Devon</title>
+<meta name="description" content="Axencraft is three small studios in Devon. Digital Studio builds and hosts websites. Print Studio 3D prints organisers to order. Grow Studio sends grow-your-own kits with a printed pot.">
 <meta name="theme-color" content="#14503c">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2710%27 fill=%27%2314503c%27/%3E%3Cpath d=%27M20 46 32 16l12 30M24.5 36h15%27 stroke=%27white%27 stroke-width=%276%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="shop/basket.css">
 <style>
-:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px)}
 html{scroll-padding-top:16px}
 @media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
 *,*::before,*::after{box-sizing:border-box}
@@ -20,108 +21,199 @@ body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--display
 a{color:inherit;text-underline-offset:.2em}
 h1,h2,h3{font-stretch:75%;font-weight:800;letter-spacing:-.005em;margin:0;text-wrap:balance}
 p{margin:0}
-.wrap{width:min(1120px,100% - 48px);margin-inline:auto}
+.wrap{width:min(1180px,100% - 48px);margin-inline:auto}
 .wrap.wide{width:min(1400px,100% - 48px)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:3px solid var(--hot);outline-offset:3px;border-radius:3px}
 
-.btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:8px;border:2px solid var(--brand);background:var(--brand);color:#fff;font:inherit;font-weight:700;line-height:1.2;text-decoration:none;cursor:pointer}
-.btn:hover{filter:brightness(1.12)}
-.btn.line{background:none;color:inherit;border-color:currentColor}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 22px;border-radius:10px;border:2px solid var(--brand);background:var(--brand);color:#fff;font:inherit;font-weight:700;line-height:1.2;text-decoration:none;cursor:pointer}
+.btn:hover{filter:brightness(1.14)}
+.btn.hot{background:var(--hot);border-color:var(--hot);color:#1d0d05}
+.btn.line{background:none;color:inherit;border-color:currentColor;box-shadow:none}
 .btn.line:hover{filter:none;background:rgba(0,0,0,.06)}
+.mat .btn.line:hover{background:rgba(255,255,255,.1)}
+.more{font-weight:700;display:inline-flex;align-items:center;min-height:44px}
 button:disabled{opacity:.6;cursor:wait}
 
-/* top bar */
-.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0}
+/* ---------- top bar ---------- */
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:18px 0}
 .brand{display:inline-flex;align-items:center;gap:10px;font-stretch:75%;font-weight:800;font-size:28px;line-height:1;text-decoration:none;color:#fff}
 .brand svg{flex:none}
-.top nav{display:flex;align-items:center;gap:6px 22px;font-size:16px}
-.top nav a{text-decoration:none;color:#d6e6dc;white-space:nowrap}
-.top nav a:hover{color:#fff;text-decoration:underline}
-.top nav .go{background:#fff;color:var(--mat);padding:9px 16px;border-radius:8px;font-weight:700;white-space:nowrap}
-.top nav .go:hover{color:var(--mat);text-decoration:none;background:var(--tape)}
-@media(max-width:720px){.top nav a:not(.login):not(.go){display:none}.brand{font-size:24px}}
-@media(max-width:420px){.brand{font-size:21px;gap:8px}.brand svg{width:24px;height:24px}.top nav{gap:6px 12px;font-size:15px}.top nav .go{padding:9px 12px}}
+.top nav{display:flex;align-items:center;gap:6px 24px;font-size:16px}
+.top nav a{text-decoration:none;color:#d6e6dc;white-space:nowrap;padding:10px 0;position:relative}
+.top nav a::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;background:var(--hot);transform:scaleX(0);transform-origin:0 50%;transition:transform .3s var(--ease-out,ease)}
+.top nav a:hover{color:#fff}.top nav a:hover::after{transform:scaleX(1)}
+@media(max-width:900px){.top nav a:not(.login){display:none}.brand{font-size:24px}}
+@media(max-width:420px){.brand{font-size:21px;gap:8px}.brand svg{width:24px;height:24px}.top nav{gap:6px 14px;font-size:15px}.bk-btn{padding:8px 12px}}
 
-/* opening: three pieces of work laid out on the mat */
-.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px clamp(24px,4vw,56px);align-items:center;padding:clamp(22px,4vw,48px) 0 0}
-.intro h1{font-size:clamp(46px,6.6vw,96px);line-height:.88;color:#fff;max-width:7em}
-.intro p{font-size:clamp(18px,1.7vw,20px);max-width:36ch;color:#d6e6dc;margin-top:1.2em}
-/* a real sample website, taped to the mat */
-.screen{position:relative;display:block;background:#fff;border-radius:6px;padding:0 8px 8px;transform:rotate(1.4deg);text-decoration:none;box-shadow:0 1px 0 rgba(0,0,0,.25),0 34px 40px -26px rgba(0,0,0,.75)}
+/* ---------- opening ---------- */
+.intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:30px clamp(30px,5vw,80px);align-items:center;padding:clamp(24px,5vw,64px) 0 clamp(20px,3vw,40px)}
+.intro h1{font-size:clamp(52px,8vw,124px);line-height:.84;color:#fff;max-width:6.4em;letter-spacing:-.012em}
+.intro .ink{display:block}
+.intro p{font-size:clamp(18px,1.7vw,21px);max-width:38ch;color:#d6e6dc;margin-top:1.1em}
+.intro .acts{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;margin-top:30px}
+.intro .acts .more{color:#fff}
+
+/* a still life: a sample website, a print and a grow pot, laid on the mat */
+.still{position:relative;padding:0 0 70px 30px}
+.screen{position:relative;display:block;background:#fff;border-radius:6px;padding:0 8px 8px;transform:rotate(1.4deg);text-decoration:none;box-shadow:var(--sh-paper)}
 .screen::before{content:"";position:absolute;top:-12px;right:44px;width:96px;height:24px;background:var(--tape);opacity:.92;transform:rotate(3deg);z-index:2}
 .screen .bar{display:flex;align-items:center;gap:6px;height:34px;padding:0 4px;color:#55605a;font-size:13px}
 .screen .bar i{width:9px;height:9px;border-radius:50%;background:#cfd6d2}
 .screen .bar b{font-weight:600;margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .screen .view{display:block;position:relative;overflow:hidden;aspect-ratio:1280/880;border-radius:3px;background:#eef0ec}
 .screen iframe{position:absolute;top:0;left:0;width:1280px;height:880px;border:0;transform-origin:0 0;pointer-events:none}
-@media(max-width:820px){.intro{grid-template-columns:1fr}.screen{display:none}}
-.bench{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(18px,2.6vw,34px);align-items:end;padding:clamp(44px,5vw,64px) 0 clamp(52px,7vw,92px)}
-.piece{position:relative;display:flex;flex-direction:column;gap:18px;padding:34px 26px 26px;border-radius:3px;color:#15201b;box-shadow:0 1px 0 rgba(0,0,0,.25),0 28px 34px -24px rgba(0,0,0,.7)}
+.snap{position:absolute;display:block;background:#fff;padding:8px 8px 10px;border-radius:3px;box-shadow:var(--sh-paper);text-decoration:none;color:#15201b;transition:transform .5s var(--ease-out,ease)}
+.snap img,.snap .pot{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:cover;border-radius:2px}
+.snap small{display:block;font-size:13px;font-weight:700;margin-top:6px;padding:0 2px}
+.snap.s-print{left:-18px;bottom:-4px;width:31%;rotate:-5deg}
+.snap.s-print img{aspect-ratio:4/3}
+.snap.s-grow{right:-14px;bottom:-26px;width:27%;rotate:4deg}
+.snap.s-grow .pot{background:#ead9b0;padding:8%}
+.snap::before{content:"";position:absolute;top:-10px;left:50%;width:58px;height:20px;margin-left:-29px;background:var(--tape);opacity:.9;rotate:-4deg}
+.snap:hover{transform:translateY(-6px)}
+@media(max-width:860px){.intro{grid-template-columns:1fr}.still{display:none}}
+
+/* the three studios */
+.bench{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr) minmax(0,1fr);gap:clamp(18px,2.6vw,34px);align-items:end;padding:clamp(54px,6vw,80px) 0 clamp(56px,7vw,96px)}
+.piece{position:relative;display:flex;flex-direction:column;gap:16px;padding:34px 26px 24px;border-radius:3px;color:#15201b;box-shadow:var(--sh-paper);transition:box-shadow .4s,translate .4s var(--ease-out,ease)}
+.piece:hover{box-shadow:var(--sh-paper-up);translate:0 -4px}
 .piece .tape{position:absolute;top:-14px;left:20px;transform:rotate(-3deg)}
-.piece h2{font-size:clamp(32px,3.6vw,46px);line-height:.95}
+.piece h2{font-size:clamp(32px,3.4vw,46px);line-height:.95}
 .piece p{font-size:17px;max-width:34ch}
-.piece .acts{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:auto}
-.piece .btn.line{border-color:#15201b}
-.digital{background:#fff;transform:rotate(-.8deg);padding-bottom:30px}
-.digital h2{font-size:clamp(40px,5vw,64px)}
+.piece .acts{display:flex;flex-wrap:wrap;align-items:center;gap:8px 20px;margin-top:auto;padding-top:4px}
+.piece .from{font-size:15px;color:#4a554f}
+.piece .from b{color:#15201b}
+.digital{background:#fff;rotate:-.8deg}
+.digital h2{font-size:clamp(40px,4.6vw,64px)}
 .digital p{font-size:19px}
-.digital .more{font-weight:700}
 .swatches{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:15px}
-.swatches button{width:30px;height:40px;padding:0;border:0;border-radius:2px;cursor:pointer;background:linear-gradient(135deg,var(--a) 0 58%,var(--b) 58%);box-shadow:0 0 0 1px rgba(0,0,0,.12);transition:transform .15s}
-.swatches button:hover{transform:translateY(-3px)}
+.swatches button{width:30px;height:40px;padding:0;border:0;border-radius:2px;cursor:pointer;background:linear-gradient(135deg,var(--a) 0 58%,var(--b) 58%);box-shadow:0 0 0 1px rgba(0,0,0,.12);transition:transform .2s var(--ease-out,ease)}
+.swatches button:hover{transform:translateY(-4px) rotate(-3deg)}
 .swatches button[aria-pressed="true"]{outline:3px solid var(--hot);outline-offset:2px}
-.swatches a{margin-left:6px;color:#55605a;padding:10px 0}
-@media(max-width:820px){.swatches button{pointer-events:none}.swatches button[aria-pressed="true"]{outline:0}}
-.print{background:#dde5e3;transform:rotate(1.1deg);overflow:hidden}
-.print::after{content:"";position:absolute;inset:auto 0 0 0;height:38%;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(21,32,27,.17) 0 2px,transparent 2px 9px);-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
-.grow{background:#ead9b0;transform:rotate(-.7deg);overflow:hidden}
-.grow::after{content:"";position:absolute;inset:auto 0 0 0;height:38%;pointer-events:none;background:radial-gradient(circle,rgba(58,42,18,.3) 2.5px,transparent 3px) 0 0/22px 22px;-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
-.print,.grow{overflow:visible}
-.print>*,.grow>*{position:relative;z-index:1}
-.piece .draw{width:64px;height:64px;color:#15201b}
-.piece .peek{display:block;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(21,32,27,.18)}
-.piece .peek img{display:block;width:100%;height:auto;aspect-ratio:4/3;object-fit:cover}
-.piece .more{font-weight:700}
-@media(max-width:940px){.bench{grid-template-columns:1fr 1fr}.digital{grid-column:1/-1}}
-@media(max-width:600px){.bench{grid-template-columns:1fr;gap:34px}.piece{transform:none}}
+.swatches span{margin-left:6px;color:#55605a}
+@media(max-width:860px){.swatches button{pointer-events:none}.swatches button[aria-pressed="true"]{outline:0}}
+.printp{background:#dde5e3;rotate:1.1deg}
+.printp::after{content:"";position:absolute;inset:auto 0 0 0;height:38%;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(21,32,27,.15) 0 2px,transparent 2px 9px);-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
+.growp{background:#ead9b0;rotate:-.7deg}
+.growp::after{content:"";position:absolute;inset:auto 0 0 0;height:38%;pointer-events:none;background:radial-gradient(circle,rgba(58,42,18,.28) 2.5px,transparent 3px) 0 0/22px 22px;-webkit-mask-image:linear-gradient(0deg,#000,transparent);mask-image:linear-gradient(0deg,#000,transparent)}
+.printp>*,.growp>*{position:relative;z-index:1}
+.piece .peek{display:block;border-radius:3px;overflow:hidden;box-shadow:0 0 0 1px rgba(21,32,27,.18);aspect-ratio:4/3;background:#cfd8d5}
+.piece .peek img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .8s var(--ease-out,ease)}
+.piece:hover .peek img{transform:scale(1.04)}
+.piece .pots{display:flex;align-items:flex-end;justify-content:space-around;gap:2px;aspect-ratio:4/3;border-radius:3px;padding:0 6px 16px;box-shadow:0 0 0 1px rgba(58,42,18,.18);background:linear-gradient(#a57a3f,#8b6430) bottom/100% 16px no-repeat,linear-gradient(#f5ead0,#efe0bc)}
+.piece .pots svg{transition:transform .5s var(--ease-out,ease)}.piece:hover .pots svg:nth-child(odd){transform:translateY(-6px)}
+.piece .pots svg{flex:1;height:auto;max-width:30%}
+@media(max-width:600px){.piece .pots{aspect-ratio:16/8}.piece .pots svg{max-width:22%}}
+@media(max-width:980px){.bench{grid-template-columns:1fr 1fr}.digital{grid-column:1/-1}}
+@media(max-width:600px){.bench{grid-template-columns:1fr;gap:38px}.piece{rotate:0deg}}
 @media (prefers-reduced-motion:no-preference){
-  .piece{animation:lay .7s cubic-bezier(.2,.8,.2,1) both}
-  .print{animation-delay:.12s}.grow{animation-delay:.22s}
-  @keyframes lay{from{opacity:0;translate:0 -34px;rotate:-3deg}to{opacity:1;translate:0 0;rotate:0deg}}
+  .js .piece{animation:lay .8s var(--ease-lay,ease) both;animation-delay:2.05s}
+  .js .printp{animation-delay:2.2s}.js .growp{animation-delay:2.35s}
+  .js .still{animation:still-in 1s var(--ease-out,ease) .6s both}
+  @keyframes lay{from{opacity:0;translate:0 -40px;rotate:-4deg}}
+  @keyframes still-in{from{opacity:0;transform:translateY(24px) rotate(1deg)}}
+  .js .intro p,.js .intro .acts{animation:still-in .9s var(--ease-out,ease) 1.5s both}
 }
 .ruler{display:flex;height:34px;overflow:hidden;background:var(--tape) repeating-linear-gradient(90deg,rgba(59,48,6,.6) 0 1px,transparent 1px 12px) 0 0/auto 8px repeat-x;color:var(--tape-ink);counter-reset:r -1}
 .ruler i{flex:0 0 120px;height:17px;border-left:1.5px solid rgba(59,48,6,.85);position:relative;counter-increment:r;font-style:normal}
 .ruler i::after{content:counter(r);position:absolute;left:5px;top:13px;font-size:12px;font-weight:700;line-height:1}
 
-/* sections on paper */
-.sec{padding:clamp(60px,8vw,104px) 0}
-.sec h3{font-size:clamp(34px,5vw,60px);line-height:.95}
+/* ---------- sections on paper ---------- */
+.sec{padding:clamp(64px,8vw,112px) 0}
+.sec h2.hd{font-size:clamp(38px,5.4vw,68px);line-height:.92}
 .lead{color:var(--muted);max-width:56ch;margin:14px 0 0;font-size:19px}
 .mat .lead{color:#d6e6dc}
 .note{font-size:15px;color:var(--muted)}
+.head-row{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:18px 40px}
 
-.how{list-style:none;margin:clamp(30px,4vw,48px) 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:36px clamp(24px,4vw,56px);counter-reset:s}
-.how li{counter-increment:s;border-top:2px solid var(--ink);padding-top:14px;display:grid;grid-template-columns:auto 1fr;gap:4px 16px;align-items:start}
-.how li::before{content:counter(s);grid-row:1/4;font-stretch:75%;font-weight:800;font-size:76px;line-height:.82;color:var(--brand);min-width:44px}
-.how .who{justify-self:start;font-size:13px;padding:4px 11px;margin-bottom:4px}
-.how .who.us{background:var(--brand);color:#fff}
-.how b{font-size:20px;line-height:1.2}
-.how p{color:var(--muted);font-size:16px}
-@media(max-width:900px){.how{grid-template-columns:1fr 1fr}}@media(max-width:600px){.how{grid-template-columns:1fr;gap:26px}}
+/* how it works, for each studio */
+.tabs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:clamp(28px,4vw,44px)}
+.tabs button{position:relative;display:grid;grid-template-columns:auto 1fr;gap:2px 14px;align-items:center;text-align:left;font:inherit;color:var(--ink);background:var(--card);border:2px solid var(--line);border-radius:12px;padding:14px 16px;cursor:pointer;transition:border-color .2s,box-shadow .3s,transform .2s var(--ease-out,ease)}
+.tabs button:hover{border-color:var(--ink)}
+.tabs button svg{grid-row:1/3;width:40px;height:40px}
+.tabs button b{font-size:19px;line-height:1.15}
+.tabs button span{font-size:14px;color:var(--muted)}
+.tabs button[aria-selected="true"]{border-color:var(--ink);box-shadow:5px 5px 0 var(--tape);transform:translate(-2px,-2px)}
+@media(max-width:700px){.tabs{grid-template-columns:1fr}}
+.panel{margin-top:28px}
+.panel[hidden]{display:none}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:30px clamp(18px,2.6vw,34px);counter-reset:s;position:relative}
+.steps li{counter-increment:s;position:relative;padding-top:58px}
+.steps li::before{content:counter(s);position:absolute;top:0;left:0;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;background:var(--brand);color:#fff;font-weight:800;font-size:20px;box-shadow:0 0 0 6px var(--bg)}
+.steps li::after{content:"";position:absolute;top:21px;left:52px;right:-30px;height:2px;background:repeating-linear-gradient(90deg,var(--line) 0 8px,transparent 8px 14px)}
+.steps li:last-child::after{display:none}
+.steps .who{display:inline-block;font-size:12.5px;padding:3px 10px;margin-bottom:8px}
+.steps .who.us{background:var(--brand);color:#fff}
+.steps b{display:block;font-size:20px;line-height:1.2}
+.steps p{color:var(--muted);font-size:16px;margin-top:6px}
+.panel .acts{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;margin-top:34px}
+@media(max-width:700px){.steps{grid-template-columns:1fr;gap:22px}.steps li{padding:0 0 0 62px;min-height:44px}.steps li::after{top:52px;bottom:-18px;left:21px;right:auto;width:2px;height:auto;background:repeating-linear-gradient(180deg,var(--line) 0 8px,transparent 8px 14px)}}
+@media (prefers-reduced-motion:no-preference){
+  .panel.show li{animation:step-in .55s var(--ease-out,ease) both}
+  .panel.show li:nth-child(2){animation-delay:.07s}.panel.show li:nth-child(3){animation-delay:.14s}.panel.show li:nth-child(4){animation-delay:.21s}.panel.show li:nth-child(5){animation-delay:.28s}.panel.show li:nth-child(6){animation-delay:.35s}
+  @keyframes step-in{from{opacity:0;transform:translateY(14px)}}
+}
+
+/* popular prints: a rail you can scroll sideways */
+.prints-head .pick{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px}
+.prints-head .pick b{font-size:15px}
+.dots{display:flex;flex-wrap:wrap;gap:6px}
+.dots button{width:36px;height:36px;padding:0;border-radius:50%;border:0;cursor:pointer;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.28),inset 0 6px 8px -3px rgba(255,255,255,.55);transition:transform .2s var(--ease-out,ease)}
+.dots button:hover{transform:translateY(-2px)}
+@media(max-width:420px){.dots{gap:5px}.dots button{width:31px;height:31px}}
+.dots button[aria-pressed="true"]{outline:3px solid var(--hot);outline-offset:3px}
+.rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(240px,23%);gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;padding:28px 4px 22px;margin:0 -4px;scrollbar-width:thin;scrollbar-color:var(--line) transparent}
+@media(max-width:900px){.rail{grid-auto-columns:minmax(230px,64%)}}
+.prod{scroll-snap-align:start;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 10px 14px;box-shadow:var(--sh-card);transition:box-shadow .3s,transform .3s var(--ease-out,ease)}
+.prod:hover{box-shadow:var(--sh-card-up);transform:translateY(-3px)}
+.prod .ph{display:block;aspect-ratio:4/3;border-radius:4px;overflow:hidden;background:#e6e9e3}
+.prod .ph img{display:block;width:100%;height:100%;object-fit:cover;transition:opacity .25s}
+.prod h3{font-size:22px;line-height:1.05;margin:12px 4px 0}
+.prod p{font-size:14px;color:var(--muted);margin:4px 4px 0}
+.prod .buy{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:auto 4px 0;padding-top:12px}
+.prod .price{font-size:20px;font-weight:800}
+.prod .price small{display:block;font-size:12.5px;font-weight:400;color:var(--muted)}
+.add{font:inherit;font-weight:700;font-size:15px;min-height:44px;padding:8px 14px;border-radius:9px;border:2px solid var(--brand);background:var(--brand);color:#fff;cursor:pointer;white-space:nowrap}
+.add:hover{filter:brightness(1.14)}
+.rail-foot{display:flex;flex-wrap:wrap;gap:12px 24px;align-items:center;justify-content:space-between}
+
+/* grow studio feature, on kraft paper */
+.kraft{background:#ead9b0;color:#2c2210;position:relative;overflow:hidden}
+.kraft::before{content:"";position:absolute;inset:0;background:var(--grain);opacity:.9;pointer-events:none}
+.kraft .wrap{position:relative}
+.grow-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(30px,5vw,80px);align-items:center}
+.kraft .lead{color:#5a4a2a}
+.kraft h2.hd{color:#2c2210}
+.kit-list{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:10px}
+.kit-list li{display:flex;gap:12px;align-items:flex-start;font-size:17px}
+.kit-list li::before{content:"";flex:none;width:18px;height:18px;margin-top:4px;border-radius:50%;background:#2f7a3a;box-shadow:inset 0 0 0 4px #ead9b0,0 0 0 2px #2f7a3a}
+.kraft .acts{display:flex;flex-wrap:wrap;gap:12px 22px;align-items:center;margin-top:30px}
+.kraft .btn{background:#2c2210;border-color:#2c2210}
+.shelf{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:end;gap:8px;padding:44px 4% 22px}
+.shelf::after{content:"";position:absolute;left:0;right:0;bottom:0;height:20px;border-radius:3px;background:linear-gradient(#b98d4f,#9c7339);box-shadow:0 14px 22px -12px rgba(60,40,10,.6)}
+.shelf figure{margin:0;display:grid;justify-items:center;gap:6px;cursor:pointer}
+.shelf figure svg{width:100%;height:auto;transition:transform .5s var(--ease-out,ease)}
+.shelf figure:hover svg{transform:translateY(-8px) rotate(-3deg)}
+.shelf figcaption{font-weight:700;font-size:15px;position:relative;z-index:1;margin-bottom:-2px}
+.shelf .tag{position:absolute;top:0;left:2%;rotate:-3deg}
+@media(max-width:860px){.grow-in{grid-template-columns:1fr}.shelf{order:-1}}
+@media (prefers-reduced-motion:no-preference){
+  .js .shelf figure{opacity:0;transform:translateY(-30px)}
+  .js .shelf.in figure{animation:drop .7s var(--ease-lay,ease) both}
+  .shelf.in figure:nth-child(2){animation-delay:.1s}.shelf.in figure:nth-child(3){animation-delay:.2s}.shelf.in figure:nth-child(4){animation-delay:.3s}
+  @keyframes drop{0%{opacity:0;transform:translateY(-40px)}70%{opacity:1;transform:translateY(4px)}100%{opacity:1;transform:none}}
+}
 
 /* template samples pinned to the mat */
-.levels{display:inline-flex;gap:4px;padding:4px;border-radius:10px;background:rgba(0,0,0,.25);margin-top:28px}
-.levels button{font:inherit;font-weight:700;font-size:16px;border:0;background:none;color:#d6e6dc;padding:9px 20px;border-radius:7px;cursor:pointer}
+.levels{display:inline-flex;gap:4px;padding:4px;border-radius:12px;background:rgba(0,0,0,.25);margin-top:28px}
+.levels button{font:inherit;font-weight:700;font-size:16px;border:0;background:none;color:#d6e6dc;padding:10px 22px;border-radius:9px;cursor:pointer;transition:background .25s,color .25s}
 .levels button[aria-pressed="true"]{background:#fff;color:var(--mat)}
-#level-note{margin:14px 0 26px;font-size:17px;color:#fff;min-height:1.6em}
-.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px 26px}
+#level-note{margin:14px 0 30px;font-size:17px;color:#fff;min-height:1.6em}
+.gallery{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:40px 26px}
 @media(max-width:1180px){.gallery{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:620px){.gallery{grid-template-columns:1fr}}
-.tpl.later{background:var(--tape);color:var(--tape-ink);padding:26px 24px;justify-content:center;gap:14px;transform:rotate(1deg)}
-.tpl.later::before{background:#fff}
-.tpl.later b{font-stretch:75%;font-weight:800;font-size:30px;line-height:1}
-.tpl.later .btn{align-self:flex-start;background:var(--tape-ink);border-color:var(--tape-ink)}
-.tpl{position:relative;background:#fff;color:#15201b;border-radius:3px;padding:10px 10px 0;display:flex;flex-direction:column;box-shadow:0 1px 0 rgba(0,0,0,.25),0 24px 30px -22px rgba(0,0,0,.7)}
+.tpl{position:relative;background:#fff;color:#15201b;border-radius:3px;padding:10px 10px 0;display:flex;flex-direction:column;box-shadow:var(--sh-paper);transition:box-shadow .4s,translate .4s var(--ease-out,ease)}
+.tpl:hover{box-shadow:var(--sh-paper-up);translate:0 -4px}
 .tpl::before{content:"";position:absolute;top:-11px;left:50%;width:92px;height:24px;margin-left:-46px;background:var(--tape);opacity:.92;transform:rotate(-2deg);z-index:2}
 .tpl:nth-child(even)::before{transform:rotate(2.5deg);margin-left:-30px}
 .tpl.chosen{outline:4px solid var(--hot);outline-offset:3px}
@@ -132,105 +224,124 @@ button:disabled{opacity:.6;cursor:wait}
 .tpl .t small{display:block;margin-top:6px;color:#55605a;font-size:15px;line-height:1.4}
 .tpl-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:15px}
 .tpl-actions a{font-weight:700;padding:10px 0}
-.tpl-actions .pick{font:inherit;font-size:15px;font-weight:700;padding:10px 14px;border-radius:8px;background:none;color:#14503c;border:2px solid #14503c;cursor:pointer}
-.tpl-actions .pick[aria-pressed="true"]{background:#14503c;color:#fff}
+.tpl-actions .pick{font:inherit;font-size:15px;font-weight:700;min-height:44px;padding:8px 14px;border-radius:9px;background:none;color:#14503c;border:2px solid #14503c;cursor:pointer;transition:background .2s,color .2s}
+.tpl-actions .pick:hover,.tpl-actions .pick[aria-pressed="true"]{background:#14503c;color:#fff}
+.tpl.later{background:var(--tape);color:var(--tape-ink);padding:26px 24px;justify-content:center;gap:14px;rotate:1deg}
+.tpl.later::before{background:#fff}
+.tpl.later b{font-stretch:75%;font-weight:800;font-size:30px;line-height:1}
+.tpl.later .btn{align-self:flex-start;background:var(--tape-ink);border-color:var(--tape-ink)}
+@media(max-width:620px){.tpl.later{rotate:0deg}}
 
 /* pricing */
-.paynow{display:flex;flex-wrap:wrap;gap:14px 28px;margin:30px 0 34px}
+.paynow{display:flex;flex-wrap:wrap;gap:14px 28px;margin:30px 0 38px}
 .paynow div{display:grid;gap:6px;justify-items:start;max-width:38ch}
 .paynow span{color:var(--muted);font-size:16px}.paynow span span{font-size:inherit}
 .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch}
-.plan{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:0 24px 24px}
+.plan{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:0 24px 24px;box-shadow:var(--sh-card);transition:box-shadow .3s,transform .3s var(--ease-out,ease)}
+.plan:hover{box-shadow:var(--sh-card-up)}
 .plan-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 -24px;padding:16px 24px;border-bottom:1px solid var(--line)}
-.plan h4{margin:0;font-stretch:75%;font-weight:800;font-size:30px;line-height:1}
+.plan h3{margin:0;font-size:30px;line-height:1}
 .plan-head span{font-weight:700;font-size:15px;color:var(--muted)}
-.price{font-stretch:75%;font-weight:800;font-size:clamp(44px,12vw,60px);line-height:1;margin:22px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.price{font-stretch:75%;font-weight:800;font-size:clamp(46px,10vw,62px);line-height:1;margin:22px 0 0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
 .price span{font-stretch:100%;font-size:16px;font-weight:400;color:var(--muted);white-space:nowrap}
 .plan ul{list-style:none;margin:18px 0 24px;padding:0;display:grid;gap:9px;font-size:16px}
 .plan li{padding-left:26px;position:relative}
 .plan li::before{content:"";position:absolute;left:2px;top:.45em;width:12px;height:6px;border-left:2.5px solid var(--hot);border-bottom:2.5px solid var(--hot);transform:rotate(-45deg)}
 .choose{margin-top:auto}
 .plan.pop{border:2px solid var(--ink);box-shadow:8px 8px 0 var(--tape)}
-.plan.pop .plan-head{background:var(--mat);color:#fff;border-color:var(--mat);margin:0 -24px;border-radius:3px 3px 0 0}
+.plan.pop .plan-head{background:var(--mat);color:#fff;border-color:var(--mat);border-radius:5px 5px 0 0}
 .plan.pop .plan-head span{color:#d6e6dc}
 .plan .tape{position:absolute;top:-15px;right:18px;transform:rotate(3deg)}
-.plan:not(.pop) .choose{background:none;color:var(--brand)}
+.plan:not(.pop) .choose{background:none;color:var(--brand);box-shadow:none}
 .plan:not(.pop) .choose:hover{background:var(--brand);color:#fff;filter:none}
 @media(max-width:860px){.plans{grid-template-columns:1fr;gap:30px}}
 
 /* questions */
 .faq-in{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.4fr);gap:clamp(28px,5vw,72px);align-items:start}
 .faq-in .lead a{font-weight:700;color:var(--ink)}
-.faq{border-top:2px solid var(--ink)}
+.faq h3{font-size:22px;margin:28px 0 4px}
+.faq h3:first-child{margin-top:0}
+.faq .grp{border-top:2px solid var(--ink)}
 .faq details{border-bottom:1px solid var(--line)}
-.faq summary{cursor:pointer;font-weight:700;font-size:19px;padding:18px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary{cursor:pointer;font-weight:700;font-size:18px;padding:17px 0;list-style:none;display:flex;justify-content:space-between;gap:16px}
 .faq summary::-webkit-details-marker{display:none}
-.faq summary::after{content:"+";flex:none;font-size:26px;line-height:.9;font-weight:400;color:var(--hot)}
-.faq details[open] summary::after{content:"\2212"}
+.faq summary::after{content:"";flex:none;width:14px;height:14px;margin-top:5px;background:linear-gradient(var(--hot),var(--hot)) center/14px 2.5px no-repeat,linear-gradient(var(--hot),var(--hot)) center/2.5px 14px no-repeat;transition:transform .3s var(--ease-out,ease)}
+.faq details[open] summary::after{transform:rotate(135deg)}
 .faq details p{margin:0 0 20px;color:var(--muted);max-width:62ch}
+@media (prefers-reduced-motion:no-preference){.faq details[open] p{animation:step-in .4s var(--ease-out,ease)}}
 @media(max-width:820px){.faq-in{grid-template-columns:1fr}}
 
-/* waiting list, back on the mat */
+/* product news, back on the mat */
 .wait-in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,5vw,72px);align-items:center}
-.wait-in h3{color:#fff}
-#f{background:#fff;color:#15201b;border-radius:3px;padding:28px;display:grid;gap:16px;box-shadow:0 1px 0 rgba(0,0,0,.25),0 28px 34px -24px rgba(0,0,0,.7);transform:rotate(.6deg)}
+.wait-in h2{color:#fff}
+#f{background-color:#fff;color:#15201b;border-radius:3px;padding:28px;display:grid;gap:16px;box-shadow:var(--sh-paper);rotate:.6deg}
 #f label{display:grid;gap:6px;font-weight:700;font-size:15px}
-#f input[type=text],#f input[type=email]{font:inherit;font-size:16px;padding:12px;border-radius:6px;border:1px solid #b9c2b8;background:#f6f8f4;color:#15201b}
+#f input[type=text],#f input[type=email]{min-width:0;width:100%;font:inherit;font-size:16px;padding:12px;border-radius:8px;border:1px solid #b9c2b8;background:#f6f8f4;color:#15201b;transition:border-color .2s,box-shadow .2s}
+#f input[type=text]:focus,#f input[type=email]:focus{outline:0;border-color:#14503c;box-shadow:0 0 0 3px rgba(20,80,60,.18)}
 .checks{display:flex;gap:10px 22px;flex-wrap:wrap}
 #f .checks label{display:flex;gap:8px;align-items:center;font-weight:400;font-size:16px;min-height:44px}
 .checks input{width:22px;height:22px;accent-color:#14503c}
 #f .btn{justify-self:start;background:#14503c;border-color:#14503c}
 #msg{margin:0;color:#55605a;font-size:15px;min-height:1.4em}
-@media(max-width:820px){.wait-in{grid-template-columns:1fr}#f{transform:none}}
+@media(max-width:820px){.wait-in{grid-template-columns:minmax(0,1fr)}#f{rotate:0deg}}
 
-footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34px}
+footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:34px 0 38px}
 .foot{display:flex;flex-wrap:wrap;gap:12px 32px;justify-content:space-between}
 .foot nav{display:flex;flex-wrap:wrap;gap:6px 20px}
 .foot a{color:#fff;display:inline-block;padding:10px 0}
-.top nav a:not(.go){padding:10px 0}.piece .more{padding:10px 0}
 .foot p{flex-basis:100%;max-width:70ch}
 </style>
+<link rel="stylesheet" href="motion.css">
+<script>document.documentElement.classList.add("js")</script>
 </head>
-<body>
+<body data-shopbar>
 <header class="mat">
   <div class="wrap">
     <div class="top">
       <a href="index.html" class="brand"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M3 27 15 3l12 24z" fill="none" stroke="#ff5a2b" stroke-width="3.2" stroke-linejoin="round"/><path d="M10.5 20h9" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>Axencraft</a>
-      <nav aria-label="Main"><a href="#how">How it works</a><a href="#templates">Templates</a><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="print.html">Print Studio</a><a href="grow.html">Grow Studio</a><a href="account.html" class="login">Log in</a><a href="#pricing" class="go">Get started</a></nav>
+      <nav aria-label="Main"><a href="#templates">Digital Studio</a><a href="print.html">Print Studio</a><a href="grow.html">Grow Studio</a><a href="#faq">Questions</a><a href="account.html" class="login">Log in</a><button type="button" class="bk-btn" data-basket aria-label="Basket"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h12l-1 10H5z"/><path d="M7 7V5.5a3 3 0 0 1 6 0V7" stroke-linecap="round"/></svg><span class="bk-t">Basket</span> <span class="bk-count">0</span></button></nav>
     </div>
     <div class="intro">
       <div>
-        <h1>Made to order in Devon</h1>
-        <p>Three small studios under one roof. Digital Studio builds and hosts websites. Print Studio 3D prints organisers to order. Grow Studio sends you everything you need to grow your own.</p>
+        <h1 class="printed"><span class="ink">Made to order in Devon</span><span class="nozzle" aria-hidden="true"><i></i></span></h1>
+        <p>Three small studios at one workbench. We build and host websites, 3D print organisers for your home and workshop, and send grow-your-own kits in a pot printed just for you.</p>
+        <div class="acts"><a class="btn hot" href="#studios">Choose a studio</a><a class="more" href="#how">See how it works</a></div>
       </div>
-      <a class="screen" href="#templates" aria-label="A sample website. See all the website styles">
-        <span class="bar" aria-hidden="true"><i></i><i></i><i></i><b id="screen-name">Rustic style, shown as a farm shop</b></span>
-        <span class="view"><iframe id="screen-frame" tabindex="-1" aria-hidden="true" title="" src="templates/standard-rustic/"></iframe></span>
-      </a>
+      <div class="still" aria-label="Examples from each studio">
+        <a class="screen" href="#templates" data-depth="10" aria-label="A sample website. See all the website styles">
+          <span class="bar" aria-hidden="true"><i></i><i></i><i></i><b id="screen-name">Rustic style, shown as a farm shop</b></span>
+          <span class="view"><iframe id="screen-frame" tabindex="-1" aria-hidden="true" title="" src="templates/standard-rustic/"></iframe></span>
+        </a>
+        <a class="snap s-print" href="print.html" data-depth="22"><img src="print/spice_rack_3_tier-use-orange.webp" width="720" height="540" alt="A 3D-printed spice rack in orange"><small>Spice rack, £14.99</small></a>
+        <a class="snap s-grow" href="grow.html" data-depth="30"><span class="pot" id="still-pot" aria-hidden="true"></span><small>Grow kit, from £7.99</small></a>
+      </div>
     </div>
-    <div class="bench">
+    <div class="bench" id="studios">
       <article class="piece digital">
         <span class="tape hot">Open now</span>
         <h2>Digital Studio</h2>
         <p>A website built around your business. Pick a style, answer a few questions, and we build it and host it for you.</p>
-        <div class="swatches" role="group" aria-label="Show a style in the sample website above">
-          <button type="button" data-st="classic" data-as="an accountancy practice" aria-pressed="false" aria-label="Classic" style="--a:#1d2b4f;--b:#b08a3e"></button><button type="button" data-st="bold" data-as="a garage" aria-pressed="false" aria-label="Bold" style="--a:#d7261e;--b:#ffcd1f"></button><button type="button" data-st="minimal" data-as="a ceramics studio" aria-pressed="false" aria-label="Minimal" style="--a:#22262b;--b:#4f7f72"></button><button type="button" data-st="playful" data-as="a dog groomer" aria-pressed="false" aria-label="Playful" style="--a:#4b3bd6;--b:#ffb72b"></button><button type="button" data-st="modern" data-as="a phone repair shop" aria-pressed="false" aria-label="Modern" style="--a:#2f54ff;--b:#12c99b"></button><button type="button" data-st="rustic" data-as="a farm shop" aria-pressed="true" aria-label="Rustic" style="--a:#7d2a20;--b:#d79a2b"></button><button type="button" data-st="editorial" data-as="a wedding florist" aria-pressed="false" aria-label="Editorial" style="--a:#8f1d3f;--b:#e9b8a8"></button><a href="#templates">7 styles</a>
+        <div class="swatches" role="group" aria-label="Show a style in the sample website">
+          <button type="button" data-st="classic" data-as="an accountancy practice" aria-pressed="false" aria-label="Classic" style="--a:#1d2b4f;--b:#b08a3e"></button><button type="button" data-st="bold" data-as="a garage" aria-pressed="false" aria-label="Bold" style="--a:#d7261e;--b:#ffcd1f"></button><button type="button" data-st="minimal" data-as="a ceramics studio" aria-pressed="false" aria-label="Minimal" style="--a:#22262b;--b:#4f7f72"></button><button type="button" data-st="playful" data-as="a dog groomer" aria-pressed="false" aria-label="Playful" style="--a:#4b3bd6;--b:#ffb72b"></button><button type="button" data-st="modern" data-as="a phone repair shop" aria-pressed="false" aria-label="Modern" style="--a:#2f54ff;--b:#12c99b"></button><button type="button" data-st="rustic" data-as="a farm shop" aria-pressed="true" aria-label="Rustic" style="--a:#7d2a20;--b:#d79a2b"></button><button type="button" data-st="editorial" data-as="a wedding florist" aria-pressed="false" aria-label="Editorial" style="--a:#8f1d3f;--b:#e9b8a8"></button><span>7 styles</span>
         </div>
-        <div class="acts"><a class="btn" href="#pricing">Get started</a><a class="more" href="#templates">See the templates</a></div>
+        <p class="from">£50 to set up, then from <b>£19.99 a month</b> once your site is live.</p>
+        <div class="acts"><a class="btn" href="#pricing">See plans and prices</a><a class="more" href="#templates">Browse the styles</a></div>
       </article>
-      <article class="piece print">
+      <article class="piece printp">
         <span class="tape hot">Open now</span>
         <a class="peek" href="print.html" tabindex="-1" aria-hidden="true"><img src="print/cable_bar_5_slot-use-orange.webp" width="720" height="540" alt="" loading="lazy"></a>
         <h2>Print Studio</h2>
-        <p>Organisers for the workshop, garage, garden, home and desk, 3D printed to order in eight colours.</p>
-        <div class="acts"><a class="btn" href="print.html">Shop Print Studio</a><a class="more" href="print.html#ordering">How ordering works</a></div>
+        <p>Organisers for the workshop, garage, garden, kitchen, home and desk, printed to order in eight colours.</p>
+        <p class="from">65 pieces from <b>£2.99</b>. Posted within 7 days.</p>
+        <div class="acts"><a class="btn" href="print.html">Shop Print Studio</a></div>
       </article>
-      <article class="piece grow">
+      <article class="piece growp">
         <span class="tape hot">Open now</span>
-        <svg class="draw" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 58V30"/><path d="M32 38C32 26 22 20 10 20c0 12 8 18 22 18z"/><path d="M32 30c0-12 9-20 22-20 0 13-8 20-22 20z"/></svg>
+        <a class="pots" href="grow.html" tabindex="-1" aria-hidden="true" id="bench-pots"></a>
         <h2>Grow Studio</h2>
-        <p>Grow-your-own kits for herbs and salad, with a 3D-printed pot in your choice of shape and colour.</p>
-        <div class="acts"><a class="btn" href="grow.html">Build a grow kit</a><a class="more" href="grow.html#extras">Pots and extras</a></div>
+        <p>Grow-your-own kits for herbs and salad, with a pot printed in your choice of shape and colour.</p>
+        <p class="from">Kits from <b>£7.99</b>. Seeds and growing pellets included.</p>
+        <div class="acts"><a class="btn" href="grow.html">Build a grow kit</a></div>
       </article>
     </div>
   </div>
@@ -239,21 +350,76 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
 
 <main>
 <section class="sec" id="how"><div class="wrap">
-  <h3>How Digital Studio works</h3>
-  <p class="lead">You choose and answer. We build, check and host.</p>
-  <ol class="how">
-    <li><span class="tape who">You</span><b>Pick a plan and style</b><p>Choose your plan and pay the one-off £50 setup fee. Then pick from 7 styles.</p></li>
-    <li><span class="tape who">You</span><b>Answer the questionnaire</b><p>Tell us about your business in your own words, choose your colours and add your logo and photos.</p></li>
-    <li><span class="tape who us">Axencraft</span><b>We build your draft</b><p>Your answers and your chosen style become your website.</p></li>
-    <li><span class="tape who us">Axencraft</span><b>We check it by hand</b><p>Every draft is checked and edited before you see it.</p></li>
-    <li><span class="tape who">You</span><b>Preview and ask for changes</b><p>View a private preview and tell us what you'd like changed.</p></li>
-    <li><span class="tape who us">Axencraft</span><b>We put it live</b><p>Once you approve, we host it at your own web address.</p></li>
-  </ol>
+  <h2 class="hd" data-reveal>How it works</h2>
+  <p class="lead" data-reveal>Pick a studio to see each step, from choosing to delivery.</p>
+  <div class="tabs" role="tablist" aria-label="Choose a studio">
+    <button type="button" role="tab" id="tab-digital" aria-controls="p-digital" aria-selected="true">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="7" width="32" height="22" rx="2"/><path d="M4 12h32M14 34h12M20 29v5"/><circle cx="8" cy="9.5" r=".8" fill="currentColor"/></svg>
+      <b>A website</b><span>Digital Studio</span></button>
+    <button type="button" role="tab" id="tab-print" aria-controls="p-print" aria-selected="false" tabindex="-1">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round" aria-hidden="true"><path d="M8 34h24M12 34V22h16v12"/><path d="M15 22v-6h10v6"/><path d="M20 10v6"/><path d="M17 6h6l-3 4z" fill="#ff5a2b" stroke="#ff5a2b"/><path d="M14 26h12M14 30h12" stroke-width="1.6"/></svg>
+      <b>A 3D print</b><span>Print Studio</span></button>
+    <button type="button" role="tab" id="tab-grow" aria-controls="p-grow" aria-selected="false" tabindex="-1">
+      <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 22h18l-3 13H14z"/><path d="M20 22v-8"/><path d="M20 16c0-5-4-8-9-8 0 5 4 8 9 8zM20 14c0-5 4-8 9-8 0 5-4 8-9 8z"/></svg>
+      <b>A grow kit</b><span>Grow Studio</span></button>
+  </div>
+
+  <div class="panel show" role="tabpanel" id="p-digital" aria-labelledby="tab-digital">
+    <ol class="steps">
+      <li><span class="tape who">You</span><b>Pick a plan and style</b><p>Pay the one-off £50 setup fee and choose from 7 styles.</p></li>
+      <li><span class="tape who">You</span><b>Answer a few questions</b><p>Tell us about your business in your own words and add your logo and photos.</p></li>
+      <li><span class="tape who us">Axencraft</span><b>We build and check it</b><p>Your answers become your website, and we check every draft by hand.</p></li>
+      <li><span class="tape who">You</span><b>Preview and ask for changes</b><p>A private preview link. Ask for as many changes as you like.</p></li>
+      <li><span class="tape who us">Axencraft</span><b>We put it live</b><p>We host it at your own web address. Monthly billing starts now.</p></li>
+    </ol>
+    <div class="acts"><a class="btn" href="#pricing">See plans and prices</a><a class="more" href="#templates">Browse the 7 styles</a></div>
+  </div>
+  <div class="panel" role="tabpanel" id="p-print" aria-labelledby="tab-print" hidden>
+    <ol class="steps">
+      <li><span class="tape who">You</span><b>Choose a colour</b><p>Eight colours. Everything you add is printed in the one you pick.</p></li>
+      <li><span class="tape who">You</span><b>Add what you need</b><p>Browse six rooms, from the workshop to the desk.</p></li>
+      <li><span class="tape who">You</span><b>Pay securely</b><p>Card or wallet through Stripe. Postage is a flat <span data-postage>£3.99</span>, UK only.</p></li>
+      <li><span class="tape who us">Axencraft</span><b>We print it</b><p>Made for you in Devon and posted within <span data-days>7</span> days.</p></li>
+      <li><span class="tape who us">Royal Mail</span><b>It arrives</b><p>Tracked 48, usually 2 to 3 working days. We email you the tracking.</p></li>
+    </ol>
+    <div class="acts"><a class="btn" href="print.html">Shop Print Studio</a></div>
+  </div>
+  <div class="panel" role="tabpanel" id="p-grow" aria-labelledby="tab-grow" hidden>
+    <ol class="steps">
+      <li><span class="tape who">You</span><b>Build your kit</b><p>Choose the pot size, shape, colour and seeds.</p></li>
+      <li><span class="tape who">You</span><b>Add a matching pot</b><p>We suggest pots, a drip tray and a dome that go with your kit.</p></li>
+      <li><span class="tape who">You</span><b>Pay securely</b><p>Postage is a flat <span data-postage>£3.99</span> per order, UK only.</p></li>
+      <li><span class="tape who us">Axencraft</span><b>We print and pack it</b><p>Your pot is printed for you and leaves us within <span data-days>7</span> days.</p></li>
+      <li><span class="tape who">You</span><b>Start growing</b><p>The card in the box walks you through sowing and watering.</p></li>
+    </ol>
+    <div class="acts"><a class="btn" href="grow.html">Build a grow kit</a></div>
+  </div>
+</div></section>
+
+<section class="sec" id="prints" style="padding-top:0"><div class="wrap">
+  <div class="head-row prints-head">
+    <div><h2 class="hd" data-reveal>Popular from Print Studio</h2><p class="lead" data-reveal>Tap a colour to see every piece in it, then add straight to your basket.</p></div>
+    <div class="pick" data-reveal><b>Colour: <span id="rail-colour-name">Orange</span></b><div class="dots" id="rail-dots" role="group" aria-label="Choose a colour"></div></div>
+  </div>
+  <div class="rail" id="rail" aria-label="Popular prints"></div>
+  <div class="rail-foot"><p class="note">Made to order and posted within <span data-days>7</span> days. Pictures are drawings made from our designs.</p><a class="btn line" href="print.html">See all 65 pieces</a></div>
+</div></section>
+
+<section class="sec kraft" id="grow"><div class="wrap grow-in">
+  <div>
+    <h2 class="hd" data-reveal>Grow herbs on your windowsill</h2>
+    <p class="lead" data-reveal>Each kit has everything you need to start, in a pot we print for you. Choose from four shapes, three sizes and eight colours.</p>
+    <ul class="kit-list" data-stagger>
+      <li>A 3D-printed pot with a drain hole</li><li>A packet of seeds: basil, salad leaves, chives or microgreens</li><li>Coir growing pellets, just add water</li><li>A step-by-step card for sowing and care</li>
+    </ul>
+    <div class="acts"><a class="btn" href="grow.html">Build a grow kit</a><a class="more" href="grow.html#extras">Pots and extras</a></div>
+  </div>
+  <div class="shelf" id="shelf"><span class="tape hot tag">From £7.99</span></div>
 </div></section>
 
 <section class="sec mat" id="templates"><div class="wrap">
-  <h3>Seven styles, three levels</h3>
-  <p class="lead">These previews use sample businesses. Yours will have your own words, colours and photos. Open one to see it full size, or choose one now and we'll remember it.</p>
+  <h2 class="hd" style="color:#fff" data-reveal>Seven website styles, three levels</h2>
+  <p class="lead" data-reveal>These previews use sample businesses. Yours will have your own words, colours and photos. Open one to see it full size, or choose one now and we'll remember it.</p>
   <div class="levels" role="group" aria-label="Show plan level">
     <button type="button" data-level="starter" aria-pressed="false">Starter</button>
     <button type="button" data-level="standard" aria-pressed="true">Standard</button>
@@ -265,28 +431,28 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
 </div></section>
 
 <section class="sec" id="pricing"><div class="wrap">
-  <h3>Pricing</h3>
-  <p class="lead">One setup fee, then a monthly plan that covers hosting and care.</p>
-  <div class="paynow" role="note">
+  <h2 class="hd" data-reveal>Website plans</h2>
+  <p class="lead" data-reveal>One setup fee, then a monthly plan that covers hosting and care.</p>
+  <div class="paynow" role="note" data-stagger>
     <div><b class="tape">£50 today</b><span>One-off setup fee to design and build your website.</span></div>
     <div><b class="tape">£0 a month until you're live</b><span>Monthly payments only start once your website is live<span class="trial-txt"></span>.</span></div>
   </div>
-  <div class="plans">
+  <div class="plans" data-stagger="lay">
     <div class="plan">
-      <div class="plan-head"><h4>Starter</h4><span>1 page</span></div>
+      <div class="plan-head"><h3>Starter</h3><span>1 page</span></div>
       <div class="price">£19.99 <span>a month</span></div>
       <ul><li>One tidy page with services, about and contact</li><li>Any of the 7 styles in your colours</li><li>Working contact form</li><li>1 change request a month</li></ul>
       <a class="btn choose" href="account.html?plan=starter">Choose Starter</a>
     </div>
     <div class="plan pop">
       <span class="tape hot">Most popular</span>
-      <div class="plan-head"><h4>Standard</h4><span>5 pages</span></div>
+      <div class="plan-head"><h3>Standard</h3><span>5 pages</span></div>
       <div class="price">£39.99 <span>a month</span></div>
       <ul><li>Home, About, Services, Gallery and Contact</li><li>Photo gallery and customer reviews</li><li>Designer fonts and key numbers</li><li>3 change requests a month</li></ul>
       <a class="btn choose" href="account.html?plan=standard">Choose Standard</a>
     </div>
     <div class="plan">
-      <div class="plan-head"><h4>Pro</h4><span>8 pages</span></div>
+      <div class="plan-head"><h3>Pro</h3><span>8 pages</span></div>
       <div class="price">£59.99 <span>a month</span></div>
       <ul><li>Everything in Standard, plus Portfolio, Reviews and FAQ pages</li><li>Before-and-after photos and a booking form</li><li>Dark mode and animation</li><li>6 change requests a month</li></ul>
       <a class="btn choose" href="account.html?plan=pro">Choose Pro</a>
@@ -298,25 +464,36 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
 
 <section class="sec" id="faq" style="padding-top:0"><div class="wrap faq-in">
   <div>
-    <h3>Questions</h3>
-    <p class="lead">Can't see yours? Email <a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a>.</p>
+    <h2 class="hd" data-reveal>Questions</h2>
+    <p class="lead" data-reveal>Can't see yours? Email <a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a> and we'll reply within a working day.</p>
   </div>
   <div class="faq">
-    <details><summary>What do I pay today?</summary><p>Just the one-off £50 setup fee. Your monthly plan doesn't start until your website is live<span class="trial-txt"></span>.</p></details>
-    <details><summary>What do I need to get started?</summary><p>An email address and a few details about your business. After payment, a short questionnaire asks about your business, your style and your words. You can add your logo and photos, and your answers save as you go so you can finish later.</p></details>
-    <details><summary>Can I see my website before it goes live?</summary><p>Yes. You'll get a private preview link in your account. Ask for as many changes as you like while you're reviewing it. Nothing goes live until you're happy.</p></details>
-    <details><summary>How do changes work after my site is live?</summary><p>Request a change from your account. Each plan includes some changes every month (1, 3 or 6), and extra ones are £10 each. We'll always ask before charging for an extra change.</p></details>
-    <details><summary>Where will my website live?</summary><p>We host it for you at an address like <b>yourbusiness.axencraft.co.uk</b>. If you have your own domain name, you can connect it from your account.</p></details>
-    <details><summary>Can I change plan or cancel?</summary><p>Yes. Use "Manage billing" in your account to switch plan, update your card, see invoices or cancel.</p></details>
+    <h3>Prints and grow kits</h3>
+    <div class="grp">
+      <details><summary>How much is postage?</summary><p>A flat <span data-postage>£3.99</span> per order, however many items you buy. We post by Royal Mail Tracked 48 to UK addresses.</p></details>
+      <details><summary>When will my order arrive?</summary><p>Everything is printed to order. Your order leaves us within <span data-days>7</span> days, then usually takes 2 to 3 working days. We email you the tracking number when it's posted.</p></details>
+      <details><summary>Do I need an account to order?</summary><p>No. Add what you like to your basket and pay as a guest. We email you a receipt and a link to follow your order.</p></details>
+      <details><summary>Can I send something back?</summary><p>Yes. You can cancel within 14 days of receiving your order for any reason. If something arrives faulty or damaged, we'll replace it or refund you, including postage. See section 12 of our <a href="terms.html#shop">terms</a>.</p></details>
+      <details><summary>Are the pots and kitchen pieces food safe?</summary><p>No. Our pieces are made from PETG plastic. Kitchen pieces are for holding and storing, and the pots are for plants, not for food or drink.</p></details>
+    </div>
+    <h3>Websites</h3>
+    <div class="grp">
+      <details><summary>What do I pay today?</summary><p>Just the one-off £50 setup fee. Your monthly plan doesn't start until your website is live<span class="trial-txt"></span>.</p></details>
+      <details><summary>What do I need to get started?</summary><p>An email address and a few details about your business. After payment, a short questionnaire asks about your business, your style and your words. You can add your logo and photos, and your answers save as you go so you can finish later.</p></details>
+      <details><summary>Can I see my website before it goes live?</summary><p>Yes. You'll get a private preview link in your account. Ask for as many changes as you like while you're reviewing it. Nothing goes live until you're happy.</p></details>
+      <details><summary>How do changes work after my site is live?</summary><p>Request a change from your account. Each plan includes some changes every month (1, 3 or 6), and extra ones are £10 each. We'll always ask before charging for an extra change.</p></details>
+      <details><summary>Where will my website live?</summary><p>We host it for you at an address like <b>yourbusiness.axencraft.co.uk</b>. If you have your own domain name, you can connect it from your account.</p></details>
+      <details><summary>Can I change plan or cancel?</summary><p>Yes. Use "Manage billing" in your account to switch plan, update your card, see invoices or cancel.</p></details>
+    </div>
   </div>
 </div></section>
 
 <section class="sec mat" id="contact"><div class="wrap wait-in">
   <div>
-    <h3>Hear about new products</h3>
-    <p class="lead">We add new prints and grow kits through the year. Leave your email and we'll tell you when something new arrives. That's the only thing we'll use it for, and you can ask us to stop at any time.</p>
+    <h2 class="hd" data-reveal>Hear about new products</h2>
+    <p class="lead" data-reveal>We add new prints and grow kits through the year. Leave your email and we'll tell you when something new arrives. That's the only thing we'll use it for, and you can ask us to stop at any time.</p>
   </div>
-  <form id="f">
+  <form id="f" data-reveal="lay">
     <label>Name<input type="text" id="wl-name" autocomplete="name" required></label>
     <label>Email<input type="email" id="wl-email" autocomplete="email" required></label>
     <div class="checks" role="group" aria-label="Interested in">
@@ -330,60 +507,128 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
 </main>
 
 <footer><div class="wrap foot">
-  <nav aria-label="Footer"><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="print.html">Print Studio</a><a href="grow.html">Grow Studio</a><a href="account.html">Log in</a><a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></nav>
+  <nav aria-label="Footer"><a href="#templates">Digital Studio</a><a href="print.html">Print Studio</a><a href="grow.html">Grow Studio</a><a href="#faq">Questions</a><a href="account.html">Log in</a><a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></nav>
   <nav aria-label="Legal"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></nav>
   <p>© Axencraft is a trading name of Freddie Joseph Green, sole trader. Upover, Stockleigh English, Crediton, EX17 4DD.</p>
 </div></footer>
 
+<script src="motion.js"></script>
+<script src="shop/basket.js"></script>
+<script src="shop/pots.js"></script>
 <script>
 var SB_URL="https://cvkgnrrskoptdtojcwvz.supabase.co";
 var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2a2ducnJza29wdGR0b2pjd3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTE2OTksImV4cCI6MjEwNzM4NzY5OX0.WsI6YpOpyd6q4wTV0q5FJzbjs0K3qnDTL4FNhfcbwNg";
-document.querySelectorAll('[data-interest]').forEach(function(a){
-  a.addEventListener('click',function(){
-    document.getElementById('wl-print').checked=a.dataset.interest==='print';
-    document.getElementById('wl-grow').checked=a.dataset.interest==='grow';
-  });
-});
-/* Free trial length, shown in the pricing and FAQ */
+
+/* Free trial length, shown in the pricing and questions */
 fetch(SB_URL+"/rest/v1/rpc/public_trial_days",{method:"POST",headers:{"Content-Type":"application/json","apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY},body:"{}"})
   .then(function(r){return r.ok?r.json():0}).then(function(d){
     d=+d||0;if(d>0)document.querySelectorAll('.trial-txt').forEach(function(el){el.textContent=', after a '+d+'-day free trial'});
   }).catch(function(){});
+
+/* Product news sign-up */
 document.getElementById('f').addEventListener('submit',function(e){
   e.preventDefault();
   var msg=document.getElementById('msg'),btn=document.getElementById('wl-btn');
   var picks=['print','grow'].filter(function(k){return document.getElementById('wl-'+k).checked});
   if(!picks.length){msg.textContent="Choose at least one studio.";return;}
   if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(document.getElementById('wl-email').value.trim())){msg.textContent="Please check your email address.";return;}
-  var interest=picks.join(',');
   btn.disabled=true;msg.textContent="Saving...";
   fetch(SB_URL+"/rest/v1/waitlist",{
     method:"POST",
     headers:{"Content-Type":"application/json","apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Prefer":"return=minimal"},
-    body:JSON.stringify({name:document.getElementById('wl-name').value.trim(),email:document.getElementById('wl-email').value.trim(),interest:interest})
+    body:JSON.stringify({name:document.getElementById('wl-name').value.trim(),email:document.getElementById('wl-email').value.trim(),interest:picks.join(',')})
   }).then(function(r){
     if(!r.ok)throw new Error(r.status);
     document.getElementById('f').reset();
     msg.textContent="Thanks! We'll email you when something new arrives.";
   }).catch(function(){
-    msg.textContent="Something went wrong. Please try again in a moment.";
+    msg.textContent="That didn't save. Check your connection and try again.";
   }).finally(function(){btn.disabled=false;});
 });
 
-/* Opening sample: the colour swatches switch which style the sample website shows */
+/* Opening still life: the sample website scales to fit, swatches switch its style,
+   and on a desktop the pieces shift slightly with the pointer */
 (function(){
   var view=document.querySelector('.screen .view'),fr=document.getElementById('screen-frame'),name=document.getElementById('screen-name');
   function fit(){var w=view.clientWidth;if(w)fr.style.transform='scale('+(w/1280)+')'}
   if('ResizeObserver' in window)new ResizeObserver(fit).observe(view);
-  window.addEventListener('resize',fit);fit();
-  var bs=document.querySelectorAll('.swatches button');
+  addEventListener('resize',fit);fit();
+  var bs=document.querySelectorAll('.digital .swatches button');
   bs.forEach(function(b){b.onclick=function(){
     bs.forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});
     fr.src='templates/standard-'+b.dataset.st+'/';name.textContent=b.getAttribute('aria-label')+' style, shown as '+b.dataset.as;
   }});
+  document.getElementById('still-pot').innerHTML=potSVG('twist','#FF671F',{});
+  var pots=[['classic','#009639'],['faceted','#FFFFFF'],['twist','#FF671F'],['bulb','#001489']];
+  document.getElementById('bench-pots').innerHTML=pots.map(function(p){return potSVG(p[0],p[1],{})}).join('');
+  if(AXC_FX.still||!matchMedia('(pointer:fine)').matches)return;
+  var still=document.querySelector('.still'),items=still.querySelectorAll('[data-depth]'),raf=0,mx=0,my=0;
+  addEventListener('pointermove',function(e){mx=e.clientX/innerWidth-.5;my=e.clientY/innerHeight-.5;if(!raf)raf=requestAnimationFrame(move)},{passive:true});
+  function move(){raf=0;items.forEach(function(el){var d=+el.dataset.depth;el.style.translate=(-mx*d).toFixed(1)+'px '+(-my*d).toFixed(1)+'px'})}
 })();
 
-/* Template gallery: live previews of each style at the chosen plan level */
+/* How it works: one tab per studio */
+(function(){
+  var tabs=[].slice.call(document.querySelectorAll('[role="tab"]'));
+  function pick(t,focus){
+    tabs.forEach(function(x){
+      var on=x===t,p=document.getElementById(x.getAttribute('aria-controls'));
+      x.setAttribute('aria-selected',String(on));x.tabIndex=on?0:-1;
+      p.hidden=!on;p.classList.toggle('show',on);
+    });
+    if(focus)t.focus();
+  }
+  tabs.forEach(function(t,i){
+    t.onclick=function(){pick(t)};
+    t.onkeydown=function(e){
+      var k=e.key,n=k==='ArrowRight'||k==='ArrowDown'?1:k==='ArrowLeft'||k==='ArrowUp'?-1:0;
+      if(k==='Home'){e.preventDefault();pick(tabs[0],1)}else if(k==='End'){e.preventDefault();pick(tabs[tabs.length-1],1)}
+      else if(n){e.preventDefault();pick(tabs[(i+n+tabs.length)%tabs.length],1)}
+    };
+  });
+})();
+
+/* Popular prints and the grow shelf, from the live price list */
+AXC_BASKET.load().then(function(CAT){
+  var B=AXC_BASKET,money=B.money;
+  document.querySelectorAll('[data-postage]').forEach(function(e){e.textContent=money(CAT.postage.pence)});
+  document.querySelectorAll('[data-days]').forEach(function(e){e.textContent=CAT.dispatchDays});
+  var PICKS=['spice_rack_3_tier','cable_bar_5_slot','key_rail_5_peg','phone_stand','socket_rail_quarter_inch_x10','desk_tidy_3_section','plant_pot_120mm','headphone_hook_under_desk','hose_hanger','wall_hook'];
+  var colour='orange',names={},rail=document.getElementById('rail'),cards=[];
+  CAT.colours.forEach(function(c){names[c.id]=c.name});
+  try{var saved=localStorage.getItem('axc-print-colour');if(names[saved])colour=saved}catch(_){}
+  var dots=document.getElementById('rail-dots');
+  dots.innerHTML=CAT.colours.map(function(c){return '<button type="button" data-c="'+c.id+'" aria-label="'+c.name+'" title="'+c.name+'" style="--c:'+c.hex+'"></button>'}).join('');
+  PICKS.forEach(function(id){
+    var it=B.item(id);if(!it)return;
+    var el=document.createElement('article');el.className='prod';
+    el.innerHTML='<a class="ph" href="print.html" tabindex="-1" aria-hidden="true"><img width="720" height="540" loading="lazy" decoding="async" alt=""></a>'+
+      '<h3>'+it.name+'</h3><p>'+it.desc+'</p>'+
+      '<div class="buy"><span class="price">'+money(it.price)+(it.pack?'<small>'+it.pack+'</small>':'')+'</span><button type="button" class="add">Add</button></div>';
+    var c={it:it,img:el.querySelector('img'),btn:el.querySelector('.add')};
+    c.btn.onclick=function(){B.add(it.id,{colour:colour},1,{from:c.btn})};
+    cards.push(c);rail.appendChild(el);
+  });
+  function paint(){
+    document.getElementById('rail-colour-name').textContent=names[colour];
+    dots.querySelectorAll('button').forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.c===colour))});
+    cards.forEach(function(c){c.img.src='print/'+c.it.id+'-use-'+colour+'.webp';c.img.alt=c.it.name+' in '+names[colour].toLowerCase();c.btn.setAttribute('aria-label','Add '+c.it.name+' in '+names[colour].toLowerCase()+' to basket')});
+  }
+  dots.onclick=function(e){var b=e.target.closest('button');if(!b)return;colour=b.dataset.c;try{localStorage.setItem('axc-print-colour',colour)}catch(_){}paint()};
+  paint();
+
+  var shelf=document.getElementById('shelf'),hex={};CAT.colours.forEach(function(c){hex[c.id]=c.hex});
+  var SH=[['classic','green','5 cm',.74],['faceted','yellow','7.5 cm',.88],['twist','orange','10 cm',1],['bulb','blue','7.5 cm',.88]];
+  SH.forEach(function(s){
+    var f=document.createElement('figure');
+    f.innerHTML=potSVG(s[0],hex[s[1]],{scale:s[3]})+'<figcaption>'+CAT.grow.styles.filter(function(x){return x.id===s[0]})[0].name+'</figcaption>';
+    f.onclick=function(){location.href='grow.html'};
+    shelf.appendChild(f);
+  });
+  if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(es[0].isIntersecting){shelf.classList.add('in');io.disconnect()}},{threshold:.3});io.observe(shelf)}else shelf.classList.add('in');
+}).catch(function(){document.getElementById('prints').hidden=true});
+
+/* Website styles gallery: live previews of each style at the chosen plan level */
 (function(){
   var STYLES=[['classic','Classic','Serif type and fine rules, like good stationery.','an accountancy practice'],['bold','Bold','Huge capitals and flat colour, like a workshop poster.','a garage'],
     ['minimal','Minimal','Thin lines and plenty of space, like a quiet catalogue.','a ceramics studio'],['playful','Playful','Chunky outlines and bright stickers.','a dog groomer'],
@@ -400,9 +645,9 @@ document.getElementById('f').addEventListener('submit',function(e){
   function picked(){try{return localStorage.getItem('axc-style')||''}catch(_){return ''}}
   function showPicked(){
     var st=picked(),el=document.getElementById('style-picked');
-    el.hidden=!NAMES[st];if(NAMES[st])el.innerHTML='Style chosen: <b>'+NAMES[st]+'</b>. We\u2019ll have it ready for you after payment. You can still change it later.';
+    el.hidden=!NAMES[st];if(NAMES[st])el.innerHTML='Style chosen: <b>'+NAMES[st]+'</b>. We’ll have it ready for you after payment. You can still change it later.';
   }
-  function draw(){
+  function draw(first){
     box.innerHTML='';
     var st=picked();
     STYLES.forEach(function(x){
@@ -410,19 +655,21 @@ document.getElementById('f').addEventListener('submit',function(e){
       var card=document.createElement('div');card.className='tpl'+(st===x[0]?' chosen':'');
       card.innerHTML='<a class="shot" href="'+url+'" target="_blank" rel="noopener" aria-label="Preview the '+x[1]+' style, '+level+' version (opens in a new tab)"><iframe loading="lazy" tabindex="-1" aria-hidden="true" title="" src="'+url+'"></iframe></a>'+
         '<div class="t"><div><b>'+x[1]+'</b><small>'+x[2]+' Shown as '+x[3]+'.</small></div>'+
-        '<div class="tpl-actions"><a href="'+url+'" target="_blank" rel="noopener">Preview<span class="sr"> the '+x[1]+' style (opens in a new tab)</span></a><button type="button" class="pick" data-style="'+x[0]+'" aria-pressed="'+(st===x[0])+'">'+(st===x[0]?'\u2713 Chosen':'Choose this style')+'</button></div></div>';
+        '<div class="tpl-actions"><a href="'+url+'" target="_blank" rel="noopener" aria-label="Preview the '+x[1]+' style (opens in a new tab)">Preview</a><button type="button" class="pick" data-style="'+x[0]+'" aria-pressed="'+(st===x[0])+'">'+(st===x[0]?'✓ Chosen':'Choose this style')+'</button></div></div>';
+      if(first)card.setAttribute('data-reveal','lay');
       box.appendChild(card);
     });
-    var later=document.createElement('div');later.className='tpl later';
-    later.innerHTML='<b>Not sure yet?</b><span>You don\u2019t have to choose today. Pick your style after you sign up, and change your mind any time before we build.</span><a class="btn" href="#pricing">See pricing</a>';
+    var later=document.createElement('div');later.className='tpl later';if(first)later.setAttribute('data-reveal','lay');
+    later.innerHTML='<b>Not sure yet?</b><span>You don’t have to choose today. Pick your style after you sign up, and change your mind any time before we build.</span><a class="btn" href="#pricing">See plans and prices</a>';
     box.appendChild(later);
     box.querySelectorAll('.pick').forEach(function(b){
       b.onclick=function(){
         try{localStorage.setItem('axc-style',b.dataset.style)}catch(_){}
         draw();showPicked();
-        document.getElementById('pricing').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+        AXC_FX.toast('Style chosen: '+NAMES[b.dataset.style],'We’ll have it ready after you pay. You can change it later.',{label:'See plans',run:function(){document.getElementById('pricing').scrollIntoView({behavior:AXC_FX.still?'auto':'smooth'})}});
       };
     });
+    if(first){Array.prototype.forEach.call(box.children,function(c,i){c.style.setProperty('--i',i%4)});AXC_FX.reveal(box)}
     scale();
   }
   showPicked();
@@ -430,7 +677,7 @@ document.getElementById('f').addEventListener('submit',function(e){
     b.onclick=function(){level=b.dataset.level;document.querySelectorAll('.levels button').forEach(function(x){x.setAttribute('aria-pressed',String(x===b))});document.getElementById('level-note').textContent=LEVEL_NOTES[level];draw()};
   });
   document.getElementById('level-note').textContent=LEVEL_NOTES[level];
-  window.addEventListener('resize',scale);draw();
+  addEventListener('resize',scale);draw(true);
 })();
 </script>
 </body>

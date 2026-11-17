@@ -12,25 +12,35 @@
 <style>
 *,*::before,*::after{box-sizing:border-box}
 body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--display)}
-.app>nav{display:flex;justify-content:space-between;align-items:center}
+.app>nav{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.app>nav .logo{white-space:nowrap}
 .app>nav a{text-decoration:none}
 main{max-width:680px;margin:0 auto 64px;padding:0 22px}
 h1{font-size:clamp(34px,6vw,48px);font-stretch:75%;line-height:1;margin:6px 0 10px}
 .muted{color:var(--muted)}
 .card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-top:20px}
-.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.steps li{text-align:center;font-size:15px;font-weight:700;padding:10px 6px;border-radius:6px;background:var(--line);color:var(--muted)}
-.steps li.on{background:var(--brand);color:#fff}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:0;position:relative;counter-reset:o}
+.steps::before{content:"";position:absolute;left:16.6%;right:16.6%;top:19px;height:4px;border-radius:2px;background:var(--line)}
+.steps::after{content:"";position:absolute;left:16.6%;top:19px;height:4px;border-radius:2px;background:var(--brand);width:calc(66.8% * var(--done,0));transition:width 1s var(--ease-out,ease) .3s}
+.steps li{counter-increment:o;position:relative;z-index:1;display:grid;justify-items:center;gap:8px;text-align:center;font-size:15px;font-weight:700;color:var(--muted)}
+.steps li::before{content:counter(o);display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--card);border:3px solid var(--line);color:var(--muted);font-weight:800;transition:background .4s,border-color .4s,color .4s,transform .4s var(--ease-out,ease)}
+.steps li.on{color:var(--ink)}
+.steps li.on::before{content:"\2713";background:var(--brand);border-color:var(--brand);color:#fff}
+.steps li.now::before{box-shadow:0 0 0 6px color-mix(in srgb,var(--brand) 22%,transparent)}
+.thanks{display:grid;place-items:center;width:64px;height:64px;border-radius:50%;background:var(--hot);color:#1d0d05;margin-bottom:12px}
+@media (prefers-reduced-motion:no-preference){.thanks{animation:pop .7s cubic-bezier(.3,1.6,.5,1) both}.thanks path{stroke-dasharray:30;stroke-dashoffset:30;animation:tick .5s ease-out .45s forwards}@keyframes pop{from{transform:scale(0)}}@keyframes tick{to{stroke-dashoffset:0}}}
 table{width:100%;border-collapse:collapse;font-size:16px}
 td{padding:7px 0;vertical-align:top}
 td+td{text-align:right;white-space:nowrap}
 td span{display:block;font-size:14px;color:var(--muted)}
 tr.t td{border-top:1px solid var(--line);font-weight:800}
 </style>
+<link rel="stylesheet" href="motion.css">
 </head>
 <body class="app">
-<nav aria-label="Main"><a class="logo" href="index.html">Axencraft</a><span><a href="print.html">Print Studio</a> · <a href="grow.html">Grow Studio</a></span></nav>
+<nav aria-label="Main"><a class="logo" href="index.html">Axencraft</a><span style="white-space:nowrap"><a href="print.html">Print</a> &nbsp;·&nbsp; <a href="grow.html">Grow</a></span></nav>
 <main>
+  <div class="thanks" id="thanks" hidden aria-hidden="true"><svg width="30" height="30" viewBox="0 0 30 30" fill="none" stroke="currentColor" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 15.5l5.5 5.5L23 9.5"/></svg></div>
   <h1 id="h">Your order</h1>
   <p id="lead" class="muted">Loading...</p>
   <div id="body" hidden>
@@ -57,7 +67,9 @@ function load(){
       printing:'Your order is being printed.',dispatched:'Your order is on its way.',cancelled:'This order was cancelled.',refunded:'This order was refunded.'}[o.status];
     document.getElementById('lead').innerHTML=(justPaid?'Your order reference is <b>'+esc(o.ref)+'</b>. We’ve emailed you a receipt. ':'')+lead;
     var order=['paid','printing','dispatched'],at=order.indexOf(o.status);
-    document.querySelectorAll('#steps li').forEach(function(li,i){li.classList.toggle('on',at>=i)});
+    document.querySelectorAll('#steps li').forEach(function(li,i){li.classList.toggle('on',at>=i);li.classList.toggle('now',at===i)});
+    var stp=document.getElementById('steps');requestAnimationFrame(function(){stp.style.setProperty('--done',Math.max(0,at)/2)});
+    document.getElementById('thanks').hidden=!justPaid;
     document.getElementById('track').innerHTML=o.tracking?'Royal Mail tracking: <a href="https://www.royalmail.com/track-your-item#/tracking-results/'+encodeURIComponent(o.tracking)+'">'+esc(o.tracking)+'</a>':
       (at>-1&&at<2?'<span class="muted">We email you the tracking number when it’s posted.</span>':'');
     document.getElementById('items').innerHTML=o.items.map(function(i){return '<tr><td>'+i.qty+' × <b>'+esc(i.name)+'</b>'+(i.details?'<span>'+esc(i.details)+'</span>':'')+'</td><td>'+money(i.unit_pence*i.qty)+'</td></tr>'}).join('')+
@@ -69,5 +81,6 @@ function load(){
 }
 load();
 </script>
+<script src="motion.js"></script>
 </body>
 </html>

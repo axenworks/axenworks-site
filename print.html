@@ -22,7 +22,7 @@ a{color:inherit;text-underline-offset:.2em}
 h1,h2,h3,h4{font-stretch:75%;font-weight:800;letter-spacing:-.005em;margin:0;text-wrap:balance}
 p{margin:0}
 .wrap{width:min(1120px,100% - 48px);margin-inline:auto}
-.wrap.wide{width:min(1400px,100% - 48px)}
+.wrap.wide{width:min(1240px,100% - 48px)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 :focus-visible{outline:3px solid var(--hot);outline-offset:3px;border-radius:3px}
 .btn{display:inline-flex;align-items:center;justify-content:center;padding:13px 20px;border-radius:8px;border:2px solid var(--brand);background:var(--brand);color:#fff;font:inherit;font-weight:700;line-height:1.2;text-decoration:none;cursor:pointer}
@@ -52,7 +52,7 @@ button:disabled{opacity:.6;cursor:wait}
 .pick{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px}
 .pick>b{font-size:15px}
 .pick>b span{font-weight:400;color:var(--muted)}
-.swatches{display:flex;gap:8px}
+.swatches{display:flex;flex-wrap:wrap;gap:8px}
 .swatches button{width:36px;height:36px;padding:0;border-radius:50%;border:0;cursor:pointer;background:var(--c);box-shadow:inset 0 0 0 1px rgba(0,0,0,.28),inset 0 6px 8px -3px rgba(255,255,255,.55);transition:transform .15s}
 .swatches button.matte{box-shadow:inset 0 0 0 1px rgba(0,0,0,.28);background:#1b1b1c}
 .swatches button:hover{transform:translateY(-2px)}
@@ -105,19 +105,52 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
 .foot nav{display:flex;flex-wrap:wrap;gap:6px 20px}
 .foot a{color:#fff;display:inline-block;padding:10px 0}
 .foot p{flex-basis:100%;max-width:70ch}
+/* ---------- refinements ---------- */
+.top nav a{position:relative}
+.top nav a:hover{text-decoration:none}
+.top nav a::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;background:var(--hot);transform:scaleX(0);transform-origin:0 50%;transition:transform .3s var(--ease-out,ease)}
+.top nav a:hover::after,.top nav a[aria-current]::after{transform:scaleX(1)}
+.intro h1{font-size:clamp(52px,7.4vw,108px);line-height:.86}
+.guide{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px 12px;counter-reset:g}
+.guide li{counter-increment:g;display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.2);border:1px solid var(--mat-line);border-radius:999px;padding:6px 16px 6px 6px;color:#fff;font-weight:700;font-size:15px}
+.guide li::before{content:counter(g);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--tape);color:var(--tape-ink);font-size:14px}
+.guide li span{font-weight:400;color:#c9dbd0}
+@media (prefers-reduced-motion:no-preference){.js .guide li{animation:guide-in .6s var(--ease-out,ease) both}.js .guide li:nth-child(1){animation-delay:2s}.js .guide li:nth-child(2){animation-delay:2.12s}.js .guide li:nth-child(3){animation-delay:2.24s}@keyframes guide-in{from{opacity:0;transform:translateY(10px)}}}
+.controls{box-shadow:0 10px 24px -22px rgba(20,50,35,.6);background:color-mix(in srgb,var(--bg) 92%,transparent);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.pick .hint{flex-basis:100%;font-size:14px;margin-top:-2px}
+@media(max-width:620px){.controls{padding:10px 0}.controls .seg{display:none}.controls .wrap{gap:8px}.pick{width:100%}.swatches{flex:1 1 100%;min-width:0;flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;padding:4px;margin:-4px}.swatches button{flex:none}}
+@media(max-width:620px){.pick .hint{display:none}}
+.item{border-radius:10px;box-shadow:var(--sh-card);transition:box-shadow .35s,transform .35s var(--ease-out,ease)}
+.item:hover{box-shadow:var(--sh-card-up);transform:translateY(-3px)}
+.item .pic{border-radius:6px}
+.item .pic img{transition:opacity .3s,transform .8s var(--ease-out,ease)}
+.item:hover .pic img{transform:scale(1.035)}
+.item .pic img.swap{opacity:.35}
+.item .add{border-radius:10px}
+.thumbs button{transition:border-color .2s}
+.how ol{counter-reset:h}
+.how li{counter-increment:h;position:relative;padding-top:56px}
+.how li::before{content:counter(h);position:absolute;left:18px;top:16px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--tape);color:var(--tape-ink);font-weight:800;font-size:15px}
 </style>
+<link rel="stylesheet" href="motion.css">
+<script>document.documentElement.classList.add("js")</script>
 </head>
-<body>
+<body data-shopbar>
 <header class="mat">
-  <div class="wrap">
+  <div class="wrap wide">
     <div class="top">
       <a href="index.html" class="brand"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M3 27 15 3l12 24z" fill="none" stroke="#ff5a2b" stroke-width="3.2" stroke-linejoin="round"/><path d="M10.5 20h9" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>Axencraft</a>
-      <nav aria-label="Main"><a href="index.html">Digital Studio</a><a href="print.html" aria-current="page">Print Studio</a><a href="grow.html">Grow Studio</a><a href="account.html">Log in</a><button type="button" class="bk-btn" data-basket aria-label="Basket">Basket <span class="bk-count">0</span></button></nav>
+      <nav aria-label="Main"><a href="index.html#templates">Digital Studio</a><a href="print.html" aria-current="page">Print Studio</a><a href="grow.html">Grow Studio</a><a href="account.html">Log in</a><button type="button" class="bk-btn" data-basket aria-label="Basket"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h12l-1 10H5z"/><path d="M7 7V5.5a3 3 0 0 1 6 0V7" stroke-linecap="round"/></svg><span class="bk-t">Basket</span> <span class="bk-count">0</span></button></nav>
     </div>
     <div class="intro">
       <span class="tape">Made to order</span>
-      <h1>Print Studio</h1>
-      <p>Organisers for the workshop, garage, garden, kitchen, home and desk, 3D printed to order in Devon in eight colours. Pick a colour, add what you need, and we'll print it for you.</p>
+      <h1 class="printed"><span class="ink">Print Studio</span><span class="nozzle" aria-hidden="true"><i></i></span></h1>
+      <p>Organisers for the workshop, garage, garden, kitchen, home and desk, 3D printed to order in Devon in eight colours.</p>
+      <ol class="guide" aria-label="How to order">
+        <li>Choose a colour <span>below</span></li>
+        <li>Add what you need</li>
+        <li>Check out <span>and we print it</span></li>
+      </ol>
     </div>
   </div>
   <div class="ruler" aria-hidden="true"></div>
@@ -128,6 +161,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
     <div class="pick">
       <b>Colour: <span id="colour-name"></span></b>
       <div class="swatches" id="swatches" role="group" aria-label="Choose a colour"></div>
+      <span class="hint"><svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><circle cx="7" cy="7" r="6" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 6v4M7 3.6v.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>Everything you add is printed in the colour picked here. Pick again for the next item.</span>
     </div>
     <div class="seg" role="group" aria-label="Choose which pictures to show">
       <button type="button" data-view="solo" aria-pressed="false">On its own</button>
@@ -143,7 +177,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
   <p class="note">These pictures are computer drawings made from the real designs, so you can see every colour before anything is printed. Printed parts have fine layer lines and colours can look a little different on your screen. Sizes are length by width by height. The tools, jars, plants and other things shown with them are not included. Kitchen pieces are for holding and storing, not for direct contact with food. The colour you have chosen above is the colour we print.</p>
 </div>
 
-<section class="how mat" id="ordering"><div class="wrap">
+<section class="how mat" id="ordering"><div class="wrap wide">
   <h2>How ordering works</h2>
   <ol>
     <li><b>Choose a colour</b><span>Pick from the eight colours at the top. Everything you add is printed in the colour shown.</span></li>
@@ -159,6 +193,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
   <p>© Axencraft is a trading name of Freddie Joseph Green, sole trader. Upover, Stockleigh English, Crediton, EX17 4DD.</p>
 </div></footer>
 
+<script src="motion.js"></script>
 <script src="shop/basket.js"></script>
 <script>
 var VIEW_NAMES={solo:'On its own',use:'In use'};
@@ -188,7 +223,7 @@ AXC_BASKET.load().then(function(CAT){
     t.onclick=function(){show(g.id,true)};tabs.appendChild(t);
     var grid=sec.querySelector('.grid');
     g.items.forEach(function(it){
-      var el=document.createElement('article');el.className='item';
+      var el=document.createElement('article');el.className='item';el.setAttribute('data-reveal','');el.style.setProperty('--i',grid.children.length%3);
       el.innerHTML='<span class="pic"><img width="720" height="540" loading="lazy" decoding="async" alt=""></span>'+
         '<div class="thumbs" role="group" aria-label="Pictures of the '+it.name+'">'+
         ['solo','use'].map(function(v){return '<button type="button" data-view="'+v+'"><img width="96" height="72" loading="lazy" decoding="async" alt="">'+VIEW_NAMES[v]+'</button>'}).join('')+'</div>'+
@@ -198,7 +233,7 @@ AXC_BASKET.load().then(function(CAT){
       var card={slug:it.id,name:it.name,view:'use',el:el,img:el.querySelector('.pic img'),btns:el.querySelectorAll('.thumbs button'),add:el.querySelector('.add')};
       card.btns.forEach(function(b){b.onclick=function(){card.view=b.dataset.view;paint(card)}});
       card.add.onclick=function(){
-        B.add(it.id,{colour:colour},1);
+        B.add(it.id,{colour:colour},1,{from:card.add});
         card.add.textContent='Added in '+names[colour].toLowerCase();card.add.classList.add('done');
         clearTimeout(card.t);card.t=setTimeout(function(){card.add.textContent='Add to basket';card.add.classList.remove('done')},2200);
       };
@@ -225,7 +260,9 @@ AXC_BASKET.load().then(function(CAT){
   show(secs[hash]?hash:get('axc-print-cat',RANGE[0].id));
   window.addEventListener('hashchange',function(){var h=location.hash.slice(1);if(secs[h])show(h,true)});
   function paint(card){
-    card.img.src=src(card.slug,card.view);
+    var next=src(card.slug,card.view);
+    if(card.img.getAttribute('src')&&card.img.getAttribute('src')!==next){card.img.classList.add('swap');card.img.onload=function(){card.img.classList.remove('swap')}}
+    card.img.src=next;
     card.img.alt=card.name+' in '+names[colour].toLowerCase()+(card.view==='use'?', shown in use':', shown on its own');
     card.btns.forEach(function(b){
       b.setAttribute('aria-pressed',String(b.dataset.view===card.view));
@@ -255,6 +292,7 @@ AXC_BASKET.load().then(function(CAT){
     cards.forEach(function(c){c.view=b.dataset.view});paintAll();
   }});
   paintAll();
+  AXC_FX.reveal(main);
 }).catch(function(){
   document.getElementById('range').innerHTML='<p class="wrap wide loading">The range didn’t load. Please refresh the page.</p>';
 });

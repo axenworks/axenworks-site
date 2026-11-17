@@ -39,6 +39,7 @@ footer{{border-top:1px solid var(--line);padding:26px 22px;color:var(--muted);fo
 footer .in{{max-width:1040px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 22px}} footer a{{color:var(--muted)}}
 </style>
 <link rel="stylesheet" href="site.css">
+<link rel="stylesheet" href="motion.css">
 </head>
 <body class="app">
 <nav aria-label="Main"><a class="brand" href="index.html">Axencraft</a><a class="r" href="account.html">Log in</a></nav>
@@ -49,6 +50,7 @@ footer .in{{max-width:1040px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 2
 {body}
 </main>
 <footer><div class="in"><span>© Axencraft</span><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a><a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></div></footer>
+<script src="motion.js"></script>
 </body>
 </html>
 '''

@@ -39,10 +39,10 @@ button:disabled{opacity:.6;cursor:wait}
 /* the kit builder */
 .builder{padding:clamp(36px,5vw,64px) 0}
 .bgrid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);align-items:start}
-@media(max-width:860px){.bgrid{grid-template-columns:1fr}}
+@media(max-width:860px){.bgrid{grid-template-columns:minmax(0,1fr)}}
 .stage{position:sticky;top:16px;background:#ead9b0;border-radius:6px;aspect-ratio:1;display:grid;place-items:center;overflow:hidden}
-@media(max-width:860px){.stage{position:static;max-width:440px;width:100%;margin-inline:auto}}
-.stage svg{width:86%;height:86%}
+@media(max-width:860px){.stage{position:relative;top:auto;max-width:440px;width:100%;margin-inline:auto}}
+.stage .potwrap{width:86%;height:86%}.stage .potwrap svg{width:100%;height:100%}
 .stage figcaption{position:absolute;left:14px;bottom:12px;font-size:13px;color:#5a4a2a}
 .opts h2{font-size:clamp(34px,4.4vw,52px);line-height:.95}
 .opts .lead{color:var(--muted);margin:10px 0 0;max-width:52ch}
@@ -54,6 +54,7 @@ legend span{font-weight:400;color:var(--muted)}
 .choice input{position:absolute;opacity:0;inset:0;margin:0;pointer-events:none}
 .choice label{display:block;border:2px solid var(--line);border-radius:8px;background:var(--card);padding:12px 14px;cursor:pointer;height:100%}
 .choice label b{display:block;font-size:17px}
+.choice label .p{display:block;font-weight:800;font-size:16px;color:var(--ink);margin:2px 0 4px}
 .choice label span{font-size:14px;color:var(--muted)}
 .choice label s{color:var(--muted);font-size:14px;margin-left:4px}
 .choice input:checked+label{border-color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand)}
@@ -106,19 +107,72 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
 .foot nav{display:flex;flex-wrap:wrap;gap:6px 20px}
 .foot a{color:#fff;display:inline-block;padding:10px 0}
 .foot p{flex-basis:100%;max-width:70ch}
+/* ---------- refinements ---------- */
+.top nav a{position:relative}
+.top nav a:hover{text-decoration:none}
+.top nav a::after{content:"";position:absolute;left:0;right:0;bottom:4px;height:2px;background:var(--hot);transform:scaleX(0);transform-origin:0 50%;transition:transform .3s var(--ease-out,ease)}
+.top nav a:hover::after,.top nav a[aria-current]::after{transform:scaleX(1)}
+.intro h1{font-size:clamp(52px,7.4vw,108px);line-height:.86}
+.guide{list-style:none;margin:10px 0 0;padding:0;display:flex;flex-wrap:wrap;gap:10px 12px;counter-reset:g}
+.guide li{counter-increment:g;display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.2);border:1px solid var(--mat-line);border-radius:999px;padding:6px 16px 6px 6px;color:#fff;font-weight:700;font-size:15px}
+.guide li::before{content:counter(g);display:grid;place-items:center;width:28px;height:28px;border-radius:50%;background:var(--tape);color:var(--tape-ink);font-size:14px}
+.guide li span{font-weight:400;color:#c9dbd0}
+#kitform{counter-reset:st}
+#kitform fieldset{counter-increment:st}
+#kitform legend{display:flex;align-items:center;gap:10px}
+#kitform legend::before{content:counter(st);display:grid;place-items:center;flex:none;width:30px;height:30px;border-radius:50%;background:var(--brand);color:#fff;font-size:15px;font-weight:800}
+.choice label{transition:border-color .2s,box-shadow .2s,transform .2s var(--ease-out,ease)}
+.choice label:hover{border-color:var(--ink)}
+.styles label svg{transition:transform .4s var(--ease-out,ease)}
+.styles label:hover svg{transform:translateY(-4px) rotate(-3deg)}
+.stage{border-radius:12px;background:radial-gradient(120% 90% at 50% 20%,#f4e8c9,#e3cf9f)}
+.stage::before{content:"";position:absolute;inset:0;background:var(--grain);pointer-events:none}
+.stage .sill{position:absolute;left:8%;right:8%;bottom:9%;height:3.4%;border-radius:3px;background:linear-gradient(#b98d4f,#9c7339);box-shadow:0 10px 16px -10px rgba(60,40,10,.6)}
+#stage{position:relative;z-index:1;width:100%;height:100%;display:grid;place-items:center}
+.sprout{transform-box:fill-box;transform-origin:50% 100%}
+.leaf.l1{transform-box:fill-box;transform-origin:100% 80%}.leaf.l2{transform-box:fill-box;transform-origin:0 80%}
+@media (prefers-reduced-motion:no-preference){
+  #stage .potwrap.pop{animation:pot-pop .55s var(--ease-out,ease)}
+  @keyframes pot-pop{0%{transform:scale(.9) rotate(-3deg);opacity:.5}60%{transform:scale(1.03) rotate(1deg);opacity:1}100%{transform:none}}
+  #stage .potwrap.grow .sprout{animation:sprout 1.1s cubic-bezier(.3,1.5,.5,1) both}
+  #stage .potwrap.grow .leaf{animation:leaf .8s cubic-bezier(.3,1.6,.5,1) .45s both}
+  @keyframes sprout{from{transform:scaleY(0)}}
+  @keyframes leaf{from{transform:scale(0)}}
+}
+.go{border-radius:10px;display:inline-flex;align-items:center;gap:10px}
+@media(max-width:860px){.total{position:sticky;bottom:0;z-index:3;background:color-mix(in srgb,var(--bg) 94%,transparent);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);margin-inline:-12px;padding:12px;border-radius:12px 12px 0 0;box-shadow:0 -12px 24px -20px rgba(20,50,35,.5)}}
+.has-shopbar .total{bottom:76px}
+@media(min-width:861px){.has-shopbar .total{bottom:0}}
+.total .mini{display:none;width:46px;height:46px;flex:none;border-radius:8px;background:#ead9b0;padding:3px}
+.total .mini svg{width:100%;height:100%}
+@media(max-width:860px){.total .mini{display:block}.total{flex-wrap:nowrap;gap:10px}.total .price{font-size:26px;flex:1;min-width:0}.total .price small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.go{padding:12px 16px;font-size:16px}}
+.eitem{border-radius:10px;box-shadow:var(--sh-card);transition:box-shadow .35s,transform .35s var(--ease-out,ease)}
+.eitem:hover{box-shadow:var(--sh-card-up);transform:translateY(-3px)}
+.eitem .pic{border-radius:6px}
+.add{border-radius:10px}
+.how ol{counter-reset:h}
+.how li{counter-increment:h;position:relative;padding-top:56px}
+.how li::before{content:counter(h);position:absolute;left:18px;top:16px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--tape);color:var(--tape-ink);font-weight:800;font-size:15px}
 </style>
+<link rel="stylesheet" href="motion.css">
+<script>document.documentElement.classList.add("js")</script>
 </head>
-<body>
+<body data-shopbar>
 <header class="mat">
   <div class="wrap">
     <div class="top">
       <a href="index.html" class="brand"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M3 27 15 3l12 24z" fill="none" stroke="#ff5a2b" stroke-width="3.2" stroke-linejoin="round"/><path d="M10.5 20h9" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>Axencraft</a>
-      <nav aria-label="Main"><a href="index.html">Digital Studio</a><a href="print.html">Print Studio</a><a href="grow.html" aria-current="page">Grow Studio</a><a href="account.html">Log in</a><button type="button" class="bk-btn" data-basket aria-label="Basket">Basket <span class="bk-count">0</span></button></nav>
+      <nav aria-label="Main"><a href="index.html#templates">Digital Studio</a><a href="print.html">Print Studio</a><a href="grow.html" aria-current="page">Grow Studio</a><a href="account.html">Log in</a><button type="button" class="bk-btn" data-basket aria-label="Basket"><svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h12l-1 10H5z"/><path d="M7 7V5.5a3 3 0 0 1 6 0V7" stroke-linecap="round"/></svg><span class="bk-t">Basket</span> <span class="bk-count">0</span></button></nav>
     </div>
     <div class="intro">
       <span class="tape">Grow your own</span>
       <h1>Grow Studio</h1>
       <p>Everything you need to grow herbs and salad on a windowsill, in a pot we 3D print for you in Devon. Choose the size, the shape and the colour.</p>
+      <ol class="guide" aria-label="How to order">
+        <li>Build your kit <span>in four steps</span></li>
+        <li>Add a matching pot <span>if you like</span></li>
+        <li>Check out <span>and we print it</span></li>
+      </ol>
     </div>
   </div>
   <div class="soilband" aria-hidden="true"></div>
@@ -127,6 +181,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
 <main>
 <section class="builder" id="kit"><div class="wrap bgrid">
   <figure class="stage" style="margin:0">
+    <span class="sill" aria-hidden="true"></span>
     <div id="stage" aria-hidden="true"></div>
     <figcaption>Illustration of your pot</figcaption>
   </figure>
@@ -139,6 +194,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
       <fieldset><legend>Colour: <span id="colour-name"></span></legend><div class="swatches" id="colours"></div></fieldset>
       <fieldset><legend>Seeds</legend><div class="seeds" id="seeds"></div></fieldset>
       <div class="total">
+        <span class="mini" id="mini" aria-hidden="true"></span>
         <p class="price" id="kit-price" aria-live="polite"></p>
         <button type="submit" class="go" id="kit-add">Add kit to basket</button>
       </div>
@@ -171,52 +227,10 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
   <p>© Axencraft is a trading name of Freddie Joseph Green, sole trader. Upover, Stockleigh English, Crediton, EX17 4DD.</p>
 </div></footer>
 
+<script src="motion.js"></script>
 <script src="shop/basket.js"></script>
+<script src="shop/pots.js"></script>
 <script>
-/* Pot illustrations, drawn in the chosen shape and colour. */
-function shade(hex,amt){var n=parseInt(hex.slice(1),16),r=n>>16,g=n>>8&255,b=n&255;
-  function f(c){return Math.max(0,Math.min(255,Math.round(amt<0?c*(1+amt):c+(255-c)*amt)))}
-  return 'rgb('+f(r)+','+f(g)+','+f(b)+')'}
-var uid=0;
-function potSVG(style,hex,opts){
-  opts=opts||{};var id='p'+(++uid),s=opts.scale||1,plant=opts.plant!==false;
-  var dark=shade(hex,-.28),light=shade(hex,.35),edge=hex.toUpperCase()==='#FFFFFF'?'#c9c4b8':dark;
-  var body,extra='';
-  if(style==='bulb'){
-    body='M78 74 C40 92 38 158 70 172 L130 172 C162 158 160 92 122 74 Z';
-  }else if(style==='faceted'){
-    body='M48 70 L152 70 L134 172 L66 172 Z';
-    extra='<path d="M74 70 L82 172 M100 70 L100 172 M126 70 L118 172" stroke="'+dark+'" stroke-opacity=".45" stroke-width="2.5"/>'+
-      '<path d="M74 70 L82 172 L66 172 L48 70Z" fill="#000" fill-opacity=".12"/><path d="M126 70 L152 70 L134 172 L118 172Z" fill="#fff" fill-opacity=".1"/>';
-  }else if(style==='twist'){
-    body='M50 70 L150 70 L132 172 L68 172 Z';
-    for(var i=-3;i<6;i++){var x=40+i*22;extra+='<path d="M'+x+' 70 C'+(x+18)+' 105 '+(x+6)+' 140 '+(x+26)+' 172" stroke="'+dark+'" stroke-opacity=".4" stroke-width="5" fill="none"/>'}
-  }else{
-    body='M54 82 L146 82 L132 172 L68 172 Z';
-    extra='<rect x="44" y="66" width="112" height="18" rx="4" fill="'+hex+'" stroke="'+edge+'" stroke-width="2"/><rect x="44" y="66" width="112" height="18" rx="4" fill="url(#'+id+'g)"/>';
-  }
-  var soilY=style==='classic'?68:style==='bulb'?76:72;
-  var sprout=plant?'<g stroke="#2f7a3a" stroke-width="4" stroke-linecap="round" fill="none"><path d="M100 '+soilY+' C100 52 98 40 100 26"/></g>'+
-    '<path d="M100 38 C84 22 64 26 60 34 C74 46 92 46 100 38Z" fill="#4c9a4a"/><path d="M100 30 C112 12 134 12 140 20 C128 34 110 36 100 30Z" fill="#62b25a"/>':'';
-  return '<svg viewBox="0 0 200 '+(plant?200:200)+'" xmlns="http://www.w3.org/2000/svg" style="transform:scale('+s+');transform-origin:50% 100%">'+
-    '<defs><linearGradient id="'+id+'g" x1="0" x2="1"><stop offset="0" stop-color="#000" stop-opacity=".22"/><stop offset=".45" stop-color="#fff" stop-opacity=".18"/><stop offset="1" stop-color="#000" stop-opacity=".25"/></linearGradient>'+
-    '<clipPath id="'+id+'c"><path d="'+body+'"/></clipPath></defs>'+
-    '<ellipse cx="100" cy="176" rx="62" ry="7" fill="#000" fill-opacity=".14"/>'+
-    sprout+
-    '<ellipse cx="100" cy="'+soilY+'" rx="'+(style==='bulb'?22:48)+'" ry="5" fill="#5a3f22"/>'+
-    '<path d="'+body+'" fill="'+hex+'" stroke="'+edge+'" stroke-width="2"/>'+
-    '<g clip-path="url(#'+id+'c)">'+extra.replace(/<rect[^>]*>/g,'')+'<rect x="0" y="0" width="200" height="200" fill="url(#'+id+'g)"/></g>'+
-    (style==='classic'?extra:'')+'</svg>';
-}
-function accSVG(kind,hex){
-  var dark=shade(hex,-.28),edge=hex.toUpperCase()==='#FFFFFF'?'#c9c4b8':dark;
-  if(kind==='tray')return '<svg viewBox="0 0 200 150"><ellipse cx="100" cy="98" rx="84" ry="26" fill="'+dark+'"/><ellipse cx="100" cy="88" rx="84" ry="26" fill="'+hex+'" stroke="'+edge+'" stroke-width="2"/><ellipse cx="100" cy="86" rx="68" ry="18" fill="#000" fill-opacity=".12"/><ellipse cx="100" cy="86" rx="40" ry="10" fill="none" stroke="'+edge+'" stroke-opacity=".6" stroke-width="2"/></svg>';
-  if(kind==='dome')return '<svg viewBox="0 0 200 150"><path d="M30 120 C30 40 170 40 170 120Z" fill="#dff1f5" fill-opacity=".55" stroke="#8fb6c0" stroke-width="3"/><rect x="92" y="34" width="16" height="10" rx="3" fill="#8fb6c0"/><path d="M60 80 C70 62 84 56 96 54" stroke="#fff" stroke-width="5" stroke-linecap="round" fill="none" opacity=".8"/></svg>';
-  if(kind==='stakes'){var o='';for(var i=0;i<5;i++){var x=40+i*28;o+='<path d="M'+x+' 30 h22 v70 l-11 22 l-11 -22z" fill="'+hex+'" stroke="'+edge+'" stroke-width="2"/>'}return '<svg viewBox="0 0 200 150">'+o+'</svg>'}
-  var g='';for(var y=20;y<=110;y+=22)g+='<path d="M60 '+y+' H140" />';for(var x=60;x<=140;x+=20)g+='<path d="M'+x+' 20 V130"/>';
-  return '<svg viewBox="0 0 200 150"><g stroke="'+hex+'" stroke-width="7" stroke-linecap="round">'+g+'</g><g stroke="'+edge+'" stroke-width="1" fill="none" opacity=".5">'+g+'</g></svg>';
-}
-
 AXC_BASKET.load().then(function(CAT){
   var B=AXC_BASKET,money=B.money,G=CAT.grow;
   document.querySelectorAll('[data-postage]').forEach(function(e){e.textContent=money(CAT.postage.pence)});
@@ -234,7 +248,7 @@ AXC_BASKET.load().then(function(CAT){
     return '<div class="choice"><input type="radio" name="'+name+'" id="'+name+'-'+val+'" value="'+val+'"'+(checked?' checked':'')+'><label for="'+name+'-'+val+'">'+label+'</label></div>';
   }
   document.getElementById('sizes').innerHTML=kits.map(function(k){
-    return radio('size',k.id,'<b>'+k.name.replace('Grow kit, ','')+' · '+money(k.price)+(k.was?'<s>'+money(k.was)+'</s>':'')+'</b><span>'+k.desc+'</span>',k.id===st.size);
+    return radio('size',k.id,'<b>'+k.name.replace('Grow kit, ','')+'</b><span class="p">'+money(k.price)+(k.was?' <s>'+money(k.was)+'</s>':'')+'</span><span>'+k.desc+'</span>',k.id===st.size);
   }).join('');
   document.getElementById('seeds').innerHTML=G.seeds.map(function(s){return radio('seed',s.id,'<b>'+s.name+'</b>',s.id===st.seed)}).join('');
   document.getElementById('colours').innerHTML=CAT.colours.map(function(c){
@@ -256,7 +270,7 @@ AXC_BASKET.load().then(function(CAT){
     var btn=el.querySelector('.add');
     btn.onclick=function(){
       var o={};(it.options||[]).forEach(function(k){o[k]=st[k]});
-      B.add(it.id,o,1);btn.textContent='Added';btn.classList.add('done');
+      B.add(it.id,o,1,{from:btn});btn.textContent='Added';btn.classList.add('done');
       clearTimeout(btn.t);btn.t=setTimeout(function(){btn.textContent='Add';btn.classList.remove('done')},2000);
     };
     ecards.push({it:it,el:el,btn:btn});egrid.appendChild(el);
@@ -273,9 +287,10 @@ AXC_BASKET.load().then(function(CAT){
       c.btn.setAttribute('aria-label','Add '+it.name+' to basket');
     });
   }
-  function draw(){
-    var k=B.item(st.size);
-    document.getElementById('stage').innerHTML=potSVG(st.style,hex[st.colour],{scale:st.size==='kit_5'?.78:st.size==='kit_7_5'?.9:1});
+  function draw(anim){
+    var k=B.item(st.size),sc=st.size==='kit_5'?.78:st.size==='kit_7_5'?.9:1;
+    document.getElementById('stage').innerHTML='<div class="potwrap'+(anim?' '+anim:'')+'">'+potSVG(st.style,hex[st.colour],{scale:sc})+'</div>';
+    document.getElementById('mini').innerHTML=potSVG(st.style,hex[st.colour],{});
     document.getElementById('style-name').textContent=sname[st.style];
     document.getElementById('colour-name').textContent=cname[st.colour];
     document.getElementById('kit-price').innerHTML=money(k.price)+'<small>'+k.name+' · '+sname[st.style]+' · '+cname[st.colour]+'</small>';
@@ -286,14 +301,17 @@ AXC_BASKET.load().then(function(CAT){
   form.addEventListener('change',function(e){
     var t=e.target;if(!t.name)return;st[t.name]=t.value;
     if(t.name==='colour')drawStyles();
-    draw();drawExtras();
+    draw('pop');drawExtras();
   });
   form.addEventListener('submit',function(e){
     e.preventDefault();
-    B.add(st.size,{style:st.style,colour:st.colour,seed:st.seed},1);
-    B.open(); /* the basket suggests matching pots, a tray and a dome */
+    var btn=document.getElementById('kit-add');
+    B.add(st.size,{style:st.style,colour:st.colour,seed:st.seed},1,{from:btn,quiet:true});
+    draw('grow');
+    /* then open the basket, which suggests matching pots, a tray and a dome */
+    setTimeout(B.open,AXC_FX.still?0:900);
   });
-  drawStyles();draw();drawExtras();
+  drawStyles();draw('grow');drawExtras();
 }).catch(function(){
   document.querySelector('.opts .lead').textContent='The kits didn’t load. Please refresh the page.';
 });
