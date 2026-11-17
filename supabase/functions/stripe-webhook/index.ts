@@ -2,6 +2,7 @@
 // Security: we never trust the posted body. We take only the event ID and
 // fetch the event (and the subscription) fresh from Stripe with our secret key.
 import { admin, PLAN_PRICES, stripe } from "../_shared/stripe.ts";
+import { markPaid } from "../_shared/shop.ts";
 
 const PRICE_TO_PLAN = Object.fromEntries(
   Object.entries(PLAN_PRICES).map(([plan, price]) => [price, plan]),
@@ -83,7 +84,10 @@ Deno.serve(async (req) => {
     const obj = event.data?.object;
     switch (event.type) {
       case "checkout.session.completed":
+      case "checkout.session.async_payment_succeeded":
         if (obj?.subscription) await syncSubscription(obj.subscription);
+        // Print Studio / Grow Studio orders. Re-read the session from Stripe rather than trusting the event body.
+        if (obj?.metadata?.kind === "shop") await markPaid(await stripe(`checkout/sessions/${obj.id}`, undefined, "GET"));
         break;
       case "customer.subscription.created":
       case "customer.subscription.updated":

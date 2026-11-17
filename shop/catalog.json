@@ -1,0 +1,751 @@
+{
+ "_note": "Prices are in pence. This file is the only price list: the pages and the checkout both read it. Edit, push, and the new prices apply.",
+ "currency": "gbp",
+ "postage": {
+  "pence": 399,
+  "name": "Royal Mail Tracked 48",
+  "countries": [
+   "GB"
+  ]
+ },
+ "dispatchDays": 7,
+ "colours": [
+  {
+   "id": "black",
+   "name": "Black",
+   "hex": "#111112"
+  },
+  {
+   "id": "orange",
+   "name": "Orange",
+   "hex": "#FF671F"
+  },
+  {
+   "id": "red",
+   "name": "Red",
+   "hex": "#D6001C"
+  },
+  {
+   "id": "yellow",
+   "name": "Yellow",
+   "hex": "#FCE300"
+  },
+  {
+   "id": "green",
+   "name": "Green",
+   "hex": "#009639"
+  },
+  {
+   "id": "white",
+   "name": "White",
+   "hex": "#FFFFFF"
+  },
+  {
+   "id": "blue",
+   "name": "Blue",
+   "hex": "#001489"
+  },
+  {
+   "id": "matte",
+   "name": "Matte black",
+   "hex": "#1b1b1c"
+  }
+ ],
+ "print": {
+  "categories": [
+   {
+    "id": "workshop",
+    "title": "Workshop",
+    "intro": "A place for every size, and a gap when one is missing.",
+    "items": [
+     {
+      "id": "socket_rail_quarter_inch_x10",
+      "name": "Socket rail, 1/4 inch",
+      "desc": "Holds 10 sockets with a 1/4 inch drive.",
+      "size": "194 × 24 × 13 mm",
+      "price": 699
+     },
+     {
+      "id": "socket_rail_three_eighth_inch_x8",
+      "name": "Socket rail, 3/8 inch",
+      "desc": "Holds 8 sockets with a 3/8 inch drive.",
+      "size": "212 × 30 × 15 mm",
+      "price": 799
+     },
+     {
+      "id": "socket_rail_half_inch_x6",
+      "name": "Socket rail, 1/2 inch",
+      "desc": "Holds 6 sockets with a 1/2 inch drive.",
+      "size": "202 × 38 × 18 mm",
+      "price": 899
+     },
+     {
+      "id": "bit_block_12",
+      "name": "Bit block, 12",
+      "desc": "Desk block for 12 screwdriver bits.",
+      "size": "82 × 30 × 14 mm",
+      "price": 499
+     },
+     {
+      "id": "bit_block_24",
+      "name": "Bit block, 24",
+      "desc": "Desk block for 24 screwdriver bits.",
+      "size": "108 × 43 × 14 mm",
+      "price": 699
+     },
+     {
+      "id": "bit_rail_10_wall_mount",
+      "name": "Bit rail, 10",
+      "desc": "A row of 10 screwdriver bits that screws to the wall.",
+      "size": "152 × 16 × 14 mm",
+      "price": 499
+     },
+     {
+      "id": "drill_bit_stand_1_to_10mm",
+      "name": "Drill bit stand",
+      "desc": "Ten drill bits from 1 to 10 mm, stepped by size.",
+      "size": "103 × 22 × 38 mm",
+      "price": 599
+     },
+     {
+      "id": "hex_key_stand_1p5_to_10mm",
+      "name": "Hex key stand",
+      "desc": "Nine hex keys from 1.5 to 10 mm.",
+      "size": "93 × 22 × 34 mm",
+      "price": 599
+     },
+     {
+      "id": "spanner_rack_8",
+      "name": "Spanner rack",
+      "desc": "Stands 8 spanners on edge, small to large.",
+      "size": "134 × 35 × 28 mm",
+      "price": 799
+     },
+     {
+      "id": "screwdriver_rack_6",
+      "name": "Screwdriver rack",
+      "desc": "Wall rack with open slots for 6 screwdrivers.",
+      "size": "180 × 45 × 44 mm",
+      "price": 899
+     },
+     {
+      "id": "tool_clip_25mm_screw_mount",
+      "name": "Tool clip, 25 mm",
+      "desc": "Springy wall clip for a broom, mop or garden tool.",
+      "size": "44 × 20 × 30 mm",
+      "price": 499,
+      "pack": "Pack of 4"
+     }
+    ]
+   },
+   {
+    "id": "garage",
+    "title": "Garage",
+    "intro": "Get it off the floor and onto the wall.",
+    "items": [
+     {
+      "id": "extension_lead_hanger",
+      "name": "Extension lead hanger",
+      "desc": "A deep hook for a coiled extension lead or rope.",
+      "size": "40 × 90 × 110 mm",
+      "price": 799
+     },
+     {
+      "id": "tape_roll_hanger",
+      "name": "Tape roll hanger",
+      "desc": "A long arm that holds rolls of tape side by side.",
+      "size": "25 × 110 × 80 mm",
+      "price": 699
+     },
+     {
+      "id": "spray_can_holder_3",
+      "name": "Spray can holder",
+      "desc": "Wall shelf with a cup for each of three aerosol cans.",
+      "size": "225 × 76 × 95 mm",
+      "price": 1299
+     },
+     {
+      "id": "drill_holder",
+      "name": "Drill holder",
+      "desc": "A cordless drill hangs by its body with the handle through the slot.",
+      "size": "120 × 100 × 70 mm",
+      "price": 999
+     },
+     {
+      "id": "parts_bin_open_front",
+      "name": "Parts bin",
+      "desc": "Open-fronted bin for screws and fixings. Reach in from the front.",
+      "size": "100 × 150 × 75 mm",
+      "price": 899
+     },
+     {
+      "id": "sorting_tray_6",
+      "name": "Sorting tray",
+      "desc": "Six compartments for screws, nuts and washers.",
+      "size": "180 × 120 × 28 mm",
+      "price": 999
+     },
+     {
+      "id": "extension_lead_winder",
+      "name": "Lead winder",
+      "desc": "Wind an extension lead or rope so it never tangles.",
+      "size": "220 × 130 × 6 mm",
+      "price": 899
+     },
+     {
+      "id": "funnel_110mm",
+      "name": "Funnel",
+      "desc": "For oil, screenwash and fuel. Not for food or drink.",
+      "size": "110 × 110 × 115 mm",
+      "price": 699
+     }
+    ]
+   },
+   {
+    "id": "garden",
+    "title": "Garden",
+    "intro": "For the potting bench, the shed and the patio.",
+    "items": [
+     {
+      "id": "plant_pot_120mm",
+      "name": "Plant pot, 120 mm",
+      "desc": "Tapered pot with a rolled rim and five drain holes.",
+      "size": "125 × 125 × 105 mm",
+      "price": 799
+     },
+     {
+      "id": "pot_saucer_130mm",
+      "name": "Pot saucer, 130 mm",
+      "desc": "Catches the water under a pot.",
+      "size": "130 × 130 × 18 mm",
+      "price": 399
+     },
+     {
+      "id": "pot_foot",
+      "name": "Pot foot",
+      "desc": "Lifts a pot off the patio so it drains. Use three.",
+      "size": "45 × 28 × 16 mm",
+      "price": 399,
+      "pack": "Set of 3"
+     },
+     {
+      "id": "plant_label",
+      "name": "Plant label",
+      "desc": "A label you push into the soil. Write on it with a paint pen.",
+      "size": "70 × 134 × 2 mm",
+      "price": 299,
+      "pack": "Pack of 5"
+     },
+     {
+      "id": "seedling_tray_12",
+      "name": "Seedling tray, 12 cells",
+      "desc": "Start seeds in twelve cells, each with a drain hole.",
+      "size": "160 × 120 × 45 mm",
+      "price": 899
+     },
+     {
+      "id": "seed_packet_box",
+      "name": "Seed packet box",
+      "desc": "Four stepped slots to sort seed packets by month.",
+      "size": "101 × 92 × 80 mm",
+      "price": 999
+     },
+     {
+      "id": "hose_hanger",
+      "name": "Hose hanger",
+      "desc": "A half-round saddle that holds a coiled garden hose.",
+      "size": "190 × 86 × 95 mm",
+      "price": 1199
+     },
+     {
+      "id": "garden_tool_rail_4_peg",
+      "name": "Garden tool rail",
+      "desc": "Four sturdy pegs for trowels and forks.",
+      "size": "230 × 37 × 41 mm",
+      "price": 899
+     },
+     {
+      "id": "cane_cap",
+      "name": "Cane cap",
+      "desc": "Pushes onto a garden cane so nobody catches an eye on it.",
+      "size": "32 × 32 × 29 mm",
+      "price": 299,
+      "pack": "Pack of 6"
+     },
+     {
+      "id": "soil_scoop",
+      "name": "Compost scoop",
+      "desc": "Scoops compost into pots without spilling it.",
+      "size": "230 × 76 × 76 mm",
+      "price": 699
+     }
+    ]
+   },
+   {
+    "id": "cables",
+    "title": "Cables",
+    "intro": "Keep leads where you left them.",
+    "items": [
+     {
+      "id": "cable_clip_5mm",
+      "name": "Cable clip, 5 mm",
+      "desc": "Stick-on clip for phone and USB leads.",
+      "size": "19 × 10 × 9 mm",
+      "price": 299,
+      "pack": "Pack of 6"
+     },
+     {
+      "id": "cable_clip_7mm",
+      "name": "Cable clip, 7 mm",
+      "desc": "Stick-on clip for power and monitor leads.",
+      "size": "21 × 10 × 11 mm",
+      "price": 299,
+      "pack": "Pack of 6"
+     },
+     {
+      "id": "cable_clip_10mm",
+      "name": "Cable clip, 10 mm",
+      "desc": "Stick-on clip for thick leads and hoses.",
+      "size": "25 × 12 × 14 mm",
+      "price": 349,
+      "pack": "Pack of 6"
+     },
+     {
+      "id": "cable_bar_3_slot",
+      "name": "Cable bar, 3 slots",
+      "desc": "Sits on the desk and stops chargers sliding off the back.",
+      "size": "66 × 24 × 18 mm",
+      "price": 399
+     },
+     {
+      "id": "cable_bar_5_slot",
+      "name": "Cable bar, 5 slots",
+      "desc": "The longer bar, for a desk full of chargers.",
+      "size": "106 × 24 × 18 mm",
+      "price": 499
+     },
+     {
+      "id": "zip_tie_mount",
+      "name": "Cable tie mount",
+      "desc": "Screws down so a cable tie can hold a bundle in place.",
+      "size": "22 × 22 × 7 mm",
+      "price": 299,
+      "pack": "Pack of 6"
+     },
+     {
+      "id": "cord_winder",
+      "name": "Cord winder",
+      "desc": "Wrap earphones or a charging lead so it travels tidy.",
+      "size": "80 × 45 × 3 mm",
+      "price": 299,
+      "pack": "Pack of 2"
+     }
+    ]
+   },
+   {
+    "id": "kitchen",
+    "title": "Kitchen",
+    "intro": "Clear the worktop and find things in the cupboard.",
+    "items": [
+     {
+      "id": "spice_rack_3_tier",
+      "name": "Spice rack, 3 tiers",
+      "desc": "Steps the back rows up so you can read every jar. Holds 12.",
+      "size": "180 × 150 × 68 mm",
+      "price": 1499
+     },
+     {
+      "id": "pan_lid_rack_4_slot",
+      "name": "Pan lid rack",
+      "desc": "Stands lids, boards and baking trays on edge in a cupboard.",
+      "size": "125 × 130 × 75 mm",
+      "price": 1199
+     },
+     {
+      "id": "sponge_holder",
+      "name": "Sponge holder",
+      "desc": "Sits by the sink with a drained floor so the sponge dries.",
+      "size": "125 × 75 × 48 mm",
+      "price": 599
+     },
+     {
+      "id": "egg_tray_6",
+      "name": "Egg tray, 6",
+      "desc": "Keeps six eggs from rolling about in the fridge door.",
+      "size": "156 × 106 × 24 mm",
+      "price": 599
+     },
+     {
+      "id": "napkin_holder",
+      "name": "Napkin holder",
+      "desc": "Stands napkins upright on the table.",
+      "size": "150 × 44 × 105 mm",
+      "price": 799
+     },
+     {
+      "id": "spoon_rest",
+      "name": "Spoon rest",
+      "desc": "Keeps a messy spoon off the worktop, with a notch for the handle.",
+      "size": "120 × 90 × 13 mm",
+      "price": 599
+     },
+     {
+      "id": "tablet_recipe_stand",
+      "name": "Recipe stand",
+      "desc": "Props up a tablet or cookbook while you cook.",
+      "size": "120 × 135 × 141 mm",
+      "price": 999
+     }
+    ]
+   },
+   {
+    "id": "home",
+    "title": "Home",
+    "intro": "Small things that make a room easier to live in.",
+    "items": [
+     {
+      "id": "wall_hook",
+      "name": "Wall hook",
+      "desc": "A strong hook for coats, bags and coiled leads.",
+      "size": "20 × 30 × 70 mm",
+      "price": 499,
+      "pack": "Pack of 2"
+     },
+     {
+      "id": "key_rail_5_peg",
+      "name": "Key rail",
+      "desc": "Five pegs by the door for keys.",
+      "size": "160 × 32 × 24 mm",
+      "price": 699
+     },
+     {
+      "id": "shelf_bracket_150mm",
+      "name": "Shelf bracket",
+      "desc": "Braced bracket for a shelf up to 170 mm deep. Use two or more.",
+      "size": "150 × 28 × 130 mm",
+      "price": 899,
+      "pack": "Pair"
+     },
+     {
+      "id": "door_stop",
+      "name": "Door stop",
+      "desc": "A wedge that holds a door open, with a hole to hang it up.",
+      "size": "120 × 45 × 26 mm",
+      "price": 499
+     },
+     {
+      "id": "remote_caddy_3_slot",
+      "name": "Remote caddy",
+      "desc": "Stands three remote controls upright, shortest at the front.",
+      "size": "64 × 84 × 95 mm",
+      "price": 799
+     },
+     {
+      "id": "coaster_round",
+      "name": "Coaster",
+      "desc": "Round coaster with a rim to catch drips.",
+      "size": "100 × 100 × 6 mm",
+      "price": 799,
+      "pack": "Set of 4"
+     },
+     {
+      "id": "soap_dish",
+      "name": "Soap dish",
+      "desc": "Raised ribs and a drain gap so the bar dries out.",
+      "size": "120 × 85 × 16 mm",
+      "price": 499
+     },
+     {
+      "id": "toothbrush_holder_4",
+      "name": "Toothbrush holder",
+      "desc": "Four brushes, each with its own drain hole.",
+      "size": "112 × 38 × 60 mm",
+      "price": 599
+     },
+     {
+      "id": "battery_tray_aa_x10",
+      "name": "Battery tray, AA",
+      "desc": "Keeps 10 AA batteries upright in a drawer.",
+      "size": "87 × 37 × 24 mm",
+      "price": 399
+     },
+     {
+      "id": "battery_tray_aaa_x10",
+      "name": "Battery tray, AAA",
+      "desc": "Keeps 10 AAA batteries upright in a drawer.",
+      "size": "67 × 29 × 20 mm",
+      "price": 349
+     }
+    ]
+   },
+   {
+    "id": "desk",
+    "title": "Desk",
+    "intro": "Everything in reach and nothing in the way.",
+    "items": [
+     {
+      "id": "desk_tidy_3_section",
+      "name": "Desk tidy",
+      "desc": "Three stepped sections for pens, notes and small bits.",
+      "size": "180 × 90 × 95 mm",
+      "price": 1199
+     },
+     {
+      "id": "pen_pot",
+      "name": "Pen pot",
+      "desc": "Six-sided pot for pens and pencils.",
+      "size": "88 × 78 × 100 mm",
+      "price": 699
+     },
+     {
+      "id": "letter_sorter_3_slot",
+      "name": "Letter sorter",
+      "desc": "Three stepped slots for post and notebooks.",
+      "size": "160 × 90 × 121 mm",
+      "price": 1199
+     },
+     {
+      "id": "laptop_dock_vertical",
+      "name": "Laptop dock",
+      "desc": "Stands a closed laptop on edge to free up desk space.",
+      "size": "170 × 100 × 48 mm",
+      "price": 1299
+     },
+     {
+      "id": "phone_stand",
+      "name": "Phone stand",
+      "desc": "Holds a phone at a comfortable angle, with a gap for the charger.",
+      "size": "70 × 90 × 87 mm",
+      "price": 699
+     },
+     {
+      "id": "headphone_hook_under_desk",
+      "name": "Headphone hook",
+      "desc": "Screws under the desk to hang headphones out of the way.",
+      "size": "98 × 25 × 47 mm",
+      "price": 599
+     },
+     {
+      "id": "sticky_note_tray",
+      "name": "Sticky note tray",
+      "desc": "Holds a pad of sticky notes with a groove for a pen.",
+      "size": "83 × 100 × 14 mm",
+      "price": 499
+     },
+     {
+      "id": "business_card_holder",
+      "name": "Business card holder",
+      "desc": "Shows a stack of cards at an angle.",
+      "size": "96 × 52 × 44 mm",
+      "price": 499
+     },
+     {
+      "id": "usb_stick_holder_6",
+      "name": "USB stick holder",
+      "desc": "Six USB sticks, plug end down.",
+      "size": "72 × 24 × 18 mm",
+      "price": 399
+     },
+     {
+      "id": "sd_card_holder_8",
+      "name": "Memory card holder",
+      "desc": "Slots for 8 SD cards and 8 microSD cards.",
+      "size": "50 × 46 × 20 mm",
+      "price": 399
+     },
+     {
+      "id": "drawer_bin_50mm",
+      "name": "Drawer bin, small",
+      "desc": "Open bin for coins, clips and other loose bits.",
+      "size": "50 × 50 × 35 mm",
+      "price": 399,
+      "pack": "Pack of 2"
+     },
+     {
+      "id": "drawer_bin_100mm",
+      "name": "Drawer bin, long",
+      "desc": "Twice the length, and sits flush beside the small one.",
+      "size": "100 × 50 × 35 mm",
+      "price": 499,
+      "pack": "Pack of 2"
+     }
+    ]
+   }
+  ]
+ },
+ "grow": {
+  "styles": [
+   {
+    "id": "classic",
+    "name": "Classic"
+   },
+   {
+    "id": "faceted",
+    "name": "Faceted"
+   },
+   {
+    "id": "twist",
+    "name": "Twist"
+   },
+   {
+    "id": "bulb",
+    "name": "Bulb"
+   }
+  ],
+  "seeds": [
+   {
+    "id": "basil",
+    "name": "Sweet basil"
+   },
+   {
+    "id": "salad",
+    "name": "Mixed salad leaves"
+   },
+   {
+    "id": "chives",
+    "name": "Chives"
+   },
+   {
+    "id": "microgreens",
+    "name": "Microgreens mix"
+   }
+  ],
+  "items": [
+   {
+    "id": "kit_5",
+    "type": "kit",
+    "size": "5 cm",
+    "name": "Grow kit, 5 cm",
+    "price": 799,
+    "options": [
+     "style",
+     "colour",
+     "seed"
+    ],
+    "desc": "A small pot for a windowsill. Good for herbs and microgreens."
+   },
+   {
+    "id": "kit_7_5",
+    "type": "kit",
+    "size": "7.5 cm",
+    "name": "Grow kit, 7.5 cm",
+    "price": 1099,
+    "options": [
+     "style",
+     "colour",
+     "seed"
+    ],
+    "desc": "Our middle size, with room for roots to fill out."
+   },
+   {
+    "id": "kit_10",
+    "type": "kit",
+    "size": "10 cm",
+    "name": "Grow kit, 10 cm",
+    "price": 1399,
+    "options": [
+     "style",
+     "colour",
+     "seed"
+    ],
+    "desc": "The largest pot, for a fuller plant you can keep cutting from."
+   },
+   {
+    "id": "set_10",
+    "type": "set",
+    "size": "10 cm",
+    "name": "Starter set, 10 cm",
+    "price": 2299,
+    "was": 2697,
+    "options": [
+     "style",
+     "colour",
+     "seed"
+    ],
+    "desc": "The 10 cm kit with a drip tray and a humidity dome."
+   },
+   {
+    "id": "pot_5",
+    "type": "pot",
+    "size": "5 cm",
+    "name": "Empty pot, 5 cm",
+    "price": 299,
+    "options": [
+     "style",
+     "colour"
+    ],
+    "desc": "The kit pot on its own, with a drain hole."
+   },
+   {
+    "id": "pot_7_5",
+    "type": "pot",
+    "size": "7.5 cm",
+    "name": "Empty pot, 7.5 cm",
+    "price": 449,
+    "options": [
+     "style",
+     "colour"
+    ],
+    "desc": "The kit pot on its own, with a drain hole."
+   },
+   {
+    "id": "pot_10",
+    "type": "pot",
+    "size": "10 cm",
+    "name": "Empty pot, 10 cm",
+    "price": 599,
+    "options": [
+     "style",
+     "colour"
+    ],
+    "desc": "The kit pot on its own, with a drain hole."
+   },
+   {
+    "id": "tray",
+    "type": "acc",
+    "name": "Drip tray",
+    "price": 499,
+    "options": [
+     "colour"
+    ],
+    "desc": "Catches water under the pot. Fits all three sizes."
+   },
+   {
+    "id": "dome",
+    "type": "acc",
+    "name": "Humidity dome",
+    "price": 799,
+    "options": [],
+    "desc": "Clear cover that keeps seeds warm and damp while they sprout."
+   },
+   {
+    "id": "stakes",
+    "type": "acc",
+    "name": "Label stakes",
+    "pack": "Pack of 5",
+    "price": 299,
+    "options": [
+     "colour"
+    ],
+    "desc": "Push into the soil and write on with a paint pen."
+   },
+   {
+    "id": "trellis",
+    "type": "acc",
+    "name": "Trellis",
+    "price": 349,
+    "options": [
+     "colour"
+    ],
+    "desc": "A small lattice for climbing plants."
+   }
+  ],
+  "kitContents": [
+   "A 3D-printed pot in your style and colour",
+   "One packet of seeds",
+   "Coir growing pellets",
+   "Step-by-step instruction card",
+   "A recyclable kraft box"
+  ]
+ }
+}

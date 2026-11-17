@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Shop orders | Axencraft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--display)}
+.app>nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.app>nav a{text-decoration:none}
+main{max-width:1100px;margin:0 auto 64px;padding:0 24px}
+h1{font-size:34px;font-stretch:75%;margin:0 0 6px}
+.muted{color:var(--muted)}
+.bar{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;justify-content:space-between;margin:14px 0 18px}
+.filters{display:flex;flex-wrap:wrap;gap:8px}
+.filters button{font:inherit;font-weight:700;min-height:40px;padding:6px 14px;border-radius:999px;border:2px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.filters button[aria-pressed="true"]{background:var(--brand);border-color:var(--brand);color:#fff}
+.switch{display:flex;align-items:center;gap:10px;font-weight:700}
+.switch button{font:inherit;font-weight:700;min-height:40px;padding:6px 14px;border-radius:8px;border:2px solid var(--brand);background:var(--card);color:var(--ink);cursor:pointer}
+.order{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px 18px;margin-bottom:12px;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:14px 24px}
+@media(max-width:760px){.order{grid-template-columns:1fr}}
+.order h2{font-size:20px;margin:0}
+.order ul{margin:8px 0 0;padding-left:18px}
+.order li span{color:var(--muted);font-size:14px}
+.pill{display:inline-block;font-size:13px;font-weight:700;border-radius:999px;padding:2px 10px;background:var(--line);margin-left:6px;vertical-align:middle}
+.pill.paid{background:var(--hot);color:#1d0d05}.pill.printing{background:var(--tape);color:var(--tape-ink)}.pill.dispatched{background:var(--brand);color:#fff}
+.act{display:grid;gap:8px;align-content:start}
+.act label{display:grid;gap:4px;font-weight:700;font-size:14px}
+.act select,.act input{font:inherit;padding:9px 10px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink)}
+.act button{font:inherit;font-weight:700;min-height:42px;border-radius:8px;border:0;background:var(--brand);color:#fff;cursor:pointer}
+.act p{font-size:14px;color:var(--muted);margin:0;min-height:1.2em}
+.addr{font-size:15px;margin-top:8px}
+</style>
+</head>
+<body class="app">
+<nav aria-label="Main"><a class="logo" href="admin.html">Axencraft admin</a><span><a href="admin.html">Websites</a> · <b>Shop orders</b></span></nav>
+<main>
+  <h1>Shop orders</h1>
+  <p class="muted" id="sub">Loading...</p>
+  <div class="bar" id="bar" hidden>
+    <div class="filters" id="filters" role="group" aria-label="Show orders"></div>
+    <div class="switch"><span id="open-txt"></span><button type="button" id="open-btn"></button></div>
+  </div>
+  <div id="list"></div>
+</main>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+var SB_URL="https://cvkgnrrskoptdtojcwvz.supabase.co";
+var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2a2ducnJza29wdGR0b2pjd3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTE2OTksImV4cCI6MjEwNzM4NzY5OX0.WsI6YpOpyd6q4wTV0q5FJzbjs0K3qnDTL4FNhfcbwNg";
+var sb=supabase.createClient(SB_URL,SB_KEY),token='',orders=[],open=true,filter='todo';
+var NAMES={paid:'Paid, not started',printing:'Printing',dispatched:'Dispatched',cancelled:'Cancelled',refunded:'Refunded'};
+var FILTERS=[['todo','To do'],['dispatched','Dispatched'],['all','All']];
+function $(i){return document.getElementById(i)}
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function money(p){return '£'+(p/100).toFixed(2)}
+function call(body){
+  return fetch(SB_URL+'/functions/v1/shop-admin',{method:'POST',headers:{'Content-Type':'application/json',apikey:SB_KEY,Authorization:'Bearer '+token},body:JSON.stringify(body)})
+    .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error||'Error');return j})});
+}
+function render(){
+  var todo=orders.filter(function(o){return o.status==='paid'||o.status==='printing'});
+  $('sub').textContent=todo.length?todo.length+(todo.length===1?' order':' orders')+' to print and post. Oldest first under To do.':'Nothing waiting. New orders appear here and are emailed to you.';
+  $('filters').innerHTML=FILTERS.map(function(f){return '<button type="button" data-f="'+f[0]+'" aria-pressed="'+(f[0]===filter)+'">'+f[1]+'</button>'}).join('');
+  $('filters').querySelectorAll('button').forEach(function(b){b.onclick=function(){filter=b.dataset.f;render()}});
+  $('open-txt').textContent=open?'Shop is taking orders':'Shop is paused';
+  $('open-btn').textContent=open?'Pause orders':'Reopen orders';
+  var list=filter==='todo'?todo.slice().reverse():filter==='all'?orders:orders.filter(function(o){return o.status===filter});
+  $('list').innerHTML=list.length?'':'<p class="muted">No orders here.</p>';
+  list.forEach(function(o){
+    var a=o.address||{};
+    var el=document.createElement('article');el.className='order';
+    el.innerHTML='<div><h2>'+esc(o.ref)+' <span class="pill '+o.status+'">'+NAMES[o.status]+'</span></h2>'+
+      '<p class="muted" style="margin:2px 0 0;font-size:14px">'+new Date(o.paid_at||o.created_at).toLocaleString('en-GB',{dateStyle:'medium',timeStyle:'short'})+' · '+money(o.total_pence)+' incl. '+money(o.postage_pence)+' postage</p>'+
+      '<ul>'+o.items.map(function(i){return '<li><b>'+i.qty+' × '+esc(i.name)+'</b>'+(i.details?' <span>'+esc(i.details)+'</span>':'')+'</li>'}).join('')+'</ul>'+
+      '<p class="addr"><b>'+esc(o.name)+'</b><br>'+[a.line1,a.line2,a.city,a.state,a.postal_code].filter(Boolean).map(esc).join('<br>')+'<br><a href="mailto:'+esc(o.email)+'">'+esc(o.email)+'</a></p></div>'+
+      '<form class="act"><label>Status<select name="status">'+Object.keys(NAMES).map(function(k){return '<option value="'+k+'"'+(k===o.status?' selected':'')+'>'+NAMES[k]+'</option>'}).join('')+'</select></label>'+
+      '<label>Royal Mail tracking number<input name="tracking" value="'+esc(o.tracking||'')+'" autocomplete="off"></label>'+
+      '<label>Private note<input name="note" value="'+esc(o.admin_note||'')+'" autocomplete="off"></label>'+
+      '<button type="submit">Save</button><p role="status">'+(o.dispatch_emailed_at?'Dispatch email sent.':'Setting Dispatched emails the customer.')+'</p></form>';
+    var f=el.querySelector('form');
+    f.onsubmit=function(e){
+      e.preventDefault();var msg=f.querySelector('p');msg.textContent='Saving...';
+      call({action:'update',id:o.id,status:f.status.value,tracking:f.tracking.value,note:f.note.value}).then(function(j){
+        orders=orders.map(function(x){return x.id===o.id?j.order:x});render();
+      }).catch(function(err){msg.textContent=err.message});
+    };
+    $('list').appendChild(el);
+  });
+}
+$('open-btn').onclick=function(){
+  call({action:'shop_open',value:!open}).then(function(j){open=j.shop_open;render()}).catch(function(e){alertless(e)});
+};
+function alertless(e){$('sub').textContent=e.message}
+(async function(){
+  var s=(await sb.auth.getSession()).data.session;
+  if(!s){$('sub').innerHTML='Please <a href="account.html">log in</a> with your admin account.';return}
+  token=s.access_token;
+  call({action:'list'}).then(function(j){orders=j.orders||[];open=j.shop_open;$('bar').hidden=false;render()})
+    .catch(function(e){$('sub').textContent=e.message==='Admins only.'?'This account doesn’t have admin access.':'Couldn’t load orders: '+e.message});
+})();
+</script>
+</body>
+</html>

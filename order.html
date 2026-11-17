@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Your order | Axencraft</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400..800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
+<style>
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--display)}
+.app>nav{display:flex;justify-content:space-between;align-items:center}
+.app>nav a{text-decoration:none}
+main{max-width:680px;margin:0 auto 64px;padding:0 22px}
+h1{font-size:clamp(34px,6vw,48px);font-stretch:75%;line-height:1;margin:6px 0 10px}
+.muted{color:var(--muted)}
+.card{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:18px 20px;margin-top:20px}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.steps li{text-align:center;font-size:15px;font-weight:700;padding:10px 6px;border-radius:6px;background:var(--line);color:var(--muted)}
+.steps li.on{background:var(--brand);color:#fff}
+table{width:100%;border-collapse:collapse;font-size:16px}
+td{padding:7px 0;vertical-align:top}
+td+td{text-align:right;white-space:nowrap}
+td span{display:block;font-size:14px;color:var(--muted)}
+tr.t td{border-top:1px solid var(--line);font-weight:800}
+</style>
+</head>
+<body class="app">
+<nav aria-label="Main"><a class="logo" href="index.html">Axencraft</a><span><a href="print.html">Print Studio</a> · <a href="grow.html">Grow Studio</a></span></nav>
+<main>
+  <h1 id="h">Your order</h1>
+  <p id="lead" class="muted">Loading...</p>
+  <div id="body" hidden>
+    <div class="card"><ol class="steps" id="steps"><li data-s="paid">Order received</li><li data-s="printing">Printing</li><li data-s="dispatched">On its way</li></ol>
+      <p id="track" style="margin:14px 0 0"></p></div>
+    <div class="card"><table id="items"></table></div>
+    <p class="muted" style="margin-top:18px;font-size:15px">Something not right? Email <a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a> with your order reference. You can cancel within 14 days of receiving your order. See our <a href="terms.html#shop">terms</a>.</p>
+  </div>
+</main>
+<script>
+var FN='https://cvkgnrrskoptdtojcwvz.supabase.co/functions/v1';
+function esc(s){return String(s==null?'':s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
+function money(p){return '£'+(p/100).toFixed(2)}
+var q=new URLSearchParams(location.search),ref=q.get('ref'),t=q.get('t'),justPaid=q.get('paid')==='1';
+if(justPaid){try{localStorage.removeItem('axc-basket')}catch(_){}}
+var tries=0;
+function load(){
+  fetch(FN+'/shop-order',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({ref:ref,t:t})})
+  .then(function(r){return r.json().then(function(j){if(!r.ok)throw new Error(j.error);return j.order})})
+  .then(function(o){
+    if(o.status==='pending'&&justPaid&&tries++<8){document.getElementById('lead').textContent='Confirming your payment...';setTimeout(load,1500);return}
+    document.getElementById('h').textContent=justPaid?'Thank you!':'Order '+o.ref;
+    var lead={pending:'We haven’t received payment for this order.',paid:'We’ve got your order and will start printing it soon.',
+      printing:'Your order is being printed.',dispatched:'Your order is on its way.',cancelled:'This order was cancelled.',refunded:'This order was refunded.'}[o.status];
+    document.getElementById('lead').innerHTML=(justPaid?'Your order reference is <b>'+esc(o.ref)+'</b>. We’ve emailed you a receipt. ':'')+lead;
+    var order=['paid','printing','dispatched'],at=order.indexOf(o.status);
+    document.querySelectorAll('#steps li').forEach(function(li,i){li.classList.toggle('on',at>=i)});
+    document.getElementById('track').innerHTML=o.tracking?'Royal Mail tracking: <a href="https://www.royalmail.com/track-your-item#/tracking-results/'+encodeURIComponent(o.tracking)+'">'+esc(o.tracking)+'</a>':
+      (at>-1&&at<2?'<span class="muted">We email you the tracking number when it’s posted.</span>':'');
+    document.getElementById('items').innerHTML=o.items.map(function(i){return '<tr><td>'+i.qty+' × <b>'+esc(i.name)+'</b>'+(i.details?'<span>'+esc(i.details)+'</span>':'')+'</td><td>'+money(i.unit_pence*i.qty)+'</td></tr>'}).join('')+
+      '<tr><td>Postage</td><td>'+money(o.postage_pence)+'</td></tr><tr class="t"><td>Total</td><td>'+money(o.total_pence)+'</td></tr>';
+    document.getElementById('body').hidden=false;
+  }).catch(function(){
+    document.getElementById('lead').innerHTML='We couldn’t find that order. Please use the link in your email, or contact <a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a>.';
+  });
+}
+load();
+</script>
+</body>
+</html>

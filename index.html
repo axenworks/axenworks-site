@@ -196,12 +196,12 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
   <div class="wrap">
     <div class="top">
       <a href="index.html" class="brand"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path d="M3 27 15 3l12 24z" fill="none" stroke="#ff5a2b" stroke-width="3.2" stroke-linejoin="round"/><path d="M10.5 20h9" stroke="#fff" stroke-width="3.2" stroke-linecap="round"/></svg>Axencraft</a>
-      <nav aria-label="Main"><a href="#how">How it works</a><a href="#templates">Templates</a><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="print.html">Print Studio</a><a href="account.html" class="login">Log in</a><a href="#pricing" class="go">Get started</a></nav>
+      <nav aria-label="Main"><a href="#how">How it works</a><a href="#templates">Templates</a><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="print.html">Print Studio</a><a href="grow.html">Grow Studio</a><a href="account.html" class="login">Log in</a><a href="#pricing" class="go">Get started</a></nav>
     </div>
     <div class="intro">
       <div>
         <h1>Made to order in Devon</h1>
-        <p>Three small studios under one roof. Digital Studio builds and hosts websites today. Print Studio and Grow Studio open soon.</p>
+        <p>Three small studios under one roof. Digital Studio builds and hosts websites. Print Studio 3D prints organisers to order. Grow Studio sends you everything you need to grow your own.</p>
       </div>
       <a class="screen" href="#templates" aria-label="A sample website. See all the website styles">
         <span class="bar" aria-hidden="true"><i></i><i></i><i></i><b id="screen-name">Rustic style, shown as a farm shop</b></span>
@@ -219,18 +219,18 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
         <div class="acts"><a class="btn" href="#pricing">Get started</a><a class="more" href="#templates">See the templates</a></div>
       </article>
       <article class="piece print">
-        <span class="tape">Coming soon</span>
+        <span class="tape hot">Open now</span>
         <a class="peek" href="print.html" tabindex="-1" aria-hidden="true"><img src="print/cable_bar_5_slot-use-orange.webp" width="720" height="540" alt="" loading="lazy"></a>
         <h2>Print Studio</h2>
         <p>Organisers for the workshop, garage, garden, home and desk, 3D printed to order in eight colours.</p>
-        <div class="acts"><a class="btn line" href="#contact" data-interest="print">Get notified</a><a class="more" href="print.html">See the preview</a></div>
+        <div class="acts"><a class="btn" href="print.html">Shop Print Studio</a><a class="more" href="print.html#ordering">How ordering works</a></div>
       </article>
       <article class="piece grow">
-        <span class="tape">Coming soon</span>
+        <span class="tape hot">Open now</span>
         <svg class="draw" viewBox="0 0 64 64" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M32 58V30"/><path d="M32 38C32 26 22 20 10 20c0 12 8 18 22 18z"/><path d="M32 30c0-12 9-20 22-20 0 13-8 20-22 20z"/></svg>
         <h2>Grow Studio</h2>
-        <p>Grow-your-own kits for plants and vegetables, with everything you need to get started.</p>
-        <div class="acts"><a class="btn line" href="#contact" data-interest="grow">Get notified</a></div>
+        <p>Grow-your-own kits for herbs and salad, with a 3D-printed pot in your choice of shape and colour.</p>
+        <div class="acts"><a class="btn" href="grow.html">Build a grow kit</a><a class="more" href="grow.html#extras">Pots and extras</a></div>
       </article>
     </div>
   </div>
@@ -313,8 +313,8 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
 
 <section class="sec mat" id="contact"><div class="wrap wait-in">
   <div>
-    <h3>Hear when Print and Grow open</h3>
-    <p class="lead">Print Studio and Grow Studio are still on the bench. Leave your email and we'll tell you when they open. That's the only thing we'll use it for.</p>
+    <h3>Hear about new products</h3>
+    <p class="lead">We add new prints and grow kits through the year. Leave your email and we'll tell you when something new arrives. That's the only thing we'll use it for, and you can ask us to stop at any time.</p>
   </div>
   <form id="f">
     <label>Name<input type="text" id="wl-name" autocomplete="name" required></label>
@@ -323,14 +323,14 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
       <label><input type="checkbox" id="wl-print" checked> Print Studio</label>
       <label><input type="checkbox" id="wl-grow" checked> Grow Studio</label>
     </div>
-    <button type="submit" id="wl-btn" class="btn">Notify me</button>
+    <button type="submit" id="wl-btn" class="btn">Keep me posted</button>
     <p id="msg" role="status"></p>
   </form>
 </div></section>
 </main>
 
 <footer><div class="wrap foot">
-  <nav aria-label="Footer"><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="print.html">Print Studio</a><a href="account.html">Log in</a><a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></nav>
+  <nav aria-label="Footer"><a href="#pricing">Pricing</a><a href="#faq">Questions</a><a href="print.html">Print Studio</a><a href="grow.html">Grow Studio</a><a href="account.html">Log in</a><a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></nav>
   <nav aria-label="Legal"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></nav>
   <p>© Axencraft is a trading name of Freddie Joseph Green, sole trader. Upover, Stockleigh English, Crediton, EX17 4DD.</p>
 </div></footer>
@@ -364,7 +364,7 @@ document.getElementById('f').addEventListener('submit',function(e){
   }).then(function(r){
     if(!r.ok)throw new Error(r.status);
     document.getElementById('f').reset();
-    msg.textContent="Thanks! We'll email you when it opens.";
+    msg.textContent="Thanks! We'll email you when something new arrives.";
   }).catch(function(){
     msg.textContent="Something went wrong. Please try again in a moment.";
   }).finally(function(){btn.disabled=false;});
