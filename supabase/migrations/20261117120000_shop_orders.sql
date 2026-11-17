@@ -5,7 +5,7 @@
 create table if not exists public.shop_orders (
   id uuid primary key default gen_random_uuid(),
   ref text not null unique,                       -- short reference shown to the customer, e.g. AX-7K3F9Q
-  view_token text not null default encode(gen_random_bytes(16), 'hex'), -- lets the customer see their order without logging in
+  view_token text not null default encode(extensions.gen_random_bytes(16), 'hex'), -- lets the customer see their order without logging in
   status text not null default 'pending'
     check (status in ('pending', 'paid', 'printing', 'dispatched', 'cancelled', 'refunded')),
   items jsonb not null,                           -- [{id, name, details, qty, unit_pence, studio}]
@@ -34,6 +34,6 @@ create index if not exists shop_orders_status_idx on public.shop_orders (status,
 alter table public.shop_orders enable row level security;
 revoke all on public.shop_orders from anon, authenticated;
 
--- Shop switches. shop_open = 'false' pauses checkout (for a backlog or holiday).
-insert into public.app_settings (key, value) values ('shop_open', 'true')
+-- Shop switches (app_settings.value is jsonb). shop_open = false pauses checkout (for a backlog or holiday).
+insert into public.app_settings (key, value) values ('shop_open', 'true'::jsonb)
   on conflict (key) do nothing;

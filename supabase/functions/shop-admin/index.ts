@@ -32,11 +32,11 @@ Deno.serve(async (req) => {
         db.from("app_settings").select("value").eq("key", "shop_open").maybeSingle(),
       ]);
       if (error) throw error;
-      return reply(200, { orders, shop_open: open?.value !== "false" });
+      return reply(200, { orders, shop_open: !(open?.value === false || open?.value === "false") });
     }
 
     if (body.action === "shop_open") {
-      const { error } = await db.from("app_settings").upsert({ key: "shop_open", value: body.value ? "true" : "false" });
+      const { error } = await db.from("app_settings").upsert({ key: "shop_open", value: !!body.value });
       if (error) throw error;
       return reply(200, { shop_open: !!body.value });
     }

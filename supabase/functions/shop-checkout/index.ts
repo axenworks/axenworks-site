@@ -20,7 +20,7 @@ Deno.serve(async (req) => {
   try {
     const db = admin();
     const { data: open } = await db.from("app_settings").select("value").eq("key", "shop_open").maybeSingle();
-    if (open?.value === "false") {
+    if (open?.value === false || open?.value === "false") {
       return reply(503, { error: "We've paused new orders for a few days while we catch up. Please try again soon." });
     }
 
