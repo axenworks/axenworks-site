@@ -8,7 +8,7 @@
 //  action "buy"      -> Stripe Checkout for a pack of extra edits (credited by stripe-webhook)
 import { admin, cors, siteFor, stripe } from "../_shared/stripe.ts";
 import { buildPrompt, parseModelReply, sitesEqual, validatePatch } from "../_shared/ai-edit.ts";
-import { allowanceFor, decide } from "../_shared/ai-usage.ts";
+import { allowanceFor, decide, underAttemptLimit } from "../_shared/ai-usage.ts";
 
 const SETTING_KEYS = ["ai_edit_enabled", "ai_allowance", "ai_daily_cap", "ai_pack"];
 
@@ -89,6 +89,13 @@ Deno.serve(async (req) => {
 
       const key = Deno.env.get("ANTHROPIC_API_KEY");
       if (!key) return reply(503, { error: "AI edits aren't set up yet. Nothing was used." });
+
+      // Refused or unusable answers cost us money but not the customer an edit, so limit attempts per hour too.
+      const hourAgo = new Date(Date.now() - 3600_000).toISOString();
+      const { count: attempts } = await db.from("form_events").select("id", { count: "exact", head: true })
+        .eq("project_id", project.id).eq("kind", "ai_attempt").gte("created_at", hourAgo);
+      if (!underAttemptLimit(attempts ?? 0)) return reply(429, { error: "You're going a little fast. Please wait a few minutes and try again." });
+      await db.from("form_events").insert({ project_id: project.id, ip_hash: "ai-edit", kind: "ai_attempt" });
 
       let text = "";
       try {

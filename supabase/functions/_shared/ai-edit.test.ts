@@ -130,3 +130,8 @@ test("buildPrompt contains the request and editable values but not protected val
   assert.doesNotMatch(p, /hero\.jpg/);
   for (const k of EDITABLE_KEYS) assert.ok(p.includes(k));
 });
+
+test("resubmitting existing items that have no image fields is not a change", () => {
+  const s = { ...site(), team: [{ name: "Mick", role: "Manager", bio: "Thirty years on the tools." }] };
+  assert.match(bad(validatePatch(s, { team: s.team })), /exactly as it is/);
+});

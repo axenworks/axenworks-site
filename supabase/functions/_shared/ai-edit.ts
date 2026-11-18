@@ -70,7 +70,7 @@ function cleanItems(key: string, value: unknown, existing: unknown): unknown[] {
     const prev = isObj(old[i]) ? (old[i] as Record<string, unknown>) : null;
     const out: Record<string, unknown> = {};
     for (const f of shape) {
-      if (IMAGE_FIELDS.has(f)) out[f] = prev && f in prev ? prev[f] : f === "images" ? [] : null;
+      if (IMAGE_FIELDS.has(f)) { if (!prev) out[f] = f === "images" ? [] : null; else if (f in prev) out[f] = prev[f]; }
       else if (f === "rating") { const n = Number(src[f]); out[f] = Number.isInteger(n) && n >= 1 && n <= 5 ? n : 5; }
       else out[f] = text(src[f] ?? "", f);
     }

@@ -14,3 +14,8 @@ export function decide(i: { allowance: number; usedThisMonth: number; credits: n
   if (i.credits > 0) return { ok: true, useCredit: true };
   return { ok: false, reason: "no_edits_left" };
 }
+
+// Every call to the AI costs a little, even when the answer is refused or unusable (those aren't charged to the
+// customer's allowance), so the number of attempts per hour is limited separately.
+export const ATTEMPTS_PER_HOUR = 30;
+export const underAttemptLimit = (attemptsLastHour: number, limit = ATTEMPTS_PER_HOUR) => attemptsLastHour < limit;

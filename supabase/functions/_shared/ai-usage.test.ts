@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { allowanceFor, decide } from "./ai-usage.ts";
+import { allowanceFor, decide, underAttemptLimit } from "./ai-usage.ts";
 
 test("allowanceFor uses the setting for the plan", () => {
   assert.equal(allowanceFor("standard", { starter: 1, standard: 7, pro: 9 }), 7);
@@ -22,4 +22,11 @@ test("decide says no edits left when allowance and credits are both used", () =>
 });
 test("decide stops at the daily cap even with credits", () => {
   assert.deepEqual(decide({ allowance: 20, usedThisMonth: 5, credits: 50, usedToday: 20, dailyCap: 20 }), { ok: false, reason: "daily_cap" });
+});
+
+test("underAttemptLimit allows attempts below the hourly limit and blocks at it", () => {
+  assert.equal(underAttemptLimit(0), true);
+  assert.equal(underAttemptLimit(29), true);
+  assert.equal(underAttemptLimit(30), false);
+  assert.equal(underAttemptLimit(5, 5), false);
 });
