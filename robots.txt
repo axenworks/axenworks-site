@@ -1,0 +1,8 @@
+User-agent: *
+Disallow: /account.html
+Disallow: /questionnaire.html
+Disallow: /admin.html
+Disallow: /admin-orders.html
+Disallow: /order.html
+
+Sitemap: https://axencraft.co.uk/sitemap.xml
