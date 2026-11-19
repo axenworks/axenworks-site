@@ -136,12 +136,15 @@
         '<button type="button" data-s="'+i+'">Add '+money(it.price)+'</button></li>';
     }).join('')+'</ul>':'';
     sugEl.querySelectorAll('[data-s]').forEach(function(b){b.onclick=function(){var s=sug[+b.dataset.s];basket.add(s.id,s.opts,1)}});
-    var post=lines.length?catalog.postage.pence:0;
-    totEl.innerHTML=lines.length?'<dl class="bk-sum"><dt>Items</dt><dd>'+money(sub)+'</dd><dt>Postage ('+esc(catalog.postage.name)+')</dt><dd>'+money(post)+'</dd>'+
+    var post=lines.length?postageFor(sub):0,free=freeOver(),gap=free?free-sub:0;
+    totEl.innerHTML=lines.length?'<dl class="bk-sum"><dt>Items</dt><dd>'+money(sub)+'</dd><dt>Postage ('+esc(catalog.postage.name)+')</dt><dd>'+(post?money(post):'Free')+'</dd>'+
       '<dt class="bk-total">Total</dt><dd class="bk-total">'+money(sub+post)+'</dd></dl>'+
-      '<p class="bk-small">Made to order in Devon. Dispatched within '+catalog.dispatchDays+' days, then 2 to 3 working days to arrive. UK only. You\u2019ll add your delivery address and pay on the next page.</p>':'';
+      (gap>0?'<p class="bk-free">Add '+money(gap)+' more for free postage.</p>':(free?'<p class="bk-free">You\u2019ve got free postage.</p>':''))+'<p class="bk-small">Made to order in Devon. Dispatched within '+catalog.dispatchDays+' days, then 2 to 3 working days to arrive. UK only. You\u2019ll add your delivery address and pay on the next page.</p>':'';
     goBtn.hidden=!lines.length;
   }
+  /* Same rule as the checkout (supabase/functions/_shared/growth.ts postageFor). */
+  function freeOver(){var f=+(catalog&&catalog.postage.free_over_pence);return f>0?f:0}
+  function postageFor(sub){var f=freeOver();return f&&sub>=f?0:catalog.postage.pence}
   var bar;
   function shopbar(){
     if(!document.body.hasAttribute('data-shopbar'))return;
@@ -156,7 +159,7 @@
     if(!on)return;
     var sub=read().reduce(function(t,l){var it=byId[l.id];return t+(it?it.price*l.qty:0)},0);
     bar.querySelector('b').textContent=n+(n===1?' item':' items')+' \u00b7 '+money(sub);
-    bar.querySelector('span').textContent='Plus '+money(catalog.postage.pence)+' postage';
+    var fp=freeOver();bar.querySelector('span').textContent=postageFor(sub)?(fp?money(fp-sub)+' more for free postage':'Plus '+money(catalog.postage.pence)+' postage'):'Free postage';
   }
   function badge(){
     shopbar();

@@ -3,6 +3,7 @@
  "currency": "gbp",
  "postage": {
   "pence": 399,
+  "free_over_pence": 2500,
   "name": "Royal Mail Tracked 48",
   "countries": [
    "GB"

@@ -166,6 +166,8 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
 </style>
 <link rel="stylesheet" href="motion.css">
 <script>document.documentElement.classList.add("js")</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body data-shopbar>
 <header class="mat">
@@ -225,12 +227,13 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
   <h2>How ordering works</h2>
   <ol>
     <li><b>Build your kit</b><span>Choose the size, shape, colour and seeds. Add pots and extras if you like.</span></li>
-    <li><b>Pay securely</b><span>Checkout is handled by Stripe. Postage is a flat <span data-postage>£3.99</span> per order, UK only.</span></li>
+    <li><b>Pay securely</b><span>Checkout is handled by Stripe. Postage is <span data-postage>£3.99</span> per order, or free over <span data-free>£25</span>. UK only.</span></li>
     <li><b>We print and pack it</b><span>Your pot is printed for you. Your order leaves us within <span data-days>7</span> days.</span></li>
     <li><b>Start growing</b><span>Royal Mail Tracked 48 takes 2 to 3 working days. The card in the box shows you what to do.</span></li>
   </ol>
 </div></section>
 
+<section class="wrap" style="padding-top:56px;padding-bottom:56px"><div data-news="grow"></div></section>
 <footer><div class="wrap foot">
   <nav aria-label="Footer"><a href="index.html">Digital Studio</a><a href="print.html">Print Studio</a><a href="grow.html">Grow Studio</a><a href="account.html">Log in</a><a href="mailto:support@axencraft.co.uk">support@axencraft.co.uk</a></nav>
   <nav aria-label="Legal"><a href="terms.html">Terms</a><a href="privacy.html">Privacy</a><a href="cookies.html">Cookies</a></nav>
@@ -244,6 +247,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:30px 0 34
 AXC_BASKET.load().then(function(CAT){
   var B=AXC_BASKET,money=B.money,G=CAT.grow;
   document.querySelectorAll('[data-postage]').forEach(function(e){e.textContent=money(CAT.postage.pence)});
+  document.querySelectorAll('[data-free]').forEach(function(e){if(CAT.postage.free_over_pence)e.textContent=money(CAT.postage.free_over_pence).replace('.00','')});
   document.querySelectorAll('[data-days]').forEach(function(e){e.textContent=CAT.dispatchDays});
   var hex={},cname={},sname={};
   CAT.colours.forEach(function(c){hex[c.id]=c.hex;cname[c.id]=c.name});
@@ -326,5 +330,6 @@ AXC_BASKET.load().then(function(CAT){
   document.querySelector('.opts .lead').textContent='The kits didn’t load. Please refresh the page.';
 });
 </script>
+<script src="news.js" defer></script>
 </body>
 </html>

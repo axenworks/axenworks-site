@@ -4,5 +4,6 @@ Disallow: /questionnaire.html
 Disallow: /admin.html
 Disallow: /admin-orders.html
 Disallow: /order.html
+Disallow: /unsubscribe.html
 
 Sitemap: https://axencraft.co.uk/sitemap.xml

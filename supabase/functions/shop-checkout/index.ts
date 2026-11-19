@@ -3,6 +3,7 @@
 // from the live catalogue, so a changed basket in the browser can't change a price.
 import { admin, cors, siteFor, stripe } from "../_shared/stripe.ts";
 import { catalog, index } from "../_shared/shop.ts";
+import { postageFor } from "../_shared/growth.ts";
 
 const REF_CHARS = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 function newRef() {
@@ -48,7 +49,7 @@ Deno.serve(async (req) => {
       lines.push({ id: it.id, studio: it.studio, name: it.name, details: details.join(" · "), opts, qty, unit_pence: it.price });
     }
     const subtotal = lines.reduce((n, l) => n + l.unit_pence * l.qty, 0);
-    const postage = Number(cat.postage.pence);
+    const postage = postageFor(subtotal, cat.postage);
 
     // Save the order first, so the webhook only has to mark it paid.
     let order: any = null;
@@ -74,7 +75,7 @@ Deno.serve(async (req) => {
       "shipping_address_collection[allowed_countries][0]": "GB",
       "phone_number_collection[enabled]": "false",
       "shipping_options[0][shipping_rate_data][type]": "fixed_amount",
-      "shipping_options[0][shipping_rate_data][display_name]": `${cat.postage.name} (made to order, dispatched within ${cat.dispatchDays} days)`,
+      "shipping_options[0][shipping_rate_data][display_name]": `${postage === 0 ? "Free postage: " : ""}${cat.postage.name} (made to order, dispatched within ${cat.dispatchDays} days)`,
       "shipping_options[0][shipping_rate_data][fixed_amount][amount]": String(postage),
       "shipping_options[0][shipping_rate_data][fixed_amount][currency]": "gbp",
       "shipping_options[0][shipping_rate_data][delivery_estimate][minimum][unit]": "business_day",
