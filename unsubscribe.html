@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Unsubscribe | Axencraft</title><meta name="robots" content="noindex">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 64 64%27%3E%3Crect width=%2764%27 height=%2764%27 rx=%2710%27 fill=%27%2314503c%27/%3E%3Cpath d=%27M20 46 32 16l12 30M24.5 36h15%27 stroke=%27white%27 stroke-width=%276%27 fill=%27none%27 stroke-linecap=%27round%27 stroke-linejoin=%27round%27/%3E%3C/svg%3E">
+<style>body{margin:0;min-height:100vh;display:grid;place-items:center;background:#f3f5f0;color:#15201b;font:18px/1.5 Inter,system-ui,sans-serif}
+main{max-width:520px;padding:32px 24px}h1{font-size:clamp(30px,6vw,42px);line-height:1.1;margin:0 0 14px}p{color:#3d4a43;margin:0 0 20px}
+a{color:#14503c;font-weight:700}</style></head>
+<body><main><h1 id="h">Unsubscribing…</h1><p id="p">One moment.</p><p><a href="/">Back to Axencraft</a></p></main>
+<script>
+(function(){
+  var t=new URLSearchParams(location.search).get('t')||'',h=document.getElementById('h'),p=document.getElementById('p');
+  function done(a,b){h.textContent=a;p.textContent=b}
+  if(!/^[0-9a-f-]{36}$/i.test(t)){done('That link isn’t complete','Please use the unsubscribe link from the email, or email support@axencraft.co.uk and we’ll remove you.');return}
+  if(t==='00000000-0000-0000-0000-000000000000'){done('This was a test email','Nothing to unsubscribe from.');return}
+  fetch('https://cvkgnrrskoptdtojcwvz.supabase.co/functions/v1/news',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'unsubscribe',token:t})})
+    .then(function(r){return r.json().then(function(j){return{ok:r.ok,j:j}})})
+    .then(function(x){x.ok?done('You’re unsubscribed','We won’t send you any more news emails. Emails about an order or account you have with us still come as normal.'):done('We couldn’t do that',x.j.error||'Please email support@axencraft.co.uk and we’ll remove you.')})
+    .catch(function(){done('We couldn’t do that','Check your connection and try the link again, or email support@axencraft.co.uk.')});
+})();
+</script></body></html>

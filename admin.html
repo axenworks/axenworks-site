@@ -22,6 +22,16 @@ main{max-width:1100px;margin:0 auto 64px;padding:0 24px}
 h1{font-size:30px;letter-spacing:-.03em;margin:8px 0 18px}
 h2{font-size:20px;letter-spacing:-.02em;margin:0}
 .muted{color:var(--muted)}
+.today{margin-bottom:14px}.today h2{margin:0 0 4px;font-size:20px}
+.today-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:12px}
+.today-grid h3{font-size:15px;margin:0 0 8px}.today-grid ul{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.today-grid li{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-size:15px}
+.today-grid li button.link{text-align:left}.due{font-size:13px;font-weight:700;white-space:nowrap;padding:2px 8px;border-radius:999px;background:var(--bg);border:1px solid var(--line)}
+.due.soon{background:#fff3cd;border-color:#f0c64a;color:#5c4400}.due.late{background:#fde2e1;border-color:#e58e8a;color:#7a1712}
+.news-card{margin-bottom:14px}.news-card summary{cursor:pointer;font-weight:700;font-size:18px}
+.news-card form{display:grid;gap:10px;margin-top:12px;max-width:640px}.news-card label{display:grid;gap:4px;font-weight:600;font-size:15px}
+.news-card input,.news-card select,.news-card textarea{font:inherit;padding:9px 12px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink)}
+.news-card .row{display:flex;gap:10px;flex-wrap:wrap}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px}
 .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-bottom:14px}
 .stat b{display:block;font-size:30px;letter-spacing:-.02em;line-height:1.1}
@@ -116,6 +126,27 @@ a{color:var(--blue)}
       <div class="card stat"><b id="s-live">0</b><span>Live sites</span></div>
       <div class="card stat"><b id="s-changes">0</b><span>Open change requests</span></div>
     </div>
+    <div class="card today" id="today">
+      <h2>Do today</h2>
+      <span class="muted" style="font-size:14px" id="today-sub">Loading…</span>
+      <div class="today-grid">
+        <div><h3>Websites to draft <span class="muted">(7-day promise)</span></h3><ul id="t-sites"></ul></div>
+        <div><h3>Change requests</h3><ul id="t-changes"></ul></div>
+        <div><h3>Shop orders to make <span class="muted">(7-day dispatch)</span></h3><ul id="t-orders"></ul><a href="admin-orders.html" style="font-size:14px">Open the order queue →</a></div>
+      </div>
+    </div>
+    <details class="card news-card" id="news">
+      <summary>Email the news list <span class="muted" id="n-sum" style="font-weight:400;font-size:15px"></span></summary>
+      <form id="f-news" novalidate>
+        <label>Send to<select id="n-aud"><option value="all">Everyone</option><option value="digital">Interested in websites</option><option value="print">Interested in Print Studio</option><option value="grow">Interested in Grow Studio</option></select></label>
+        <label>Subject<input id="n-subj" maxlength="150" required></label>
+        <label>Message<span class="muted" style="font-weight:400;font-size:13px">Plain text. Leave a blank line between paragraphs. Links starting https:// become clickable. An unsubscribe link and your address are added automatically.</span><textarea id="n-body" rows="10" required></textarea></label>
+        <div class="row"><button type="button" class="ghost" id="n-test">Send a test to me</button><button type="submit" id="n-send" disabled>Send to everyone</button></div>
+        <input type="hidden" id="n-tested" value="">
+        <p id="n-msg" class="muted" style="margin:0;font-size:14px" role="status"></p>
+        <p class="muted" style="margin:0;font-size:13px" id="n-hist"></p>
+      </form>
+    </details>
     <form class="card settings" id="f-trial">
       <label for="trial">Free trial for new customers</label>
       <span><input type="number" id="trial" min="0" max="365" required> days</span>
@@ -211,6 +242,7 @@ a{color:var(--blue)}
 </main>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="admin-today.js"></script>
 <script>
 var SB_URL="https://cvkgnrrskoptdtojcwvz.supabase.co";
 var SB_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImN2a2ducnJza29wdGR0b2pjd3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MTE2OTksImV4cCI6MjEwNzM4NzY5OX0.WsI6YpOpyd6q4wTV0q5FJzbjs0K3qnDTL4FNhfcbwNg";
@@ -229,6 +261,54 @@ var TEMPLATE={classic:'Classic',bold:'Bold',minimal:'Minimal',playful:'Playful',
 var LEVEL={starter:'Starter',standard:'Standard',pro:'Pro'};
 var LIVE_SUB=['trialing','active','past_due'];
 var customers=[],filter='all',current=null;
+
+/* ---- Do today ---- */
+var shopOrders=null,newsStats=null;
+function dueTag(n){var t=el('span',n<0?(-n)+(n===-1?' day late':' days late'):n===0?'Due today':n+(n===1?' day left':' days left'),'due');if(n<=1)t.classList.add(n<0?'late':'soon');if(n<0)t.classList.add('late');return t}
+function fillList(ul,items,empty,draw){ul.innerHTML='';if(!items.length){ul.appendChild(el('li',empty,'muted'));return}items.slice(0,8).forEach(function(i){ul.appendChild(draw(i))});if(items.length>8)ul.appendChild(el('li','and '+(items.length-8)+' more','muted'))}
+function renderToday(){
+  var t=buildToday(customers,shopOrders||[],new Date());
+  fillList($('t-sites'),t.sites,'Nothing waiting.',function(s){var li=el('li'),b=el('button',s.name,'link');b.type='button';b.onclick=function(){openDetail(s.customer)};li.appendChild(b);li.appendChild(dueTag(s.daysLeft));return li});
+  fillList($('t-changes'),t.changes,'No open requests.',function(c){var li=el('li'),b=el('button',c.name+': '+(c.message.length>40?c.message.slice(0,40)+'…':c.message),'link');b.type='button';b.onclick=function(){openDetail(c.customer)};li.appendChild(b);li.appendChild(el('span',c.ageDays?c.ageDays+'d':'new','due'));return li});
+  if(shopOrders===null)fillList($('t-orders'),[],'Loading…',null);
+  else fillList($('t-orders'),t.orders,'No orders to make.',function(o){var li=el('li');li.appendChild(el('span',o.ref+(o.name?' · '+o.name:'')+(o.status==='printing'?' (printing)':'')));li.appendChild(dueTag(o.daysLeft));return li});
+  var bits=[];if(t.newNoPlan)bits.push(t.newNoPlan+' new account'+(t.newNoPlan>1?'s':'')+' this week without a plan');
+  if(newsStats)bits.push(newsStats.counts.all+' on the news list'+(newsStats.newThisWeek?' ('+newsStats.newThisWeek+' new this week)':''));
+  $('today-sub').textContent=bits.join(' · ')||'Your to-do list across websites, changes and shop orders.';
+}
+async function loadExtras(){
+  var r=await Promise.all([sb.functions.invoke('shop-admin',{body:{action:'list'}}),sb.functions.invoke('news',{body:{action:'stats'}})]);
+  shopOrders=(r[0].data&&r[0].data.orders)||[];
+  if(r[1].data&&r[1].data.counts){newsStats=r[1].data;drawNews()}
+  renderToday();
+}
+
+/* ---- News list ---- */
+function drawNews(){
+  var c=newsStats.counts,aud=$('n-aud').value,n=c[aud]||0;
+  $('n-sum').textContent='· '+c.all+' people';
+  $('n-send').textContent=n?'Send to '+n+(n===1?' person':' people'):'Nobody to send to yet';
+  $('n-send').disabled=!n||!$('n-tested').value;
+  $('n-hist').textContent=newsStats.sends.length?'Last sent: '+newsStats.sends.map(function(s){return '“'+s.subject+'” to '+s.recipients+' on '+day(s.created_at)}).join('; '):'';
+}
+async function sendNews(test){
+  var subj=$('n-subj').value.trim(),body=$('n-body').value.trim(),aud=$('n-aud').value,msg=$('n-msg');
+  if(!subj||!body){msg.textContent='Add a subject and a message first.';return}
+  if(!test){var n=newsStats.counts[aud];if(!confirmSend(n))return}
+  $('n-test').disabled=$('n-send').disabled=true;msg.textContent=test?'Sending a test…':'Sending…';
+  var r=await sb.functions.invoke('news',{body:{action:'send',audience:aud,subject:subj,body:body,test:test}});
+  $('n-test').disabled=false;
+  if(r.error||!r.data||r.data.error){msg.textContent=(r.data&&r.data.error)||'That didn’t send. Try again.';drawNews();return}
+  if(test){$('n-tested').value=subj+'\n'+body;msg.textContent='Test sent to your email. Check it, then send to everyone.'}
+  else{msg.textContent='Sent to '+r.data.sent+' people.';$('n-tested').value='';$('n-subj').value='';$('n-body').value='';var s=await sb.functions.invoke('news',{body:{action:'stats'}});if(s.data&&s.data.counts)newsStats=s.data}
+  drawNews();
+}
+function confirmSend(n){var b=$('n-send');if(b.dataset.armed==='1'){b.dataset.armed='';return true}b.dataset.armed='1';b.textContent='Click again to send to '+n+' people';setTimeout(function(){b.dataset.armed='';if(newsStats)drawNews()},6000);return false}
+$('n-test').onclick=function(){sendNews(true)};
+$('f-news').onsubmit=function(e){e.preventDefault();sendNews(false)};
+['n-subj','n-body'].forEach(function(id){$(id).addEventListener('input',function(){if($('n-tested').value!==$('n-subj').value.trim()+'\n'+$('n-body').value.trim())$('n-tested').value='';if(newsStats)drawNews()})});
+$('n-aud').onchange=function(){if(newsStats)drawNews()};
+
 
 function view(v){['loading','denied','list','detail'].forEach(function(n){$('v-'+n).hidden=(n!==v)})}
 function day(iso){return iso?new Date(iso).toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}):''}
@@ -266,6 +346,7 @@ async function load(){
   var trial=res[3].data.find(function(s){return s.key==='trial_days'});
   $('trial').value=trial?Number(trial.value):14;
   render();
+  if(shopOrders===null)loadExtras();
 }
 
 function render(){
@@ -275,6 +356,7 @@ function render(){
   $('s-progress').textContent=count(function(c){return ['generating','in_review','with_customer'].indexOf(c.stage)>-1});
   $('s-live').textContent=count(function(c){return c.stage==='live'});
   $('s-changes').textContent=customers.reduce(function(n,c){return n+c.openChanges},0);
+  renderToday();
 
   var f=$('filters');f.innerHTML='';
   STAGES.forEach(function(s){

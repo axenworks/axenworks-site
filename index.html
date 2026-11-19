@@ -309,6 +309,8 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:34px 0 38
 </style>
 <link rel="stylesheet" href="motion.css">
 <script>document.documentElement.classList.add("js")</script>
+<script>window.va=window.va||function(){(window.vaq=window.vaq||[]).push(arguments)};</script>
+<script defer src="/_vercel/insights/script.js"></script>
 </head>
 <body data-shopbar>
 <header class="mat">
@@ -394,7 +396,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:34px 0 38
     <ol class="steps">
       <li><span class="tape who">You</span><b>Choose a colour</b><p>Eight colours. Everything you add is printed in the one you pick.</p></li>
       <li><span class="tape who">You</span><b>Add what you need</b><p>Browse six rooms, from the workshop to the desk.</p></li>
-      <li><span class="tape who">You</span><b>Pay securely</b><p>Card or wallet through Stripe. Postage is a flat <span data-postage>£3.99</span>, UK only.</p></li>
+      <li><span class="tape who">You</span><b>Pay securely</b><p>Card or wallet through Stripe. Postage is <span data-postage>£3.99</span>, or free over <span data-free>£25</span>. UK only.</p></li>
       <li><span class="tape who us">Axencraft</span><b>We print it</b><p>Made for you in Devon and posted within <span data-days>7</span> days.</p></li>
       <li><span class="tape who us">Royal Mail</span><b>It arrives</b><p>Tracked 48, usually 2 to 3 working days. We email you the tracking.</p></li>
     </ol>
@@ -404,7 +406,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:34px 0 38
     <ol class="steps">
       <li><span class="tape who">You</span><b>Build your kit</b><p>Choose the pot size, shape, colour and seeds.</p></li>
       <li><span class="tape who">You</span><b>Add a matching pot</b><p>We suggest pots, a drip tray and a dome that go with your kit.</p></li>
-      <li><span class="tape who">You</span><b>Pay securely</b><p>Postage is a flat <span data-postage>£3.99</span> per order, UK only.</p></li>
+      <li><span class="tape who">You</span><b>Pay securely</b><p>Postage is <span data-postage>£3.99</span> per order, or free over <span data-free>£25</span>. UK only.</p></li>
       <li><span class="tape who us">Axencraft</span><b>We print and pack it</b><p>Your pot is printed for you and leaves us within <span data-days>7</span> days.</p></li>
       <li><span class="tape who">You</span><b>Start growing</b><p>The card in the box walks you through sowing and watering.</p></li>
     </ol>
@@ -491,7 +493,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:34px 0 38
   <div class="faq">
     <h3>Prints and grow kits</h3>
     <div class="grp">
-      <details><summary>How much is postage?</summary><p>A flat <span data-postage>£3.99</span> per order, however many items you buy. We post by Royal Mail Tracked 48 to UK addresses.</p></details>
+      <details><summary>How much is postage?</summary><p><span data-postage>£3.99</span> per order, however many items you buy, and free when your items come to <span data-free>£25</span> or more. We post by Royal Mail Tracked 48 to UK addresses.</p></details>
       <details><summary>When will my order arrive?</summary><p>Everything is printed to order. Your order leaves us within <span data-days>7</span> days, then usually takes 2 to 3 working days. We email you the tracking number when it's posted.</p></details>
       <details><summary>Do I need an account to order?</summary><p>No. Add what you like to your basket and pay as a guest. We email you a receipt and a link to follow your order.</p></details>
       <details><summary>Can I send something back?</summary><p>Yes. You can cancel within 14 days of receiving your order for any reason. If something arrives faulty or damaged, we'll replace it or refund you, including postage. See section 12 of our <a href="terms.html#shop">terms</a>.</p></details>
@@ -561,7 +563,7 @@ document.getElementById('f').addEventListener('submit',function(e){
   fetch(SB_URL+"/rest/v1/waitlist",{
     method:"POST",
     headers:{"Content-Type":"application/json","apikey":SB_KEY,"Authorization":"Bearer "+SB_KEY,"Prefer":"return=minimal"},
-    body:JSON.stringify({name:document.getElementById('wl-name').value.trim(),email:document.getElementById('wl-email').value.trim(),interest:picks.join(',')})
+    body:JSON.stringify({name:document.getElementById('wl-name').value.trim(),email:document.getElementById('wl-email').value.trim(),interest:picks.join(','),source:'home'})
   }).then(function(r){
     if(!r.ok)throw new Error(r.status);
     document.getElementById('f').reset();
@@ -617,6 +619,7 @@ document.getElementById('f').addEventListener('submit',function(e){
 AXC_BASKET.load().then(function(CAT){
   var B=AXC_BASKET,money=B.money;
   document.querySelectorAll('[data-postage]').forEach(function(e){e.textContent=money(CAT.postage.pence)});
+  document.querySelectorAll('[data-free]').forEach(function(e){if(CAT.postage.free_over_pence)e.textContent=money(CAT.postage.free_over_pence).replace('.00','')});
   document.querySelectorAll('[data-days]').forEach(function(e){e.textContent=CAT.dispatchDays});
   var PICKS=['spice_rack_3_tier','cable_bar_5_slot','key_rail_5_peg','phone_stand','socket_rail_quarter_inch_x10','desk_tidy_3_section','plant_pot_120mm','headphone_hook_under_desk','hose_hanger','wall_hook'];
   var colour='orange',names={},rail=document.getElementById('rail'),cards=[];
