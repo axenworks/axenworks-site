@@ -1,11 +1,7 @@
 // Small helpers shared by the Axencraft edge functions.
 import { createClient } from "jsr:@supabase/supabase-js@2";
 
-export const PLAN_PRICES: Record<string, string> = {
-  starter: "price_1UZtVKGbMox0LPSQjpv4SOaS", // £19.99 / month
-  standard: "price_1UZtVLGbMox0LPSQPSrc3pjW", // £39.99 / month
-  pro: "price_1UZtVMGbMox0LPSQoSRlBZcr", // £59.99 / month
-};
+export { MONTHLY_PRICES as PLAN_PRICES } from "./plans.ts";
 export const SETUP_FEE_PRICE = "price_1UZtVKGbMox0LPSQNbgIuHaJ"; // £50 one-off
 
 export const PORTAL_CONFIG = "bpc_1UZtz2GbMox0LPSQzYxEXItR";

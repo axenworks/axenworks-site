@@ -1,6 +1,7 @@
 // Creates a Stripe Checkout page for a logged-in customer:
-// £50 setup fee charged now + chosen monthly plan, billed only once the site goes live.
-import { admin, cors, PLAN_PRICES, SETUP_FEE_PRICE, siteFor, stripe } from "../_shared/stripe.ts";
+// £50 setup fee charged now + chosen plan (monthly, or yearly at 11 months' price), billed only once the site goes live.
+import { admin, cors, SETUP_FEE_PRICE, siteFor, stripe } from "../_shared/stripe.ts";
+import { priceFor } from "../_shared/plans.ts";
 
 Deno.serve(async (req) => {
   const origin = req.headers.get("Origin");
@@ -20,8 +21,10 @@ Deno.serve(async (req) => {
     if (authErr || !auth?.user) return reply(401, { error: "Please log in again." });
     const user = auth.user;
 
-    const { plan } = await req.json().catch(() => ({}));
-    const price = PLAN_PRICES[plan];
+    const body = await req.json().catch(() => ({}));
+    const plan = String(body.plan ?? "");
+    const interval = body.interval === "year" ? "year" : "month";
+    const price = priceFor(plan, interval);
     if (!price) return reply(400, { error: "Please choose a plan." });
 
     const { data: existing } = await db
@@ -68,6 +71,7 @@ Deno.serve(async (req) => {
       "line_items[0][quantity]": "1",
       "subscription_data[metadata][user_id]": user.id,
       "subscription_data[metadata][plan]": plan,
+      "subscription_data[metadata][interval]": interval,
       success_url: `${site}/account.html?checkout=success`,
       cancel_url: `${site}/account.html?checkout=cancelled`,
     };

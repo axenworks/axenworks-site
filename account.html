@@ -50,6 +50,12 @@ h2{font-size:24px;letter-spacing:-.02em;margin:28px 0 6px}
 .plan .name{font-weight:800;font-size:20px}
 .plan .price{font-size:30px;font-weight:800;letter-spacing:-.02em}
 .plan .price small{font-size:15px;font-weight:400;color:var(--muted)}
+.cycle{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:3px;margin:0 0 14px;background:var(--card)}
+.cycle button{all:unset;cursor:pointer;padding:8px 16px;border-radius:999px;font-weight:600;font-size:15px}
+.cycle button small{font-weight:600;color:var(--blue)}
+.cycle button[aria-pressed="true"]{background:var(--blue);color:#fff}
+.cycle button[aria-pressed="true"] small{color:#fff}
+.cycle button:focus-visible{outline:3px solid #ffb703;outline-offset:2px}
 .plan .go{margin-top:10px;color:var(--blue);font-weight:600}
 .plan.pop{border:2px solid var(--blue)}
 .badge{justify-self:start;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;background:var(--blue);color:#fff;border-radius:999px;padding:3px 10px}
@@ -116,7 +122,7 @@ footer.mini{text-align:center;padding:24px 20px 32px;font-size:14px;color:var(--
       <div class="order-plan" id="o-plan"></div>
       <div class="order-lines">
         <div><span>Pay today</span><b>£50 setup fee</b></div>
-        <div><span>Monthly</span><b id="o-month"></b></div>
+        <div><span id="o-label">Monthly</span><b id="o-month"></b></div>
       </div>
       <span class="muted" style="font-size:14px" id="o-note"></span>
     </div>
@@ -259,29 +265,33 @@ footer.mini{text-align:center;padding:24px 20px 32px;font-size:14px;color:var(--
         <span class="muted" style="font-size:14px">Payment is handled by Stripe. We never see your card details.</span>
       </div>
       <h2 id="choose-title">Choose your plan</h2>
-      <p class="sub" id="choose-sub">Every plan has a one-off £50 setup fee, paid today. Monthly payments only start once your website is live<span class="trial-txt"></span>.</p>
+      <p class="sub" id="choose-sub">Every plan has a one-off £50 setup fee, paid today. Payments for your plan only start once your website is live<span class="trial-txt"></span>.</p>
+      <div class="cycle" role="group" aria-label="How often you pay">
+        <button type="button" id="cy-month" aria-pressed="true">Monthly</button>
+        <button type="button" id="cy-year" aria-pressed="false">Yearly <small>1 month free</small></button>
+      </div>
       <div class="plans">
         <button type="button" class="plan" data-plan="starter">
           <span class="name">Starter</span>
-          <span class="price">£19.99 <small>/ month</small></span>
+          <span class="price" data-m="£19.99" data-y="£219.89">£19.99 <small>/ month</small></span>
           <span class="muted">A one-page website, hosted and looked after. 1 change request a month.</span>
           <span class="go">Choose Starter →</span>
         </button>
         <button type="button" class="plan pop" data-plan="standard">
           <span class="badge">Most popular</span>
           <span class="name">Standard</span>
-          <span class="price">£39.99 <small>/ month</small></span>
+          <span class="price" data-m="£39.99" data-y="£439.89">£39.99 <small>/ month</small></span>
           <span class="muted">A 5-page website with custom fonts, a photo gallery and reviews. 3 change requests a month.</span>
           <span class="go">Choose Standard →</span>
         </button>
         <button type="button" class="plan" data-plan="pro">
           <span class="name">Pro</span>
-          <span class="price">£59.99 <small>/ month</small></span>
+          <span class="price" data-m="£59.99" data-y="£659.89">£59.99 <small>/ month</small></span>
           <span class="muted">An 8-page premium website with animations, a portfolio, an FAQ, a booking form and dark mode. 6 change requests a month.</span>
           <span class="go">Choose Pro →</span>
         </button>
       </div>
-      <p class="muted" style="font-size:15px">All plans come in all 7 styles. Extra change requests are £10 each.</p>
+      <p class="muted" style="font-size:15px">All plans come in all 7 styles. Pay yearly and you pay for 11 months, so you get a month free. Extra change requests are £10 each.</p>
     </div>
   </section>
 
@@ -325,21 +335,29 @@ var PLAN_INFO={starter:'A one-page website. 1 change request a month.',standard:
 var TRIAL_DAYS=0;
 function getChosen(){try{return localStorage.getItem('axc-plan')||''}catch(_){return ''}}
 function setChosen(v){try{v?localStorage.setItem('axc-plan',v):localStorage.removeItem('axc-plan')}catch(_){}}
+function getInterval(){try{return localStorage.getItem('axc-interval')==='year'?'year':'month'}catch(_){return 'month'}}
+function setInterval_(v){try{localStorage.setItem('axc-interval',v==='year'?'year':'month')}catch(_){}}
 (function(){
   var q=new URLSearchParams(location.search),pl=q.get('plan');
-  if(pl&&{starter:1,standard:1,pro:1}[pl]){setChosen(pl);q.delete('plan');history.replaceState(null,'',location.pathname+(q.toString()?'?'+q:''))}
+  var iv=q.get('interval');
+  if(iv==='year'||iv==='month'){setInterval_(iv);q.delete('interval')}
+  if(pl&&{starter:1,standard:1,pro:1}[pl]){setChosen(pl);q.delete('plan')}
+  if(pl||iv)history.replaceState(null,'',location.pathname+(q.toString()?'?'+q:''));
 })();
 
 /* ---------- Plans and checkout ---------- */
-var PLANS={starter:{name:'Starter',price:'£19.99'},standard:{name:'Standard',price:'£39.99'},pro:{name:'Pro',price:'£59.99'}};
-function monthText(pl){return (PLANS[pl]?PLANS[pl].price:'')+' a month, starting once your website is live'+(TRIAL_DAYS?' and your '+TRIAL_DAYS+'-day free trial ends':'')}
+var PLANS={starter:{name:'Starter',price:'£19.99',year:'£219.89'},standard:{name:'Standard',price:'£39.99',year:'£439.89'},pro:{name:'Pro',price:'£59.99',year:'£659.89'}};
+function priceText(pl,iv){var p=PLANS[pl];if(!p)return '';return iv==='year'?p.year+' a year':p.price+' a month'}
+function monthText(pl){return priceText(pl,getInterval())+', first payment taken once your website is live'+(TRIAL_DAYS?' and your '+TRIAL_DAYS+'-day free trial ends':'')}
 function renderOrder(){
   var pl=getChosen(),has=!!PLANS[pl];
   $('order').hidden=!has;$('mini-steps').hidden=!(has&&signup);
   if(has){
     $('o-plan').textContent=PLANS[pl].name;
-    $('o-month').textContent=PLANS[pl].price+' / month';
-    $('o-note').textContent=PLAN_INFO[pl]+' You won\u2019t pay monthly until your website is live'+(TRIAL_DAYS?', then you get a '+TRIAL_DAYS+'-day free trial':'')+'.';
+    var yr=getInterval()==='year';
+    $('o-label').textContent=yr?'Yearly (1 month free)':'Monthly';
+    $('o-month').textContent=yr?PLANS[pl].year+' / year':PLANS[pl].price+' / month';
+    $('o-note').textContent=PLAN_INFO[pl]+' You won\u2019t pay for your plan until your website is live'+(TRIAL_DAYS?', then you get a '+TRIAL_DAYS+'-day free trial':'')+'.';
   }
 }
 sb.rpc('public_trial_days').then(function(r){
@@ -624,7 +642,7 @@ async function renderPlan(row){
         $('off-text').textContent=(row.status==='unpaid'?'Your website is offline because a payment wasn\u2019t made. ':'Your plan has ended, so your website is offline. ')+'Choose a plan below to bring it back. Your website is saved, so there\u2019s no setup fee to pay again.';
       }
     }
-    if(currentProject&&currentProject.site)$('choose-sub').textContent='Your website is saved, so there\u2019s no setup fee. Your monthly plan starts straight away.';
+    if(currentProject&&currentProject.site)$('choose-sub').textContent='Your website is saved, so there\u2019s no setup fee. Your plan starts straight away.';
     var pl=getChosen();
     $('chosen').hidden=!PLANS[pl];
     $('choose-title').textContent=PLANS[pl]?'Or choose a different plan':'Choose your plan';
@@ -642,11 +660,13 @@ async function renderPlan(row){
   var proj=await loadProject();
   var siteLive=proj&&proj.status==='live';
   var p=PLANS[row.plan]||{name:'Your plan',price:''};
-  $('p-name').textContent=p.name+(p.price?' · '+p.price+' a month':'');
+  var yrly=row.billing_interval==='year';
+  var pText=p.price?(yrly?p.year+' a year':p.price+' a month'):'';
+  $('p-name').textContent=p.name+(pText?' · '+pText:'');
   var s, days=row.trial_days;
   if(row.cancel_at_period_end)s='Cancelled. Your plan ends on '+day(row.current_period_end||row.trial_end)+'.';
-  else if(row.status==='trialing'&&!siteLive)s='Setup fee paid. Your monthly payments haven\u2019t started: '+(days?'your '+days+'-day free trial begins':'billing begins')+' when your website goes live.';
-  else if(row.status==='trialing')s='Your website is live. Free trial until '+day(row.trial_end)+', then '+(p.price||'your plan')+' a month.';
+  else if(row.status==='trialing'&&!siteLive)s='Setup fee paid. Your payments haven\u2019t started: '+(days?'your '+days+'-day free trial begins':'billing begins')+' when your website goes live.';
+  else if(row.status==='trialing')s='Your website is live. Free trial until '+day(row.trial_end)+', then '+(pText||'your plan')+'.';
   else if(row.status==='past_due'){
     var by=new Date(new Date(row.past_due_since||Date.now()).getTime()+7*86400000);
     s='Your last payment didn\u2019t go through. Please update your card using Manage billing below'+(siteLive?' by '+day(by.toISOString())+', or your website will be taken offline.':'.');
@@ -723,13 +743,25 @@ async function loadPlan(){
 }
 
 var checkingOut=false;
+function drawCycle(){
+  var yr=getInterval()==='year';
+  $('cy-month').setAttribute('aria-pressed',String(!yr));$('cy-year').setAttribute('aria-pressed',String(yr));
+  document.querySelectorAll('.plan .price[data-m]').forEach(function(el){
+    el.textContent=(yr?el.dataset.y:el.dataset.m)+' ';var sm=document.createElement('small');sm.textContent=yr?'/ year':'/ month';el.appendChild(sm);
+  });
+  renderOrder();
+  var pl=getChosen();if(PLANS[pl]&&$('c-text'))$('c-text').textContent=(currentProject&&currentProject.site?'No setup fee, your website is saved. ':'\u00a350 setup fee today. Then ')+monthText(pl)+'.';
+}
+$('cy-month').onclick=function(){setInterval_('month');drawCycle()};
+$('cy-year').onclick=function(){setInterval_('year');drawCycle()};
+drawCycle();
 async function startCheckout(plan,btn){
   if(checkingOut)return;checkingOut=true;
   if(btn){btn.setAttribute('aria-busy','true');btn.disabled=true}
   setChosen(plan);
   note('Taking you to secure payment...');
   try{
-    var r=await sb.functions.invoke('create-checkout',{body:{plan:plan}});
+    var r=await sb.functions.invoke('create-checkout',{body:{plan:plan,interval:getInterval()}});
     if(r.error){
       var msg='Something went wrong. Please try again.';
       try{msg=(await r.error.context.json()).error||msg}catch(_){}
