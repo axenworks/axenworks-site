@@ -1,13 +1,11 @@
 // Receives Stripe events and keeps public.subscriptions in sync.
 // Security: we never trust the posted body. We take only the event ID and
 // fetch the event (and the subscription) fresh from Stripe with our secret key.
-import { admin, PLAN_PRICES, stripe } from "../_shared/stripe.ts";
+import { admin, stripe } from "../_shared/stripe.ts";
+import { planFromPrice } from "../_shared/plans.ts";
 import { markPaid } from "../_shared/shop.ts";
 import { creditPack } from "../_shared/ai-credits.ts";
 
-const PRICE_TO_PLAN = Object.fromEntries(
-  Object.entries(PLAN_PRICES).map(([plan, price]) => [price, plan]),
-);
 const ts = (s?: number | null) => (s ? new Date(s * 1000).toISOString() : null);
 
 // Ask notify-customer to email the customer (best effort; it de-duplicates itself).
@@ -36,9 +34,11 @@ async function syncSubscription(subId: string): Promise<string | undefined> {
   const { data: before } = await db.from("subscriptions")
     .select("status,past_due_since").eq("user_id", userId).maybeSingle();
 
-  const item = sub.items?.data?.find((i: any) => PRICE_TO_PLAN[i.price?.id]) ?? sub.items?.data?.[0];
-  // Price first: customers can switch plans in the billing portal.
-  const plan = PRICE_TO_PLAN[item?.price?.id] ?? sub.metadata?.plan ?? null;
+  const item = sub.items?.data?.find((i: any) => planFromPrice(i.price?.id)) ?? sub.items?.data?.[0];
+  // Price first: customers can switch plan or monthly/yearly in the billing portal.
+  const known = planFromPrice(item?.price?.id);
+  const plan = known?.plan ?? sub.metadata?.plan ?? null;
+  const interval = known?.interval ?? "month";
   const periodEnd = sub.current_period_end ?? item?.current_period_end;
 
   const row: Record<string, unknown> = {
@@ -46,6 +46,7 @@ async function syncSubscription(subId: string): Promise<string | undefined> {
     stripe_customer_id: sub.customer,
     stripe_subscription_id: sub.id,
     plan,
+    billing_interval: interval,
     status: sub.status,
     trial_end: ts(sub.trial_end),
     current_period_end: ts(periodEnd),

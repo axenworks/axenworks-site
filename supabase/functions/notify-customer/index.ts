@@ -12,7 +12,7 @@
 import { admin } from "../_shared/stripe.ts";
 
 const SITE = "https://axencraft.co.uk";
-const PRICE: Record<string, string> = { starter: "\u00a319.99", standard: "\u00a339.99", pro: "\u00a359.99" };
+import { priceLabel } from "../_shared/plans.ts";
 const longDate = (iso: string) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" });
 const esc = (v: unknown) =>
   String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]!));
@@ -61,7 +61,7 @@ Deno.serve(async (req) => {
       const url = p.subdomain ? `https://${p.subdomain}.axencraft.co.uk` : `${SITE}/account.html`;
       const { data: sub } = await db.from("subscriptions").select("status,trial_end").eq("user_id", p.user_id).maybeSingle();
       const trial = sub?.status === "trialing" && sub.trial_end
-        ? `<p style="margin:12px 0 0">Your free trial runs until <b>${new Date(sub.trial_end).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</b>. Your monthly plan starts after that.</p>` : "";
+        ? `<p style="margin:12px 0 0">Your free trial runs until <b>${new Date(sub.trial_end).toLocaleDateString("en-GB", { day: "numeric", month: "long", year: "numeric" })}</b>. Your first payment is taken after that.</p>` : "";
       subject = `${biz} is live!`;
       html = layout("Your website is live",
         `<p style="margin:0 0 12px">The website for <b>${esc(biz)}</b> is now live${p.subdomain ? ` at <a href="${esc(url)}" style="color:#2430d6">${esc(url.replace("https://", ""))}</a>` : ""}. Share it with your customers!</p>
@@ -87,7 +87,9 @@ Deno.serve(async (req) => {
     userId = sub.user_id;
     const { data: p } = await db.from("projects").select("status,subdomain,answers").eq("user_id", sub.user_id).maybeSingle();
     const biz = p?.answers?.business_name || "your business";
-    const price = PRICE[sub.plan] ?? "your monthly price";
+    const yearly = sub.billing_interval === "year";
+    const label = priceLabel(sub.plan, yearly ? "year" : "month");
+    const price = label ? `${label.amount} ${label.per}` : (yearly ? "your yearly price" : "your monthly price");
     if (event === "trial_ending") {
       // Only for a real trial after go-live (not the placeholder while the site is being built).
       const ends = sub.trial_end ? new Date(sub.trial_end).getTime() : 0;
@@ -97,7 +99,7 @@ Deno.serve(async (req) => {
       }
       subject = "Your free trial ends soon";
       html = layout("Your free trial ends soon",
-        `<p style="margin:0 0 12px">Your free trial for the <b>${esc(biz)}</b> website ends on <b>${longDate(sub.trial_end)}</b>. After that, your plan continues at <b>${price} a month</b> using the card you paid with.</p>
+        `<p style="margin:0 0 12px">Your free trial for the <b>${esc(biz)}</b> website ends on <b>${longDate(sub.trial_end)}</b>. After that, your plan continues at <b>${price}</b> using the card you paid with.</p>
 <p style="margin:0">You don't need to do anything to keep your website online. To update your card, change plan or cancel, use Manage billing in your account.</p>`,
         { label: "Go to your account", url: `${SITE}/account.html` });
       const trialEnd = sub.trial_end;
@@ -109,7 +111,7 @@ Deno.serve(async (req) => {
       const offline = new Date(since + grace * 86400000).toISOString();
       subject = "We couldn\u2019t take your payment";
       html = layout("We couldn\u2019t take your payment",
-        `<p style="margin:0 0 12px">Your monthly payment of <b>${price}</b> for the <b>${esc(biz)}</b> website didn't go through. This often happens when a card has expired or been replaced.</p>
+        `<p style="margin:0 0 12px">Your ${yearly ? "yearly" : "monthly"} payment of <b>${price.replace(/ a (month|year)$/, "")}</b> for the <b>${esc(biz)}</b> website didn't go through. This often happens when a card has expired or been replaced.</p>
 <p style="margin:0">Please update your card using Manage billing in your account. We'll try the payment again automatically. If it's still unpaid by <b>${longDate(offline)}</b>, your website will be taken offline until it's paid.</p>`,
         { label: "Update your card", url: `${SITE}/account.html` });
       mark = () => db.from("subscriptions").update({ payment_failed_emailed_at: new Date().toISOString() }).eq("user_id", sub.user_id);

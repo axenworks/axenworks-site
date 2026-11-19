@@ -236,6 +236,12 @@ button:disabled{opacity:.6;cursor:wait}
 .paynow{display:flex;flex-wrap:wrap;gap:14px 28px;margin:30px 0 38px}
 .paynow div{display:grid;gap:6px;justify-items:start;max-width:38ch}
 .paynow span{color:var(--muted);font-size:16px}.paynow span span{font-size:inherit}
+.cycle{display:inline-flex;border:2px solid var(--ink,#111);border-radius:999px;padding:3px;margin:0 0 22px;background:#fff}
+.cycle button{all:unset;cursor:pointer;padding:9px 18px;border-radius:999px;font-weight:700;font-size:16px}
+.cycle button small{font-weight:700;opacity:.8}
+.cycle button[aria-pressed="true"]{background:var(--ink,#111);color:#fff}
+.cycle button:focus-visible{outline:3px solid #ffb703;outline-offset:2px}
+.yr-note{margin:-4px 0 0;font-size:14px;color:var(--muted)}
 .plans{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:stretch}
 .plan{position:relative;display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:0 24px 24px;box-shadow:var(--sh-card);transition:box-shadow .3s,transform .3s var(--ease-out,ease)}
 .plan:hover{box-shadow:var(--sh-card-up)}
@@ -432,28 +438,32 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:34px 0 38
 
 <section class="sec" id="pricing"><div class="wrap">
   <h2 class="hd" data-reveal>Website plans</h2>
-  <p class="lead" data-reveal>One setup fee, then a monthly plan that covers hosting and care.</p>
+  <p class="lead" data-reveal>One setup fee, then a plan that covers hosting and care. Pay yearly and get a month free.</p>
   <div class="paynow" role="note" data-stagger>
     <div><b class="tape">£50 today</b><span>One-off setup fee to design and build your website.</span></div>
-    <div><b class="tape">£0 a month until you're live</b><span>Monthly payments only start once your website is live<span class="trial-txt"></span>.</span></div>
+    <div><b class="tape">£0 a month until you're live</b><span>Payments for your plan only start once your website is live<span class="trial-txt"></span>.</span></div>
+  </div>
+    <div class="cycle" role="group" aria-label="How often you pay">
+    <button type="button" id="cy-month" aria-pressed="true">Monthly</button>
+    <button type="button" id="cy-year" aria-pressed="false">Yearly <small>1 month free</small></button>
   </div>
   <div class="plans" data-stagger="lay">
     <div class="plan">
       <div class="plan-head"><h3>Starter</h3><span>1 page</span></div>
-      <div class="price">£19.99 <span>a month</span></div>
+      <div class="price" data-m="£19.99" data-y="£219.89">£19.99 <span>a month</span></div>
       <ul><li>One tidy page with services, about and contact</li><li>Any of the 7 styles in your colours</li><li>Working contact form</li><li>Edit it yourself with AI, just by typing</li><li>1 change request a month</li></ul>
       <a class="btn choose" href="account.html?plan=starter">Choose Starter</a>
     </div>
     <div class="plan pop">
       <span class="tape hot">Most popular</span>
       <div class="plan-head"><h3>Standard</h3><span>5 pages</span></div>
-      <div class="price">£39.99 <span>a month</span></div>
+      <div class="price" data-m="£39.99" data-y="£439.89">£39.99 <span>a month</span></div>
       <ul><li>Home, About, Services, Gallery and Contact</li><li>Photo gallery and customer reviews</li><li>Designer fonts and key numbers</li><li>Edit it yourself with AI, just by typing</li><li>3 change requests a month</li></ul>
       <a class="btn choose" href="account.html?plan=standard">Choose Standard</a>
     </div>
     <div class="plan">
       <div class="plan-head"><h3>Pro</h3><span>8 pages</span></div>
-      <div class="price">£59.99 <span>a month</span></div>
+      <div class="price" data-m="£59.99" data-y="£659.89">£59.99 <span>a month</span></div>
       <ul><li>Everything in Standard, plus Portfolio, Reviews and FAQ pages</li><li>Before-and-after photos and a booking form</li><li>The most AI edits each month</li><li>6 change requests a month</li></ul>
       <a class="btn choose" href="account.html?plan=pro">Choose Pro</a>
     </div>
@@ -479,7 +489,7 @@ footer{background:var(--mat-deep);color:#c6d6cc;font-size:15px;padding:34px 0 38
     </div>
     <h3>Websites</h3>
     <div class="grp">
-      <details><summary>What do I pay today?</summary><p>Just the one-off £50 setup fee. Your monthly plan doesn't start until your website is live<span class="trial-txt"></span>.</p></details>
+      <details><summary>What do I pay today?</summary><p>Just the one-off £50 setup fee. Your plan doesn't start until your website is live<span class="trial-txt"></span>.</p></details>
       <details><summary>What do I need to get started?</summary><p>An email address and a few details about your business. After payment, a short questionnaire asks about your business, your style and your words. You can add your logo and photos, and your answers save as you go so you can finish later.</p></details>
       <details><summary>Can I see my website before it goes live?</summary><p>Yes. You'll get a private preview link in your account. Ask for as many changes as you like while you're reviewing it. Nothing goes live until you're happy.</p></details>
       <details><summary>How long does it take to build?</summary><p>Your first draft is ready to preview within 7 days of you finishing the questionnaire. We check every draft by hand before you see it.</p></details>
@@ -683,6 +693,26 @@ AXC_BASKET.load().then(function(CAT){
   });
   document.getElementById('level-note').textContent=LEVEL_NOTES[level];
   addEventListener('resize',scale);draw(true);
+})();
+</script>
+<script>
+(function(){
+  var yr=false;
+  var P={starter:'£219.89',standard:'£439.89',pro:'£659.89'};
+  function draw(){
+    document.getElementById('cy-month').setAttribute('aria-pressed',String(!yr));
+    document.getElementById('cy-year').setAttribute('aria-pressed',String(yr));
+    document.querySelectorAll('.plans .price[data-m]').forEach(function(el){
+      el.firstChild.nodeValue=(yr?el.dataset.y:el.dataset.m)+' ';
+      el.querySelector('span').textContent=yr?'a year':'a month';
+    });
+    document.querySelectorAll('.plans a.choose').forEach(function(a){
+      var u=a.getAttribute('href').split('&')[0];
+      a.setAttribute('href',yr?u+'&interval=year':u);
+    });
+  }
+  document.getElementById('cy-month').onclick=function(){yr=false;draw()};
+  document.getElementById('cy-year').onclick=function(){yr=true;draw()};
 })();
 </script>
 </body>
