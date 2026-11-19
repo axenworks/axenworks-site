@@ -55,7 +55,14 @@ Deno.serve(async (req) => {
   headers["X-Robots-Tag"] = "noindex";
   const token = params.get("token") ?? "";
   if (!/^[0-9a-f-]{36}$/i.test(token)) return notFound();
-  const { data } = await db.from("projects").select("site").eq("preview_token", token).maybeSingle();
+  const { data } = await db.from("projects").select("id,site").eq("preview_token", token).maybeSingle();
   if (!data?.site) return notFound();
+  // ?pending=1: the customer's not-yet-applied AI edit, so they can look at it before pressing Apply.
+  if (params.get("pending") === "1") {
+    const { data: pend } = await db.from("ai_edits").select("after_site")
+      .eq("project_id", data.id).eq("status", "pending").order("created_at", { ascending: false }).limit(1).maybeSingle();
+    if (!pend?.after_site) return notFound();
+    return new Response(JSON.stringify(pend.after_site), { headers });
+  }
   return new Response(JSON.stringify(data.site), { headers });
 });

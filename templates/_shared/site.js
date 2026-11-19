@@ -8,7 +8,7 @@
 (function () {
   'use strict';
   var B = document.body, LV = B.dataset.level, ST = B.dataset.style, PAGE = B.dataset.page || 'home';
-  var Q = new URLSearchParams(location.search), TOKEN = Q.get('site');
+  var Q = new URLSearchParams(location.search), TOKEN = Q.get('site'), PENDING = !!TOKEN && Q.get('pending') === '1';
   var LIVE = !/\/templates\//.test(location.pathname);
   var FN = 'https://cvkgnrrskoptdtojcwvz.supabase.co/functions/v1';
   var app = document.getElementById('app'), d, C, SAMPLE = false, artN = 0, INIT = 'A';
@@ -23,7 +23,7 @@
   /* ---------- small helpers ---------- */
   function esc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) { return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]; }); }
   function paras(t) { return String(t || '').split(/\n\s*\n/).filter(Boolean).map(function (p) { return '<p>' + esc(p).replace(/\n/g, '<br>') + '</p>'; }).join(''); }
-  function href(p) { return TOKEN ? p + (p.indexOf('?') > -1 ? '&' : '?') + 'site=' + encodeURIComponent(TOKEN) : p; }
+  function href(p) { return TOKEN ? p + (p.indexOf('?') > -1 ? '&' : '?') + 'site=' + encodeURIComponent(TOKEN) + (PENDING ? '&pending=1' : '') : p; }
   function tel(p) { return String(p).replace(/[^\d+]/g, ''); }
   function arr(x) { return Array.isArray(x) ? x : []; }
   function photos() { return arr(d.gallery).filter(function (g) { return g && (g.src || SAMPLE); }); }
@@ -470,7 +470,7 @@
     if (location.hash) { var target = document.getElementById(location.hash.slice(1)); if (target) target.scrollIntoView(); }
   }
 
-  var src = TOKEN ? FN + '/site-data?token=' + encodeURIComponent(TOKEN) : (LIVE ? '/site.json' : 'site.json');
+  var src = TOKEN ? FN + '/site-data?token=' + encodeURIComponent(TOKEN) + (PENDING ? '&pending=1' : '') : (LIVE ? '/site.json' : 'site.json');
   fetch(src, { cache: 'no-cache' }).then(function (r) { if (!r.ok) throw new Error('not found'); return r.json(); }).then(render).catch(function () {
     app.innerHTML = '<p style="padding:48px 24px;font:18px/1.5 system-ui,sans-serif;max-width:560px;margin:10vh auto">' + (TOKEN ? 'This preview link isn’t working. Please open it again from your account.' : 'Sorry, this website could not load. Please try again shortly.') + '</p>';
   });

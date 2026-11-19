@@ -212,6 +212,29 @@ footer.mini{text-align:center;padding:24px 20px 32px;font-size:14px;color:var(--
       <div id="cr-history" hidden><b style="font-size:15px">Your requests</b><ul class="cr-list" id="cr-list"></ul></div>
     </div>
 
+    <div class="box" id="d-ai" hidden style="margin-top:14px">
+      <b>Edit with AI</b>
+      <span class="muted" id="ai-meter"></span>
+      <form id="f-ai" class="cr-form">
+        <label>What would you like to change?<textarea id="ai-msg" rows="3" maxlength="1000" required placeholder="For example: change the opening hours to 9am to 6pm, or make the main colour dark green."></textarea></label>
+        <div><button type="submit" id="ai-go">Make this change</button></div>
+        <p class="form-msg" id="ai-out" role="status"></p>
+      </form>
+      <div id="ai-fallback" hidden><button type="button" class="ghost" id="ai-tocr">Send this to Axencraft as a change request</button></div>
+      <div class="cr-extra" id="ai-more" hidden>
+        <span id="ai-more-text"></span>
+        <div><button type="button" id="ai-buy">Buy more edits</button></div>
+      </div>
+      <div class="cr-extra" id="ai-pending" hidden style="background:var(--bg);border-color:var(--line);color:var(--ink)">
+        <b>Here’s what will change</b>
+        <span class="muted" id="ai-note"></span>
+        <div id="ai-diff"></div>
+        <div class="actions"><a class="btn" id="ai-preview" target="_blank" rel="noopener">Preview the change ↗</a><button type="button" id="ai-apply">Apply</button><button type="button" class="ghost" id="ai-discard">Discard</button></div>
+      </div>
+      <div class="actions"><button type="button" class="link" id="ai-undo" hidden>Undo my last applied change</button></div>
+      <div id="ai-history" hidden><b style="font-size:15px">Recent AI edits</b><ul class="cr-list" id="ai-list"></ul></div>
+    </div>
+
     <div class="box warn" id="d-offline" hidden>
       <b>Your website is offline</b>
       <span id="off-text">Your plan has ended, so your website is no longer online. Choose a plan below to bring it back. Your website is saved, so there's no setup fee to pay again.</span>
@@ -367,7 +390,7 @@ async function loadProject(){
     $('pr-view').textContent=p.status==='live'?(p.subdomain?'Visit '+p.subdomain+'.axencraft.co.uk \u2197':'View your website \u2197'):'View your website preview \u2197';
   }
   $('d-project').hidden=false;
-  loadChanges(p);loadDomain(p);
+  loadChanges(p);loadDomain(p);loadAi(p);
   return p;
 }
 
@@ -426,6 +449,92 @@ $('dm-remove').onclick=async function(){
   if(!confirm('Disconnect this domain? Your website will still be at your axencraft.co.uk address.'))return;
   try{drawDomain(await domainCall({action:'remove'}));$('dm-msg').textContent='Domain disconnected.';if(currentProject)loadProject()}
   catch(err){$('dm-msg').classList.add('err');$('dm-msg').textContent=err.message}
+};
+
+/* ---------- AI edits ---------- */
+var aiState=null,AI_STATUS={applied:'Applied',undone:'Undone',discarded:'Not applied'};
+function aiSay(t,err){var o=$('ai-out');o.textContent=t||'';o.classList.toggle('err',!!err)}
+async function aiCall(body){
+  var r=await sb.functions.invoke('ai-edit',{body:body});
+  if(r.error){var b={};try{b=await r.error.context.json()}catch(_){}var e=new Error(b.error||'Something went wrong. Please try again.');e.body=b;throw e}
+  return r.data;
+}
+function aiDraw(s){
+  aiState=s;
+  var show=!!(s&&s.enabled);
+  $('d-ai').hidden=!show;if(!show)return;
+  $('ai-meter').textContent='You have '+s.remaining+' AI edit'+(s.remaining===1?'':'s')+' left this month'+(s.credits>0?', including '+s.credits+' you bought':'')+'. You can check every change before it goes on your website.';
+  var none=s.remaining<1;
+  $('ai-more').hidden=!none;$('ai-go').disabled=none;
+  if(none)$('ai-more-text').textContent='You\u2019ve used all your AI edits for this month. You can buy '+s.pack.size+' more for \u00a3'+(s.pack.pence/100).toFixed(2)+', or send us a change request below.';
+  var p=s.pending;$('ai-pending').hidden=!p;
+  if(p){
+    $('ai-note').textContent=p.note||'';
+    var d=$('ai-diff');d.textContent='';
+    (p.changes||[]).forEach(function(c){
+      var w=document.createElement('div');w.style.cssText='display:grid;gap:4px;margin:8px 0';
+      var h=document.createElement('b');h.textContent=c.label;w.appendChild(h);
+      [['Before',c.before],['After',c.after]].forEach(function(x){var l=document.createElement('div');l.style.whiteSpace='pre-wrap';if(x[0]==='Before')l.className='muted';l.textContent=x[0]+': '+x[1];w.appendChild(l)});
+      d.appendChild(w);
+    });
+    var pl=PLANS[currentPlan]?currentPlan:'starter';
+    $('ai-preview').href='templates/'+pl+'-'+currentProject.template+'/index.html?site='+currentProject.preview_token+'&pending=1';
+  }
+  $('ai-undo').hidden=!s.undoId;
+  var ul=$('ai-list');ul.textContent='';$('ai-history').hidden=!(s.history&&s.history.length);
+  (s.history||[]).forEach(function(h){
+    var li=document.createElement('li'),meta=document.createElement('div');meta.className='meta';
+    meta.textContent=(AI_STATUS[h.status]||h.status)+' \u00b7 '+new Date(h.created_at).toLocaleDateString('en-GB',{day:'numeric',month:'short'});
+    var m=document.createElement('span');m.textContent=h.message;m.style.whiteSpace='pre-wrap';
+    li.appendChild(meta);li.appendChild(m);ul.appendChild(li);
+  });
+}
+async function aiRefresh(){try{aiDraw(await aiCall({action:'status'}))}catch(_){}}
+async function loadAi(project){
+  var show=project&&['with_customer','live'].indexOf(project.status)>-1;
+  if(!show){$('d-ai').hidden=true;return}
+  await aiRefresh();
+  if(new URLSearchParams(location.search).get('ai')==='bought'){
+    aiSay('Thank you! Your extra edits are being added.');
+    setTimeout(aiRefresh,3000);setTimeout(aiRefresh,9000);
+  }
+}
+$('f-ai').addEventListener('submit',async function(e){
+  e.preventDefault();var b=$('ai-go');
+  if($('ai-msg').value.trim().length<3){aiSay('Please describe the change you\u2019d like.',true);$('ai-msg').focus();return}
+  b.disabled=true;$('ai-fallback').hidden=true;aiSay('Working on it. This can take up to half a minute...');
+  try{
+    var r=await aiCall({action:'propose',message:$('ai-msg').value});
+    if(r.unsupported){aiSay(r.unsupported);$('ai-fallback').hidden=false}
+    else{aiSay('Here\u2019s what would change. Check it, then apply it or discard it.');$('ai-msg').value=''}
+  }catch(err){
+    if(err.body&&err.body.needs_more)aiSay('');else aiSay(err.message,true);
+  }
+  await aiRefresh();
+  b.disabled=!!(aiState&&aiState.remaining<1);
+});
+$('ai-tocr').onclick=function(){$('cr-msg').value=$('ai-msg').value;$('d-changes').scrollIntoView({behavior:'smooth',block:'start'});$('cr-msg').focus()};
+$('ai-apply').onclick=async function(){
+  var b=this;b.disabled=true;aiSay('Applying...');
+  try{await aiCall({action:'apply',id:aiState.pending.id});aiSay('Done. Your website has been updated.');await loadProject()}
+  catch(err){aiSay(err.message,true);await aiRefresh()}
+  b.disabled=false;
+};
+$('ai-discard').onclick=async function(){
+  var b=this;b.disabled=true;
+  try{await aiCall({action:'discard',id:aiState.pending.id});aiSay('Discarded. Nothing was changed.')}catch(err){aiSay(err.message,true)}
+  await aiRefresh();b.disabled=false;
+};
+$('ai-undo').onclick=async function(){
+  if(!confirm('Undo your last AI change? Your website will go back to how it was before.'))return;
+  var b=this;b.disabled=true;aiSay('Undoing...');
+  try{await aiCall({action:'undo',id:aiState.undoId});aiSay('Done. Your last change has been undone.');await loadProject()}
+  catch(err){aiSay(err.message,true);await aiRefresh()}
+  b.disabled=false;
+};
+$('ai-buy').onclick=async function(){
+  var b=this;b.disabled=true;aiSay('Opening checkout...');
+  try{var r=await aiCall({action:'buy'});location.href=r.url}catch(err){aiSay(err.message,true);b.disabled=false}
 };
 
 /* ---------- Change requests ---------- */
@@ -526,7 +635,7 @@ async function renderPlan(row){
       if(go)startCheckout(pl,$('c-pay'));
     }
   }
-  $('d-project').hidden=true;$('d-changes').hidden=true;
+  $('d-project').hidden=true;$('d-changes').hidden=true;$('d-ai').hidden=true;
   if(!live)return;
   setChosen('');
   currentPlan=row.plan;
